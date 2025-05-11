@@ -1,0 +1,5 @@
+description: API key missing or invalid
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/Error.yaml'

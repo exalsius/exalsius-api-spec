@@ -1,0 +1,92 @@
+get:
+  operationId: listNodes
+  tags: [nodes]
+  summary: List all imported nodes in the node pool
+  description: |
+    **List nodes in the pool**
+
+    Retrieve all imported nodes, with optional filters:
+    - `nodeType`: self-managed or cloud-imported
+    - `provider`: AWS, Azure, etc.
+
+    **Examples**
+
+    Here's an example of how to filter by node type:
+      ```
+      /nodes?nodeType=selfManaged
+      ```
+      
+      Here's an example of how to filter by node type and provider:
+      ```
+      /nodes?nodeType=selfManaged&provider=aws
+      ```
+
+  parameters:
+    - name: nodeType
+      in: query
+      description: |
+        Only return nodes of this type.  
+        Possible values:
+        - `selfManaged` - only self-managed (SSH) nodes  
+        - `cloud` - only cloud-imported nodes
+      required: false
+      schema:
+        type: string
+        enum:
+          - selfManaged
+          - cloud
+    - name: provider
+      in: query
+      description: |
+        Only return nodes of this provider.
+        Example:
+        - `aws` - only AWS node instances
+      required: false
+      schema:
+        type: string
+
+  responses:
+    '200':
+      $ref: '../../components/responses/nodes-list-response.yaml'
+    '400':
+      description: Invalid nodeType
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/nodes?nodeType=cloud&provider=aws"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        from typing import Optional
+
+        def get_nodes(
+            node_type: Optional[str] = None,
+            provider: Optional[str] = None
+        ) -> dict:
+            """
+            Fetch nodes with optional filtering parameters.
+
+            Args:
+                node_type: The type of nodes to return
+                provider: The provider of the nodes to return
+                
+            Returns:
+                dict: The JSON response containing the nodes
+            """
+            url = "https://api.exalsius.ai/nodes"
+            params = {}
+            if node_type:
+                params['nodeType'] = node_type
+            if provider:
+                params['provider'] = provider
+            response = requests.get(url, params=params)
+            return response.json()
+        
+        nodes = get_nodes(nodeType="cloud", provider="aws")
+        print(nodes)
+        

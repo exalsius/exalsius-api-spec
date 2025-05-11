@@ -1,0 +1,65 @@
+type: object
+required:
+  - id
+  - status
+  - createdAt
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier for the cluster
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    description: The name of the cluster
+    example: "my-cluster"
+  status:
+    type: string
+    enum: [staging, running, deleting, deleted, failed]
+    description: The status of the cluster
+    example: "running"
+  createdAt:
+    type: string
+    format: date-time
+    description: The date and time the cluster was created
+    example: "2025-01-01T00:00:00Z"
+  updatedAt:
+    type: string
+    format: date-time
+    description: The date and time the cluster was last updated
+    example: "2025-01-01T00:00:00Z"
+  toBeDeletedAt:
+    type: string
+    format: date-time
+    description: The date and time the cluster will be deleted
+    example: "2025-02-01T00:00:00Z"
+  controlPlaneNodeIds:
+    type: array
+    items:
+      type: string
+    description: The node IDs of the control plane nodes in the cluster
+    example: ["123e4567-e89b-12d3-a456-426614174000"]
+  workerNodeIds:
+    type: array
+    items:
+      type: string
+    description: The node IDs of the worker nodes in the cluster
+    example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174001"]
+  serviceDeployments:
+    type: array
+    items:
+      $ref: '../../components/schemas/service-deployment.yaml'
+    description: The deployed services in the cluster
+    example: [{"serviceId": "ffd4c2f4-ec48-41f1-be56-52ba90f661b6", "serviceName": "my-service", "values": {"key": "value"}}, {"serviceId": "ffd4c2f4-ec48-41f1-be56-52ba90f661b7", "serviceName": "my-service-2", "values": {"key": "value"}}]
+  k8sVersion:
+    type: string
+    description: The version of Kubernetes deployed in the cluster
+    example: "1.32.0"
+  currentCosts:
+    type: number
+    description: The total costs of the cluster until now
+    example: 100.0
+  costsPerHour:
+    type: number
+    description: The costs of the cluster per hour
+    example: 1.0

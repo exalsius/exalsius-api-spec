@@ -1,0 +1,48 @@
+get:
+  operationId: listAvailableServices
+  tags: [services]
+  summary: List all available services
+  description: |
+    **List all available services**
+
+    List all services that can be deployed.
+
+    **Note**
+
+    Services can be added to the exalsius management cluster using the `exalsius-operator`.
+
+    **Result**
+
+    Returns an array of service objects.
+
+  responses:
+    '200':
+      description: An array of services
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              services:
+                type: array
+                items:
+                  $ref: '../../components/schemas/service.yaml'
+    '404':
+      description: Services not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/services"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        import os
+
+        url = "https://api.exalsius.ai/services"
+        response = requests.get(url)
+        print(response.json())

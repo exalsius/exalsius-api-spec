@@ -1,0 +1,85 @@
+post:
+  operationId: importSsh
+  tags: [nodes]
+  summary: Import a self-managed node via SSH
+  description: |
+    **Import a self-managed node into the pool**
+
+    Use this operation to bring an existing server under SSH control into your node pool.
+    The node will be added to the node pool and will be available to select for a cluster deployment.
+    
+    **Parameters**
+
+    In order to import a self-managed node, you need to provide the following information:
+    - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`)
+    - The username to access the node
+    - The ID of the SSH key to use for the node (see the SSH Keys endpoint)
+    
+    **Behavior**
+
+    On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.
+
+    **Monitoring**
+    You can poll its status at any time via GET /nodes/{nodeId}.
+
+    **Result**
+
+    Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/node-import-ssh.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/node-import-response.yaml'
+    '400':
+      $ref: '../../components/responses/bad-request.yaml'
+    '404':
+      description: SSH key not found
+    '409':
+      description: Node already exists
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/nodes/import-ssh" -H "Content-Type: application/json" -d '{"endpoint": "192.168.1.1:22", "username": "ubuntu", "sshKeyId": "123e4567-e89b-12d3-a456-426614174000"}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        from typing import Optional
+
+        def import_ssh_node(endpoint: str, username: str, ssh_key_id: str) -> dict:
+            """
+            Import a self-managed node via SSH
+
+            Args:
+                endpoint: The IP or hostname of the node with the SSH port
+                username: The username to access the node
+                ssh_key_id: The ID of the SSH key to use for the node
+
+            Returns:
+                dict: The JSON response containing the node
+            """
+            url = "https://api.exalsius.ai/nodes/import-ssh"
+            headers = {
+                "Content-Type": "application/json"
+            }
+            data = {
+                "endpoint": endpoint,
+                "username": username,
+                "sshKeyId": ssh_key_id
+            }
+            response = requests.post(url, headers=headers, json=data)
+            return response.json()
+
+        # Example usage
+        node_id = import_ssh_node("192.168.1.1:22", "ubuntu", "123e4567-e89b-12d3-a456-426614174000")
+        print(node_id)
+            

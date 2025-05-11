@@ -1,0 +1,168 @@
+get:
+  operationId: getOffers
+  tags: [supply]
+  summary: List and filter current GPU on-demand and spot market offers
+  description: |
+    **List GPU offers (on-demand & spot instances)**
+    Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
+
+    **Parameters (optional)**
+    - `gpuVendor`: The vendor of the GPU (nvidia, amd, intel, huawei)
+    - `gpuType`: The type of the GPU
+    - `provider`: The cloud provider of the offer
+    - `region`: The region of the offer
+    - `gpuCount`: The minimum number of GPUs in the offer
+    - `price`: The maximum price per hour for the offer
+    - `limit`: The maximum number of offers to return
+
+    **Examples**
+
+    Here's an example of how to filter by vendor:
+      ```
+      /offers?gpuVendor=nvidia
+      ```
+
+    Here's an example of how to filter by provider:
+      ```
+      /offers?provider=aws
+      ```
+
+    Here's an example of how to filter by provider and region:
+      ```
+      /offers?provider=aws&region=us-east-1
+      ```
+      
+    Here's an example of how to filter by provider, region, and gpuCount:
+      ```
+      /offers?provider=aws&region=us-east-1&gpuCount=1
+      ```
+      
+    **Result**
+    
+    The response is paginated with a limit of 50 offers per page.
+    The offers are sorted by price per hour, from lowest to highest.
+
+  parameters:
+    - name: gpuVendor
+      in: query
+      schema:
+        type: string
+        enum: [nvidia, amd, intel, huawei]
+      description: The vendor of the GPU
+      required: false
+    - name: gpuType
+      in: query
+      schema:
+        type: string
+      description: The type of the GPU
+      required: false
+    - name: provider
+      in: query
+      schema:
+        type: string
+      description: The cloud provider of the offer
+      required: false
+    - name: region
+      in: query
+      schema:
+        type: string
+      description: The region of the offer, e.g. us-east-1
+      required: false
+    - name: gpuCount
+      in: query
+      schema:
+        type: number
+      description: The minimum number of GPUs in the offer
+      required: false
+    - name: price
+      in: query
+      schema:
+        type: number
+      description: The maximum price per hour for the offer
+      required: false
+    - name: limit
+      in: query
+      schema:
+        type: number
+      description: The maximum number of offers to return
+      required: false
+      
+  responses:
+    '200':
+      $ref: '../components/responses/offers-response.yaml'
+    '400':
+      $ref: '../components/responses/bad-request.yaml'
+    '500':
+      $ref: '../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/offers?gpuVendor=nvidia&provider=aws&region=us-east-1&gpuCount=1"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        from typing import Optional
+
+        def get_offers(
+            gpu_vendor: Optional[str] = None,
+            provider: Optional[str] = None,
+            region: Optional[str] = None,
+            gpu_count: Optional[int] = None,
+            price: Optional[float] = None,
+            limit: Optional[int] = None
+        ) -> dict:
+            """
+            Fetch GPU offers with optional filtering parameters.
+            
+            Args:
+                gpu_vendor: The vendor of the GPU (nvidia, amd, intel, huawei)
+                provider: The cloud provider of the offer
+                region: The region of the offer (e.g. us-east-1)
+                gpu_count: The minimum number of GPUs in the offer
+                price: The maximum price per hour for the offer
+                limit: The maximum number of offers to return
+                
+            Returns:
+                dict: The JSON response containing the offers
+            """
+            base_url = "https://api.exalsius.ai/offers"
+            params = {}
+            
+            if gpu_vendor:
+                params["gpuVendor"] = gpu_vendor
+            if provider:
+                params["provider"] = provider
+            if region:
+                params["region"] = region
+            if gpu_count:
+                params["gpuCount"] = gpu_count
+            if price:
+                params["price"] = price
+            if limit:
+                params["limit"] = limit
+            
+            response = requests.get(base_url, params=params)
+            return response.json()
+
+        # Example usage:
+        offers = get_offers(
+            gpu_vendor="nvidia",
+            provider="aws",
+            region="us-east-1",
+            gpu_count=1
+        )
+        print(offers)
+
+  x-llm:
+    description: |
+      When building a conversational agent, use this operation to fetch the
+      live set of offers. You can ask users "How many deals do you want?" and
+      then inject their answer into the `limit` parameter. 
+      You can also ask users to filter by vendor, provider, region, gpuCount, and price.
+
+    promptTemplate: |
+      "Fetch me up to {limit} current offers from the catalog—include title,
+      pricing and expiration date in JSON."

@@ -1,0 +1,19 @@
+description: List of services deployed in the cluster
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        clusterId:
+          type: string
+          format: uuid
+          description: The ID of the cluster
+          example: "123e4567-e89b-12d3-a456-426614174000"
+        services:
+          type: array
+          items:
+            $ref: '../../components/schemas/service-deployment.yaml'
+      required:
+        - clusterId
+        - services
+

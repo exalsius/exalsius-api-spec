@@ -1,0 +1,105 @@
+get:
+  operationId: describeNode
+  tags: [nodes]
+  summary: Get details of a single node in the node pool (self-managed or cloud)
+  description: |
+    **Retrieve the details of single node in the node pool**
+
+    Fetch all metadata for one node in your pool. The returned object includes a nodeType 
+    property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+  parameters:
+    - name: nodeId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the node to describe
+  responses:
+    '200':
+      $ref: '../../components/responses/single-node-response.yaml'
+    '404':
+      description: Node not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/nodes/123e4567-e89b-12d3-a456-426614174000"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        from typing import Optional
+
+        def get_node(node_id: str) -> dict:
+            """
+            Get details of a single node in the node pool.
+
+            Args:
+                node_id: The ID of the node to describe
+                
+            Returns:
+                dict: The JSON response containing the node details
+            """
+            url = "https://api.exalsius.ai/nodes/{node_id}"
+            response = requests.get(url)
+            return response.json()
+
+        node = get_node("123e4567-e89b-12d3-a456-426614174000")
+        print(node)
+
+delete:
+  operationId: deleteNode
+  tags: [nodes]
+  summary: Delete a node from the pool
+  description: |
+    **Delete a node from the pool**
+
+    Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments. 
+    If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+
+  parameters:
+    - name: nodeId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the node to delete
+  responses:
+    '204':
+      description: Node deleted
+    '404':
+      description: Node not found
+    '409':
+      description: Node is not in the `available` state
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X DELETE "https://api.exalsius.ai/nodes/123e4567-e89b-12d3-a456-426614174000"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+
+        def delete_node(node_id: str) -> dict:
+            """
+            Delete a node from the pool.
+
+            Args:
+                node_id: The ID of the node to delete
+                
+            Returns:
+                dict: The JSON response
+            """
+            url = "https://api.exalsius.ai/nodes/{node_id}"
+            response = requests.delete(url)
+            return response.json()
+
+        delete_node("123e4567-e89b-12d3-a456-426614174000")
+        print(response)

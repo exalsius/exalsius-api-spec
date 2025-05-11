@@ -1,0 +1,119 @@
+get:
+  operationId: listClusters
+  tags: [clusters]
+  summary: List all clusters
+  description: |
+    **List all clusters**
+
+    Retrieve all clusters, with optional filters:
+    - `status`: pending,running, deleting, deleted, failed
+
+    **Examples**
+
+    Here's an example of how to filter by status:
+      ```
+      /clusters?status=running
+      ```
+
+  parameters: 
+    - name: status
+      in: query
+      description: |
+        Only return clusters of this status.
+        Possible values:
+        - `pending` - clusters that are pending
+        - `running` - clusters that are running
+        - `deleting` - clusters that are deleting
+        - `deleted` - clusters that are deleted
+        - `failed` - clusters that failed
+      required: false
+      schema:
+        type: string
+        enum:
+          - pending
+          - running
+          - deleting
+          - deleted
+          - failed
+
+  responses:
+    '200':
+      description: An array of clusters
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              clusters:
+                type: array
+                items:
+                  $ref: '../../components/schemas/cluster.yaml'
+    '404':
+      description: Cluster not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/clusters"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/clusters")
+        print(response.json())
+
+post:
+  operationId: createCluster
+  tags: [clusters]
+  summary: Create a cluster
+  description: |
+    **Create a cluster**
+
+    Create a new cluster.
+
+    **Parameters**
+
+    - `name`: The name of the cluster
+    - `k8sVersion`: The Kubernetes version of the cluster
+    - `toBeDeletedAt`: The date and time the cluster will be deleted (optional)
+    - `controlPlaneNodeIds`: The IDs of the control plane nodes (optional)
+    - `workerNodeIds`: The IDs of the worker nodes (optional)
+    - `services`: The IDs of the services to deploy in the cluster (optional)
+
+    If `toBeDeletedAt` is provided, the cluster will automatically be deleted at the specified date and time.
+    If `controlPlaneNodeIds` or `workerNodeIds` are provided, the nodes will be added to the cluster.
+    If `services` are provided, the services will be deployed in the cluster.
+
+    **Behavior**
+
+    Creating a new cluster will result in a new cluster resource being created. The cluster will be in 
+    the `pending` state until the `POST /clusters/{clusterId}/deploy` operation is called.
+
+  requestBody: 
+    required: true
+    content: 
+      application/json: 
+        schema:
+          $ref: '../../components/requests/cluster-create.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/cluster-create-response.yaml'
+    '400':
+      $ref: '../../components/responses/bad-request.yaml'
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/clusters" -H "Content-Type: application/json" -d '{"name": "my-cluster", "k8sVersion": "1.30"}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.post("https://api.exalsius.ai/clusters", json={"name": "my-cluster", "k8sVersion": "1.30"})
+        print(response.json())

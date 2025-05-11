@@ -1,0 +1,18 @@
+type: object
+properties:
+  serviceId:
+    type: string
+    format: uuid
+    description: The ID of the service
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  serviceName:
+    type: string
+    description: The name of the service
+    example: "my-service"
+  values:
+    type: object
+    additionalProperties: true
+    description: The values to set for the service
+    example: { "key": "value" }
+required:
+  - serviceId

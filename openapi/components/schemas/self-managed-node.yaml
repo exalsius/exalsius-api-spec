@@ -1,0 +1,26 @@
+allOf:
+  - $ref: './base-node.yaml'
+  - type: object
+    required:
+      - nodeType
+      - endpoint
+      - username
+      - sshKeyId
+    properties:
+      nodeType:
+        type: string
+        enum:
+          - selfManaged
+      endpoint:
+        type: string
+        description: The endpoint of the node (IP or hostname) and port
+        example: "192.168.1.1:22"
+      username:
+        type: string
+        description: The username to connect to the node
+        example: "ubuntu"
+      sshKeyId:
+        type: string
+        format: uuid
+        description: The ID of the private SSH key to connect to the node
+        example: "123e4567-e89b-12d3-a456-426614174000"

@@ -1,0 +1,87 @@
+post:
+  operationId: importNodeFromOffer
+  tags: [nodes]
+
+  summary: Import a node from an offer
+  description: |
+    **Import cloud nodes into the pool**
+
+    Use this operation to import one or more nodes of a given cloud instance type into the node pool.
+    
+    **Parameters**
+      - `offerID`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).
+      - `amount`: The number of instances of the instance type to import.
+
+    **Behavior**
+
+    Importing a node from an offer to the node pool does not yet start a virtual machine and
+    therefore does not yet involve any costs. A virtual machine of the given instance type
+    will only be started when you deploy a cluster using the node.
+    The `pricePerHour` of the node will be the price of the offer at the time of import.
+    When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.
+
+    **Result**
+
+    On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+    
+  parameters:
+    - name: offerId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: amount
+      in: query
+      required: false
+      schema:
+        type: number
+        default: 1
+      
+  responses:
+    '201':
+      $ref: '../../components/responses/node-import-response.yaml'
+    '400':
+      description: Bad Request
+      $ref: '../../components/responses/bad-request.yaml'
+    '404':
+      description: Offer not found
+    '500':
+      description: Internal server error
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/nodes/import-offer" -H "Content-Type: application/json" -d '{"offerId": "123e4567-e89b-12d3-a456-426614174000", "amount": 1}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        from typing import Optional
+
+        def import_node_from_offer(offer_id: str, amount: int = 1) -> dict:
+          """
+          Import a node from an offer
+
+          Args:
+            offer_id: The identifier of the cloud provider's offer you wish to import
+            amount: The number of instances of the instance type to import
+
+          Returns:
+            A list of node IDs
+          """
+          url = "https://api.exalsius.ai/nodes/import-offer"
+          headers = {
+            "Content-Type": "application/json"
+          }
+          data = {
+            "offerId": offer_id,
+            "amount": amount
+          }
+          response = requests.post(url, headers=headers, json=data)
+          return response.json()
+
+        # Example usage
+        node_ids = import_node_from_offer("123e4567-e89b-12d3-a456-426614174000", 1)
+        print(node_ids)
+        

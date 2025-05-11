@@ -1,0 +1,21 @@
+description: Node successfully imported
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        nodeIds:
+          type: array
+          items:
+            type: string
+            format: uuid
+            description: The unique identifiers of the imported nodes
+        total:
+          type: integer
+          description: The total number of nodes that were imported
+    examples:
+      NodeImportResponse:
+        summary: Node successfully imported
+        value:
+          nodeIds: ["123e4567-e89b-12d3-a456-426614174000"]
+          total: 1

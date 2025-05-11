@@ -1,0 +1,18 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The ID of the SSH key
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    description: The name of the SSH key
+    example: "my-ssh-key"
+  privateKey:
+    type: string
+    description: The private key of the SSH key
+    example: "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"
+required:
+  - name
+  - privateKey

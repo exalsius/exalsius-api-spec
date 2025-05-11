@@ -1,0 +1,68 @@
+type: object
+required:
+  - id
+  - nodeType
+  - location
+  - status
+properties:
+  id:
+    type: string
+    description: The unique identifier for the node
+    format: uuid
+    example: "7c1d408f-7983-4da0-b3c4-7cf903cfae48"
+  nodeType:
+    type: string
+    enum:
+      - cloud
+      - selfManaged
+    description: The type of the node
+    example: "cloud"
+  description:
+    type: string
+    description: Description of the node
+    example: "My self-managed / cloud node"
+  location:
+    type: string
+    description: The location of the node (e.g. city, data center, server rack, etc.)
+    example: "Virginia"
+  gpuCount:
+    type: integer
+    description: The number of GPUs
+    example: 1
+  gpuVendor:
+    type: string
+    description: The vendor of the GPU
+    example: "nvidia"
+  gpuType:
+    type: string
+    description: The type of the GPU
+    example: "a100"
+  gpuMemory:
+    type: integer
+    description: The memory of the GPU in GB
+    example: 80
+  cpuCores:
+    type: integer
+    description: The number of CPU cores
+    example: 4
+  memoryGb:
+    type: integer
+    description: The memory of the node in GB
+    example: 16
+  storageGb:
+    type: integer
+    description: The storage of the node in GB
+    example: 100
+  importTime:
+    type: string
+    description: The time the node was imported
+    example: "2021-01-01T00:00:00Z"
+  status:
+    type: string
+    enum:
+      - pending
+      - available
+      - staged
+      - occupied
+    description: The status of the node
+    example: "available"

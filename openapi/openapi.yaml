@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  version: 1.0.0
+  title: exalsius API
+  contact:
+    name: Contact our support
+    email: support@exalsius.ai
+    url: https://exalsius.ai
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  x-logo:
+    url: 'logo.png'
+    altText: exalsius logo
+  description: >
+    The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem
+
+    It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts.
+
+    Key points:
+    
+    * **CLI & Programmatic Access**
+      All operations are available via the `exls` command-line application or through standard HTTP requests.
+
+    * **GPU Market Offers**
+    Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options.
+    
+    * **Operator Integration**
+      Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.
+    
+    * **Node Management**
+      Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.
+    
+    * **Cluster Provisioning**
+      Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.
+    
+    * **Service Deployment**
+      Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+    
+servers:
+  - url: 'https://api.exalsius.ai/v1'
+    description: exalsius API
+
+tags: 
+  - name: supply
+    description: GPU supply and prices overview
+  - name: nodes
+    description: Node pool management
+  - name: clusters
+    description: Cluster deployment, management and monitoring
+  - name: services
+    description: Services to be deployed on the clusters
+  - name: management
+    description: Management of available SSH Keys
+
+paths:
+  /offers:
+    $ref: './paths/offers.yaml'
+  /nodes:
+    $ref: './paths/nodes/list.yaml'
+  /nodes/{nodeId}:
+    $ref: './paths/nodes/node.yaml'
+  /nodes/import/ssh:
+    $ref: './paths/nodes/import-ssh.yaml'
+  /nodes/import/offer/{offerId}:
+    $ref: './paths/nodes/import-offer.yaml'
+  /clusters:
+    $ref: './paths/clusters/list.yaml'
+  /clusters/{clusterId}:
+    $ref: './paths/clusters/cluster.yaml'
+  /clusters/{clusterId}/nodes:
+    $ref: './paths/clusters/nodes.yaml'
+  /clusters/{clusterId}/nodes/{nodeId}:
+    $ref: './paths/clusters/delete-node.yaml'
+  /clusters/{clusterId}/services:
+    $ref: './paths/clusters/services.yaml'
+  /clusters/{clusterId}/kubeconfig:
+    $ref: './paths/clusters/kubeconfig.yaml'
+  /services:
+    $ref: './paths/services/list.yaml'
+  /management/ssh-keys:
+    $ref: './paths/management/list-ssh-keys.yaml'
+
+
+components: 
+  schemas:
+    Offer:
+      $ref: './components/schemas/offer.yaml'
+    Node:
+      $ref: './components/schemas/node.yaml'
+    Cluster:
+      $ref: './components/schemas/cluster.yaml'
+    Service:
+      $ref: './components/schemas/service.yaml'
+    ServiceDeployment:
+      $ref: './components/schemas/service-deployment.yaml'
+    SshKey:
+      $ref: './components/schemas/ssh-key.yaml'
+    Kubeconfig:
+      $ref: './components/schemas/kubeconfig.yaml'
+  responses:
+    BadRequest:
+      $ref: './components/responses/bad-request.yaml'
+    ServerError:
+      $ref: './components/responses/server-error.yaml'
+  securitySchemes:
+    ApiKeyAuth:
+      $ref: './components/securitySchemes/ApiKeyAuth.yaml'
+
+security:
+  - ApiKeyAuth: []

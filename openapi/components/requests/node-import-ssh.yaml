@@ -1,0 +1,22 @@
+type: object
+required:
+  - endpoint
+  - username
+  - sshKey
+properties:
+  endpoint:
+    type: string
+    description: IP or hostname reachable over SSH
+    example: "192.168.1.1:22"
+  username:
+    type: string
+    description: Username to access the node
+    example: "ubuntu"
+  description:
+    type: string
+    description: Description of the node
+    example: "My self-managed node"
+  sshKeyId:
+    type: string
+    description: The ID of the SSH key to use for the node
+    example: "123e4567-e89b-12d3-a456-426614174000"

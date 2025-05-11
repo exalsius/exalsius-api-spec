@@ -1,0 +1,113 @@
+get:
+  operationId: listSshKeys
+  tags: [management]
+  summary: List all SSH keys
+  description: |
+    **List all SSH keys**
+
+    List all SSH keys that are available to the management cluster for the current user.
+
+    **Result**
+
+    Returns an array of SSH key objects.
+    
+  responses:
+    '200':
+      description: An array of SSH keys
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              sshKeys:
+                type: array
+                items:
+                  $ref: '../../components/schemas/ssh-key.yaml'
+    '404':
+      description: SSH keys not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/management/ssh-keys"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/management/ssh-keys")
+        print(response.json())
+
+post:
+  operationId: addSshKey
+  tags: [management]
+  summary: Add an SSH key
+  description: |
+    **Add an SSH key**
+
+    Add an SSH key to the management cluster.
+
+    **Request Body**
+
+    - `name`: The name of the SSH key.
+    - `privateKey`: The private key of the SSH key.
+
+    **Result**
+
+    Returns the SSH key object.
+
+  responses:
+    '201':
+      $ref: '../../components/responses/ssh-key-response.yaml'
+    '400':
+      $ref: '../../components/responses/bad-request.yaml'
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/management/ssh-keys"
+        -H "Content-Type: application/json"
+        -d '{"name": "my-ssh-key", "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.post("https://api.exalsius.ai/management/ssh-keys", json={"name": "my-ssh-key", "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"})
+        print(response.json())
+
+delete:
+  operationId: deleteSshKey
+  tags: [management]
+  summary: Delete an SSH key
+  description: |
+    **Delete an SSH key**
+
+    Delete an SSH key from the management cluster.
+
+    **Parameters**
+
+    - `id`: The ID of the SSH key to delete.
+
+  responses:
+    '204':
+      description: SSH key deleted
+    '404':
+      description: SSH key not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X DELETE "https://api.exalsius.ai/management/ssh-keys/123e4567-e89b-12d3-a456-426614174000"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.delete("https://api.exalsius.ai/management/ssh-keys/123e4567-e89b-12d3-a456-426614174000")

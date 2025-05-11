@@ -1,0 +1,84 @@
+get:
+  operationId: describeCluster
+  tags: [clusters]
+  summary: Get details of a single cluster
+  description: |
+    **Retrieve the details of single cluster**
+
+    Fetch all metadata for one cluster.
+
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the cluster to describe
+  responses:
+    '200':
+      $ref: '../../components/responses/clusters-response.yaml'
+    '404':
+      description: Cluster not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000")
+        print(response.json())
+
+delete:
+  operationId: deleteCluster
+  tags: [clusters]
+  summary: Delete (tear-down) a cluster
+  description: |
+    **Delete a cluster**
+
+    Permanently delete a cluster. Once deleted, the cluster is no longer part of your 
+    account and cannot be used in any further deployments. When a cluster is deleted, the
+    nodes are returned to the node pool and can be used in future deployments.
+
+    **Note**
+
+    This operation is irreversible.
+
+    **Behavior**
+
+    The cluster will be deleted as soon as possible. However, it may take a few minutes
+    for the cluster to be fully deleted. The cluster will be in the `deleting` state
+    until it is fully deleted.
+
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the cluster to delete
+  responses:
+    '204':
+      description: Cluster deleted; nodes returned to pool
+    '404':
+      description: Cluster not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X DELETE "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.delete("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000")
+        print(response.json())

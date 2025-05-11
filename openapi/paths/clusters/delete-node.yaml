@@ -1,0 +1,48 @@
+delete:
+  operationId: deleteNodeFromCluster
+  tags: [clusters]
+  summary: Delete a node from a cluster
+  description: |
+    **Delete a node from a cluster**
+
+    Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster
+    and is returned to the node pool.
+    
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: nodeId
+      in: path
+      required: true
+      schema:
+        type: string
+  responses:
+    '204':
+      description: Node deleted from cluster
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              nodeId:
+                type: string
+    '404':
+      description: Cluster or node not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X DELETE "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.delete("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001")
+        print(response.json())

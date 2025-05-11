@@ -1,0 +1,8 @@
+oneOf:
+  - $ref: './cloud-node.yaml'
+  - $ref: './self-managed-node.yaml'
+discriminator:
+  propertyName: nodeType
+  mapping:
+    selfManaged: './self-managed-node.yaml'
+    cloud: './cloud-node.yaml'

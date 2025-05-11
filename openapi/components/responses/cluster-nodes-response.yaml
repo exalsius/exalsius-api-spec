@@ -1,0 +1,16 @@
+description: List of nodes in the cluster
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        clusterId:
+          type: string
+        nodes:
+          type: array
+          items:
+            $ref: '../../components/schemas/node.yaml'
+      required:
+        - clusterId
+        - nodes
+

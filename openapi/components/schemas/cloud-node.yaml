@@ -1,0 +1,38 @@
+allOf:
+  - $ref: './base-node.yaml'
+  - type: object
+    required:
+      - nodeType
+      - provider
+      - status
+      - region
+      - instanceType
+    properties:
+      nodeType:
+        type: string
+        enum:
+          - cloud
+        description: The type of the node
+        example: "cloud"
+      provider:
+        type: string
+        description: The cloud provider of the node
+        example: "aws"
+      region:
+        type: string
+        description: The region of the node
+        example: "us-east-1"
+      availabilityZone:
+        type: string
+        description: The availability zone of the node
+        example: "us-east-1a"
+      instanceType:
+        type: string
+        description: The instance type of the node
+        example: "g4dn.xlarge"
+      pricePerHour:
+        type: number
+        format: double
+        description: The price per hour for the node
+        example: 0.526
+      

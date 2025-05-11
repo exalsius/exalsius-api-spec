@@ -1,0 +1,143 @@
+get:
+  operationId: getNodes
+  tags: [clusters]
+  summary: Get nodes of a cluster
+  description: |
+    **Retrieve the nodes of a cluster**
+
+    Fetch all nodes that are part of a cluster.
+
+    **Parameters**
+
+    - `clusterId`: The ID of the cluster to retrieve nodes from
+    - `nodeRole`: Only return nodes of this role (optional). Possible values:
+      - `controlPlane`: only control plane nodes
+      - `worker`: only worker nodes
+
+    **Examples**
+
+    Here's an example of how to retrieve all nodes of a cluster:
+      ```
+      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes
+      ```
+
+    Here's an example of how to retrieve all control plane nodes of a cluster:
+      ```
+      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes?nodeRole=controlPlane
+      ```
+
+      
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+      description: ID of the cluster to retrieve nodes from
+    - name: nodeRole
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - controlPlane
+          - worker
+      description: |
+        Only return nodes of this role.
+        Possible values:
+        - `controlPlane` - only control plane nodes
+        - `worker` - only worker nodes
+  responses:
+    '200':
+      $ref: '../../components/responses/cluster-nodes-response.yaml'
+    '404':
+      description: Cluster not found
+    '500':
+      $ref: '../../components/responses/server-error.yaml'
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes")
+        print(response.json())
+
+        
+post:
+  operationId: addNodes
+  tags: [clusters]
+  summary: Add nodes to a cluster
+  description: |
+    **Add nodes to a cluster**
+
+    Add nodes to a cluster.
+    
+    **Parameters**
+
+    - `clusterId`: The ID of the cluster to add nodes to
+    - `nodeIds`: The IDs of the nodes to add
+    - `nodeRole`: The role of the nodes to add (optional). Possible values:
+      - `controlPlane` - only control plane nodes
+      - `worker` - only worker nodes
+
+    If no `nodeRole` is provided, the nodes will be added as workers.
+
+    **Examples**
+
+    Here's an example of how to add a control plane node to a cluster:
+      ```
+      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes?nodeIds=123e4567-e89b-12d3-a456-426614174000&nodeRole=controlPlane
+      ```
+
+    **Note**
+    
+    In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region)
+    can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.
+
+    The nodes will be added to the cluster as soon as possible. However, it may take a few minutes
+    for the nodes to be fully deployed. The cluster will be in the `pending` state
+    until all nodes are fully deployed.
+
+    **Behavior**
+
+    In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the
+    cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: nodeIds
+      in: query
+      required: true
+      schema:
+        type: array
+        items:
+          type: string
+    - name: nodeRole
+      in: query
+      required: false
+      schema:
+        type: string
+        enum:
+          - controlPlane
+          - worker
+  responses:
+    '200':
+      $ref: '../../components/responses/cluster-nodes-response.yaml'
+    '400':
+      description: Invalid nodeIds
+    '404':
+      description: Cluster not found
+    '409':
+      description: Nodes already in cluster
+    '500':
+      $ref: '../../components/responses/server-error.yaml'

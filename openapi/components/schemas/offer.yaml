@@ -1,0 +1,65 @@
+type: object
+required:
+  - id
+  - provider
+  - location
+  - region
+  - availabilityZone
+  - instanceType
+  - gpuCount
+  - gpuVendor
+  - gpuType
+  - gpuMemory
+  - pricePerHour
+  - scrapeTime
+properties:
+  id:
+    type: string
+    description: The unique identifier for the offer
+    example: "g4dn-xlarge-us-east-1"
+  provider:
+    type: string
+    description: The cloud provider of the offer
+    example: "aws"
+  location:
+    type: string
+    description: The location of the offer
+    example: "US East (N. Virginia)"
+  region:
+    type: string
+    description: The region of the offer
+    example: "us-east-1"
+  availabilityZone:
+    type: string
+    description: The availability zone of the offer
+    example: "us-east-1a"
+  instanceType:
+    type: string
+    description: The instance type of the offer
+    example: "g4dn.xlarge"
+  gpuCount:
+    type: integer
+    description: The number of GPUs in the offer
+    example: 1
+  gpuVendor:
+    type: string
+    description: The vendor of the GPU
+    example: "NVIDIA"
+  gpuType:
+    type: string
+    description: The type of the GPU
+    example: "T4"
+  gpuMemory:
+    type: integer
+    description: The memory of the GPU in GB
+    example: 16
+  pricePerHour:
+    type: number
+    format: double
+    description: The price per hour for the offer
+    example: 0.526
+  scrapeTime:
+    type: string
+    format: date-time
+    description: The time the offer was scraped
+    example: "2024-03-20T15:30:00Z"

@@ -1,0 +1,48 @@
+post:
+  operationId: deployCluster
+  tags: [clusters]
+  summary: Deploy a new cluster
+  description: |
+    **Deploy a new cluster**
+
+    Deploy a cluster that is in the `staging` state.
+
+    **Note**
+
+    Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds`
+    arrays can be deployed.
+    
+    **Behavior**
+
+    The cluster will be deployed as soon as possible. However, it may take a few minutes
+    for the cluster to be fully deployed. The cluster will be in the `deploying` state
+    until it is fully deployed.
+
+    **Result**
+
+    Returns the cluster object with the `deploying` state.
+
+  parameters:
+    - name: clusterId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+        description: The ID of the cluster to deploy
+
+  responses:
+    '202':
+      description: Cluster deployment initiated
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/schemas/Cluster.yaml'
+    '400':
+      $ref: '../../components/responses/bad-request.yaml'
+    '404':
+      description: Cluster not found
+    '409':
+      description: No nodes staged
+    '500':
+      $ref: '../../components/responses/server-error.yaml'

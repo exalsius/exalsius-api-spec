@@ -1,0 +1,5 @@
+description: Service details
+content:
+  application/json:
+    schema:
+      $ref: '../../components/schemas/service.yaml'
