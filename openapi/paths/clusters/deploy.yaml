@@ -37,7 +37,7 @@ post:
       content:
         application/json:
           schema:
-            $ref: '../../components/schemas/Cluster.yaml'
+            $ref: '../../components/schemas/cluster.yaml'
     '400':
       $ref: '../../components/responses/bad-request.yaml'
     '404':

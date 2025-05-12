@@ -74,12 +74,15 @@ paths:
     $ref: './paths/clusters/delete-node.yaml'
   /clusters/{clusterId}/services:
     $ref: './paths/clusters/services.yaml'
+  /clusters/{clusterId}/deploy:
+    $ref: './paths/clusters/deploy.yaml'
   /clusters/{clusterId}/kubeconfig:
     $ref: './paths/clusters/kubeconfig.yaml'
   /services:
     $ref: './paths/services/list.yaml'
   /management/ssh-keys:
     $ref: './paths/management/list-ssh-keys.yaml'
+
 
 
 components: 
