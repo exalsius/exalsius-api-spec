@@ -65,7 +65,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../components/requests/cluster-add-service.yaml'
+          $ref: '../../components/requests/cluster-add-service-request.yaml'
   responses:
     '201':
       $ref: '../../components/responses/cluster-services-response.yaml'
