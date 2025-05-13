@@ -1,0 +1,23 @@
+name: Lint OpenAPI Spec
+
+on:
+  pull_request:
+    paths:
+      - 'openapi/openapi.yaml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'openapi/openapi.yaml'
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Redocly CLI
+        run: make install
+
+      - name: Lint OpenAPI
+        run: make lint
