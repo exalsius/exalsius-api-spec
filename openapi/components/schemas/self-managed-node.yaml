@@ -10,7 +10,7 @@ allOf:
       nodeType:
         type: string
         enum:
-          - selfManaged
+          - self-managed
       endpoint:
         type: string
         description: The endpoint of the node (IP or hostname) and port

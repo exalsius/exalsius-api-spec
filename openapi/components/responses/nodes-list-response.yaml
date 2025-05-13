@@ -7,13 +7,13 @@ content:
         nodes:
           type: array
           items:
-            $ref: '../../components/schemas/node.yaml'
+            $ref: '../../components/schemas/base-node.yaml'
         total:
           type: integer
           description: The total number of nodes in the node pool
     examples:
-      SelfManagedNodes:
-        summary: List containing only a self‐managed node
+      SingleNode:
+        summary: List containing only a single node
         value:
           nodes:
             - id: "123e4567-e89b-12d3-a456-426614174000"
@@ -26,38 +26,12 @@ content:
               cpuCores: 4
               memoryGb: 16
               storageGb: 100
-              endpoint: "192.168.1.1:22"
-              username: "ubuntu"
-              sshKeyId: "123e4567-e89b-12d3-a456-426614174000"
               importTime: "2025-01-01T00:00:00Z"
               status: available
-          total: 1
-
-      CloudNodes:
-        summary: List containing only a cloud node
-        value:
-          nodes:
-            - id: "223e4567-e89b-12d3-a456-426614174001"
-              nodeType: cloud
-              provider: aws
-              status: available
-              offerId: "c68c5fa5-3777-4026-ac21-4fcefe465695"
-              location: "US East (N. Virginia)"
-              region: us-east-1
-              availabilityZone: us-east-1a
-              instanceType: g4dn.xlarge
-              gpuCount: 1
-              gpuVendor: nvidia
-              gpuType: a100
-              gpuMemory: 80
-              cpuCores: 4
-              memoryGb: 16
-              pricePerHour: 0.526
-              importTime: "2025-01-01T00:00:00Z"
           total: 1
 
       MixedNodes:
-        summary: List containing both a self‐managed node and a cloud node
+        summary: List containing two nodes
         value:
           nodes:
             - id: "123e4567-e89b-12d3-a456-426614174000"
@@ -70,24 +44,15 @@ content:
               cpuCores: 4
               memoryGb: 16
               storageGb: 100
-              endpoint: "192.168.1.1:22"
-              username: "ubuntu"
-              sshKeyId: "123e4567-e89b-12d3-a456-426614174000"
               status: available
             - id: "223e4567-e89b-12d3-a456-426614174001"
               nodeType: cloud
-              provider: aws
               status: available
-              offerId: "c68c5fa5-3777-4026-ac21-4fcefe465695"
               location: "US East (N. Virginia)"
-              region: us-east-1
-              availabilityZone: us-east-1a
-              instanceType: g4dn.xlarge
               gpuCount: 1
               gpuVendor: nvidia
               gpuType: a100
               gpuMemory: 80
               cpuCores: 4
               memoryGb: 16
-              pricePerHour: 0.526
           total: 2

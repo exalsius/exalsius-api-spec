@@ -4,5 +4,5 @@ oneOf:
 discriminator:
   propertyName: nodeType
   mapping:
-    selfManaged: './self-managed-node.yaml'
+    self-managed: './self-managed-node.yaml'
     cloud: './cloud-node.yaml'

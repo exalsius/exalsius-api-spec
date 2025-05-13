@@ -14,7 +14,7 @@ properties:
     type: string
     enum:
       - cloud
-      - selfManaged
+      - self-managed
     description: The type of the node
     example: "cloud"
   description:
