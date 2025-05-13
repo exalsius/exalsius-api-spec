@@ -3,12 +3,12 @@ name: Lint OpenAPI Spec
 on:
   pull_request:
     paths:
-      - 'openapi/openapi.yaml'
+      - 'openapi/*'
   push:
     branches:
       - main
     paths:
-      - 'openapi/openapi.yaml'
+      - 'openapi/*'
 
 jobs:
   lint:
