@@ -1,3 +1,5 @@
+CURRENT_DIR := $(CURDIR)
+
 install:
 	echo "Installing npm deps and Python code-gen tools…"
 	npm install
@@ -27,6 +29,11 @@ run-swagger:
         -v "$(pwd)/openapi:/spec:ro" \
 		swaggerapi/swagger-ui
 
+mock-server: build
+	docker run --init --rm -v $(CURRENT_DIR):/tmp \
+	 -p 4010:4010 \
+	  stoplight/prism:4 \
+	  mock -d -h 0.0.0.0 "/tmp/dist/bundle.yaml"
 
 
 
