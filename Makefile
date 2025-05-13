@@ -35,6 +35,25 @@ mock-server: build
 	  stoplight/prism:4 \
 	  mock -d -h 0.0.0.0 "/tmp/dist/bundle.yaml"
 
-
+generate:
+	datamodel-codegen \
+		--input dist/bundle.yaml \
+		--output models.py \
+		--input-file-type openapi \
+		--output-model-type pydantic_v2.BaseModel \
+		--use-standard-collections \
+		--use-union-operator \
+		--target-python-version 3.13 \
+		--snake-case-field \
+		--use-schema-description \
+		--disable-timestamp \
+		--use-schema-description \
+		--enable-version-header \
+		--enum-field-as-literal one \
+		--use-double-quotes \
+		--field-constraints \
+		--allow-population-by-field-name \
+		--strict-nullable \
+		--use-title-as-name
 
 
