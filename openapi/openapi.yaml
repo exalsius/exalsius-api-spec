@@ -110,5 +110,5 @@ components:
     ApiKeyAuth:
       $ref: './components/securitySchemes/ApiKeyAuth.yaml'
 
-security:
-  - ApiKeyAuth: []
+security: []
+#  - ApiKeyAuth: []
