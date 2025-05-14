@@ -7,7 +7,7 @@ install:
 lint:
 	@echo "Linting OpenAPI spec according to the Style Guide…"
 	docker run --rm -it -v $(CURRENT_DIR)/openapi:/openapi \
-	 stoplight/spectral --ruleset /openapi/.spectral.json lint "/openapi/openapi.yaml"
+	 stoplight/spectral --ruleset /openapi/linting/spectral.json lint "/openapi/openapi.yaml"
 
 build:
 	@echo "Bundling OpenAPI spec into dist/bundle.yaml…"
