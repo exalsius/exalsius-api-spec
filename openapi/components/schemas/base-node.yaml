@@ -6,7 +6,7 @@ required:
   - node_status
 properties:
   id:
-    type: string
+    type: integer
     description: The unique identifier for the node
     format: int64
     example: 123
