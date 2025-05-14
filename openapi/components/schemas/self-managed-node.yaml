@@ -9,8 +9,9 @@ allOf:
     properties:
       node_type:
         type: string
-        enum:
-          - self-managed
+        x-extensible-enum:
+          - value: SELF_MANAGED
+            description: Self-managed node
       endpoint:
         type: string
         description: The endpoint of the node (IP or hostname) and port

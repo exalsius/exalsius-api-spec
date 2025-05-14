@@ -40,6 +40,7 @@ properties:
   gpu_count:
     type: integer
     description: The number of GPUs in the offer
+    format: int32
     example: 1
   gpu_vendor:
     type: string
@@ -51,6 +52,7 @@ properties:
     example: "T4"
   gpu_memory:
     type: integer
+    format: int32
     description: The memory of the GPU in GB
     example: 16
   price_per_hour:
