@@ -2,15 +2,14 @@ description: Cluster successfully created
 content:
   application/json:
     schema:
-      type: object
-      required: [data]
-      properties:
-        data:
-          type: object
-          required: [cluster_id]
-          properties:
-            cluster_id:
-              type: string
-              format: int64
-              description: The unique identifier for the cluster
-              example: 123
+      $ref: '../../components/schemas/cluster.yaml'
+      example:
+        id: 123
+        name: "my-cluster"
+        cluster_status: "pending"
+        created_at: "2021-01-01T00:00:00Z"
+        updated_at: "2021-01-01T00:00:00Z"
+        to_be_deleted_at: "2021-01-01T00:00:00Z"
+        control_plane_node_ids: [123, 456]
+        worker_node_ids: [789, 101]
+        services: [123, 456]

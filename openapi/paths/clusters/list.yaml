@@ -123,12 +123,8 @@ post:
         schema:
           $ref: '../../components/requests/cluster-create-request.yaml'
   responses:
-    '201':
-      description: Cluster created
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-create-response.yaml'
+    '201': 
+      $ref: '../../components/responses/cluster-create-response.yaml'
     '400':
       description: Bad Request
       content:
