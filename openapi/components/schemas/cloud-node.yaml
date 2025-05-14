@@ -4,16 +4,17 @@ allOf:
     required:
       - node_type
       - provider
-      - status
+      - node_status
       - region
       - instance_type
     properties:
       node_type:
         type: string
-        enum:
-          - cloud
+        x-extensible-enum:
+          - value: CLOUD
+            description: Cloud node
         description: The type of the node
-        example: "cloud"
+        example: "CLOUD"
       provider:
         type: string
         description: The cloud provider of the node
