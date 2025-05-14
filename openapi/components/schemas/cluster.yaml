@@ -13,11 +13,21 @@ properties:
     type: string
     description: The name of the cluster
     example: "my-cluster"
-  status:
+  cluster_status:
     type: string
-    enum: [staging, running, deleting, deleted, failed]
+    x-extensible-enum:
+      - value: STAGING
+        description: Cluster is staging
+      - value: RUNNING
+        description: Cluster is running
+      - value: DELETING
+        description: Cluster is deleting
+      - value: DELETED
+        description: Cluster is deleted
+      - value: FAILED
+        description: Cluster is failed
     description: The status of the cluster
-    example: "running"
+    example: "RUNNING"
   created_at:
     type: string
     format: date-time
@@ -57,9 +67,11 @@ properties:
     example: "1.32.0"
   current_costs:
     type: number
+    format: double
     description: The total costs of the cluster until now
     example: 100.0
   costs_per_hour:
     type: number
+    format: double
     description: The costs of the cluster per hour
     example: 1.0
