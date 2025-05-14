@@ -8,8 +8,8 @@ properties:
   id:
     type: string
     description: The unique identifier for the node
-    format: uuid
-    example: "7c1d408f-7983-4da0-b3c4-7cf903cfae48"
+    format: int64
+    example: 123
   node_type:
     type: string
     x-extensible-enum:

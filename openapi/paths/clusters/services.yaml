@@ -38,7 +38,13 @@ get:
       content:
         application/problem+json:
           schema:
-            $ref: '../../components/responses/server-error.yaml'
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123/services"
   x-codeSamples:
     - lang: curl
       label: cURL

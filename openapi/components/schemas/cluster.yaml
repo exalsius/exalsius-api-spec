@@ -1,14 +1,14 @@
 type: object
 required:
   - id
-  - status
+  - cluster_status
   - created_at
 properties:
   id:
     type: string
-    format: uuid
+    format: int64
     description: The unique identifier for the cluster
-    example: "123e4567-e89b-12d3-a456-426614174000"
+    example: 123
   name:
     type: string
     description: The name of the cluster

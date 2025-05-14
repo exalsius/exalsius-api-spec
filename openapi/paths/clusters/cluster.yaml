@@ -3,12 +3,12 @@ get:
   tags: [clusters]
   summary: Get details of a single cluster
   description: |
-    **Retrieve the details of single cluster**
+    **Retrieve the details of a single cluster**
 
     Fetch all metadata for one cluster.
 
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
@@ -76,7 +76,7 @@ delete:
     until it is fully deleted.
 
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
@@ -114,11 +114,11 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000"
+        curl -X DELETE "https://api.exalsius.ai/clusters/123"
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.delete("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000")
+        response = requests.delete("https://api.exalsius.ai/clusters/123")
         print(response.json())

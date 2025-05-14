@@ -7,11 +7,11 @@ get:
     Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
 
     **Parameters (optional)**
-    - `gpuVendor`: The vendor of the GPU (nvidia, amd, intel, huawei)
-    - `gpuType`: The type of the GPU
+    - `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei)
+    - `gpu_type`: The type of the GPU
     - `provider`: The cloud provider of the offer
     - `region`: The region of the offer
-    - `gpuCount`: The minimum number of GPUs in the offer
+    - `gpu_count`: The minimum number of GPUs in the offer
     - `price`: The maximum price per hour for the offer
     - `limit`: The maximum number of offers to return
 
@@ -19,7 +19,7 @@ get:
 
     Here's an example of how to filter by vendor:
       ```
-      /offers?gpuVendor=nvidia
+      /offers?gpu_vendor=nvidia
       ```
 
     Here's an example of how to filter by provider:
@@ -43,14 +43,20 @@ get:
     The offers are sorted by price per hour, from lowest to highest.
 
   parameters:
-    - name: gpuVendor
+    - name: gpu_vendor
       in: query
       schema:
         type: string
-        enum: [nvidia, amd, intel, huawei]
-      description: The vendor of the GPU
-      required: false
-    - name: gpuType
+        x-extensible-enum:
+          - value: NVIDIA
+            description: NVIDIA
+          - value: AMD
+            description: AMD
+          - value: INTEL
+            description: INTEL
+          - value: HUAWEI
+            description: HUAWEI
+    - name: gpu_type
       in: query
       schema:
         type: string
@@ -68,7 +74,7 @@ get:
         type: string
       description: The region of the offer, e.g. us-east-1
       required: false
-    - name: gpuCount
+    - name: gpu_count
       in: query
       schema:
         type: number
@@ -91,15 +97,37 @@ get:
     '200':
       $ref: '../components/responses/offers-response.yaml'
     '400':
-      $ref: '../components/responses/bad-request.yaml'
-    '500':
-      $ref: '../components/responses/server-error.yaml'
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Invalid request"
+            instance: "/offers"
+
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/offers"
+
   
   x-codeSamples:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/offers?gpuVendor=nvidia&provider=aws&region=us-east-1&gpuCount=1"
+        curl -X GET "https://api.exalsius.ai/offers?gpu_vendor=nvidia&provider=aws&region=us-east-1&gpu_count=1"
     - lang: python
       label: Python
       source: |
