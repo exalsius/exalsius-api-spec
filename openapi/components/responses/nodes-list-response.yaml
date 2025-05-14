@@ -18,42 +18,42 @@ content:
         value:
           nodes:
             - id: "123e4567-e89b-12d3-a456-426614174000"
-              nodeType: self-managed
+              node_type: self-managed
               location: "Virginia"
-              gpuCount: 1
-              gpuVendor: "nvidia"
-              gpuType: "a100"
-              gpuMemory: 80
-              cpuCores: 4
-              memoryGb: 16
-              storageGb: 100
-              importTime: "2025-01-01T00:00:00Z"
-              status: available
+              gpu_count: 1
+              gpu_vendor: "nvidia"
+              gpu_type: "a100"
+              gpu_memory: 80
+              cpu_cores: 4
+              memory_gb: 16
+              storage_gb: 100
+              import_time: "2025-01-01T00:00:00Z"
+              node_status: available
           total: 1
 
-      MixedNodes:
+      TwoNodes:
         summary: List containing two nodes
         value:
           nodes:
             - id: "123e4567-e89b-12d3-a456-426614174000"
-              nodeType: self-managed
+              node_type: self-managed
               location: "Virginia"
-              gpuCount: 1
-              gpuVendor: "nvidia"
-              gpuType: "a100"
-              gpuMemory: 80
-              cpuCores: 4
-              memoryGb: 16
-              storageGb: 100
-              status: available
+              gpu_count: 1
+              gpu_vendor: "nvidia"
+              gpu_type: "a100"
+              gpu_memory: 80
+              cpu_cores: 4
+              memory_gb: 16
+              storage_gb: 100
+              node_status: available
             - id: "223e4567-e89b-12d3-a456-426614174001"
-              nodeType: cloud
-              status: available
+              node_type: cloud
+              node_status: available
               location: "US East (N. Virginia)"
-              gpuCount: 1
-              gpuVendor: nvidia
-              gpuType: a100
-              gpuMemory: 80
-              cpuCores: 4
-              memoryGb: 16
+              gpu_count: 1
+              gpu_vendor: nvidia
+              gpu_type: a100
+              gpu_memory: 80
+              cpu_cores: 4
+              memory_gb: 16
           total: 2

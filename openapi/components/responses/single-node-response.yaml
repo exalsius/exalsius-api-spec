@@ -9,37 +9,37 @@ content:
         summary: Details of a self-managed node
         value:
           id: "123e4567-e89b-12d3-a456-426614174000"
-          nodeType: self-managed
+          node_type: self-managed
           location: "Virginia"
-          gpuCount: 1
-          gpuVendor: "nvidia"
-          gpuType: "a100"
-          gpuMemory: 80
-          cpuCores: 4
-          memoryGb: 16
-          storageGb: 100
+          gpu_count: 1
+          gpu_vendor: "nvidia"
+          gpu_type: "a100"
+          gpu_memory: 80
+          cpu_cores: 4
+          memory_gb: 16
+          storage_gb: 100
           endpoint: "192.168.1.1:22"
           username: "ubuntu"
-          sshKeyId: "123e4567-e89b-12d3-a456-426614174000"
-          status: available
+          ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
+          node_status: available
           importTime: "2025-01-01T00:00:00Z"
       CloudNode:
         summary: Details of a cloud node
         value:
           id: "223e4567-e89b-12d3-a456-426614174001"
-          nodeType: cloud
+          node_type: cloud
           provider: aws
-          status: available
-          offerId: "c68c5fa5-3777-4026-ac21-4fcefe465695"
+          node_status: available
+          offer_id: "c68c5fa5-3777-4026-ac21-4fcefe465695"
           location: "US East (N. Virginia)"
           region: us-east-1
-          availabilityZone: us-east-1a
-          instanceType: g4dn.xlarge
-          gpuCount: 1
-          gpuVendor: nvidia
-          gpuType: a100
-          gpuMemory: 80
-          cpuCores: 4
-          memoryGb: 16
-          pricePerHour: 0.526
-          importTime: "2025-01-01T00:00:00Z"
+          availability_zone: us-east-1a
+          instance_type: g4dn.xlarge
+          gpu_count: 1
+          gpu_vendor: nvidia
+          gpu_type: a100
+          gpu_memory: 80
+          cpu_cores: 4
+          memory_gb: 16
+          price_per_hour: 0.526
+          import_time: "2025-01-01T00:00:00Z"

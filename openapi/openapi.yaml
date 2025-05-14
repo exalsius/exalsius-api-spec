@@ -87,8 +87,6 @@ paths:
   /management/ssh-keys:
     $ref: './paths/management/list-ssh-keys.yaml'
 
-
-
 components: 
   schemas:
     Offer:
@@ -105,9 +103,6 @@ components:
       $ref: './components/schemas/ssh-key.yaml'
     Kubeconfig:
       $ref: './components/schemas/kubeconfig.yaml'
-  responses:
-    Error:
-      $ref: './components/schemas/error.yaml'
   securitySchemes:
     ApiKeyAuth:
       $ref: './components/securitySchemes/ApiKeyAuth.yaml'
