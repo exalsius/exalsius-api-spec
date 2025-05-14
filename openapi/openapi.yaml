@@ -1,6 +1,10 @@
 openapi: 3.1.0
 info:
   version: 1.0.0
+  x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
+  x-audience:
+    - exalsius-cli
+    - exalsius-api
   title: exalsius API
   contact:
     name: Contact our support
@@ -58,25 +62,25 @@ paths:
     $ref: './paths/offers.yaml'
   /nodes:
     $ref: './paths/nodes/list.yaml'
-  /nodes/{nodeId}:
+  /nodes/{node_id}:
     $ref: './paths/nodes/node.yaml'
   /nodes/import/ssh:
     $ref: './paths/nodes/import-ssh.yaml'
-  /nodes/import/offer/{offerId}:
+  /nodes/import/offer/{offer_id}:
     $ref: './paths/nodes/import-offer.yaml'
   /clusters:
     $ref: './paths/clusters/list.yaml'
-  /clusters/{clusterId}:
+  /clusters/{cluster_id}:
     $ref: './paths/clusters/cluster.yaml'
-  /clusters/{clusterId}/nodes:
+  /clusters/{cluster_id}/nodes:
     $ref: './paths/clusters/nodes.yaml'
-  /clusters/{clusterId}/nodes/{nodeId}:
+  /clusters/{cluster_id}/nodes/{node_id}:
     $ref: './paths/clusters/delete-node.yaml'
-  /clusters/{clusterId}/services:
+  /clusters/{cluster_id}/services:
     $ref: './paths/clusters/services.yaml'
-  /clusters/{clusterId}/deploy:
+  /clusters/{cluster_id}/deploy:
     $ref: './paths/clusters/deploy.yaml'
-  /clusters/{clusterId}/kubeconfig:
+  /clusters/{cluster_id}/kubeconfig:
     $ref: './paths/clusters/kubeconfig.yaml'
   /services:
     $ref: './paths/services/list.yaml'
@@ -102,10 +106,8 @@ components:
     Kubeconfig:
       $ref: './components/schemas/kubeconfig.yaml'
   responses:
-    BadRequest:
-      $ref: './components/responses/bad-request.yaml'
-    ServerError:
-      $ref: './components/responses/server-error.yaml'
+    Error:
+      $ref: './components/schemas/error.yaml'
   securitySchemes:
     ApiKeyAuth:
       $ref: './components/securitySchemes/ApiKeyAuth.yaml'

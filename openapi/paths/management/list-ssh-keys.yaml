@@ -19,14 +19,34 @@ get:
           schema:
             type: object
             properties:
-              sshKeys:
+              ssh_keys:
                 type: array
                 items:
                   $ref: '../../components/schemas/ssh-key.yaml'
     '404':
       description: SSH keys not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "No SSH keys found"
+            instance: "/management/ssh-keys"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/management/ssh-keys"
 
   x-codeSamples:
     - lang: curl
@@ -52,7 +72,7 @@ post:
     **Request Body**
 
     - `name`: The name of the SSH key.
-    - `privateKey`: The private key of the SSH key.
+    - `private_key`: The private key of the SSH key.
 
     **Result**
 
@@ -62,9 +82,29 @@ post:
     '201':
       $ref: '../../components/responses/ssh-key-response.yaml'
     '400':
-      $ref: '../../components/responses/bad-request.yaml'
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Bad request"
+            instance: "/management/ssh-keys"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/management/ssh-keys"
 
   x-codeSamples:
     - lang: curl
@@ -98,8 +138,28 @@ delete:
       description: SSH key deleted
     '404':
       description: SSH key not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The SSH key with ID 123 was not found."
+            instance: "/management/ssh-keys/123"
+    default: 
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/management/ssh-keys"
 
   x-codeSamples:
     - lang: curl

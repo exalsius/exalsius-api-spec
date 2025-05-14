@@ -3,9 +3,14 @@ content:
   application/json:
     schema:
       type: object
+      required: [data]
       properties:
-        cluster_id:
-          type: string
-          format: uuid
-          description: The unique identifier for the cluster
-          example: "123e4567-e89b-12d3-a456-426614174000"
+        data:
+          type: object
+          required: [cluster_id]
+          properties:
+            cluster_id:
+              type: string
+              format: int64
+              description: The unique identifier for the cluster
+              example: 123

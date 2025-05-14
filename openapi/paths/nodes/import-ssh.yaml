@@ -36,13 +36,41 @@ post:
     '201':
       $ref: '../../components/responses/node-import-response.yaml'
     '400':
-      $ref: '../../components/responses/bad-request.yaml'
-    '404':
-      description: SSH key not found
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Bad request"
+            instance: "/nodes/import-ssh"
     '409':
       description: Node already exists
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/conflict"
+            title: "Conflict"
+            status: 409
+            detail: "The node with ID 123 already exists."
+            instance: "/nodes/import-ssh"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/nodes/import-ssh"
   
   x-codeSamples:
     - lang: curl

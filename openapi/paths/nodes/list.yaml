@@ -6,35 +6,37 @@ get:
     **List nodes in the pool**
 
     Retrieve all imported nodes, with optional filters:
-    - `nodeType`: self-managed or cloud-imported
+    - `node_type`: self-managed or cloud-imported
     - `provider`: AWS, Azure, etc.
 
     **Examples**
 
     Here's an example of how to filter by node type:
       ```
-      /nodes?nodeType=selfManaged
+      /nodes?node_type=self-managed
       ```
       
-      Here's an example of how to filter by node type and provider:
+      Here's an example of how to filter by provider:
       ```
-      /nodes?nodeType=selfManaged&provider=aws
+      /nodes?provider=aws
       ```
 
   parameters:
-    - name: nodeType
+    - name: node_type
       in: query
       description: |
         Only return nodes of this type.  
         Possible values:
-        - `selfManaged` - only self-managed (SSH) nodes  
+        - `self-managed` - only self-managed (SSH) nodes  
         - `cloud` - only cloud-imported nodes
       required: false
       schema:
         type: string
-        enum:
-          - selfManaged
-          - cloud
+        x-extensible-enum:
+          - value: SELF_MANAGED
+            description: Only self-managed (SSH) nodes
+          - value: CLOUD
+            description: Only cloud-imported nodes
     - name: provider
       in: query
       description: |
@@ -49,10 +51,29 @@ get:
     '200':
       $ref: '../../components/responses/nodes-list-response.yaml'
     '400':
-      description: Invalid nodeType
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
-  
+      description: Invalid node_type
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Invalid node_type"
+            instance: "/nodes"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/nodes"
   x-codeSamples:
     - lang: curl
       label: cURL

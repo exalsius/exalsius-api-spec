@@ -9,7 +9,7 @@ post:
     Use this operation to import one or more nodes of a given cloud instance type into the node pool.
     
     **Parameters**
-      - `offerID`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).
+      - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).
       - `amount`: The number of instances of the instance type to import.
 
     **Behavior**
@@ -25,7 +25,7 @@ post:
     On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
     
   parameters:
-    - name: offerId
+    - name: offer_id
       in: path
       required: true
       schema:
@@ -35,7 +35,8 @@ post:
       in: query
       required: false
       schema:
-        type: number
+        type: integer
+        format: int32
         default: 1
       
   responses:
@@ -43,11 +44,41 @@ post:
       $ref: '../../components/responses/node-import-response.yaml'
     '400':
       description: Bad Request
-      $ref: '../../components/responses/bad-request.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Bad request"
+            instance: "/nodes/import-offer"
     '404':
       description: Offer not found
-    '500':
-      description: Internal server error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The offer with ID 123 was not found."
+            instance: "/nodes/import-offer"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/nodes/import-offer"
+
   x-codeSamples:
     - lang: curl
       label: cURL
