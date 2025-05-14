@@ -1,5 +1,5 @@
 description: Internal server error
 content:
-  application/json:
+  application/problem+json:
     schema:
       $ref: '../schemas/error.yaml'

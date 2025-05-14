@@ -4,7 +4,7 @@ content:
     schema:
       type: object
       properties:
-        nodeIds:
+        node_ids:
           type: array
           items:
             type: string
@@ -13,9 +13,10 @@ content:
         total:
           type: integer
           description: The total number of nodes that were imported
+          format: int32
     examples:
       NodeImportResponse:
         summary: Node successfully imported
         value:
-          nodeIds: ["123e4567-e89b-12d3-a456-426614174000"]
+          node_ids: ["123e4567-e89b-12d3-a456-426614174000"]
           total: 1

@@ -4,13 +4,13 @@ content:
     schema:
       type: object
       properties:
-        clusterId:
+        cluster_id:
           type: string
         nodes:
           type: array
           items:
             $ref: '../../components/schemas/node.yaml'
       required:
-        - clusterId
+        - cluster_id
         - nodes
 

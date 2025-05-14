@@ -4,7 +4,7 @@ content:
     schema:
       type: object
       properties:
-        clusterId:
+        cluster_id:
           type: string
           format: uuid
           description: The ID of the cluster
@@ -14,6 +14,6 @@ content:
           items:
             $ref: '../../components/schemas/service-deployment.yaml'
       required:
-        - clusterId
+        - cluster_id
         - services
 
