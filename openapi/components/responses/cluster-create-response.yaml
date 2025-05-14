@@ -4,7 +4,7 @@ content:
     schema:
       type: object
       properties:
-        clusterId:
+        cluster_id:
           type: string
           format: uuid
           description: The unique identifier for the cluster

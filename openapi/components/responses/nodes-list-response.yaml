@@ -11,6 +11,7 @@ content:
         total:
           type: integer
           description: The total number of nodes in the node pool
+          format: int32
     examples:
       SingleNode:
         summary: List containing only a single node
