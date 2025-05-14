@@ -8,7 +8,7 @@ content:
       SelfManagedNode:
         summary: Details of a self-managed node
         value:
-          id: "123e4567-e89b-12d3-a456-426614174000"
+          id: 123
           node_type: self-managed
           location: "Virginia"
           gpu_count: 1
@@ -26,7 +26,7 @@ content:
       CloudNode:
         summary: Details of a cloud node
         value:
-          id: "223e4567-e89b-12d3-a456-426614174001"
+          id: 456
           node_type: cloud
           provider: aws
           node_status: available
