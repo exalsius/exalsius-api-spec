@@ -10,4 +10,4 @@ content:
         value:
           id: "123e4567-e89b-12d3-a456-426614174000"
           name: "my-ssh-key"
-          privateKey: "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"
+          private_key: "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"

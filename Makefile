@@ -1,31 +1,30 @@
 CURRENT_DIR := $(CURDIR)
 
 install:
-	echo "Installing npm deps and Python code-gen tools…"
+	@echo "Installing npm deps and Python code-gen tools…"
 	npm install
 
 lint:
-	@echo "Linting OpenAPI spec according to the Style Guide…"
+	@echo "Linting OpenAPI spec with Redocly…"
 	docker run --rm \
-		-v $(CURRENT_DIR)/openapi:/openapi \
-		stoplight/spectral \
-		--ruleset /openapi/linting/spectral.json \
-		lint "/openapi/openapi.yaml"
+		-v $(CURRENT_DIR):/api-spec \
+		-w /api-spec \
+		redocly/cli \
+		--config openapi/redocly.yaml \
+		lint openapi/openapi.yaml
 
 build:
 	@echo "Bundling OpenAPI spec into dist/bundle.yaml…"
-	npm run build
-
-models:
-	@echo "Generating Pydantic models from OpenAPI spec…"
-	datamodel-codegen --input dist/bundle.yaml --output models.py
-
-server:
-	@echo "Generating Python server from OpenAPI spec…"
-	openapi-generator-cli generate -i dist/bundle.yaml -g python-fastapi -o python_api/server --package-name exalsius_api
+	docker run --init --rm -p 8080:8080 \
+		-v $(CURRENT_DIR):/spec \
+		redocly/cli \
+		bundle /spec/openapi/openapi.yaml -o /spec/dist/bundle.yaml
 
 run-redocly:
-	npm run start
+	docker run --init --rm -p 8080:8080 \
+		-v $(CURRENT_DIR):/spec \
+		redocly/cli \
+		preview-docs /spec/openapi/openapi.yaml --host 0.0.0.0
 
 run-swagger:
 	docker run --rm -p 8081:8080 \

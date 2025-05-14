@@ -3,9 +3,7 @@ apis:
     root: openapi/openapi.yaml
 extends:
   - recommended
-rules:
-  no-unused-components: error
-  no-server-example.com: off
+  - linting/zalando.json
 theme:
   openapi:
     htmlTemplate: ./docs/index.html

@@ -1,5 +1,0 @@
-{
-    "spectral.enable": true,
-    "spectral.rulesetFile": "openapi/linting/spectral.json",
-    "spectral.run": "onType",
-  }
