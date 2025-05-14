@@ -3,7 +3,7 @@ required:
   - id
   - node_type
   - location
-  - status
+  - node_status
 properties:
   id:
     type: string
@@ -12,11 +12,13 @@ properties:
     example: "7c1d408f-7983-4da0-b3c4-7cf903cfae48"
   node_type:
     type: string
-    enum:
-      - cloud
-      - self-managed
+    x-extensible-enum:
+      - value: CLOUD
+        description: Cloud node
+      - value: SELF_MANAGED
+        description: Self-managed node
     description: The type of the node
-    example: "cloud"
+    example: "CLOUD"
   description:
     type: string
     description: Description of the node
@@ -28,6 +30,7 @@ properties:
   gpu_count:
     type: integer
     description: The number of GPUs
+    format: int32
     example: 1
   gpu_vendor:
     type: string
@@ -40,29 +43,38 @@ properties:
   gpu_memory:
     type: integer
     description: The memory of the GPU in GB
+    format: int32
     example: 80
   cpu_cores:
     type: integer
     description: The number of CPU cores
+    format: int32
     example: 4
   memory_gb:
     type: integer
     description: The memory of the node in GB
+    format: int32
     example: 16
   storage_gb:
     type: integer
     description: The storage of the node in GB
+    format: int32
     example: 100
   import_time:
     type: string
     description: The time the node was imported
+    format: date-time
     example: "2021-01-01T00:00:00Z"
-  status:
+  node_status:
     type: string
-    enum:
-      - pending
-      - available
-      - staged
-      - occupied
+    x-extensible-enum:
+      - value: PENDING
+        description: Node is pending
+      - value: AVAILABLE
+        description: Node is available to be added to a cluster
+      - value: STAGED
+        description: Node is staged in a cluster
+      - value: OCCUPIED
+        description: Node is occupied in a cluster
     description: The status of the node
-    example: "available"
+    example: "AVAILABLE"
