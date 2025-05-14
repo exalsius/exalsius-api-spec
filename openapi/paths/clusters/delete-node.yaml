@@ -9,12 +9,12 @@ delete:
     and is returned to the node pool.
     
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
         type: string
-    - name: nodeId
+    - name: node_id
       in: path
       required: true
       schema:
@@ -27,12 +27,44 @@ delete:
           schema:
             type: object
             properties:
-              nodeId:
+              node_id:
                 type: string
     '404':
-      description: Cluster or node not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      description: Cluster not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
+    '409':
+      description: Node not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Conflict"
+            status: 409
+            detail: "The node with ID 123 was not found."
+            instance: "/clusters/123/nodes/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123"
   
   x-codeSamples:
     - lang: curl

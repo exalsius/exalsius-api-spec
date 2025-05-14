@@ -29,12 +29,17 @@ get:
       required: false
       schema:
         type: string
-        enum:
-          - pending
-          - running
-          - deleting
-          - deleted
-          - failed
+        x-extensible-enum:
+          - value: PENDING
+            description: clusters that are pending
+          - value: RUNNING
+            description: clusters that are running
+          - value: DELETING
+            description: clusters that are deleting
+          - value: DELETED
+            description: clusters that are deleted
+          - value: FAILED
+            description: clusters that failed
 
   responses:
     '200':
@@ -50,9 +55,28 @@ get:
                   $ref: '../../components/schemas/cluster.yaml'
     '404':
       description: Cluster not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
-
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500 
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters"
   x-codeSamples:
     - lang: curl
       label: cURL
@@ -77,20 +101,20 @@ post:
     **Parameters**
 
     - `name`: The name of the cluster
-    - `k8sVersion`: The Kubernetes version of the cluster
-    - `toBeDeletedAt`: The date and time the cluster will be deleted (optional)
-    - `controlPlaneNodeIds`: The IDs of the control plane nodes (optional)
-    - `workerNodeIds`: The IDs of the worker nodes (optional)
+    - `k8s_version`: The Kubernetes version of the cluster
+    - `to_be_deleted_at`: The date and time the cluster will be deleted (optional)
+    - `control_plane_node_ids`: The IDs of the control plane nodes (optional)
+    - `worker_node_ids`: The IDs of the worker nodes (optional)
     - `services`: The IDs of the services to deploy in the cluster (optional)
 
-    If `toBeDeletedAt` is provided, the cluster will automatically be deleted at the specified date and time.
-    If `controlPlaneNodeIds` or `workerNodeIds` are provided, the nodes will be added to the cluster.
+    If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time.
+    If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster.
     If `services` are provided, the services will be deployed in the cluster.
 
     **Behavior**
 
     Creating a new cluster will result in a new cluster resource being created. The cluster will be in 
-    the `pending` state until the `POST /clusters/{clusterId}/deploy` operation is called.
+    the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
 
   requestBody: 
     required: true
@@ -100,11 +124,35 @@ post:
           $ref: '../../components/requests/cluster-create-request.yaml'
   responses:
     '201':
-      $ref: '../../components/responses/cluster-create-response.yaml'
+      description: Cluster created
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/cluster-create-response.yaml'
     '400':
-      $ref: '../../components/responses/bad-request.yaml'
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Bad request"
+            instance: "/clusters"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters"
   
   x-codeSamples:
     - lang: curl

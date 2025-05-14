@@ -9,51 +9,71 @@ get:
 
     **Parameters**
 
-    - `clusterId`: The ID of the cluster to retrieve nodes from
-    - `nodeRole`: Only return nodes of this role (optional). Possible values:
-      - `controlPlane`: only control plane nodes
+    - `cluster_id`: The ID of the cluster to retrieve nodes from
+    - `node_role`: Only return nodes of this role (optional). Possible values:
+      - `control_plane`: only control plane nodes
       - `worker`: only worker nodes
 
     **Examples**
 
     Here's an example of how to retrieve all nodes of a cluster:
       ```
-      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes
+      /clusters/123/nodes
       ```
 
     Here's an example of how to retrieve all control plane nodes of a cluster:
       ```
-      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes?nodeRole=controlPlane
+      /clusters/123/nodes?node_role=control_plane
       ```
-
-      
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
         type: string
       description: ID of the cluster to retrieve nodes from
-    - name: nodeRole
+    - name: node_role
       in: query
       required: false
       schema:
         type: string
-        enum:
-          - controlPlane
-          - worker
+        x-extensible-enum:
+          - value: CONTROL_PLANE
+            description: only control plane nodes
+          - value: WORKER
+            description: only worker nodes
       description: |
         Only return nodes of this role.
         Possible values:
-        - `controlPlane` - only control plane nodes
+        - `control_plane` - only control plane nodes
         - `worker` - only worker nodes
   responses:
     '200':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
     '404':
       description: Cluster not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123/nodes"
   
   x-codeSamples:
     - lang: curl
@@ -110,34 +130,76 @@ post:
     cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
 
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
         type: string
-    - name: nodeIds
+    - name: node_ids
       in: query
       required: true
       schema:
         type: array
         items:
           type: string
-    - name: nodeRole
+    - name: node_role
       in: query
       required: false
       schema:
         type: string
-        enum:
-          - controlPlane
-          - worker
+        x-extensible-enum:
+          - value: CONTROL_PLANE
+            description: only control plane nodes
+          - value: WORKER
+            description: only worker nodes
   responses:
     '200':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
     '400':
-      description: Invalid nodeIds
+      description: Invalid node_ids
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "Node with ID 1234 not found"
+            instance: "/clusters/123/nodes"
     '404':
       description: Cluster not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
     '409':
       description: Nodes already in cluster
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/conflict"
+            title: "Conflict"
+            status: 409
+            detail: "The nodes with IDs 1234 and 1235 are already in the cluster."
+            instance: "/clusters/123/nodes"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123/nodes"

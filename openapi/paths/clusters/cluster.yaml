@@ -18,9 +18,29 @@ get:
     '200':
       $ref: '../../components/responses/clusters-response.yaml'
     '404':
-      description: Cluster not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      description: Not Found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Cluster Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123"
   
   x-codeSamples:
     - lang: curl
@@ -67,8 +87,28 @@ delete:
       description: Cluster deleted; nodes returned to pool
     '404':
       description: Cluster not found
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Cluster Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123"
   
   x-codeSamples:
     - lang: curl
