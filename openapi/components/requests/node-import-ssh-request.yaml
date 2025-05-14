@@ -2,7 +2,7 @@ type: object
 required:
   - endpoint
   - username
-  - sshKey
+  - ssh_key_id
 properties:
   endpoint:
     type: string
@@ -16,7 +16,7 @@ properties:
     type: string
     description: Description of the node
     example: "My self-managed node"
-  sshKeyId:
+  ssh_key_id:
     type: string
     description: The ID of the SSH key to use for the node
     example: "123e4567-e89b-12d3-a456-426614174000"
