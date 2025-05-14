@@ -23,7 +23,7 @@ post:
     Returns the cluster object with the `deploying` state.
 
   parameters:
-    - name: clusterId
+    - name: cluster_id
       in: path
       required: true
       schema:
@@ -39,10 +39,50 @@ post:
           schema:
             $ref: '../../components/schemas/cluster.yaml'
     '400':
-      $ref: '../../components/responses/bad-request.yaml'
+      description: Bad Request
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Bad Request"
+            status: 400
+            detail: "The cluster with ID 123 is not in the `staging` state."
+            instance: "/clusters/123"
     '404':
       description: Cluster not found
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Not Found"
+            status: 404
+            detail: "The cluster with ID 123 was not found."
+            instance: "/clusters/123"
     '409':
       description: No nodes staged
-    '500':
-      $ref: '../../components/responses/server-error.yaml'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/conflict"
+            title: "Conflict"
+            status: 409
+            detail: "The cluster with ID 123 has no nodes in the `controlPlaneNodeIds` or `workerNodeIds` arrays."
+            instance: "/clusters/123"
+    default:
+      description: Internal Server Error
+      content:
+        application/problem+json:
+          schema:
+            $ref: '../../components/schemas/error.yaml'
+          example:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123"
