@@ -1,8 +1,8 @@
 type: object
 properties:
-  serviceDeployments:
+  service_deployments:
     type: array
     items:
       $ref: '../../components/schemas/service-deployment.yaml'
 required:
-  - serviceDeployments
+  - service_deployments
