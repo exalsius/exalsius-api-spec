@@ -12,5 +12,5 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
-      - name: Lint OpenAPI Spec with Spectral
+      - name: Lint OpenAPI Spec
         run: make lint

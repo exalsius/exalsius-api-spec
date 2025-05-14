@@ -17,7 +17,7 @@ content:
         summary: List containing only a single node
         value:
           nodes:
-            - id: "123e4567-e89b-12d3-a456-426614174000"
+            - id: 123
               node_type: self-managed
               location: "Virginia"
               gpu_count: 1
@@ -35,7 +35,7 @@ content:
         summary: List containing two nodes
         value:
           nodes:
-            - id: "123e4567-e89b-12d3-a456-426614174000"
+            - id: 123
               node_type: self-managed
               location: "Virginia"
               gpu_count: 1
@@ -46,7 +46,7 @@ content:
               memory_gb: 16
               storage_gb: 100
               node_status: available
-            - id: "223e4567-e89b-12d3-a456-426614174001"
+            - id: 456
               node_type: cloud
               node_status: available
               location: "US East (N. Virginia)"
