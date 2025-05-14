@@ -2,13 +2,13 @@ allOf:
   - $ref: './base-node.yaml'
   - type: object
     required:
-      - nodeType
+      - node_type
       - provider
       - status
       - region
-      - instanceType
+      - instance_type
     properties:
-      nodeType:
+      node_type:
         type: string
         enum:
           - cloud
@@ -22,15 +22,15 @@ allOf:
         type: string
         description: The region of the node
         example: "us-east-1"
-      availabilityZone:
+      availability_zone:
         type: string
         description: The availability zone of the node
         example: "us-east-1a"
-      instanceType:
+      instance_type:
         type: string
         description: The instance type of the node
         example: "g4dn.xlarge"
-      pricePerHour:
+      price_per_hour:
         type: number
         format: double
         description: The price per hour for the node

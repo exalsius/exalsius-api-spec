@@ -1,7 +1,7 @@
 type: object
 required:
   - id
-  - nodeType
+  - node_type
   - location
   - status
 properties:
@@ -10,7 +10,7 @@ properties:
     description: The unique identifier for the node
     format: uuid
     example: "7c1d408f-7983-4da0-b3c4-7cf903cfae48"
-  nodeType:
+  node_type:
     type: string
     enum:
       - cloud
@@ -25,35 +25,35 @@ properties:
     type: string
     description: The location of the node (e.g. city, data center, server rack, etc.)
     example: "Virginia"
-  gpuCount:
+  gpu_count:
     type: integer
     description: The number of GPUs
     example: 1
-  gpuVendor:
+  gpu_vendor:
     type: string
     description: The vendor of the GPU
     example: "nvidia"
-  gpuType:
+  gpu_type:
     type: string
     description: The type of the GPU
     example: "a100"
-  gpuMemory:
+  gpu_memory:
     type: integer
     description: The memory of the GPU in GB
     example: 80
-  cpuCores:
+  cpu_cores:
     type: integer
     description: The number of CPU cores
     example: 4
-  memoryGb:
+  memory_gb:
     type: integer
     description: The memory of the node in GB
     example: 16
-  storageGb:
+  storage_gb:
     type: integer
     description: The storage of the node in GB
     example: 100
-  importTime:
+  import_time:
     type: string
     description: The time the node was imported
     example: "2021-01-01T00:00:00Z"
