@@ -4,14 +4,14 @@ required:
   - provider
   - location
   - region
-  - availabilityZone
-  - instanceType
-  - gpuCount
-  - gpuVendor
-  - gpuType
-  - gpuMemory
-  - pricePerHour
-  - scrapeTime
+  - availability_zone
+  - instance_type
+  - gpu_count
+  - gpu_vendor
+  - gpu_type
+  - gpu_memory
+  - price_per_hour
+  - scrape_time
 properties:
   id:
     type: string
@@ -29,36 +29,36 @@ properties:
     type: string
     description: The region of the offer
     example: "us-east-1"
-  availabilityZone:
+  availability_zone:
     type: string
     description: The availability zone of the offer
     example: "us-east-1a"
-  instanceType:
+  instance_type:
     type: string
     description: The instance type of the offer
     example: "g4dn.xlarge"
-  gpuCount:
+  gpu_count:
     type: integer
     description: The number of GPUs in the offer
     example: 1
-  gpuVendor:
+  gpu_vendor:
     type: string
     description: The vendor of the GPU
     example: "NVIDIA"
-  gpuType:
+  gpu_type:
     type: string
     description: The type of the GPU
     example: "T4"
-  gpuMemory:
+  gpu_memory:
     type: integer
     description: The memory of the GPU in GB
     example: 16
-  pricePerHour:
+  price_per_hour:
     type: number
     format: double
     description: The price per hour for the offer
     example: 0.526
-  scrapeTime:
+  scrape_time:
     type: string
     format: date-time
     description: The time the offer was scraped
