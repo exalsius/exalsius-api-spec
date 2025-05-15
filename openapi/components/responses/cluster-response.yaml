@@ -1,0 +1,8 @@
+title: ClusterResponse
+description: Cluster details
+type: object
+properties:
+  cluster:
+    $ref: '../schemas/cluster.yaml'
+required:
+  - cluster

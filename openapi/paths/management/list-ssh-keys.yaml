@@ -13,16 +13,20 @@ get:
     
   responses:
     '200':
-      description: An array of SSH keys
+      description: List of SSH keys
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              ssh_keys:
-                type: array
-                items:
-                  $ref: '../../components/schemas/ssh-key.yaml'
+            $ref: '../../components/responses/ssh-keys-list-response.yaml'
+          examples:
+            default:
+              summary: List of SSH keys
+              value:
+                ssh_keys:
+                  - id: "123e4567-e89b-12d3-a456-426614174000"
+                    name: "my-ssh-key"
+                  - id: "123e4567-e89b-12d3-a456-426614174001"
+                    name: "my-ssh-key-2"
     '404':
       description: SSH keys not found
       content:
@@ -80,7 +84,16 @@ post:
 
   responses:
     '201':
-      $ref: '../../components/responses/ssh-key-response.yaml'
+      description: SSH key added
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/ssh-key-create-response.yaml'
+          examples:
+            default:
+              summary: SSH key added
+              value:
+                ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
     '400':
       description: Bad Request
       content:

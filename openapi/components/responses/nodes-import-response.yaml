@@ -1,0 +1,14 @@
+title: NodesImportResponse
+description: Nodes successfully imported
+type: object
+properties:
+  node_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+      description: The unique identifiers of the imported nodes
+  total:
+    type: integer
+    description: The total number of nodes that were imported
+    format: int32

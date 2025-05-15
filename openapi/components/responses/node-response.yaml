@@ -1,0 +1,8 @@
+title: NodeResponse
+description: Node response
+type: object
+properties:
+  node:
+    $ref: '../schemas/node.yaml'
+required:
+  - node

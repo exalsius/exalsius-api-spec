@@ -95,7 +95,11 @@ get:
       
   responses:
     '200':
-      $ref: '../components/responses/offers-response.yaml'
+      description: List of offers
+      content:
+        application/json:
+          schema:
+            $ref: '../components/responses/offers-list-response.yaml'
     '400':
       description: Bad Request
       content:

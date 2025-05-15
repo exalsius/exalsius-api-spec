@@ -1,0 +1,12 @@
+title: OffersListResponse
+description: List of offers
+type: object
+properties:
+  offers:
+    type: array
+    items:
+      $ref: '../schemas/offer.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of offers

@@ -20,15 +20,17 @@ delete:
       schema:
         type: string
   responses:
-    '204':
+    '202':
       description: Node deleted from cluster
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              node_id:
-                type: string
+            $ref: '../../components/responses/node-deleted-response.yaml'
+          examples:
+            default:
+              summary: Node deleted from cluster
+              value:
+                node_id: "123"
     '404':
       description: Cluster not found
       content:

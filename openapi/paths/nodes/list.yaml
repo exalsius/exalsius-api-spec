@@ -49,7 +49,11 @@ get:
 
   responses:
     '200':
-      $ref: '../../components/responses/nodes-list-response.yaml'
+      description: List of nodes in the node pool
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/nodes-list-response.yaml'
     '400':
       description: Invalid node_type
       content:

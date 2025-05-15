@@ -1,11 +1,11 @@
-title: ClusterCreateResponse
-description: Cluster creation response
+title: ClusterDeployResponse
+description: Cluster deployment response
 type: object
 properties:
   cluster_id:
     type: integer
     example: 1
-    description: The ID of the created cluster
+    description: The ID of the cluster
     format: int64
 required:
   - cluster_id
