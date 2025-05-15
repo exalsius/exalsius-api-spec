@@ -27,8 +27,8 @@ post:
       in: path
       required: true
       schema:
-        type: string
-        format: uuid
+        type: integer
+        format: int64
         description: The ID of the cluster to deploy
 
   responses:

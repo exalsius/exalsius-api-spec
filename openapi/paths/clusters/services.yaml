@@ -17,7 +17,8 @@ get:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
   responses:
     '200':
       description: List of services in the cluster
@@ -83,7 +84,8 @@ post:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
   requestBody:
     required: true
     content:
