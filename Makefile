@@ -84,5 +84,5 @@ generate-server:
 		--package-name "exalsius_api_server" \
 		-g python-fastapi \
 		-t /local/custom-templates/python-fastapi \
-		--additional-properties=fastapiImplementationPackage=own_impl \
+		--additional-properties=fastapiImplementationPackage=controllers \
 		-o /local/server;
