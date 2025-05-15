@@ -92,7 +92,7 @@ delete:
         type: string
       description: ID of the node to delete
   responses:
-    '204':
+    '200':
       description: Node deleted
       content:
         application/json:

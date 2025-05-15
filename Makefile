@@ -1,9 +1,5 @@
 CURRENT_DIR := $(CURDIR)
 
-install:
-	@echo "Installing npm deps and Python code-gen tools…"
-	npm install
-
 lint:
 	@echo "Linting OpenAPI spec with Redocly…"
 	docker run --rm \
@@ -16,7 +12,7 @@ lint:
 
 build:
 	@echo "Bundling OpenAPI spec into dist/bundle.yaml…"
-	docker run --init --rm -p 8080:8080 \
+	docker run --init --rm \
 		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
@@ -65,15 +61,38 @@ generate-models:
 		--use-title-as-name
 
 
-GENERATORS := python-fastapi python
+#GENERATORS := python-fastapi python
+#
+#generate: build
+#	for gen in $(GENERATORS); do \
+#		docker run --rm -v "${PWD}:/local" \
+#			--user $(shell id -u):$(shell id -g) \
+#			openapitools/openapi-generator-cli generate \
+#			-i local/dist/bundle.yaml \
+#			--package-name "exalsius_api_client" \
+#			-g $$gen \
+#			-o /local/out/$$gen; \
+#	done
 
-generate: build
-	for gen in $(GENERATORS); do \
-		docker run --rm -v "${PWD}:/local" \
-			--user $(shell id -u):$(shell id -g) \
-			openapitools/openapi-generator-cli generate \
-			-i local/dist/bundle.yaml \
-			--package-name "exalsius_api_client" \
-			-g $$gen \
-			-o /local/out/$$gen; \
-	done
+generate: build generate-client
+
+generate-client:
+	@echo "Generating client SDK"
+	docker run --rm -v "${PWD}:/local" \
+		--user $(shell id -u):$(shell id -g) \
+		openapitools/openapi-generator-cli generate \
+		-i local/dist/bundle.yaml \
+		--package-name "exalsius_api_client" \
+		-g python \
+		-o /local/client
+
+generate-server:
+	@echo "Generating server stub"
+	docker run --rm -v "${PWD}:/local" \
+		--user $(shell id -u):$(shell id -g) \
+		openapitools/openapi-generator-cli generate \
+		-i local/dist/bundle.yaml \
+		--package-name "exalsius_api_server" \
+		-g python-fastapi \
+		--additional-properties=fastapiImplementationPackage=own_impl \
+		-o /local/server;

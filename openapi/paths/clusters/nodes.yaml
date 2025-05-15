@@ -30,7 +30,8 @@ get:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
       description: ID of the cluster to retrieve nodes from
     - name: node_role
       in: query
@@ -83,13 +84,13 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes"
+        curl -X GET "https://api.exalsius.ai/clusters/123/nodes"
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.get("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes")
+        response = requests.get("https://api.exalsius.ai/clusters/123/nodes")
         print(response.json())
 
         
@@ -104,10 +105,10 @@ post:
     
     **Parameters**
 
-    - `clusterId`: The ID of the cluster to add nodes to
-    - `nodeIds`: The IDs of the nodes to add
-    - `nodeRole`: The role of the nodes to add (optional). Possible values:
-      - `controlPlane` - only control plane nodes
+    - `cluster_id`: The ID of the cluster to add nodes to
+    - `node_ids`: The IDs of the nodes to add
+    - `node_role`: The role of the nodes to add (optional). Possible values:
+      - `control_plane` - only control plane nodes
       - `worker` - only worker nodes
 
     If no `nodeRole` is provided, the nodes will be added as workers.
@@ -116,7 +117,7 @@ post:
 
     Here's an example of how to add a control plane node to a cluster:
       ```
-      /clusters/123e4567-e89b-12d3-a456-426614174000/nodes?nodeIds=123e4567-e89b-12d3-a456-426614174000&nodeRole=controlPlane
+      /clusters/123/nodes?node_ids=123&node_role=control_plane
       ```
 
     **Note**
@@ -138,7 +139,8 @@ post:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
     - name: node_ids
       in: query
       required: true
@@ -146,6 +148,7 @@ post:
         type: array
         items:
           type: string
+          format: uuid
     - name: node_role
       in: query
       required: false
@@ -173,7 +176,7 @@ post:
             type: "https://api.exalsius.ai/errors/bad-request"
             title: "Bad Request"
             status: 400
-            detail: "Node with ID 1234 not found"
+            detail: "Node with ID not found"
             instance: "/clusters/123/nodes"
     '404':
       description: Cluster not found

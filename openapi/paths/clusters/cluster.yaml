@@ -12,7 +12,8 @@ get:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
       description: ID of the cluster to describe
   responses:
     '200':
@@ -22,7 +23,7 @@ get:
           schema:
             $ref: '../../components/responses/cluster-response.yaml'
           examples:
-            default:
+            cluster-details:
               summary: Cluster details
               value:
                 cluster:
@@ -111,7 +112,8 @@ delete:
       in: path
       required: true
       schema:
-        type: string
+        type: integer
+        format: int64
       description: ID of the cluster to delete
   responses:
     '204':
