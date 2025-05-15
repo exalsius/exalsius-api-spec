@@ -21,12 +21,7 @@ get:
       content:
         application/json:
           schema:
-            type: object
-            properties:
-              services:
-                type: array
-                items:
-                  $ref: '../../components/schemas/service.yaml'
+            $ref: '../../components/responses/services-list-response.yaml'
     '404':
       description: Services not found
       content:

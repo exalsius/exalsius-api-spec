@@ -1,59 +1,12 @@
+title: NodesListResponse
 description: List of nodes in the node pool
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        nodes:
-          type: array
-          items:
-            $ref: '../../components/schemas/base-node.yaml'
-        total:
-          type: integer
-          description: The total number of nodes in the node pool
-          format: int32
-    examples:
-      SingleNode:
-        summary: List containing only a single node
-        value:
-          nodes:
-            - id: 123
-              node_type: self-managed
-              location: "Virginia"
-              gpu_count: 1
-              gpu_vendor: "nvidia"
-              gpu_type: "a100"
-              gpu_memory: 80
-              cpu_cores: 4
-              memory_gb: 16
-              storage_gb: 100
-              import_time: "2025-01-01T00:00:00Z"
-              node_status: available
-          total: 1
-
-      TwoNodes:
-        summary: List containing two nodes
-        value:
-          nodes:
-            - id: 123
-              node_type: self-managed
-              location: "Virginia"
-              gpu_count: 1
-              gpu_vendor: "nvidia"
-              gpu_type: "a100"
-              gpu_memory: 80
-              cpu_cores: 4
-              memory_gb: 16
-              storage_gb: 100
-              node_status: available
-            - id: 456
-              node_type: cloud
-              node_status: available
-              location: "US East (N. Virginia)"
-              gpu_count: 1
-              gpu_vendor: nvidia
-              gpu_type: a100
-              gpu_memory: 80
-              cpu_cores: 4
-              memory_gb: 16
-          total: 2
+type: object
+properties:
+  nodes:
+    type: array
+    items:
+      $ref: '../schemas/base-node.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of nodes in the node pool

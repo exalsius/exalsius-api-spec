@@ -1,5 +1,0 @@
-description: Cluster details
-content:
-  application/json:
-    schema:
-      $ref: '../../components/schemas/cluster.yaml'

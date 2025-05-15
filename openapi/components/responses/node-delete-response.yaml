@@ -1,0 +1,8 @@
+title: NodeDeleteResponse
+description: Node delete response
+type: object
+properties:
+  node_id:
+    type: string
+required:
+  - node_id

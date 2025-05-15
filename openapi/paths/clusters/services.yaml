@@ -20,7 +20,11 @@ get:
         type: string
   responses:
     '200':
-      $ref: '../../components/responses/cluster-services-response.yaml'
+      description: List of services in the cluster
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/cluster-services-response.yaml'
     '404':
       description: Cluster not found
       content:
@@ -88,7 +92,11 @@ post:
           $ref: '../../components/requests/cluster-add-service-request.yaml'
   responses:
     '201':
-      $ref: '../../components/responses/cluster-services-response.yaml'
+      description: Services added to the cluster
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/cluster-services-response.yaml'
     '400':
       description: Invalid service deployments
       content:

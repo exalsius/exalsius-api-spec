@@ -16,7 +16,11 @@ get:
       description: ID of the node to describe
   responses:
     '200':
-      $ref: '../../components/responses/single-node-response.yaml'
+      description: Node details
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/node-response.yaml'
     '404':
       description: Node not found
       content:
@@ -90,6 +94,15 @@ delete:
   responses:
     '204':
       description: Node deleted
+      content:
+        application/json:
+          schema:
+            $ref: '../../components/responses/node-delete-response.yaml'
+          examples:
+            default:
+              summary: Node deleted
+              value:
+                node_id: "123e4567-e89b-12d3-a456-426614174000"
     '404':
       description: Node not found
       content:

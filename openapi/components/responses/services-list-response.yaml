@@ -1,0 +1,12 @@
+title: ServicesListResponse
+description: List of services
+type: object
+properties:
+  services:
+    type: array
+    items:
+      $ref: '../schemas/service.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of services
