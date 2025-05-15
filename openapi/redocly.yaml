@@ -6,7 +6,7 @@ extends:
   - linting/zalando.json
 theme:
   openapi:
-    htmlTemplate: ./docs/index.html
+    htmlTemplate: openapi/docs/index.html
     theme:
       colors:
         primary:

@@ -16,6 +16,7 @@ build:
 		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
+		--config /spec/openapi/redocly.yaml
 		bundle /spec/openapi/openapi.yaml -o /spec/dist/bundle.yaml
 
 run-redocly:
@@ -23,6 +24,7 @@ run-redocly:
 		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
+		--config /spec/openapi/redocly.yaml \
 		preview-docs /spec/openapi/openapi.yaml --host 0.0.0.0
 
 run-swagger:
@@ -74,7 +76,7 @@ generate-models:
 #			-o /local/out/$$gen; \
 #	done
 
-generate: build generate-client
+generate: build generate-client generate-server
 
 generate-client:
 	@echo "Generating client SDK"
