@@ -7,6 +7,7 @@ install:
 lint:
 	@echo "Linting OpenAPI spec with Redocly…"
 	docker run --rm \
+		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/api-spec \
 		-w /api-spec \
 		redocly/cli \
@@ -16,20 +17,22 @@ lint:
 build:
 	@echo "Bundling OpenAPI spec into dist/bundle.yaml…"
 	docker run --init --rm -p 8080:8080 \
+		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
 		bundle /spec/openapi/openapi.yaml -o /spec/dist/bundle.yaml
 
 run-redocly:
 	docker run --init --rm -p 8080:8080 \
+		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
 		preview-docs /spec/openapi/openapi.yaml --host 0.0.0.0
 
 run-swagger:
 	docker run --rm -p 8081:8080 \
-        -e SWAGGER_JSON=/spec/openapi.yaml \
-        -v "$(pwd)/openapi:/spec:ro" \
+        -e SWAGGER_JSON=/spec/openapi/openapi.yaml \
+        -v "$(CURRENT_DIR):/spec:ro" \
 		swaggerapi/swagger-ui
 
 mock-server: build
@@ -38,10 +41,12 @@ mock-server: build
 	  stoplight/prism:4 \
 	  mock -d -h 0.0.0.0 "/tmp/dist/bundle.yaml"
 
-generate:
-	datamodel-codegen \
-		--input dist/bundle.yaml \
-		--output models.py \
+generate-models:
+	docker run --rm -v "${PWD}:/local" \
+		--user $(shell id -u):$(shell id -g) \
+		koxudaxi/datamodel-code-generator \
+		--input local/dist/bundle.yaml \
+		--output local/out/models.py \
 		--input-file-type openapi \
 		--output-model-type pydantic_v2.BaseModel \
 		--use-standard-collections \
@@ -60,3 +65,15 @@ generate:
 		--use-title-as-name
 
 
+GENERATORS := python-fastapi python
+
+generate: build
+	for gen in $(GENERATORS); do \
+		docker run --rm -v "${PWD}:/local" \
+			--user $(shell id -u):$(shell id -g) \
+			openapitools/openapi-generator-cli generate \
+			-i local/dist/bundle.yaml \
+			--package-name "exalsius_api_client" \
+			-g $$gen \
+			-o /local/out/$$gen; \
+	done
