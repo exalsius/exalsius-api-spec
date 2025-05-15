@@ -16,7 +16,7 @@ build:
 		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
-		--config /spec/openapi/redocly.yaml
+		--config /spec/openapi/redocly.yaml \
 		bundle /spec/openapi/openapi.yaml -o /spec/dist/bundle.yaml
 
 run-redocly:
@@ -40,11 +40,11 @@ mock-server: build
 	  mock -d -h 0.0.0.0 "/tmp/dist/bundle.yaml"
 
 generate-models:
-	docker run --rm -v "${PWD}:/local" \
+	docker run --rm -v "${CURRENT_DIR}:/local" \
 		--user $(shell id -u):$(shell id -g) \
 		koxudaxi/datamodel-code-generator \
 		--input local/dist/bundle.yaml \
-		--output local/out/models.py \
+		--output local/models.py \
 		--input-file-type openapi \
 		--output-model-type pydantic_v2.BaseModel \
 		--use-standard-collections \
@@ -62,21 +62,8 @@ generate-models:
 		--strict-nullable \
 		--use-title-as-name
 
-
-#GENERATORS := python-fastapi python
-#
-#generate: build
-#	for gen in $(GENERATORS); do \
-#		docker run --rm -v "${PWD}:/local" \
-#			--user $(shell id -u):$(shell id -g) \
-#			openapitools/openapi-generator-cli generate \
-#			-i local/dist/bundle.yaml \
-#			--package-name "exalsius_api_client" \
-#			-g $$gen \
-#			-o /local/out/$$gen; \
-#	done
-
 generate: build generate-client generate-server
+.PHONY: generate-client generate-server
 
 generate-client:
 	@echo "Generating client SDK"
@@ -96,5 +83,6 @@ generate-server:
 		-i local/dist/bundle.yaml \
 		--package-name "exalsius_api_server" \
 		-g python-fastapi \
+		-t /local/custom-templates/python-fastapi \
 		--additional-properties=fastapiImplementationPackage=own_impl \
 		-o /local/server;

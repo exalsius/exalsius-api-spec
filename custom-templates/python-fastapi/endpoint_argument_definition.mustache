@@ -1,0 +1,32 @@
+{{#isPathParam}}
+  {{baseName}}: Annotated[
+    {{>param_type}},
+    Path(
+      {{&defaultValue}}{{^defaultValue}}...{{/defaultValue}},
+      description="{{description}}"
+    )
+  ]
+{{/isPathParam}}
+{{^isPathParam}}
+  {{#isHeaderParam}}
+    {{paramName}}: {{>param_type}} = Header(
+  {{/isHeaderParam}}
+  {{#isQueryParam}}
+    {{paramName}}: {{>param_type}} = Query(
+  {{/isQueryParam}}
+  {{#isFormParam}}
+    {{paramName}}: {{>param_type}} = Form(
+  {{/isFormParam}}
+  {{#isCookieParam}}
+    {{paramName}}: {{>param_type}} = Cookie(
+  {{/isCookieParam}}
+  {{#isBodyParam}}
+    {{paramName}}: {{>param_type}} = Body(
+  {{/isBodyParam}}
+    {{&defaultValue}}{{^defaultValue}}None{{/defaultValue}}
+    {{#isQueryParam}}, alias="{{baseName}}"{{/isQueryParam}}
+    {{#pattern}}, regex=r"{{.}}"{{/pattern}}
+    {{#minLength}}, min_length={{.}}{{/minLength}}
+    {{#maxLength}}, max_length={{.}}{{/maxLength}}
+  )
+{{/isPathParam}}
