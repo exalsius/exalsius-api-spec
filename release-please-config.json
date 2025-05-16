@@ -30,7 +30,7 @@
         {
           "type": "linked-versions",
           "groupName": "all",
-          "components": ["pkg1", "pkg2"]
+          "components": ["openapi", "client-sdk"]
         }
     ]
 }
