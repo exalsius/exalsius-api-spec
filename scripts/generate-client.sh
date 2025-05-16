@@ -43,10 +43,28 @@ run_generator() {
 }
 
 run_formatter() {
-    log "Formatting client SDK python code..."
+    log "Formatting client SDK python code with black..."
     docker run --rm -v "${REPO_DIR}:/src" \
             --user $(id -u):$(id -g) \
-        --workdir /src/${CLIENT_SDK_DIR} pyfound/black:latest_release black .
+        --workdir /src/${CLIENT_SDK_DIR} \
+        pyfound/black:latest_release \
+        black .
+
+    log "Fixing issues with ruff..."
+    docker run --rm -v "${REPO_DIR}:/src" \
+            --user $(id -u):$(id -g) \
+        --workdir /src/${CLIENT_SDK_DIR} \
+        ghcr.io/astral-sh/ruff:latest \
+        check --fix-only .
+
+    log "Formatting client SDK python code with isort..."
+    docker run --rm -v "${REPO_DIR}:/src" \
+            --user $(id -u):$(id -g) \
+        --workdir /src/${CLIENT_SDK_DIR} \
+        xcgd/isort:latest \
+        isort .
+
+
 }
 
 cleanup() {
