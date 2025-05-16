@@ -36,18 +36,18 @@ jobs:
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
         with:
-          name: ./client-sdk/coverage-report
-          path: ./client-sdk/coverage.xml
+          name: client-sdk/coverage-report
+          path: client-sdk/coverage.xml
 
       - name: Upload test report
         uses: actions/upload-artifact@v4
         with:
-          name: ./client-sdk/test-report
-          path: ./client-sdk/test-report.xml
+          name: client-sdk/test-report
+          path: client-sdk/test-report.xml
 
       - name: Publish test results
         uses: dorny/test-reporter@v2
         with:
           name: Unit Tests
-          path: ./client-sdk/test-report.xml
+          path: client-sdk/test-report.xml
           reporter: java-junit
