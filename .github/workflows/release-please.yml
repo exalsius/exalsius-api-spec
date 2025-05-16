@@ -14,7 +14,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: googleapis/release-please-action@v4
+        id: release
         with:
           token: ${{ secrets.RELEASE_PLEASE_GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
+          path: .
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup docker
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build bundled openapi spec
+        run: 
+          make build
+          mv dist/bundle.yaml dist/exalsius-openapi-${{ steps.release.outputs.version }}.yaml
+          gh release upload ${{ steps.release.outputs.tag_name }} dist/exalsius-openapi-${{ steps.release.outputs.version }}.yaml
