@@ -1,5 +1,12 @@
 {
     "separate-pull-requests": false,
+    "extra-files": [
+        {
+          "type": "yaml",
+          "path": "openapi/openapi.yaml",
+          "jsonpath": "$.info.version"
+        }
+      ],
     "packages": {
         "openapi": {
             "path": "openapi",
