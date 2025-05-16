@@ -1,0 +1,15 @@
+{
+    "packages": {
+        "openapi": {
+            "path": "openapi",
+            "release-type": "simple"
+            
+        },
+        "client-sdk": {
+            "path": "client-sdk",
+            "release-type": "python"
+        }
+    }
+}
+    
+    
