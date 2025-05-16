@@ -14,38 +14,39 @@ info:
     name: Apache 2.0
     url: http://www.apache.org/licenses/LICENSE-2.0.html
   x-logo:
-    url: 'logo.png'
+    url: logo.png
     altText: exalsius logo
   description: >
-    The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem
+    The exalsius REST API provides programmatic access to the core functionality
+    of the exalsius ecosystem
 
-    It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts.
+    It is consumed directly by the exls CLI tool and can also be integrated into
+    custom applications or scripts.
 
     Key points:
-    
+
     * **CLI & Programmatic Access**
       All operations are available via the `exls` command-line application or through standard HTTP requests.
 
-    * **GPU Market Offers**
-    Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options.
-    
+    * **GPU Market Offers** Retrieve and compare GPU instance pricing across
+    public cloud providers and hyperscalers to identify the most cost-effective
+    options.
+
     * **Operator Integration**
       Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.
-    
+
     * **Node Management**
       Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.
-    
+
     * **Cluster Provisioning**
       Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.
-    
+
     * **Service Deployment**
       Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
-    
 servers:
-  - url: 'https://api.exalsius.ai/v1'
+  - url: https://api.exalsius.ai/v1
     description: exalsius API
-
-tags: 
+tags:
   - name: supply
     description: GPU supply and prices overview
   - name: nodes
@@ -56,56 +57,52 @@ tags:
     description: Services to be deployed on the clusters
   - name: management
     description: Management of available SSH Keys
-
 paths:
   /offers:
-    $ref: './paths/offers.yaml'
+    $ref: ./paths/offers.yaml
   /nodes:
-    $ref: './paths/nodes/list.yaml'
+    $ref: ./paths/nodes/list.yaml
   /nodes/{node_id}:
-    $ref: './paths/nodes/node.yaml'
+    $ref: ./paths/nodes/node.yaml
   /nodes/import/ssh:
-    $ref: './paths/nodes/import-ssh.yaml'
+    $ref: ./paths/nodes/import-ssh.yaml
   /nodes/import/offer/{offer_id}:
-    $ref: './paths/nodes/import-offer.yaml'
+    $ref: ./paths/nodes/import-offer.yaml
   /clusters:
-    $ref: './paths/clusters/list.yaml'
+    $ref: ./paths/clusters/list.yaml
   /clusters/{cluster_id}:
-    $ref: './paths/clusters/cluster.yaml'
+    $ref: ./paths/clusters/cluster.yaml
   /clusters/{cluster_id}/nodes:
-    $ref: './paths/clusters/nodes.yaml'
+    $ref: ./paths/clusters/nodes.yaml
   /clusters/{cluster_id}/nodes/{node_id}:
-    $ref: './paths/clusters/delete-node.yaml'
+    $ref: ./paths/clusters/delete-node.yaml
   /clusters/{cluster_id}/services:
-    $ref: './paths/clusters/services.yaml'
+    $ref: ./paths/clusters/services.yaml
   /clusters/{cluster_id}/deploy:
-    $ref: './paths/clusters/deploy.yaml'
+    $ref: ./paths/clusters/deploy.yaml
   /clusters/{cluster_id}/kubeconfig:
-    $ref: './paths/clusters/kubeconfig.yaml'
+    $ref: ./paths/clusters/kubeconfig.yaml
   /services:
-    $ref: './paths/services/list.yaml'
+    $ref: ./paths/services/list.yaml
   /management/ssh-keys:
-    $ref: './paths/management/list-ssh-keys.yaml'
-
-components: 
+    $ref: ./paths/management/list-ssh-keys.yaml
+components:
   schemas:
     Offer:
-      $ref: './components/schemas/offer.yaml'
+      $ref: ./components/schemas/offer.yaml
     Node:
-      $ref: './components/schemas/node.yaml'
+      $ref: ./components/schemas/node.yaml
     Cluster:
-      $ref: './components/schemas/cluster.yaml'
+      $ref: ./components/schemas/cluster.yaml
     Service:
-      $ref: './components/schemas/service.yaml'
+      $ref: ./components/schemas/service.yaml
     ServiceDeployment:
-      $ref: './components/schemas/service-deployment.yaml'
+      $ref: ./components/schemas/service-deployment.yaml
     SshKey:
-      $ref: './components/schemas/ssh-key.yaml'
+      $ref: ./components/schemas/ssh-key.yaml
     Kubeconfig:
-      $ref: './components/schemas/kubeconfig.yaml'
+      $ref: ./components/schemas/kubeconfig.yaml
   securitySchemes:
     ApiKeyAuth:
-      $ref: './components/securitySchemes/ApiKeyAuth.yaml'
-
+      $ref: ./components/securitySchemes/ApiKeyAuth.yaml
 security: []
-#  - ApiKeyAuth: []

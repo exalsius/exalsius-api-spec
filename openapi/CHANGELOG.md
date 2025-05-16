@@ -1,17 +1,15 @@
 # Changelog
 
-## 1.0.0 (2025-05-16)
+## [1.1.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.0.0...openapi-v1.1.0) (2025-05-16)
 
 
 ### Features
 
 * add /clusters/deploy endpoint ([4f4d591](https://github.com/exalsius/exalsius-api-spec/commit/4f4d59194bfd7e3afa14dff9773411364a7972f6))
-* **Makefile:** add mock API server target ([e6e0659](https://github.com/exalsius/exalsius-api-spec/commit/e6e0659fdf5e3488b3448f297e98b4427f27870a))
 
 
 ### Bug Fixes
 
-* add custom template to fix FastAPI path issue ([4468546](https://github.com/exalsius/exalsius-api-spec/commit/4468546cd168eecaf0d1a7b73c8862016fb75e1e))
 * adjust enums and integer formats ([9ef25e5](https://github.com/exalsius/exalsius-api-spec/commit/9ef25e54305492950f429fe94c983c557b441b43))
 * adjust error model according to RFC 7807 ([15ba13b](https://github.com/exalsius/exalsius-api-spec/commit/15ba13bbe2d0ae8869902db4a46f28b53ecf00b3))
 * **base_node:** use x-extensible-enum and specify integer format ([ba64e21](https://github.com/exalsius/exalsius-api-spec/commit/ba64e21d1d97f3d6c6b4d4b34374562ca2dbe844))
@@ -24,16 +22,3 @@
 * use consistent error models across failure scenarios ([0a33f14](https://github.com/exalsius/exalsius-api-spec/commit/0a33f145d029001c6475023ae47ad4767caf35c6))
 * use snake_case for property names ([3ad2e41](https://github.com/exalsius/exalsius-api-spec/commit/3ad2e41bbe68e8c630b883a2ef76463a93bb102e))
 * use x-extensible-enum instead of enum ([bb5d987](https://github.com/exalsius/exalsius-api-spec/commit/bb5d98714214065863b4b49a3a219c3d6fd705b2))
-
-## 1.0.0 (2025-05-13)
-
-
-### Features
-
-* add /clusters/deploy endpoint ([4f4d591](https://github.com/exalsius/api-spec/commit/4f4d59194bfd7e3afa14dff9773411364a7972f6))
-
-
-### Bug Fixes
-
-* disable security for now ([c6551b5](https://github.com/exalsius/api-spec/commit/c6551b54bec5f498bb021089559eb52128e4987b))
-* rename request yaml files and selfManagedNode ([fd2faee](https://github.com/exalsius/api-spec/commit/fd2faeeb67a2cf116885e6b8b98ebe2f385c3546))
