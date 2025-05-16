@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.ssh_key_create_response import SshKeyCreateResponse
+from exalsius_api_client.models.ssh_key_create_response import \
+    SshKeyCreateResponse
 
 
 class TestSshKeyCreateResponse(unittest.TestCase):

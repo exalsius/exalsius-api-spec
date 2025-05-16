@@ -14,22 +14,16 @@ Do not edit the class manually.
 
 
 from __future__ import annotations
+
 import json
 import pprint
-from pydantic import (
-    BaseModel,
-    ConfigDict,
-    Field,
-    StrictStr,
-    ValidationError,
-    field_validator,
-)
-from typing import Any, List, Optional
+from typing import Any, Dict, Optional, Set, Union
+
+from pydantic import BaseModel, ConfigDict, ValidationError, field_validator
+from typing_extensions import Self
+
 from exalsius_api_client.models.cloud_node import CloudNode
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
-from pydantic import StrictStr, Field
-from typing import Union, List, Set, Optional, Dict
-from typing_extensions import Literal, Self
 
 NODE_ONE_OF_SCHEMAS = ["CloudNode", "SelfManagedNode"]
 

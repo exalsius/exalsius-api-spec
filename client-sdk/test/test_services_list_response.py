@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.services_list_response import ServicesListResponse
+from exalsius_api_client.models.services_list_response import \
+    ServicesListResponse
 
 
 class TestServicesListResponse(unittest.TestCase):

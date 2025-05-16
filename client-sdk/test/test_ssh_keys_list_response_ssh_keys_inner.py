@@ -15,9 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import (
-    SshKeysListResponseSshKeysInner,
-)
+from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
+    SshKeysListResponseSshKeysInner
 
 
 class TestSshKeysListResponseSshKeysInner(unittest.TestCase):

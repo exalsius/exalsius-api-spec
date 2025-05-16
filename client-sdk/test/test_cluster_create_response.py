@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.cluster_create_response import ClusterCreateResponse
+from exalsius_api_client.models.cluster_create_response import \
+    ClusterCreateResponse
 
 
 class TestClusterCreateResponse(unittest.TestCase):
