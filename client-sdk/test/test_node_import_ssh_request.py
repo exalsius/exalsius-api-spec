@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.node_import_ssh_request import NodeImportSshRequest
+from exalsius_api_client.models.node_import_ssh_request import \
+    NodeImportSshRequest
 
 
 class TestNodeImportSshRequest(unittest.TestCase):

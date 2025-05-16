@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.clusters_list_response import ClustersListResponse
+from exalsius_api_client.models.clusters_list_response import \
+    ClustersListResponse
 
 
 class TestClustersListResponse(unittest.TestCase):

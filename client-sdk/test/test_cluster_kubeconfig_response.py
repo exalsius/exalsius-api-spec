@@ -15,9 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.cluster_kubeconfig_response import (
-    ClusterKubeconfigResponse,
-)
+from exalsius_api_client.models.cluster_kubeconfig_response import \
+    ClusterKubeconfigResponse
 
 
 class TestClusterKubeconfigResponse(unittest.TestCase):

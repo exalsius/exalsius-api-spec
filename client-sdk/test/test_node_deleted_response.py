@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.node_deleted_response import NodeDeletedResponse
+from exalsius_api_client.models.node_deleted_response import \
+    NodeDeletedResponse
 
 
 class TestNodeDeletedResponse(unittest.TestCase):

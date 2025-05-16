@@ -15,7 +15,8 @@ Do not edit the class manually.
 
 import unittest
 
-from exalsius_api_client.models.nodes_import_response import NodesImportResponse
+from exalsius_api_client.models.nodes_import_response import \
+    NodesImportResponse
 
 
 class TestNodesImportResponse(unittest.TestCase):

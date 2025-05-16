@@ -14,17 +14,17 @@ Do not edit the class manually.
 
 
 from __future__ import annotations
+
+import json
 import pprint
 import re  # noqa: F401
-import json
+from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict
-from typing import Any, ClassVar, Dict, List
-from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import (
-    SshKeysListResponseSshKeysInner,
-)
-from typing import Optional, Set
 from typing_extensions import Self
+
+from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
+    SshKeysListResponseSshKeysInner
 
 
 class SshKeysListResponse(BaseModel):
