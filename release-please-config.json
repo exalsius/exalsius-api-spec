@@ -1,6 +1,6 @@
 {
     "separate-pull-requests": false,
-    "changelog-path": "../CHANGELOG.md",
+    "changelog-path": "CHANGELOG.md",
     "extra-files": [
         {
           "type": "yaml",
@@ -9,16 +9,30 @@
         }
       ],
     "packages": {
+        ".": {
+            "release-type": "simple",
+            "path": "."
+            "component": ""
+        },
         "openapi": {
             "path": "openapi",
             "release-type": "simple"
-            
+            "component": "openapi"
         },
         "client-sdk": {
             "path": "client-sdk",
             "release-type": "python"
+            "component": "client-sdk"
         }
     }
+    "release-type": "simple"
+    "plugins": [
+        {
+          "type": "linked-versions",
+          "groupName": "all",
+          "components": ["pkg1", "pkg2"]
+        }
+    ]
 }
     
     
