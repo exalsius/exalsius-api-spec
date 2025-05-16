@@ -1,5 +1,6 @@
 {
     "separate-pull-requests": false,
+    "changelog-path": "CHANGELOG.md",
     "extra-files": [
         {
           "type": "yaml",
