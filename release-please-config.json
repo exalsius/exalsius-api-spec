@@ -11,21 +11,21 @@
     "packages": {
         ".": {
             "release-type": "simple",
-            "path": "."
+            "path": ".",
             "component": ""
         },
         "openapi": {
             "path": "openapi",
-            "release-type": "simple"
+            "release-type": "simple",
             "component": "openapi"
         },
         "client-sdk": {
             "path": "client-sdk",
-            "release-type": "python"
+            "release-type": "python",
             "component": "client-sdk"
         }
-    }
-    "release-type": "simple"
+    },
+    "release-type": "simple",
     "plugins": [
         {
           "type": "linked-versions",
@@ -34,5 +34,3 @@
         }
     ]
 }
-    
-    
