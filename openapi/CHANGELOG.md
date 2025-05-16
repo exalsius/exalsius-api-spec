@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.0...openapi-v1.1.1) (2025-05-16)
+
+
+### Bug Fixes
+
+* fix versioning of openapi schema ([#18](https://github.com/exalsius/exalsius-api-spec/issues/18)) ([c4b6609](https://github.com/exalsius/exalsius-api-spec/commit/c4b660964ae3e4a89215e1e91cb30cde09ce9412))
+
 ## [1.1.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.0.0...openapi-v1.1.0) (2025-05-16)
 
 
