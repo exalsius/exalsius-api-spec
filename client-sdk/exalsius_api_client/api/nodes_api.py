@@ -97,6 +97,7 @@ class NodesApi:
             "200": "NodeDeleteResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -163,6 +164,7 @@ class NodesApi:
             "200": "NodeDeleteResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -229,6 +231,7 @@ class NodesApi:
             "200": "NodeDeleteResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -344,6 +347,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodeResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -409,6 +413,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodeResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -474,6 +479,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodeResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -594,6 +600,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -664,6 +671,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -734,6 +742,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -855,6 +864,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -921,6 +931,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -987,6 +998,7 @@ class NodesApi:
             "201": "NodesImportResponse",
             "400": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1126,6 +1138,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1205,6 +1218,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1284,6 +1298,7 @@ class NodesApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout

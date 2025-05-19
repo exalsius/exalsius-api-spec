@@ -113,6 +113,7 @@ class ClustersApi:
             "201": "ClusterServicesResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -183,6 +184,7 @@ class ClustersApi:
             "201": "ClusterServicesResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -253,6 +255,7 @@ class ClustersApi:
             "201": "ClusterServicesResponse",
             "400": "Error",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -391,6 +394,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -466,6 +470,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -541,6 +546,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -668,6 +674,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -733,6 +740,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -798,6 +806,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -925,6 +934,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -992,6 +1002,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1059,6 +1070,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "204": None,
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1179,6 +1191,7 @@ class ClustersApi:
             "202": "NodeDeletedResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1249,6 +1262,7 @@ class ClustersApi:
             "202": "NodeDeletedResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1319,6 +1333,7 @@ class ClustersApi:
             "202": "NodeDeletedResponse",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1439,6 +1454,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1506,6 +1522,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1573,6 +1590,7 @@ class ClustersApi:
             "400": "Error",
             "404": "Error",
             "409": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1690,6 +1708,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1757,6 +1776,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1824,6 +1844,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -1942,6 +1963,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterKubeconfigResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2010,6 +2032,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterKubeconfigResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2078,6 +2101,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterKubeconfigResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2193,6 +2217,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterServicesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2258,6 +2283,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterServicesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2323,6 +2349,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterServicesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2449,6 +2476,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterNodesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2525,6 +2553,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterNodesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2601,6 +2630,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClusterNodesResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2726,6 +2756,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClustersListResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2796,6 +2827,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClustersListResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -2866,6 +2898,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "ClustersListResponse",
             "404": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout

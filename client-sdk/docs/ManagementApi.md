@@ -83,7 +83,7 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | SSH key added |  -  |
 **400** | Bad Request |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -153,7 +153,7 @@ No authorization required
 |-------------|-------------|------------------|
 **204** | SSH key deleted |  -  |
 **404** | SSH key not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -226,7 +226,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | List of SSH keys |  -  |
 **404** | SSH keys not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

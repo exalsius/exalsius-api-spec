@@ -82,7 +82,7 @@ No authorization required
 **200** | Node deleted |  -  |
 **404** | Node not found |  -  |
 **409** | Node is not in the &#x60;available&#x60; state |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -156,7 +156,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Node details |  -  |
 **404** | Node not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -248,7 +248,7 @@ No authorization required
 **201** | Nodes imported |  -  |
 **400** | Bad Request |  -  |
 **404** | Offer not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -342,7 +342,7 @@ No authorization required
 **201** | Nodes imported |  -  |
 **400** | Bad Request |  -  |
 **409** | Node already exists |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -431,7 +431,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | List of nodes in the node pool |  -  |
 **400** | Invalid node_type |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

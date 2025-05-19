@@ -98,7 +98,7 @@ No authorization required
 **201** | Services added to the cluster |  -  |
 **400** | Invalid service deployments |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -208,7 +208,7 @@ No authorization required
 **400** | Invalid node_ids |  -  |
 **404** | Cluster not found |  -  |
 **409** | Nodes already in cluster |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -300,7 +300,7 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | Cluster created |  -  |
 **400** | Bad Request |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -382,7 +382,7 @@ No authorization required
 |-------------|-------------|------------------|
 **204** | Cluster deleted; nodes returned to pool |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -459,7 +459,7 @@ No authorization required
 **202** | Node deleted from cluster |  -  |
 **404** | Cluster not found |  -  |
 **409** | Node not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -549,7 +549,7 @@ No authorization required
 **400** | Bad Request |  -  |
 **404** | Cluster not found |  -  |
 **409** | No nodes staged |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -622,7 +622,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | Cluster details |  -  |
 **404** | Not Found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -695,7 +695,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | The kubeconfig file for the cluster |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -773,7 +773,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | List of services in the cluster |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -867,7 +867,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | List of nodes in the cluster |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -948,7 +948,7 @@ No authorization required
 |-------------|-------------|------------------|
 **200** | List of clusters |  -  |
 **404** | Cluster not found |  -  |
-**0** | Internal Server Error |  -  |
+**500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

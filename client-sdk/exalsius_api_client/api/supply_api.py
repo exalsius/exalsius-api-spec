@@ -130,6 +130,7 @@ class SupplyApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "OffersListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -235,6 +236,7 @@ class SupplyApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "OffersListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
@@ -340,6 +342,7 @@ class SupplyApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "OffersListResponse",
             "400": "Error",
+            "500": "Error",
         }
         response_data = self.api_client.call_api(
             *_param, _request_timeout=_request_timeout
