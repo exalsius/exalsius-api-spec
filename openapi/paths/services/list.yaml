@@ -34,7 +34,7 @@ get:
             status: 404
             detail: "The services were not found."
             instance: "/services"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

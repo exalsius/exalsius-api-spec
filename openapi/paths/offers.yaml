@@ -112,8 +112,7 @@ get:
             status: 400
             detail: "Invalid request"
             instance: "/offers"
-
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

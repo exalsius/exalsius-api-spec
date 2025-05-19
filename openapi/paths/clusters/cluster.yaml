@@ -61,7 +61,7 @@ get:
             status: 404
             detail: "The cluster with ID 123 was not found."
             instance: "/clusters/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
@@ -130,7 +130,7 @@ delete:
             status: 404
             detail: "The cluster with ID 123 was not found."
             instance: "/clusters/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

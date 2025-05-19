@@ -79,7 +79,7 @@ post:
             status: 409
             detail: "The cluster with ID 123 has no nodes in the `controlPlaneNodeIds` or `workerNodeIds` arrays."
             instance: "/clusters/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

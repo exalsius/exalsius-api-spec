@@ -76,7 +76,7 @@ post:
             status: 404
             detail: "The offer with ID 123 was not found."
             instance: "/nodes/import-offer"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
