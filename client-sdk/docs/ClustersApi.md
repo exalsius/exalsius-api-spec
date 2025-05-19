@@ -872,7 +872,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_clusters**
-> ClustersListResponse list_clusters(status=status)
+> ClustersListResponse list_clusters(cluster_status=cluster_status)
 
 List all clusters
 
@@ -885,7 +885,7 @@ Retrieve all clusters, with optional filters:
 
 Here's an example of how to filter by status:
   ```
-  /clusters?status=running
+  /clusters?cluster_status=running
   ```
 
 
@@ -909,11 +909,11 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    status = 'status_example' # str | Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed  (optional)
+    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed  (optional)
 
     try:
         # List all clusters
-        api_response = api_instance.list_clusters(status=status)
+        api_response = api_instance.list_clusters(cluster_status=cluster_status)
         print("The response of ClustersApi->list_clusters:\n")
         pprint(api_response)
     except Exception as e:
@@ -927,7 +927,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **status** | **str**| Only return clusters of this status. Possible values: - &#x60;pending&#x60; - clusters that are pending - &#x60;running&#x60; - clusters that are running - &#x60;deleting&#x60; - clusters that are deleting - &#x60;deleted&#x60; - clusters that are deleted - &#x60;failed&#x60; - clusters that failed  | [optional] 
+ **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;pending&#x60; - clusters that are pending - &#x60;running&#x60; - clusters that are running - &#x60;deleting&#x60; - clusters that are deleting - &#x60;deleted&#x60; - clusters that are deleted - &#x60;failed&#x60; - clusters that failed  | [optional] 
 
 ### Return type
 

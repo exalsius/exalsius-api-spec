@@ -2699,7 +2699,7 @@ class ClustersApi:
     @validate_call
     def list_clusters(
         self,
-        status: Annotated[
+        cluster_status: Annotated[
             Optional[StrictStr],
             Field(
                 description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
@@ -2719,10 +2719,10 @@ class ClustersApi:
     ) -> ClustersListResponse:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?status=running   ```
+        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
-        :type status: str
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2746,7 +2746,7 @@ class ClustersApi:
         """  # noqa: E501
 
         _param = self._list_clusters_serialize(
-            status=status,
+            cluster_status=cluster_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2770,7 +2770,7 @@ class ClustersApi:
     @validate_call
     def list_clusters_with_http_info(
         self,
-        status: Annotated[
+        cluster_status: Annotated[
             Optional[StrictStr],
             Field(
                 description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
@@ -2790,10 +2790,10 @@ class ClustersApi:
     ) -> ApiResponse[ClustersListResponse]:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?status=running   ```
+        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
-        :type status: str
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2817,7 +2817,7 @@ class ClustersApi:
         """  # noqa: E501
 
         _param = self._list_clusters_serialize(
-            status=status,
+            cluster_status=cluster_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2841,7 +2841,7 @@ class ClustersApi:
     @validate_call
     def list_clusters_without_preload_content(
         self,
-        status: Annotated[
+        cluster_status: Annotated[
             Optional[StrictStr],
             Field(
                 description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
@@ -2861,10 +2861,10 @@ class ClustersApi:
     ) -> RESTResponseType:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?status=running   ```
+        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
-        :type status: str
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2888,7 +2888,7 @@ class ClustersApi:
         """  # noqa: E501
 
         _param = self._list_clusters_serialize(
-            status=status,
+            cluster_status=cluster_status,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2907,7 +2907,7 @@ class ClustersApi:
 
     def _list_clusters_serialize(
         self,
-        status,
+        cluster_status,
         _request_auth,
         _content_type,
         _headers,
@@ -2929,9 +2929,9 @@ class ClustersApi:
 
         # process the path parameters
         # process the query parameters
-        if status is not None:
+        if cluster_status is not None:
 
-            _query_params.append(("status", status))
+            _query_params.append(("cluster_status", cluster_status))
 
         # process the header parameters
         # process the form parameters
