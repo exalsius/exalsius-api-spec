@@ -39,7 +39,7 @@ get:
             status: 404
             detail: "No SSH keys found"
             instance: "/management/ssh-keys"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
@@ -106,7 +106,7 @@ post:
             status: 400
             detail: "Bad request"
             instance: "/management/ssh-keys"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
@@ -161,7 +161,7 @@ delete:
             status: 404
             detail: "The SSH key with ID 123 was not found."
             instance: "/management/ssh-keys/123"
-    default: 
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

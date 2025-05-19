@@ -57,7 +57,7 @@ delete:
             status: 409
             detail: "The node with ID 123 was not found."
             instance: "/clusters/123/nodes/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

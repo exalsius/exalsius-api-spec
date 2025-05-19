@@ -69,7 +69,7 @@ post:
             status: 409
             detail: "The node with ID 123 already exists."
             instance: "/nodes/import-ssh"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

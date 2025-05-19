@@ -33,7 +33,7 @@ get:
             status: 404
             detail: "The node with ID 123 was not found."
             instance: "/nodes/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
@@ -127,7 +127,7 @@ delete:
             status: 409
             detail: "The node with ID 123 is not in the `available` state."
             instance: "/nodes/123"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:

@@ -66,7 +66,7 @@ get:
             status: 400
             detail: "Invalid node_type"
             instance: "/nodes"
-    default:
+    '500':
       description: Internal Server Error
       content:
         application/problem+json:
