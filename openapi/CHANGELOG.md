@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.1...openapi-v1.1.2) (2025-05-19)
+
+
+### Bug Fixes
+
+* rename status paramter in /clusters endpoint to cluster_status ([#28](https://github.com/exalsius/exalsius-api-spec/issues/28)) ([f91087e](https://github.com/exalsius/exalsius-api-spec/commit/f91087e97b0cd54338965157e71ca79adaf4f770))
+
 ## [1.1.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.0...openapi-v1.1.1) (2025-05-19)
 
 
