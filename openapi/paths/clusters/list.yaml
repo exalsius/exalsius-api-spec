@@ -12,11 +12,11 @@ get:
 
     Here's an example of how to filter by status:
       ```
-      /clusters?status=running
+      /clusters?cluster_status=running
       ```
 
   parameters: 
-    - name: status
+    - name: cluster_status
       in: query
       description: |
         Only return clusters of this status.
