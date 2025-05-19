@@ -48,7 +48,7 @@ generate:
 	./scripts/generate-client.sh
 .PHONY: generate
 
-generate-server:
+generate-server: build
 	@echo "Generating server stub"
 	docker run --rm -v "${PWD}:/local" \
 		--user $(shell id -u):$(shell id -g) \
@@ -56,7 +56,6 @@ generate-server:
 		-i local/dist/bundle.yaml \
 		--package-name "exalsius_api_server" \
 		-g python-fastapi \
-		-t /local/custom-templates/python-fastapi \
 		--additional-properties=fastapiImplementationPackage=controllers \
 		-o /local/server
 .PHONY: generate-server
