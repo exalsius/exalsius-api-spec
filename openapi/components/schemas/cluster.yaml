@@ -69,11 +69,11 @@ properties:
     example: "1.32.0"
   current_costs:
     type: number
-    format: double
+    format: float
     description: The total costs of the cluster until now
     example: 100.0
   costs_per_hour:
     type: number
-    format: double
+    format: float
     description: The costs of the cluster per hour
     example: 1.0

@@ -1,0 +1,13 @@
+type: object
+required:
+  - name
+  - k8s_version
+properties:
+  name:
+    type: string
+    description: The name of the SSH key
+    example: "my-ssh-key"
+  private_key:
+    type: string
+    description: The private key of the SSH key
+    example: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1234567890"
