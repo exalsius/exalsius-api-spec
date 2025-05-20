@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.2...v1.1.3) (2025-05-20)
+
+
+### Bug Fixes
+
+* use integer IDs for all models ([#30](https://github.com/exalsius/exalsius-api-spec/issues/30)) ([7e79741](https://github.com/exalsius/exalsius-api-spec/commit/7e79741e4d5ab0c51ad7cc8d2d5a971c65f82a3d))
+
 ## [1.1.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.1...v1.1.2) (2025-05-19)
 
 
