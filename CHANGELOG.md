@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.4](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.3...v1.1.4) (2025-05-20)
+
+
+### Bug Fixes
+
+* add missing SSH key create request model ([#32](https://github.com/exalsius/exalsius-api-spec/issues/32)) ([a6d43a8](https://github.com/exalsius/exalsius-api-spec/commit/a6d43a84f1352b9fefde86673d837105db78d6b9))
+
 ## [1.1.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.2...v1.1.3) (2025-05-20)
 
 
