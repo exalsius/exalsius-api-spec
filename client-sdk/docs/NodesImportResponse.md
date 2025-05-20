@@ -6,7 +6,7 @@ Nodes successfully imported
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node_ids** | **List[str]** |  | [optional] 
+**node_ids** | **List[int]** |  | [optional] 
 **total** | **int** | The total number of nodes that were imported | [optional] 
 
 ## Example

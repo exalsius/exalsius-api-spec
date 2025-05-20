@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier for the service | 
+**id** | **int** | The unique identifier for the service | 
 **name** | **str** | The name of the service | 
 **description** | **str** | The description of the service | [optional] 
 

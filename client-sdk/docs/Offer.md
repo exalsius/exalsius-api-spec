@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The unique identifier for the offer | 
+**id** | **int** | The unique identifier for the offer | 
 **provider** | **str** | The cloud provider of the offer | 
 **location** | **str** | The location of the offer | 
 **region** | **str** | The region of the offer | 
