@@ -93,5 +93,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_ssh_key_create_request.py
 tox.ini
