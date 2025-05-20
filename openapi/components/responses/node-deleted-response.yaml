@@ -3,7 +3,7 @@ description: Node deleted from cluster
 type: object
 properties:
   node_id:
-    type: string
-    example: "123"
+    type: integer
+    example: 123
 required:
   - node_id

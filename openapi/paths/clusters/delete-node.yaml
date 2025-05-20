@@ -19,8 +19,8 @@ delete:
       in: path
       required: true
       schema:
-        type: string
-        format: uuid
+        type: integer
+        format: int64
   responses:
     '202':
       description: Node deleted from cluster
@@ -32,7 +32,7 @@ delete:
             default:
               summary: Node deleted from cluster
               value:
-                node_id: "123"
+                node_id: 123
     '404':
       description: Cluster not found
       content:
@@ -56,7 +56,7 @@ delete:
             title: "Conflict"
             status: 409
             detail: "The node with ID 123 was not found."
-            instance: "/clusters/123/nodes/123"
+            instance: "/clusters/123/nodes/122"
     '500':
       description: Internal Server Error
       content:

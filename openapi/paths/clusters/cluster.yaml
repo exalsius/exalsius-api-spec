@@ -34,15 +34,15 @@ get:
                   updated_at: "2025-01-01T00:00:00Z"
                   to_be_deleted_at: "2025-02-01T00:00:00Z"
                   control_plane_node_ids:
-                    - "123e4567-e89b-12d3-a456-426614174000"
-                    - "123e4567-e89b-12d3-a456-426614174001"
-                    - "123e4567-e89b-12d3-a456-426614174002"
+                    - 1
+                    - 2
+                    - 3
                   worker_node_ids:
-                    - "123e4567-e89b-12d3-a456-426614174003"
-                    - "123e4567-e89b-12d3-a456-426614174004"
-                    - "123e4567-e89b-12d3-a456-426614174005"
+                    - 3
+                    - 4
+                    - 5
                   service_deployments:
-                    - service_id: "ffd4c2f4-ec48-41f1-be56-52ba90f661b6"
+                    - service_id: 123
                       service_name: "my-service"
                       values:
                         key: "value"

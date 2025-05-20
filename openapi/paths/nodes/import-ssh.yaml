@@ -43,7 +43,7 @@ post:
             default:
               summary: Nodes imported
               value:
-                node_ids: ["123", "456"]
+                node_ids: [123, 456]
                 total: 2
     '400':
       description: Bad Request
