@@ -58,7 +58,7 @@ properties:
     example: 16
   price_per_hour:
     type: number
-    format: double
+    format: float
     description: The price per hour for the offer
     example: 0.526
   scrape_time:
