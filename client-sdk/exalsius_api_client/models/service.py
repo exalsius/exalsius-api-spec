@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -29,7 +29,7 @@ class Service(BaseModel):
     Service
     """  # noqa: E501
 
-    id: StrictStr = Field(description="The unique identifier for the service")
+    id: StrictInt = Field(description="The unique identifier for the service")
     name: StrictStr = Field(description="The name of the service")
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the service"

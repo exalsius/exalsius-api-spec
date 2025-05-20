@@ -543,7 +543,7 @@ class NodesApi:
     @validate_call
     def import_node_from_offer(
         self,
-        offer_id: StrictStr,
+        offer_id: StrictInt,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -562,7 +562,7 @@ class NodesApi:
         **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
 
         :param offer_id: (required)
-        :type offer_id: str
+        :type offer_id: int
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one
@@ -614,7 +614,7 @@ class NodesApi:
     @validate_call
     def import_node_from_offer_with_http_info(
         self,
-        offer_id: StrictStr,
+        offer_id: StrictInt,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -633,7 +633,7 @@ class NodesApi:
         **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
 
         :param offer_id: (required)
-        :type offer_id: str
+        :type offer_id: int
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one
@@ -685,7 +685,7 @@ class NodesApi:
     @validate_call
     def import_node_from_offer_without_preload_content(
         self,
-        offer_id: StrictStr,
+        offer_id: StrictInt,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -704,7 +704,7 @@ class NodesApi:
         **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
 
         :param offer_id: (required)
-        :type offer_id: str
+        :type offer_id: int
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one

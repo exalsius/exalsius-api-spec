@@ -6,7 +6,7 @@ Node deleted from cluster
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node_id** | **str** |  | 
+**node_id** | **int** |  | 
 
 ## Example
 

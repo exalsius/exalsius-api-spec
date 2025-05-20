@@ -164,7 +164,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
     cluster_id = 56 # int | 
-    node_ids = ['node_ids_example'] # List[str] | 
+    node_ids = [56] # List[int] | 
     node_role = 'node_role_example' # str |  (optional)
 
     try:
@@ -184,7 +184,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | **int**|  | 
- **node_ids** | [**List[str]**](str.md)|  | 
+ **node_ids** | [**List[int]**](int.md)|  | 
  **node_role** | **str**|  | [optional] 
 
 ### Return type
@@ -418,7 +418,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
     cluster_id = 56 # int | 
-    node_id = 'node_id_example' # str | 
+    node_id = 56 # int | 
 
     try:
         # Delete a node from a cluster
@@ -437,7 +437,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | **int**|  | 
- **node_id** | **str**|  | 
+ **node_id** | **int**|  | 
 
 ### Return type
 

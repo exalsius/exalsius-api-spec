@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_id** | **str** | The ID of the service | 
+**service_id** | **int** | The ID of the service | 
 **service_name** | **str** | The name of the service | [optional] 
 **values** | **Dict[str, object]** | The values to set for the service | [optional] 
 

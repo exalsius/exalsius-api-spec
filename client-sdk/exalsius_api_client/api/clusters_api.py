@@ -333,7 +333,7 @@ class ClustersApi:
     def add_nodes(
         self,
         cluster_id: StrictInt,
-        node_ids: List[StrictStr],
+        node_ids: List[StrictInt],
         node_role: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -354,7 +354,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_ids: (required)
-        :type node_ids: List[str]
+        :type node_ids: List[int]
         :param node_role:
         :type node_role: str
         :param _request_timeout: timeout setting for this request. If one
@@ -409,7 +409,7 @@ class ClustersApi:
     def add_nodes_with_http_info(
         self,
         cluster_id: StrictInt,
-        node_ids: List[StrictStr],
+        node_ids: List[StrictInt],
         node_role: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -430,7 +430,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_ids: (required)
-        :type node_ids: List[str]
+        :type node_ids: List[int]
         :param node_role:
         :type node_role: str
         :param _request_timeout: timeout setting for this request. If one
@@ -485,7 +485,7 @@ class ClustersApi:
     def add_nodes_without_preload_content(
         self,
         cluster_id: StrictInt,
-        node_ids: List[StrictStr],
+        node_ids: List[StrictInt],
         node_role: Optional[StrictStr] = None,
         _request_timeout: Union[
             None,
@@ -506,7 +506,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_ids: (required)
-        :type node_ids: List[str]
+        :type node_ids: List[int]
         :param node_role:
         :type node_role: str
         :param _request_timeout: timeout setting for this request. If one
@@ -1135,7 +1135,7 @@ class ClustersApi:
     def delete_node_from_cluster(
         self,
         cluster_id: StrictInt,
-        node_id: StrictStr,
+        node_id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1155,7 +1155,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_id: (required)
-        :type node_id: str
+        :type node_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1206,7 +1206,7 @@ class ClustersApi:
     def delete_node_from_cluster_with_http_info(
         self,
         cluster_id: StrictInt,
-        node_id: StrictStr,
+        node_id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1226,7 +1226,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_id: (required)
-        :type node_id: str
+        :type node_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1277,7 +1277,7 @@ class ClustersApi:
     def delete_node_from_cluster_without_preload_content(
         self,
         cluster_id: StrictInt,
-        node_id: StrictStr,
+        node_id: StrictInt,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1297,7 +1297,7 @@ class ClustersApi:
         :param cluster_id: (required)
         :type cluster_id: int
         :param node_id: (required)
-        :type node_id: str
+        :type node_id: int
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of

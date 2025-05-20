@@ -31,7 +31,7 @@ class Offer(BaseModel):
     Offer
     """  # noqa: E501
 
-    id: StrictStr = Field(description="The unique identifier for the offer")
+    id: StrictInt = Field(description="The unique identifier for the offer")
     provider: StrictStr = Field(description="The cloud provider of the offer")
     location: StrictStr = Field(description="The location of the offer")
     region: StrictStr = Field(description="The region of the offer")

@@ -47,11 +47,11 @@ class Cluster(BaseModel):
     to_be_deleted_at: Optional[datetime] = Field(
         default=None, description="The date and time the cluster will be deleted"
     )
-    control_plane_node_ids: Optional[List[StrictStr]] = Field(
+    control_plane_node_ids: Optional[List[StrictInt]] = Field(
         default=None,
         description="The node IDs of the control plane nodes in the cluster",
     )
-    worker_node_ids: Optional[List[StrictStr]] = Field(
+    worker_node_ids: Optional[List[StrictInt]] = Field(
         default=None, description="The node IDs of the worker nodes in the cluster"
     )
     service_deployments: Optional[List[ServiceDeployment]] = Field(

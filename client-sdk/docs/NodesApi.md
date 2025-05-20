@@ -206,7 +206,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.NodesApi(api_client)
-    offer_id = 'offer_id_example' # str | 
+    offer_id = 56 # int | 
     amount = 1 # int |  (optional) (default to 1)
 
     try:
@@ -225,7 +225,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **offer_id** | **str**|  | 
+ **offer_id** | **int**|  | 
  **amount** | **int**|  | [optional] [default to 1]
 
 ### Return type

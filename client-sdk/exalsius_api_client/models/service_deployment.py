@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -29,7 +29,7 @@ class ServiceDeployment(BaseModel):
     ServiceDeployment
     """  # noqa: E501
 
-    service_id: StrictStr = Field(description="The ID of the service")
+    service_id: StrictInt = Field(description="The ID of the service")
     service_name: Optional[StrictStr] = Field(
         default=None, description="The name of the service"
     )
