@@ -55,6 +55,8 @@ from exalsius_api_client.models.service_deployment import ServiceDeployment
 from exalsius_api_client.models.services_list_response import \
     ServicesListResponse
 from exalsius_api_client.models.ssh_key import SshKey
+from exalsius_api_client.models.ssh_key_create_request import \
+    SshKeyCreateRequest
 from exalsius_api_client.models.ssh_key_create_response import \
     SshKeyCreateResponse
 from exalsius_api_client.models.ssh_keys_list_response import \

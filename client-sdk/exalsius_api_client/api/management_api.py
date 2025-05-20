@@ -19,6 +19,8 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
+from exalsius_api_client.models.ssh_key_create_request import \
+    SshKeyCreateRequest
 from exalsius_api_client.models.ssh_key_create_response import \
     SshKeyCreateResponse
 from exalsius_api_client.models.ssh_keys_list_response import \
@@ -41,6 +43,7 @@ class ManagementApi:
     @validate_call
     def add_ssh_key(
         self,
+        ssh_key_create_request: SshKeyCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -57,6 +60,8 @@ class ManagementApi:
 
         **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
 
+        :param ssh_key_create_request: (required)
+        :type ssh_key_create_request: SshKeyCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -80,6 +85,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._add_ssh_key_serialize(
+            ssh_key_create_request=ssh_key_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -103,6 +109,7 @@ class ManagementApi:
     @validate_call
     def add_ssh_key_with_http_info(
         self,
+        ssh_key_create_request: SshKeyCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -119,6 +126,8 @@ class ManagementApi:
 
         **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
 
+        :param ssh_key_create_request: (required)
+        :type ssh_key_create_request: SshKeyCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -142,6 +151,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._add_ssh_key_serialize(
+            ssh_key_create_request=ssh_key_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -165,6 +175,7 @@ class ManagementApi:
     @validate_call
     def add_ssh_key_without_preload_content(
         self,
+        ssh_key_create_request: SshKeyCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -181,6 +192,8 @@ class ManagementApi:
 
         **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
 
+        :param ssh_key_create_request: (required)
+        :type ssh_key_create_request: SshKeyCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -204,6 +217,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._add_ssh_key_serialize(
+            ssh_key_create_request=ssh_key_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -222,6 +236,7 @@ class ManagementApi:
 
     def _add_ssh_key_serialize(
         self,
+        ssh_key_create_request,
         _request_auth,
         _content_type,
         _headers,
@@ -246,12 +261,24 @@ class ManagementApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if ssh_key_create_request is not None:
+            _body_params = ssh_key_create_request
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(
                 ["application/json", "application/problem+json"]
             )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = []

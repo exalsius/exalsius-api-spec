@@ -158,6 +158,7 @@ Class | Method | HTTP request | Description
  - [ServiceDeployment](docs/ServiceDeployment.md)
  - [ServicesListResponse](docs/ServicesListResponse.md)
  - [SshKey](docs/SshKey.md)
+ - [SshKeyCreateRequest](docs/SshKeyCreateRequest.md)
  - [SshKeyCreateResponse](docs/SshKeyCreateResponse.md)
  - [SshKeysListResponse](docs/SshKeysListResponse.md)
  - [SshKeysListResponseSshKeysInner](docs/SshKeysListResponseSshKeysInner.md)

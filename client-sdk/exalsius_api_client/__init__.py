@@ -61,6 +61,7 @@ __all__ = [
     "ServiceDeployment",
     "ServicesListResponse",
     "SshKey",
+    "SshKeyCreateRequest",
     "SshKeyCreateResponse",
     "SshKeysListResponse",
     "SshKeysListResponseSshKeysInner",
@@ -132,6 +133,8 @@ from exalsius_api_client.models.service_deployment import \
 from exalsius_api_client.models.services_list_response import \
     ServicesListResponse as ServicesListResponse
 from exalsius_api_client.models.ssh_key import SshKey as SshKey
+from exalsius_api_client.models.ssh_key_create_request import \
+    SshKeyCreateRequest as SshKeyCreateRequest
 from exalsius_api_client.models.ssh_key_create_response import \
     SshKeyCreateResponse as SshKeyCreateResponse
 from exalsius_api_client.models.ssh_keys_list_response import \

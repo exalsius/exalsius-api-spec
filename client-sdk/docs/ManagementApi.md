@@ -10,7 +10,7 @@ Method | HTTP request | Description
 
 
 # **add_ssh_key**
-> SshKeyCreateResponse add_ssh_key()
+> SshKeyCreateResponse add_ssh_key(ssh_key_create_request)
 
 Add an SSH key
 
@@ -33,6 +33,7 @@ Returns the SSH key object.
 
 ```python
 import exalsius_api_client
+from exalsius_api_client.models.ssh_key_create_request import SshKeyCreateRequest
 from exalsius_api_client.models.ssh_key_create_response import SshKeyCreateResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
@@ -48,10 +49,11 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ManagementApi(api_client)
+    ssh_key_create_request = exalsius_api_client.SshKeyCreateRequest() # SshKeyCreateRequest | 
 
     try:
         # Add an SSH key
-        api_response = api_instance.add_ssh_key()
+        api_response = api_instance.add_ssh_key(ssh_key_create_request)
         print("The response of ManagementApi->add_ssh_key:\n")
         pprint(api_response)
     except Exception as e:
@@ -62,7 +64,10 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ssh_key_create_request** | [**SshKeyCreateRequest**](SshKeyCreateRequest.md)|  | 
 
 ### Return type
 
@@ -74,7 +79,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
