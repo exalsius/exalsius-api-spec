@@ -4,10 +4,10 @@ required:
   - name
 properties:
   id:
-    type: string
-    format: uuid
+    type: integer
+    format: int64
     description: The unique identifier for the service
-    example: "123e4567-e89b-12d3-a456-426614174000"
+    example: 1
   name:
     type: string
     description: The name of the service

@@ -14,9 +14,10 @@ required:
   - scrape_time
 properties:
   id:
-    type: string
+    type: integer
+    format: int64
     description: The unique identifier for the offer
-    example: "g4dn-xlarge-us-east-1"
+    example: 1
   provider:
     type: string
     description: The cloud provider of the offer
