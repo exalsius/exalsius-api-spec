@@ -3,9 +3,9 @@ description: SSH key creation response
 type: object
 properties:
   ssh_key_id:
-    type: string
-    format: uuid
+    type: integer
+    format: int64
     description: The ID of the created SSH key
-    example: "123e4567-e89b-12d3-a456-426614174000"
+    example: 123
 required:
   - ssh_key_id

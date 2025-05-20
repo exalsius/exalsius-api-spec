@@ -23,9 +23,9 @@ get:
               summary: List of SSH keys
               value:
                 ssh_keys:
-                  - id: "123e4567-e89b-12d3-a456-426614174000"
+                  - id: 1
                     name: "my-ssh-key"
-                  - id: "123e4567-e89b-12d3-a456-426614174001"
+                  - id: 2
                     name: "my-ssh-key-2"
     '404':
       description: SSH keys not found
@@ -93,7 +93,7 @@ post:
             default:
               summary: SSH key added
               value:
-                ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
+                ssh_key_id: 123
     '400':
       description: Bad Request
       content:

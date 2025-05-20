@@ -46,21 +46,23 @@ properties:
   control_plane_node_ids:
     type: array
     items:
-      type: string
+      type: integer
+      format: int64
     description: The node IDs of the control plane nodes in the cluster
-    example: ["123e4567-e89b-12d3-a456-426614174000"]
+    example: [123]
   worker_node_ids:
     type: array
     items:
-      type: string
+      type: integer
+      format: int64
     description: The node IDs of the worker nodes in the cluster
-    example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174001"]
+    example: [123]
   service_deployments:
     type: array
     items:
       $ref: '../../components/schemas/service-deployment.yaml'
     description: The deployed services in the cluster
-    example: [{"service_id": "ffd4c2f4-ec48-41f1-be56-52ba90f661b6", "service_name": "my-service", "values": {"key": "value"}}, {"service_id": "ffd4c2f4-ec48-41f1-be56-52ba90f661b7", "service_name": "my-service-2", "values": {"key": "value"}}]
+    example: [{"service_id": 123, "service_name": "my-service", "values": {"key": "value"}}, {"service_id": 324, "service_name": "my-service-2", "values": {"key": "value"}}]
   k8s_version:
     type: string
     description: The version of Kubernetes deployed in the cluster

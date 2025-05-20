@@ -102,7 +102,7 @@ delete:
             default:
               summary: Node deleted
               value:
-                node_id: "123e4567-e89b-12d3-a456-426614174000"
+                node_id: 123
     '404':
       description: Node not found
       content:
@@ -139,7 +139,7 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/nodes/123e4567-e89b-12d3-a456-426614174000"
+        curl -X DELETE "https://api.exalsius.ai/nodes/123"
     - lang: python
       label: Python
       source: |
@@ -159,5 +159,5 @@ delete:
             response = requests.delete(url)
             return response.json()
 
-        delete_node("123e4567-e89b-12d3-a456-426614174000")
+        delete_node(123)
         print(response)

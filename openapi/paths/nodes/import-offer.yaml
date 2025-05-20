@@ -29,8 +29,8 @@ post:
       in: path
       required: true
       schema:
-        type: string
-        format: uuid
+        type: integer
+        format: int64
     - name: amount
       in: query
       required: false
@@ -50,7 +50,7 @@ post:
             default:
               summary: Nodes imported
               value:
-                node_ids: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174001"]
+                node_ids: [1, 2]
                 total: 2
     '400':
       description: Bad Request
