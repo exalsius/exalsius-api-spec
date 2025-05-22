@@ -1,23 +1,27 @@
+title: BaseNode
 type: object
 required:
   - id
   - node_type
-  - location
   - node_status
+discriminator:
+  propertyName: node_type
+  mapping:
+    cloud: './cloud-node.yaml'
+    self-managed: './self-managed-node.yaml'
 properties:
   id:
-    type: integer
+    type: string
+    format: uuid
     description: The unique identifier for the node
-    format: int64
-    example: 1
+    example: "123e4567-e89b-12d3-a456-426614174000"
   node_type:
     type: string
-    x-extensible-enum:
-      - value: CLOUD
-        description: Cloud node
-      - value: SELF_MANAGED
-        description: Self-managed node
-    description: The type of the node
+    enum: [CLOUD, SELF_MANAGED]
+    description: |
+      The type of the node.
+      - `CLOUD`: Cloud node
+      - `SELF_MANAGED`: Self-managed node
     example: "CLOUD"
   description:
     type: string
@@ -67,14 +71,11 @@ properties:
     example: "2021-01-01T00:00:00Z"
   node_status:
     type: string
-    x-extensible-enum:
-      - value: PENDING
-        description: Node is pending
-      - value: AVAILABLE
-        description: Node is available to be added to a cluster
-      - value: STAGED
-        description: Node is staged in a cluster
-      - value: OCCUPIED
-        description: Node is occupied in a cluster
-    description: The status of the node
+    enum: [PENDING, AVAILABLE, STAGED, OCCUPIED]
+    description: |
+      The status of the node.
+      - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode)
+      - `AVAILABLE`: Node is available to be added to a cluster
+      - `STAGED`: Node is staged in a cluster
+      - `OCCUPIED`: Node is occupied in a cluster
     example: "AVAILABLE"

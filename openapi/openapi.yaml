@@ -90,8 +90,12 @@ components:
   schemas:
     Offer:
       $ref: ./components/schemas/offer.yaml
-    Node:
-      $ref: ./components/schemas/node.yaml
+    BaseNode:
+      $ref: ./components/schemas/base-node.yaml
+    CloudNode:
+      $ref: ./components/schemas/cloud-node.yaml
+    SelfManagedNode:
+      $ref: ./components/schemas/self-managed-node.yaml
     Cluster:
       $ref: ./components/schemas/cluster.yaml
     Service:
@@ -102,6 +106,9 @@ components:
       $ref: ./components/schemas/ssh-key.yaml
     Kubeconfig:
       $ref: ./components/schemas/kubeconfig.yaml
+  responses:
+    NodesListResponse:
+      $ref: ./components/responses/nodes-list-response.yaml
   securitySchemes:
     ApiKeyAuth:
       $ref: ./components/securitySchemes/ApiKeyAuth.yaml
