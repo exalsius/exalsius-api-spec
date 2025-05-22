@@ -62,11 +62,11 @@ paths:
     $ref: ./paths/offers.yaml
   /nodes:
     $ref: ./paths/nodes/list.yaml
-  /nodes/{node_id}:
+  /node/{node_id}:
     $ref: ./paths/nodes/node.yaml
-  /nodes/import/ssh:
+  /node/import/ssh:
     $ref: ./paths/nodes/import-ssh.yaml
-  /nodes/import/offer/{offer_id}:
+  /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
