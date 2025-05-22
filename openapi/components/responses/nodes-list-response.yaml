@@ -1,12 +1,14 @@
-title: NodesListResponse
 description: List of nodes in the node pool
-type: object
-properties:
-  nodes:
-    type: array
-    items:
-      $ref: '../schemas/base-node.yaml'
-  total:
-    type: integer
-    format: int32
-    description: The total number of nodes in the node pool
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        nodes:
+          type: array
+          items:
+            $ref: '../schemas/base-node.yaml'
+        total:
+          type: integer
+          format: int32
+          description: The total number of nodes in the node pool
