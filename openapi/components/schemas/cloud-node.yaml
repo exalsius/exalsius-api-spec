@@ -1,20 +1,7 @@
 allOf:
   - $ref: './base-node.yaml'
   - type: object
-    required:
-      - node_type
-      - provider
-      - node_status
-      - region
-      - instance_type
     properties:
-      node_type:
-        type: string
-        x-extensible-enum:
-          - value: CLOUD
-            description: Cloud node
-        description: The type of the node
-        example: "CLOUD"
       provider:
         type: string
         description: The cloud provider of the node

@@ -1,17 +1,7 @@
 allOf:
   - $ref: './base-node.yaml'
   - type: object
-    required:
-      - node_type
-      - endpoint
-      - username
-      - ssh_key_id
     properties:
-      node_type:
-        type: string
-        x-extensible-enum:
-          - value: SELF_MANAGED
-            description: Self-managed node
       endpoint:
         type: string
         description: The endpoint of the node (IP or hostname) and port
