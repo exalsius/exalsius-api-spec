@@ -41,17 +41,7 @@ post:
       
   responses:
     '201':
-      description: Nodes imported
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/nodes-import-response.yaml'
-          examples:
-            default:
-              summary: Nodes imported
-              value:
-                node_ids: [1, 2]
-                total: 2
+      $ref: '../../components/responses/node-import-response.yaml'
     '400':
       description: Bad Request
       content:

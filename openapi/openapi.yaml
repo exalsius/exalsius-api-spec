@@ -47,7 +47,7 @@ servers:
   - url: https://api.exalsius.ai/v1
     description: exalsius API
 tags:
-  - name: supply
+  - name: offers
     description: GPU supply and prices overview
   - name: nodes
     description: Node pool management
@@ -70,34 +70,58 @@ paths:
     $ref: ./paths/nodes/import-offer.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
-  /clusters/{cluster_id}:
+  /cluster/{cluster_id}:
     $ref: ./paths/clusters/cluster.yaml
-  /clusters/{cluster_id}/nodes:
+  /cluster/{cluster_id}/nodes:
     $ref: ./paths/clusters/nodes.yaml
-  /clusters/{cluster_id}/nodes/{node_id}:
+  /cluster/{cluster_id}/nodes/{node_id}:
     $ref: ./paths/clusters/delete-node.yaml
-  /clusters/{cluster_id}/services:
+  /cluster/{cluster_id}/services:
     $ref: ./paths/clusters/services.yaml
-  /clusters/{cluster_id}/deploy:
+  /cluster/{cluster_id}/deploy:
     $ref: ./paths/clusters/deploy.yaml
-  /clusters/{cluster_id}/kubeconfig:
+  /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
   /services:
     $ref: ./paths/services/list.yaml
   /management/ssh-keys:
     $ref: ./paths/management/list-ssh-keys.yaml
+  /management/ssh-key/{ssh_key_id}:
+    $ref: ./paths/management/ssh-key.yaml
 components:
   schemas:
     Offer:
       $ref: ./components/schemas/offer.yaml
+    OffersListResponse:
+      $ref: ./components/schemas/offers-list-response.yaml
     BaseNode:
       $ref: ./components/schemas/base-node.yaml
     CloudNode:
       $ref: ./components/schemas/cloud-node.yaml
     SelfManagedNode:
       $ref: ./components/schemas/self-managed-node.yaml
+    NodeResponse:
+      $ref: ./components/schemas/node-response.yaml
+    NodesListResponse:
+      $ref: ./components/schemas/nodes-list-response.yaml
+    NodeImportResponse:
+      $ref: ./components/schemas/node-import-response.yaml
     Cluster:
       $ref: ./components/schemas/cluster.yaml
+    ClustersListResponse:
+      $ref: ./components/schemas/clusters-list-response.yaml
+    ClusterCreateResponse:
+      $ref: ./components/schemas/cluster-create-response.yaml
+    ClusterNodesResponse:
+      $ref: ./components/schemas/cluster-nodes-response.yaml
+    ClusterKubeconfigResponse:
+      $ref: ./components/schemas/cluster-kubeconfig-response.yaml
+    ClusterServicesResponse:
+      $ref: ./components/schemas/cluster-services-response.yaml
+    ClusterDeployResponse:
+      $ref: ./components/schemas/cluster-deploy-response.yaml
+    ClusterNodeRemoveResponse:
+      $ref: ./components/schemas/cluster-node-remove-response.yaml
     Service:
       $ref: ./components/schemas/service.yaml
     ServiceDeployment:
@@ -107,8 +131,37 @@ components:
     Kubeconfig:
       $ref: ./components/schemas/kubeconfig.yaml
   responses:
+    ClusterCreateResponse:
+      $ref: ./components/responses/cluster-create-response.yaml
+    ClusterDeployResponse:
+      $ref: ./components/responses/cluster-deploy-response.yaml
+    ClusterKubeconfigResponse:
+      $ref: ./components/responses/cluster-kubeconfig-response.yaml
+    ClusterNodeRemoveResponse:
+      $ref: ./components/responses/cluster-node-remove-response.yaml
+    ClusterNodesResponse:
+      $ref: ./components/responses/cluster-nodes-response.yaml
+    ClusterListResponse:
+      $ref: ./components/responses/clusters-list-response.yaml
+    ClusterServicesResponse:
+      $ref: ./components/responses/cluster-services-response.yaml
+    ClusterResponse:
+      $ref: ./components/responses/cluster-response.yaml
+    NodeDeleteResponse:
+      $ref: ./components/responses/node-delete-response.yaml
+    NodeResponse:
+      $ref: ./components/responses/node-response.yaml
     NodesListResponse:
       $ref: ./components/responses/nodes-list-response.yaml
+    NodeImportResponse:
+      $ref: ./components/responses/node-import-response.yaml
+    ServiceListResponse:
+      $ref: ./components/responses/services-list-response.yaml
+    SshKeyListResponse:
+      $ref: ./components/responses/ssh-keys-list-response.yaml
+    SshKeyCreateResponse:
+      $ref: ./components/responses/ssh-key-create-response.yaml
+      
   securitySchemes:
     ApiKeyAuth:
       $ref: ./components/securitySchemes/ApiKeyAuth.yaml

@@ -13,6 +13,7 @@ get:
       required: true
       schema:
         type: string
+        format: uuid
       description: ID of the node to describe
   responses:
     '200':
@@ -86,19 +87,11 @@ delete:
       required: true
       schema:
         type: string
+        format: uuid
       description: ID of the node to delete
   responses:
     '200':
-      description: Node deleted
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/node-delete-response.yaml'
-          examples:
-            default:
-              summary: Node deleted
-              value:
-                node_id: 123
+      $ref: '../../components/responses/node-delete-response.yaml'
     '404':
       description: Node not found
       content:

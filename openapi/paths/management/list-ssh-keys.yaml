@@ -13,20 +13,7 @@ get:
 
   responses:
     "200":
-      description: List of SSH keys
-      content:
-        application/json:
-          schema:
-            $ref: "../../components/responses/ssh-keys-list-response.yaml"
-          examples:
-            default:
-              summary: List of SSH keys
-              value:
-                ssh_keys:
-                  - id: 1
-                    name: "my-ssh-key"
-                  - id: 2
-                    name: "my-ssh-key-2"
+      $ref: "../../components/responses/ssh-keys-list-response.yaml"
     "404":
       description: SSH keys not found
       content:
@@ -88,19 +75,9 @@ post:
       application/json: 
         schema:
           $ref: '../../components/requests/ssh-key-create-request.yaml'
-
   responses:
     "201":
-      description: SSH key added
-      content:
-        application/json:
-          schema:
-            $ref: "../../components/responses/ssh-key-create-response.yaml"
-          examples:
-            default:
-              summary: SSH key added
-              value:
-                ssh_key_id: 123
+      $ref: "../../components/responses/ssh-key-create-response.yaml"
     "400":
       description: Bad Request
       content:
@@ -139,55 +116,3 @@ post:
         import requests
         response = requests.post("https://api.exalsius.ai/management/ssh-keys", json={"name": "my-ssh-key", "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"})
         print(response.json())
-
-delete:
-  operationId: deleteSshKey
-  tags: [management]
-  summary: Delete an SSH key
-  description: |
-    **Delete an SSH key**
-
-    Delete an SSH key from the management cluster.
-
-    **Parameters**
-
-    - `id`: The ID of the SSH key to delete.
-
-  responses:
-    "204":
-      description: SSH key deleted
-    "404":
-      description: SSH key not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The SSH key with ID 123 was not found."
-            instance: "/management/ssh-keys/123"
-    "500":
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/management/ssh-keys"
-
-  x-codeSamples:
-    - lang: curl
-      label: cURL
-      source: |
-        curl -X DELETE "https://api.exalsius.ai/management/ssh-keys/123"
-    - lang: python
-      label: Python
-      source: |
-        import requests
-        response = requests.delete("https://api.exalsius.ai/management/ssh-keys/123")
