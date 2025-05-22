@@ -23,16 +23,7 @@ delete:
         format: int64
   responses:
     '202':
-      description: Node deleted from cluster
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/node-deleted-response.yaml'
-          examples:
-            default:
-              summary: Node deleted from cluster
-              value:
-                node_id: 123
+      $ref: '../../components/responses/cluster-node-remove-response.yaml'
     '404':
       description: Cluster not found
       content:

@@ -32,11 +32,12 @@ get:
       required: false
       schema:
         type: string
-        x-extensible-enum:
-          - value: SELF_MANAGED
-            description: Only self-managed (SSH) nodes
-          - value: CLOUD
-            description: Only cloud-imported nodes
+        enum: [CLOUD, SELF_MANAGED]
+        x-enum-varnames: [CLOUD, SELF_MANAGED]
+        description: >
+          The type of the node.
+          - `CLOUD`: Cloud node
+          - `SELF_MANAGED`: Self-managed node
     - name: provider
       in: query
       description: |
@@ -48,7 +49,7 @@ get:
         type: string
 
   responses:
-    '200': 
+    '200':
       $ref: '../../components/responses/nodes-list-response.yaml'
     '400':
       description: Invalid node_type

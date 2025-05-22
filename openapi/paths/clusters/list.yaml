@@ -43,66 +43,7 @@ get:
 
   responses:
     '200':
-      description: List of clusters
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/clusters-list-response.yaml'
-          examples:
-            default:
-              summary: A list of clusters
-              value:
-                clusters:
-                  - id: 1
-                    name: "my-cluster"
-                    cluster_status: "RUNNING"
-                    created_at: "2025-01-01T00:00:00Z"
-                    updated_at: "2025-01-01T00:00:00Z"
-                    to_be_deleted_at: "2025-02-01T00:00:00Z"
-                    control_plane_node_ids:
-                      - 1
-                      - 2
-                      - 3
-                    worker_node_ids:
-                      - 4
-                      - 5
-                      - 6
-                    service_deployments:
-                      - service_id: 123
-                        service_name: "my-service"
-                        values:
-                          key: "value"
-                    k8s_version: "1.30.0"
-                    current_costs: 100.0
-                    costs_per_hour: 1.0
-                  - id: 2
-                    name: "my-cluster-2"
-                    cluster_status: "PENDING"
-                    created_at: "2025-01-01T00:00:00Z"
-                    updated_at: "2025-01-01T00:00:00Z"
-                    to_be_deleted_at: "2025-02-01T00:00:00Z"
-                    control_plane_node_ids:
-                      - 6
-                      - 7
-                      - 8
-                    worker_node_ids:
-                      - 9
-                      - 10
-                      - 11
-                    service_deployments:
-                      - service_id: 123
-                        service_name: "my-service-2"
-                        values:
-                          key: "value"
-                    k8s_version: "1.30.0"
-                    current_costs: 200.0
-                    costs_per_hour: 2.0
-                total: 2
-            empty:
-              summary: An empty list of clusters
-              value:
-                clusters: []
-                total: 0
+      $ref: '../../components/responses/clusters-list-response.yaml'
     '404':
       description: Cluster not found
       content:
@@ -174,16 +115,7 @@ post:
           $ref: '../../components/requests/cluster-create-request.yaml'
   responses:
     '201':
-      description: Cluster created
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-create-response.yaml'
-          examples:
-            default:
-              summary: Cluster created
-              value:
-                cluster_id: 1
+      $ref: '../../components/responses/cluster-create-response.yaml'
     '400':
       description: Bad Request
       content:

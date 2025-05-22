@@ -33,16 +33,7 @@ post:
 
   responses:
     '202':
-      description: Cluster deployment initiated
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-deploy-response.yaml'
-          examples:
-            default:
-              summary: Cluster deployment initiated
-              value:
-                cluster_id: 1
+      $ref: '../../components/responses/cluster-deploy-response.yaml'
     '400':
       description: Bad Request
       content:

@@ -17,38 +17,7 @@ get:
       description: ID of the cluster to describe
   responses:
     '200':
-      description: Cluster details
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-response.yaml'
-          examples:
-            cluster-details:
-              summary: Cluster details
-              value:
-                cluster:
-                  id: 1
-                  name: "my-cluster"
-                  cluster_status: "RUNNING"
-                  created_at: "2025-01-01T00:00:00Z"
-                  updated_at: "2025-01-01T00:00:00Z"
-                  to_be_deleted_at: "2025-02-01T00:00:00Z"
-                  control_plane_node_ids:
-                    - 1
-                    - 2
-                    - 3
-                  worker_node_ids:
-                    - 3
-                    - 4
-                    - 5
-                  service_deployments:
-                    - service_id: 123
-                      service_name: "my-service"
-                      values:
-                        key: "value"
-                  k8s_version: "1.30.0"
-                  current_costs: 100.0
-                  costs_per_hour: 1.0
+      $ref: '../../components/responses/cluster-response.yaml'
     '404':
       description: Not Found
       content:

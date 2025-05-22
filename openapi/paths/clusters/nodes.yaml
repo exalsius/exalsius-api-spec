@@ -50,11 +50,7 @@ get:
         - `worker` - only worker nodes
   responses:
     '200':
-      description: List of nodes in the cluster
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-nodes-response.yaml'
+      $ref: '../../components/responses/cluster-nodes-response.yaml'
     '404':
       description: Cluster not found
       content:
@@ -161,11 +157,7 @@ post:
             description: only worker nodes
   responses:
     '200':
-      description: List of nodes in the cluster
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/cluster-nodes-response.yaml'
+      $ref: '../../components/responses/cluster-nodes-response.yaml'
     '400':
       description: Invalid node_ids
       content:
