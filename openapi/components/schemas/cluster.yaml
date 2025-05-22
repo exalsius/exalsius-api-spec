@@ -15,18 +15,14 @@ properties:
     example: "my-cluster"
   cluster_status:
     type: string
-    x-extensible-enum:
-      - value: STAGING
-        description: Cluster is staging
-      - value: RUNNING
-        description: Cluster is running
-      - value: DELETING
-        description: Cluster is deleting
-      - value: DELETED
-        description: Cluster is deleted
-      - value: FAILED
-        description: Cluster is failed
-    description: The status of the cluster
+    enum: [STAGING, RUNNING, DELETING, DELETED]
+    x-enum-varnames: [STAGING, RUNNING, DELETING, DELETED]
+    description: >
+      The status of the cluster.
+      - `STAGING`: Cluster is staging
+      - `RUNNING`: Cluster is running
+      - `DELETING`: Cluster is deleting
+      - `DELETED`: Cluster is deleted
     example: "RUNNING"
   created_at:
     type: string
@@ -46,17 +42,17 @@ properties:
   control_plane_node_ids:
     type: array
     items:
-      type: integer
-      format: int64
+      type: string
+      format: uuid
     description: The node IDs of the control plane nodes in the cluster
-    example: [123]
+    example: ["123e4567-e89b-12d3-a456-426614174000"]
   worker_node_ids:
     type: array
     items:
-      type: integer
-      format: int64
+      type: string
+      format: uuid
     description: The node IDs of the worker nodes in the cluster
-    example: [123]
+    example: ["123e4567-e89b-12d3-a456-426614174000"]
   service_deployments:
     type: array
     items:

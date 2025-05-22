@@ -1,9 +1,0 @@
-title: NodeDeletedResponse
-description: Node deleted from cluster
-type: object
-properties:
-  node_id:
-    type: integer
-    example: 123
-required:
-  - node_id

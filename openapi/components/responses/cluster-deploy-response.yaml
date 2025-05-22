@@ -1,11 +1,5 @@
-title: ClusterDeployResponse
 description: Cluster deployment response
-type: object
-properties:
-  cluster_id:
-    type: integer
-    example: 1
-    description: The ID of the cluster
-    format: int64
-required:
-  - cluster_id
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-deploy-response.yaml'

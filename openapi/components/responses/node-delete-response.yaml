@@ -1,9 +1,5 @@
-title: NodeDeleteResponse
 description: Node delete response
-type: object
-properties:
-  node_id:
-    type: integer
-    format: int64
-required:
-  - node_id
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/node-delete-response.yaml'

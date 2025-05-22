@@ -1,11 +1,10 @@
-title: SshKeyCreateResponse
 description: SSH key creation response
-type: object
-properties:
-  ssh_key_id:
-    type: integer
-    format: int64
-    description: The ID of the created SSH key
-    example: 123
-required:
-  - ssh_key_id
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/ssh-key-create-response.yaml'
+    examples:
+      default:
+        summary: SSH key added
+        value:
+          ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"

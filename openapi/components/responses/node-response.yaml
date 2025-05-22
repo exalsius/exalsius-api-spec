@@ -1,9 +1,5 @@
-description: A single node in the node pool
+description: A single node (self-managed or cloud)
 content:
   application/json:
     schema:
-      oneOf:
-        - $ref: '../schemas/cloud-node.yaml'
-        - $ref: '../schemas/self-managed-node.yaml'
-      discriminator:
-        propertyName: node_type
+      $ref: '../schemas/node-response.yaml'

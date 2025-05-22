@@ -1,18 +1,5 @@
-title: ClusterNodesResponse
 description: List of nodes in the cluster
-type: object
-properties:
-  cluster_id:
-    type: string
-    description: The unique identifier of the cluster
-  nodes:
-    type: array
-    items:
-      $ref: '../schemas/node.yaml'
-  total:
-    type: integer
-    description: The total number of nodes in the cluster
-    format: int32
-required:
-  - cluster_id
-  - nodes
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-nodes-response.yaml'

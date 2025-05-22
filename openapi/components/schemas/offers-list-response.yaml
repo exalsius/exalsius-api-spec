@@ -1,0 +1,12 @@
+type: object
+required:
+  - offers
+properties:
+  offers:
+    type: array
+    items:
+      $ref: './offer.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of offers

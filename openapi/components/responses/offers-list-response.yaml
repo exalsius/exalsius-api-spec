@@ -1,12 +1,35 @@
-title: OffersListResponse
 description: List of offers
-type: object
-properties:
-  offers:
-    type: array
-    items:
-      $ref: '../schemas/offer.yaml'
-  total:
-    type: integer
-    format: int32
-    description: The total number of offers
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/offers-list-response.yaml'
+    examples:
+      default:
+        summary: List of offers
+        value:
+          offers:
+            - id: "123e4567-e89b-12d3-a456-426614174000"
+              provider: "AWS"
+              location: "us-east-1"
+              region: "us-east-1"
+              availability_zone: "us-east-1a"
+              instance_type: "g4dn.xlarge"
+              gpu_count: 1
+              gpu_vendor: "NVIDIA"
+              gpu_type: "A100"
+              gpu_memory: 8192
+              price_per_hour: 1.0
+              scrape_time: "2025-01-01T00:00:00Z"
+            - id: "123e4567-e89b-12d3-a456-426614174001"
+              provider: "AWS"
+              location: "us-east-1"
+              region: "us-east-1"
+              availability_zone: "us-east-1a"
+              instance_type: "g4dn.xlarge"
+              gpu_count: 1
+              gpu_vendor: "NVIDIA"
+              gpu_type: "A100"
+              gpu_memory: 8192
+              price_per_hour: 1.0
+              scrape_time: "2025-01-01T00:00:00Z"
+          total: 2
