@@ -16,11 +16,7 @@ get:
       description: ID of the node to describe
   responses:
     '200':
-      description: Node details
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/node-response.yaml'
+      $ref: '../../components/responses/node-response.yaml'
     '404':
       description: Node not found
       content:
@@ -31,8 +27,8 @@ get:
             type: "https://api.exalsius.ai/errors/not-found"
             title: "Not Found"
             status: 404
-            detail: "The node with ID 123 was not found."
-            instance: "/nodes/123"
+            detail: "The node with ID {node_id} was not found."
+            instance: "/node/{node_id}"
     '500':
       description: Internal Server Error
       content:
@@ -44,7 +40,7 @@ get:
             title: "Internal Server Error"
             status: 500
             detail: "An internal server error occurred while processing the request."
-            instance: "/nodes/123"
+            instance: "/node/{node_id}"
   
   x-codeSamples:
     - lang: curl

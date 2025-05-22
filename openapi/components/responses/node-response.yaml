@@ -1,8 +1,9 @@
-title: NodeResponse
-description: Node response
-type: object
-properties:
-  node:
-    $ref: '../schemas/node.yaml'
-required:
-  - node
+description: A single node in the node pool
+content:
+  application/json:
+    schema:
+      oneOf:
+        - $ref: '../schemas/cloud-node.yaml'
+        - $ref: '../schemas/self-managed-node.yaml'
+      discriminator:
+        propertyName: node_type
