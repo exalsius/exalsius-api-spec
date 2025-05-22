@@ -48,12 +48,8 @@ get:
         type: string
 
   responses:
-    '200':
-      description: List of nodes in the node pool
-      content:
-        application/json:
-          schema:
-            $ref: '../../components/responses/nodes-list-response.yaml'
+    '200': 
+      $ref: '../../components/responses/nodes-list-response.yaml'
     '400':
       description: Invalid node_type
       content:
