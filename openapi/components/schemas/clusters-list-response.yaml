@@ -1,0 +1,12 @@
+type: object
+required:
+  - clusters
+properties:
+  clusters:
+    type: array
+    items:
+      $ref: './cluster.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of clusters

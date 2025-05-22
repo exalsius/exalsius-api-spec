@@ -1,0 +1,19 @@
+type: object
+required:
+  - ssh_keys
+  - total
+properties:
+  ssh_keys:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+  total:
+    type: integer
+    format: int32
+    description: The total number of SSH keys

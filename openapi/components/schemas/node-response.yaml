@@ -1,0 +1,10 @@
+title: NodeResponse
+description: A single node, either self-managed or cloud
+oneOf:
+  - $ref: './cloud-node.yaml'
+  - $ref: './self-managed-node.yaml'
+discriminator:
+  propertyName: node_type
+  mapping:
+    CLOUD: './cloud-node.yaml'
+    SELF_MANAGED: './self-managed-node.yaml'

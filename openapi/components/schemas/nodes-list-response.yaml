@@ -1,0 +1,14 @@
+title: NodesListResponse
+type: object
+required:
+  - nodes
+  - total
+properties:
+  nodes:
+    type: array
+    items:
+      $ref: './base-node.yaml'
+  total:
+    type: integer
+    format: int32
+    description: Total number of nodes in the current result set

@@ -1,8 +1,32 @@
-title: ClusterResponse
 description: Cluster details
-type: object
-properties:
-  cluster:
-    $ref: '../schemas/cluster.yaml'
-required:
-  - cluster
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-response.yaml'
+    examples:
+      cluster-details:
+        summary: Cluster details
+        value:
+          cluster:
+            id: 1
+            name: "my-cluster"
+            cluster_status: "RUNNING"
+            created_at: "2025-01-01T00:00:00Z"
+            updated_at: "2025-01-01T00:00:00Z"
+            to_be_deleted_at: "2025-02-01T00:00:00Z"
+            control_plane_node_ids:
+              - "123e4567-e89b-12d3-a456-426614174000"
+              - "123e4567-e89b-12d3-a456-426614174001"
+              - "123e4567-e89b-12d3-a456-426614174002"
+            worker_node_ids:
+              - "123e4567-e89b-12d3-a456-426614174003"
+              - "123e4567-e89b-12d3-a456-426614174004"
+              - "123e4567-e89b-12d3-a456-426614174005"
+            service_deployments:
+              - service_id: 123
+                service_name: "my-service"
+                values:
+                  key: "value"
+            k8s_version: "1.30.0"
+            current_costs: 100.0
+            costs_per_hour: 1.0

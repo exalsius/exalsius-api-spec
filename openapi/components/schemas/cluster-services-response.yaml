@@ -1,0 +1,13 @@
+type: object
+required:
+  - cluster_id
+  - services_deployments
+properties:
+  cluster_id:
+    type: string
+    description: The unique identifier of the cluster
+    example: "123"
+  services_deployments:
+    type: array
+    items:
+      $ref: './service-deployment.yaml'

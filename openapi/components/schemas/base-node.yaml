@@ -18,7 +18,8 @@ properties:
   node_type:
     type: string
     enum: [CLOUD, SELF_MANAGED]
-    description: |
+    x-enum-varnames: [CLOUD, SELF_MANAGED]
+    description: >
       The type of the node.
       - `CLOUD`: Cloud node
       - `SELF_MANAGED`: Self-managed node

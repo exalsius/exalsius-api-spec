@@ -1,0 +1,16 @@
+type: object
+required:
+  - cluster_id
+  - nodes
+properties:
+  cluster_id:
+    type: string
+    description: The unique identifier of the cluster
+  nodes:
+    type: array
+    items:
+      $ref: './base-node.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of nodes in the cluster

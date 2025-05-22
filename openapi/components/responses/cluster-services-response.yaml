@@ -1,15 +1,5 @@
-title: ClusterServicesResponse
 description: List of services in the cluster
-type: object
-properties:
-  cluster_id:
-    type: string
-    description: The unique identifier of the cluster
-    example: "123"
-  services_deployments:
-    type: array
-    items:
-      $ref: '../schemas/service-deployment.yaml'
-required:
-  - cluster_id
-  - services_deployments
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-services-response.yaml'

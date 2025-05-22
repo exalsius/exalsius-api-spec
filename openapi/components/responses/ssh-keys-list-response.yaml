@@ -1,19 +1,15 @@
-title: SshKeysListResponse
 description: List of SSH keys
-type: object
-properties:
-  ssh_keys:
-    type: array
-    items:
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: The ID of the SSH key
-          example: 123
-        name:
-          type: string
-          description: The name of the SSH key
-          example: "my-ssh-key"
-required:
-  - ssh_keys
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/ssh-keys-list-response.yaml'
+    examples:
+      default:
+        summary: List of SSH keys
+        value:
+          ssh_keys:
+            - id: "123e4567-e89b-12d3-a456-426614174000"
+              name: "my-ssh-key"
+            - id: "123e4567-e89b-12d3-a456-426614174001"
+              name: "my-ssh-key-2"
+          total: 2

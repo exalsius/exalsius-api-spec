@@ -1,0 +1,10 @@
+description: Node removed from cluster
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-node-remove-response.yaml'
+    examples:
+      success:
+        summary: Node removed from cluster
+        value:
+          node_id: "123e4567-e89b-12d3-a456-426614174000"
