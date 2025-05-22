@@ -1,12 +1,11 @@
 # OffersListResponse
 
-List of offers
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**offers** | [**List[Offer]**](Offer.md) |  | [optional] 
+**offers** | [**List[Offer]**](Offer.md) |  | 
 **total** | **int** | The total number of offers | [optional] 
 
 ## Example

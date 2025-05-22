@@ -18,57 +18,27 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
+from exalsius_api_client.models.base_node import BaseNode
 
-class SelfManagedNode(BaseModel):
+
+class SelfManagedNode(BaseNode):
     """
     SelfManagedNode
     """  # noqa: E501
 
-    id: StrictInt = Field(description="The unique identifier for the node")
-    node_type: StrictStr
-    description: Optional[StrictStr] = Field(
-        default=None, description="Description of the node"
+    endpoint: Optional[StrictStr] = Field(
+        default=None, description="The endpoint of the node (IP or hostname) and port"
     )
-    location: StrictStr = Field(
-        description="The location of the node (e.g. city, data center, server rack, etc.)"
+    username: Optional[StrictStr] = Field(
+        default=None, description="The username to connect to the node"
     )
-    gpu_count: Optional[StrictInt] = Field(
-        default=None, description="The number of GPUs"
-    )
-    gpu_vendor: Optional[StrictStr] = Field(
-        default=None, description="The vendor of the GPU"
-    )
-    gpu_type: Optional[StrictStr] = Field(
-        default=None, description="The type of the GPU"
-    )
-    gpu_memory: Optional[StrictInt] = Field(
-        default=None, description="The memory of the GPU in GB"
-    )
-    cpu_cores: Optional[StrictInt] = Field(
-        default=None, description="The number of CPU cores"
-    )
-    memory_gb: Optional[StrictInt] = Field(
-        default=None, description="The memory of the node in GB"
-    )
-    storage_gb: Optional[StrictInt] = Field(
-        default=None, description="The storage of the node in GB"
-    )
-    import_time: Optional[datetime] = Field(
-        default=None, description="The time the node was imported"
-    )
-    node_status: StrictStr = Field(description="The status of the node")
-    endpoint: StrictStr = Field(
-        description="The endpoint of the node (IP or hostname) and port"
-    )
-    username: StrictStr = Field(description="The username to connect to the node")
-    ssh_key_id: StrictStr = Field(
-        description="The ID of the private SSH key to connect to the node"
+    ssh_key_id: Optional[StrictStr] = Field(
+        default=None, description="The ID of the private SSH key to connect to the node"
     )
     __properties: ClassVar[List[str]] = [
         "id",

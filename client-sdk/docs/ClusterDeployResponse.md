@@ -1,6 +1,5 @@
 # ClusterDeployResponse
 
-Cluster deployment response
 
 ## Properties
 

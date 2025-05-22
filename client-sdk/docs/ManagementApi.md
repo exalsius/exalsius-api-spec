@@ -5,7 +5,7 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_ssh_key**](ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
-[**delete_ssh_key**](ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-keys | Delete an SSH key
+[**delete_ssh_key**](ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
 [**list_ssh_keys**](ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
 
 
@@ -86,14 +86,14 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | SSH key added |  -  |
+**201** | SSH key creation response |  -  |
 **400** | Bad Request |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_ssh_key**
-> delete_ssh_key()
+> delete_ssh_key(ssh_key_id)
 
 Delete an SSH key
 
@@ -125,10 +125,11 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ManagementApi(api_client)
+    ssh_key_id = 'ssh_key_id_example' # str | 
 
     try:
         # Delete an SSH key
-        api_instance.delete_ssh_key()
+        api_instance.delete_ssh_key(ssh_key_id)
     except Exception as e:
         print("Exception when calling ManagementApi->delete_ssh_key: %s\n" % e)
 ```
@@ -137,7 +138,10 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 ### Parameters
 
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **ssh_key_id** | **str**|  | 
 
 ### Return type
 

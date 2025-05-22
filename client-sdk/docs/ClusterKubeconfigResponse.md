@@ -1,6 +1,5 @@
 # ClusterKubeconfigResponse
 
-The kubeconfig file for a cluster
 
 ## Properties
 

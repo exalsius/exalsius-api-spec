@@ -1,12 +1,11 @@
 # NodeDeleteResponse
 
-Node delete response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node_id** | **int** |  | 
+**node_id** | **str** | The ID of the node | 
 
 ## Example
 

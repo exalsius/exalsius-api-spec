@@ -1,13 +1,12 @@
 # ClusterNodesResponse
 
-List of nodes in the cluster
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cluster_id** | **str** | The unique identifier of the cluster | 
-**nodes** | [**List[Node]**](Node.md) |  | 
+**nodes** | [**List[BaseNode]**](BaseNode.md) |  | 
 **total** | **int** | The total number of nodes in the cluster | [optional] 
 
 ## Example

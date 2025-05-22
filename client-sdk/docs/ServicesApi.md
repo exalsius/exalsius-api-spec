@@ -78,7 +78,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | An array of services |  -  |
+**200** | List of services |  -  |
 **404** | Services not found |  -  |
 **500** | Internal Server Error |  -  |
 

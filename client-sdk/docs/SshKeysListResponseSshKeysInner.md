@@ -5,8 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | The ID of the SSH key | [optional] 
-**name** | **str** | The name of the SSH key | [optional] 
+**id** | **str** |  | [optional] 
+**name** | **str** |  | [optional] 
 
 ## Example
 

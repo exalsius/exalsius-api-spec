@@ -19,10 +19,16 @@ import json
 import pprint
 import re  # noqa: F401
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List, Optional, Set
+from importlib import import_module
+from typing import (TYPE_CHECKING, Any, ClassVar, Dict, List, Optional, Set,
+                    Union)
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
-from typing_extensions import Self
+from pydantic import (BaseModel, ConfigDict, Field, StrictInt, StrictStr,
+                      field_validator)
+
+if TYPE_CHECKING:
+    from exalsius_api_client.models.cloud_node import CloudNode
+    from exalsius_api_client.models.self_managed_node import SelfManagedNode
 
 
 class BaseNode(BaseModel):
@@ -30,13 +36,16 @@ class BaseNode(BaseModel):
     BaseNode
     """  # noqa: E501
 
-    id: StrictInt = Field(description="The unique identifier for the node")
-    node_type: StrictStr = Field(description="The type of the node")
+    id: StrictStr = Field(description="The unique identifier for the node")
+    node_type: StrictStr = Field(
+        description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
+    )
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
-    location: StrictStr = Field(
-        description="The location of the node (e.g. city, data center, server rack, etc.)"
+    location: Optional[StrictStr] = Field(
+        default=None,
+        description="The location of the node (e.g. city, data center, server rack, etc.)",
     )
     gpu_count: Optional[StrictInt] = Field(
         default=None, description="The number of GPUs"
@@ -62,7 +71,9 @@ class BaseNode(BaseModel):
     import_time: Optional[datetime] = Field(
         default=None, description="The time the node was imported"
     )
-    node_status: StrictStr = Field(description="The status of the node")
+    node_status: StrictStr = Field(
+        description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `AVAILABLE`: Node is available to be added to a cluster - `STAGED`: Node is staged in a cluster - `OCCUPIED`: Node is occupied in a cluster "
+    )
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
@@ -79,11 +90,45 @@ class BaseNode(BaseModel):
         "node_status",
     ]
 
+    @field_validator("node_type")
+    def node_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["CLOUD", "SELF_MANAGED"]):
+            raise ValueError("must be one of enum values ('CLOUD', 'SELF_MANAGED')")
+        return value
+
+    @field_validator("node_status")
+    def node_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["PENDING", "AVAILABLE", "STAGED", "OCCUPIED"]):
+            raise ValueError(
+                "must be one of enum values ('PENDING', 'AVAILABLE', 'STAGED', 'OCCUPIED')"
+            )
+        return value
+
     model_config = ConfigDict(
         populate_by_name=True,
         validate_assignment=True,
         protected_namespaces=(),
     )
+
+    # JSON field name that stores the object type
+    __discriminator_property_name: ClassVar[str] = "node_type"
+
+    # discriminator mappings
+    __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
+        "cloud": "CloudNode",
+        "self-managed": "SelfManagedNode",
+    }
+
+    @classmethod
+    def get_discriminator_value(cls, obj: Dict[str, Any]) -> Optional[str]:
+        """Returns the discriminator value (object type) of the data"""
+        discriminator_value = obj[cls.__discriminator_property_name]
+        if discriminator_value:
+            return cls.__discriminator_value_class_map.get(discriminator_value)
+        else:
+            return None
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
@@ -95,7 +140,7 @@ class BaseNode(BaseModel):
         return json.dumps(self.to_dict())
 
     @classmethod
-    def from_json(cls, json_str: str) -> Optional[Self]:
+    def from_json(cls, json_str: str) -> Optional[Union[CloudNode, SelfManagedNode]]:
         """Create an instance of BaseNode from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
@@ -119,29 +164,26 @@ class BaseNode(BaseModel):
         return _dict
 
     @classmethod
-    def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
+    def from_dict(
+        cls, obj: Dict[str, Any]
+    ) -> Optional[Union[CloudNode, SelfManagedNode]]:
         """Create an instance of BaseNode from a dict"""
-        if obj is None:
-            return None
+        # look up the object type based on discriminator mapping
+        object_type = cls.get_discriminator_value(obj)
+        if object_type == "CloudNode":
+            return import_module(
+                "exalsius_api_client.models.cloud_node"
+            ).CloudNode.from_dict(obj)
+        if object_type == "SelfManagedNode":
+            return import_module(
+                "exalsius_api_client.models.self_managed_node"
+            ).SelfManagedNode.from_dict(obj)
 
-        if not isinstance(obj, dict):
-            return cls.model_validate(obj)
-
-        _obj = cls.model_validate(
-            {
-                "id": obj.get("id"),
-                "node_type": obj.get("node_type"),
-                "description": obj.get("description"),
-                "location": obj.get("location"),
-                "gpu_count": obj.get("gpu_count"),
-                "gpu_vendor": obj.get("gpu_vendor"),
-                "gpu_type": obj.get("gpu_type"),
-                "gpu_memory": obj.get("gpu_memory"),
-                "cpu_cores": obj.get("cpu_cores"),
-                "memory_gb": obj.get("memory_gb"),
-                "storage_gb": obj.get("storage_gb"),
-                "import_time": obj.get("import_time"),
-                "node_status": obj.get("node_status"),
-            }
+        raise ValueError(
+            "BaseNode failed to lookup discriminator value from "
+            + json.dumps(obj)
+            + ". Discriminator property name: "
+            + cls.__discriminator_property_name
+            + ", mapping: "
+            + json.dumps(cls.__discriminator_value_class_map)
         )
-        return _obj

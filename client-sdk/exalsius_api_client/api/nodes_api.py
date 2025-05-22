@@ -20,11 +20,10 @@ from typing_extensions import Annotated
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
 from exalsius_api_client.models.node_delete_response import NodeDeleteResponse
+from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
     NodeImportSshRequest
 from exalsius_api_client.models.node_response import NodeResponse
-from exalsius_api_client.models.nodes_import_response import \
-    NodesImportResponse
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.rest import RESTResponseType
 
@@ -279,7 +278,7 @@ class NodesApi:
 
         return self.api_client.param_serialize(
             method="DELETE",
-            resource_path="/nodes/{node_id}",
+            resource_path="/node/{node_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -527,7 +526,7 @@ class NodesApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/nodes/{node_id}",
+            resource_path="/node/{node_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -556,7 +555,7 @@ class NodesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> NodesImportResponse:
+    ) -> NodeImportResponse:
         """Import a node from an offer
 
         **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
@@ -597,7 +596,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "404": "Error",
             "500": "Error",
@@ -627,7 +626,7 @@ class NodesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[NodesImportResponse]:
+    ) -> ApiResponse[NodeImportResponse]:
         """Import a node from an offer
 
         **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
@@ -668,7 +667,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "404": "Error",
             "500": "Error",
@@ -739,7 +738,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "404": "Error",
             "500": "Error",
@@ -795,7 +794,7 @@ class NodesApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/nodes/import/offer/{offer_id}",
+            resource_path="/node/import/offer/{offer_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -823,7 +822,7 @@ class NodesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> NodesImportResponse:
+    ) -> NodeImportResponse:
         """Import a self-managed node via SSH
 
         **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.  **Monitoring** You can poll its status at any time via GET /nodes/{nodeId}.  **Result**  Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
@@ -861,7 +860,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -890,7 +889,7 @@ class NodesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[NodesImportResponse]:
+    ) -> ApiResponse[NodeImportResponse]:
         """Import a self-managed node via SSH
 
         **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.  **Monitoring** You can poll its status at any time via GET /nodes/{nodeId}.  **Result**  Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
@@ -928,7 +927,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -995,7 +994,7 @@ class NodesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "NodesImportResponse",
+            "201": "NodeImportResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -1056,7 +1055,7 @@ class NodesApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/nodes/import/ssh",
+            resource_path="/node/import/ssh",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

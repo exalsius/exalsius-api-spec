@@ -28,10 +28,10 @@ from exalsius_api_client.models.offer import Offer
 
 class OffersListResponse(BaseModel):
     """
-    List of offers
+    OffersListResponse
     """  # noqa: E501
 
-    offers: Optional[List[Offer]] = None
+    offers: List[Offer]
     total: Optional[StrictInt] = Field(
         default=None, description="The total number of offers"
     )

@@ -41,18 +41,17 @@ __all__ = [
     "ClusterCreateResponse",
     "ClusterDeployResponse",
     "ClusterKubeconfigResponse",
+    "ClusterNodeRemoveResponse",
     "ClusterNodesResponse",
     "ClusterResponse",
     "ClusterServicesResponse",
     "ClustersListResponse",
     "Error",
     "Kubeconfig",
-    "Node",
     "NodeDeleteResponse",
-    "NodeDeletedResponse",
+    "NodeImportResponse",
     "NodeImportSshRequest",
     "NodeResponse",
-    "NodesImportResponse",
     "NodesListResponse",
     "Offer",
     "OffersListResponse",
@@ -99,6 +98,8 @@ from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse as ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse as ClusterKubeconfigResponse
+from exalsius_api_client.models.cluster_node_remove_response import \
+    ClusterNodeRemoveResponse as ClusterNodeRemoveResponse
 from exalsius_api_client.models.cluster_nodes_response import \
     ClusterNodesResponse as ClusterNodesResponse
 from exalsius_api_client.models.cluster_response import \
@@ -109,17 +110,14 @@ from exalsius_api_client.models.clusters_list_response import \
     ClustersListResponse as ClustersListResponse
 from exalsius_api_client.models.error import Error as Error
 from exalsius_api_client.models.kubeconfig import Kubeconfig as Kubeconfig
-from exalsius_api_client.models.node import Node as Node
 from exalsius_api_client.models.node_delete_response import \
     NodeDeleteResponse as NodeDeleteResponse
-from exalsius_api_client.models.node_deleted_response import \
-    NodeDeletedResponse as NodeDeletedResponse
+from exalsius_api_client.models.node_import_response import \
+    NodeImportResponse as NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
     NodeImportSshRequest as NodeImportSshRequest
 from exalsius_api_client.models.node_response import \
     NodeResponse as NodeResponse
-from exalsius_api_client.models.nodes_import_response import \
-    NodesImportResponse as NodesImportResponse
 from exalsius_api_client.models.nodes_list_response import \
     NodesListResponse as NodesListResponse
 from exalsius_api_client.models.offer import Offer as Offer

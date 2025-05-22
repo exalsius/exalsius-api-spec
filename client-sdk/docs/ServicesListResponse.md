@@ -1,12 +1,11 @@
 # ServicesListResponse
 
-List of services
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**services** | [**List[Service]**](Service.md) |  | [optional] 
+**services** | [**List[Service]**](Service.md) |  | 
 **total** | **int** | The total number of services | [optional] 
 
 ## Example

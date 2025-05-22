@@ -20,16 +20,16 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
 class NodeDeleteResponse(BaseModel):
     """
-    Node delete response
+    NodeDeleteResponse
     """  # noqa: E501
 
-    node_id: StrictInt
+    node_id: StrictStr = Field(description="The ID of the node")
     __properties: ClassVar[List[str]] = ["node_id"]
 
     model_config = ConfigDict(

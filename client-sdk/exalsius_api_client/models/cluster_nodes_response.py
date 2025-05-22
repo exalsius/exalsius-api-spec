@@ -23,16 +23,16 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.node import Node
+from exalsius_api_client.models.base_node import BaseNode
 
 
 class ClusterNodesResponse(BaseModel):
     """
-    List of nodes in the cluster
+    ClusterNodesResponse
     """  # noqa: E501
 
     cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    nodes: List[Node]
+    nodes: List[BaseNode]
     total: Optional[StrictInt] = Field(
         default=None, description="The total number of nodes in the cluster"
     )
@@ -97,7 +97,7 @@ class ClusterNodesResponse(BaseModel):
             {
                 "cluster_id": obj.get("cluster_id"),
                 "nodes": (
-                    [Node.from_dict(_item) for _item in obj["nodes"]]
+                    [BaseNode.from_dict(_item) for _item in obj["nodes"]]
                     if obj.get("nodes") is not None
                     else None
                 ),

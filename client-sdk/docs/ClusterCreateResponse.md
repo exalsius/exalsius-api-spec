@@ -1,6 +1,5 @@
 # ClusterCreateResponse
 
-Cluster creation response
 
 ## Properties
 

@@ -4,16 +4,16 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**add_cluster_services**](ClustersApi.md#add_cluster_services) | **POST** /clusters/{cluster_id}/services | Add service deployments to a cluster
-[**add_nodes**](ClustersApi.md#add_nodes) | **POST** /clusters/{cluster_id}/nodes | Add nodes to a cluster
+[**add_cluster_services**](ClustersApi.md#add_cluster_services) | **POST** /cluster/{cluster_id}/services | Add service deployments to a cluster
+[**add_nodes**](ClustersApi.md#add_nodes) | **POST** /cluster/{cluster_id}/nodes | Add nodes to a cluster
 [**create_cluster**](ClustersApi.md#create_cluster) | **POST** /clusters | Create a cluster
-[**delete_cluster**](ClustersApi.md#delete_cluster) | **DELETE** /clusters/{cluster_id} | Delete (tear-down) a cluster
-[**delete_node_from_cluster**](ClustersApi.md#delete_node_from_cluster) | **DELETE** /clusters/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
-[**deploy_cluster**](ClustersApi.md#deploy_cluster) | **POST** /clusters/{cluster_id}/deploy | Deploy a new cluster
-[**describe_cluster**](ClustersApi.md#describe_cluster) | **GET** /clusters/{cluster_id} | Get details of a single cluster
-[**get_cluster_kubeconfig**](ClustersApi.md#get_cluster_kubeconfig) | **GET** /clusters/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
-[**get_cluster_services**](ClustersApi.md#get_cluster_services) | **GET** /clusters/{cluster_id}/services | Get services of a cluster
-[**get_nodes**](ClustersApi.md#get_nodes) | **GET** /clusters/{cluster_id}/nodes | Get nodes of a cluster
+[**delete_cluster**](ClustersApi.md#delete_cluster) | **DELETE** /cluster/{cluster_id} | Delete (tear-down) a cluster
+[**delete_node_from_cluster**](ClustersApi.md#delete_node_from_cluster) | **DELETE** /cluster/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
+[**deploy_cluster**](ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
+[**describe_cluster**](ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
+[**get_cluster_kubeconfig**](ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+[**get_cluster_services**](ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
+[**get_nodes**](ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 [**list_clusters**](ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 
 
@@ -95,7 +95,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Services added to the cluster |  -  |
+**201** | List of services in the cluster |  -  |
 **400** | Invalid service deployments |  -  |
 **404** | Cluster not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -298,7 +298,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Cluster created |  -  |
+**201** | Cluster creation response |  -  |
 **400** | Bad Request |  -  |
 **500** | Internal Server Error |  -  |
 
@@ -387,7 +387,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_node_from_cluster**
-> NodeDeletedResponse delete_node_from_cluster(cluster_id, node_id)
+> ClusterNodeRemoveResponse delete_node_from_cluster(cluster_id, node_id)
 
 Delete a node from a cluster
 
@@ -402,7 +402,7 @@ and is returned to the node pool.
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.node_deleted_response import NodeDeletedResponse
+from exalsius_api_client.models.cluster_node_remove_response import ClusterNodeRemoveResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -441,7 +441,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodeDeletedResponse**](NodeDeletedResponse.md)
+[**ClusterNodeRemoveResponse**](ClusterNodeRemoveResponse.md)
 
 ### Authorization
 
@@ -456,7 +456,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | Node deleted from cluster |  -  |
+**202** | Node removed from cluster |  -  |
 **404** | Cluster not found |  -  |
 **409** | Node not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -545,7 +545,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | Cluster deployment initiated |  -  |
+**202** | Cluster deployment response |  -  |
 **400** | Bad Request |  -  |
 **404** | Cluster not found |  -  |
 **409** | No nodes staged |  -  |
@@ -693,7 +693,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | The kubeconfig file for the cluster |  -  |
+**200** | The kubeconfig file for a cluster |  -  |
 **404** | Cluster not found |  -  |
 **500** | Internal Server Error |  -  |
 

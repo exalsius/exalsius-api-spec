@@ -28,7 +28,7 @@ from exalsius_api_client.models.cluster import Cluster
 
 class ClusterResponse(BaseModel):
     """
-    Cluster details
+    ClusterResponse
     """  # noqa: E501
 
     cluster: Cluster

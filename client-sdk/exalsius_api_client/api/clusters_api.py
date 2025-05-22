@@ -29,6 +29,8 @@ from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse
+from exalsius_api_client.models.cluster_node_remove_response import \
+    ClusterNodeRemoveResponse
 from exalsius_api_client.models.cluster_nodes_response import \
     ClusterNodesResponse
 from exalsius_api_client.models.cluster_response import ClusterResponse
@@ -36,8 +38,6 @@ from exalsius_api_client.models.cluster_services_response import \
     ClusterServicesResponse
 from exalsius_api_client.models.clusters_list_response import \
     ClustersListResponse
-from exalsius_api_client.models.node_deleted_response import \
-    NodeDeletedResponse
 from exalsius_api_client.rest import RESTResponseType
 
 
@@ -316,7 +316,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/clusters/{cluster_id}/services",
+            resource_path="/cluster/{cluster_id}/services",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -606,7 +606,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/clusters/{cluster_id}/nodes",
+            resource_path="/cluster/{cluster_id}/nodes",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1118,7 +1118,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="DELETE",
-            resource_path="/clusters/{cluster_id}",
+            resource_path="/cluster/{cluster_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1147,7 +1147,7 @@ class ClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> NodeDeletedResponse:
+    ) -> ClusterNodeRemoveResponse:
         """Delete a node from a cluster
 
         **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
@@ -1188,7 +1188,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "NodeDeletedResponse",
+            "202": "ClusterNodeRemoveResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -1218,7 +1218,7 @@ class ClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[NodeDeletedResponse]:
+    ) -> ApiResponse[ClusterNodeRemoveResponse]:
         """Delete a node from a cluster
 
         **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
@@ -1259,7 +1259,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "NodeDeletedResponse",
+            "202": "ClusterNodeRemoveResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -1330,7 +1330,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "202": "NodeDeletedResponse",
+            "202": "ClusterNodeRemoveResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -1384,7 +1384,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="DELETE",
-            resource_path="/clusters/{cluster_id}/nodes/{node_id}",
+            resource_path="/cluster/{cluster_id}/nodes/{node_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1638,7 +1638,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="POST",
-            resource_path="/clusters/{cluster_id}/deploy",
+            resource_path="/cluster/{cluster_id}/deploy",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -1892,7 +1892,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/clusters/{cluster_id}",
+            resource_path="/cluster/{cluster_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2149,7 +2149,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/clusters/{cluster_id}/kubeconfig",
+            resource_path="/cluster/{cluster_id}/kubeconfig",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2397,7 +2397,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/clusters/{cluster_id}/services",
+            resource_path="/cluster/{cluster_id}/services",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
@@ -2683,7 +2683,7 @@ class ClustersApi:
 
         return self.api_client.param_serialize(
             method="GET",
-            resource_path="/clusters/{cluster_id}/nodes",
+            resource_path="/cluster/{cluster_id}/nodes",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

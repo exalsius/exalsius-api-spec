@@ -28,7 +28,7 @@ from exalsius_api_client.models.service_deployment import ServiceDeployment
 
 class ClusterServicesResponse(BaseModel):
     """
-    List of services in the cluster
+    ClusterServicesResponse
     """  # noqa: E501
 
     cluster_id: StrictStr = Field(description="The unique identifier of the cluster")

@@ -28,10 +28,10 @@ from exalsius_api_client.models.service import Service
 
 class ServicesListResponse(BaseModel):
     """
-    List of services
+    ServicesListResponse
     """  # noqa: E501
 
-    services: Optional[List[Service]] = None
+    services: List[Service]
     total: Optional[StrictInt] = Field(
         default=None, description="The total number of services"
     )
