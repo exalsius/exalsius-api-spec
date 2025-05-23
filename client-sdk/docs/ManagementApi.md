@@ -102,8 +102,7 @@ Delete an SSH key
 Delete an SSH key from the management cluster.
 
 **Parameters**
-
-- `id`: The ID of the SSH key to delete.
+- `ssh_key_id`: The ID of the SSH key to delete.
 
 
 ### Example
@@ -125,7 +124,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ManagementApi(api_client)
-    ssh_key_id = 'ssh_key_id_example' # str | 
+    ssh_key_id = 'ssh_key_id_example' # str | ID of the SSH key to delete
 
     try:
         # Delete an SSH key
@@ -141,7 +140,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ssh_key_id** | **str**|  | 
+ **ssh_key_id** | **str**| ID of the SSH key to delete | 
 
 ### Return type
 

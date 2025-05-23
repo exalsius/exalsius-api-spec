@@ -301,7 +301,9 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key(
         self,
-        ssh_key_id: StrictStr,
+        ssh_key_id: Annotated[
+            StrictStr, Field(description="ID of the SSH key to delete")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -316,9 +318,9 @@ class ManagementApi:
     ) -> None:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
 
-        :param ssh_key_id: (required)
+        :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -367,7 +369,9 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key_with_http_info(
         self,
-        ssh_key_id: StrictStr,
+        ssh_key_id: Annotated[
+            StrictStr, Field(description="ID of the SSH key to delete")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -382,9 +386,9 @@ class ManagementApi:
     ) -> ApiResponse[None]:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
 
-        :param ssh_key_id: (required)
+        :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -433,7 +437,9 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key_without_preload_content(
         self,
-        ssh_key_id: StrictStr,
+        ssh_key_id: Annotated[
+            StrictStr, Field(description="ID of the SSH key to delete")
+        ],
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -448,9 +454,9 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
 
-        :param ssh_key_id: (required)
+        :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
