@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.1.5](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.4...v1.1.5) (2025-05-23)
+
+
+### Bug Fixes
+
+* adjust NodesListResponse ([f647c12](https://github.com/exalsius/exalsius-api-spec/commit/f647c12a1f083b24f703d853ec4c83489b1c6fb0))
+* fix discriminator logic for node types and use enums for node_type ([d18fccb](https://github.com/exalsius/exalsius-api-spec/commit/d18fccbd23cdfa8a2add9484c9c901bbbd5f98cd))
+* split up schemas and responses ([6275bf1](https://github.com/exalsius/exalsius-api-spec/commit/6275bf1f7d0eedc84bcdbcc6b055f1ac8c942c1d))
+* use correct response models in paths; add delete ssh-key path ([81e38b3](https://github.com/exalsius/exalsius-api-spec/commit/81e38b3f9e5066e151086ec09d8d61b96c6e4ed4))
+* use oneOf in NodeResponse ([29eb3de](https://github.com/exalsius/exalsius-api-spec/commit/29eb3de3a1d8b776125f40a1e43667437401c4be))
+
 ## [1.1.4](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.3...v1.1.4) (2025-05-20)
 
 

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.1.4
+  version: 1.1.5
   x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
   x-audience:
     - exalsius-cli
@@ -161,7 +161,6 @@ components:
       $ref: ./components/responses/ssh-keys-list-response.yaml
     SshKeyCreateResponse:
       $ref: ./components/responses/ssh-key-create-response.yaml
-      
   securitySchemes:
     ApiKeyAuth:
       $ref: ./components/securitySchemes/ApiKeyAuth.yaml
