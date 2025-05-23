@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, StrictStr
 from typing_extensions import Self
 
 
@@ -29,10 +29,8 @@ class SshKeysListResponseSshKeysInner(BaseModel):
     SshKeysListResponseSshKeysInner
     """  # noqa: E501
 
-    id: Optional[StrictInt] = Field(default=None, description="The ID of the SSH key")
-    name: Optional[StrictStr] = Field(
-        default=None, description="The name of the SSH key"
-    )
+    id: Optional[StrictStr] = None
+    name: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name"]
 
     model_config = ConfigDict(

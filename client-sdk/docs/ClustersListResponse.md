@@ -1,12 +1,11 @@
 # ClustersListResponse
 
-List of clusters
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**clusters** | [**List[Cluster]**](Cluster.md) |  | [optional] 
+**clusters** | [**List[Cluster]**](Cluster.md) |  | 
 **total** | **int** | The total number of clusters | [optional] 
 
 ## Example

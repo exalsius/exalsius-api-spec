@@ -22,7 +22,7 @@ from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
 from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
-                      StrictStr)
+                      StrictStr, field_validator)
 from typing_extensions import Self
 
 from exalsius_api_client.models.service_deployment import ServiceDeployment
@@ -37,7 +37,9 @@ class Cluster(BaseModel):
     name: Optional[StrictStr] = Field(
         default=None, description="The name of the cluster"
     )
-    cluster_status: StrictStr = Field(description="The status of the cluster")
+    cluster_status: StrictStr = Field(
+        description="The status of the cluster. - `STAGING`: Cluster is staging - `RUNNING`: Cluster is running - `DELETING`: Cluster is deleting - `DELETED`: Cluster is deleted "
+    )
     created_at: datetime = Field(
         description="The date and time the cluster was created"
     )
@@ -47,11 +49,11 @@ class Cluster(BaseModel):
     to_be_deleted_at: Optional[datetime] = Field(
         default=None, description="The date and time the cluster will be deleted"
     )
-    control_plane_node_ids: Optional[List[StrictInt]] = Field(
+    control_plane_node_ids: Optional[List[StrictStr]] = Field(
         default=None,
         description="The node IDs of the control plane nodes in the cluster",
     )
-    worker_node_ids: Optional[List[StrictInt]] = Field(
+    worker_node_ids: Optional[List[StrictStr]] = Field(
         default=None, description="The node IDs of the worker nodes in the cluster"
     )
     service_deployments: Optional[List[ServiceDeployment]] = Field(
@@ -80,6 +82,15 @@ class Cluster(BaseModel):
         "current_costs",
         "costs_per_hour",
     ]
+
+    @field_validator("cluster_status")
+    def cluster_status_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["STAGING", "RUNNING", "DELETING", "DELETED"]):
+            raise ValueError(
+                "must be one of enum values ('STAGING', 'RUNNING', 'DELETING', 'DELETED')"
+            )
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class ClusterCreateResponse(BaseModel):
     """
-    Cluster creation response
+    ClusterCreateResponse
     """  # noqa: E501
 
     cluster_id: StrictInt = Field(description="The ID of the created cluster")

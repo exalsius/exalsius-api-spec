@@ -1,12 +1,12 @@
 # SshKeysListResponse
 
-List of SSH keys
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **ssh_keys** | [**List[SshKeysListResponseSshKeysInner]**](SshKeysListResponseSshKeysInner.md) |  | 
+**total** | **int** | The total number of SSH keys | 
 
 ## Example
 

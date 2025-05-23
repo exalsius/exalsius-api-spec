@@ -301,6 +301,7 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key(
         self,
+        ssh_key_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -317,6 +318,8 @@ class ManagementApi:
 
         **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
 
+        :param ssh_key_id: (required)
+        :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -340,6 +343,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._delete_ssh_key_serialize(
+            ssh_key_id=ssh_key_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -363,6 +367,7 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key_with_http_info(
         self,
+        ssh_key_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -379,6 +384,8 @@ class ManagementApi:
 
         **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
 
+        :param ssh_key_id: (required)
+        :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -402,6 +409,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._delete_ssh_key_serialize(
+            ssh_key_id=ssh_key_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -425,6 +433,7 @@ class ManagementApi:
     @validate_call
     def delete_ssh_key_without_preload_content(
         self,
+        ssh_key_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -441,6 +450,8 @@ class ManagementApi:
 
         **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `id`: The ID of the SSH key to delete.
 
+        :param ssh_key_id: (required)
+        :type ssh_key_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -464,6 +475,7 @@ class ManagementApi:
         """  # noqa: E501
 
         _param = self._delete_ssh_key_serialize(
+            ssh_key_id=ssh_key_id,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -482,6 +494,7 @@ class ManagementApi:
 
     def _delete_ssh_key_serialize(
         self,
+        ssh_key_id,
         _request_auth,
         _content_type,
         _headers,
@@ -502,6 +515,8 @@ class ManagementApi:
         _body_params: Optional[bytes] = None
 
         # process the path parameters
+        if ssh_key_id is not None:
+            _path_params["ssh_key_id"] = ssh_key_id
         # process the query parameters
         # process the header parameters
         # process the form parameters
@@ -518,7 +533,7 @@ class ManagementApi:
 
         return self.api_client.param_serialize(
             method="DELETE",
-            resource_path="/management/ssh-keys",
+            resource_path="/management/ssh-key/{ssh_key_id}",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,

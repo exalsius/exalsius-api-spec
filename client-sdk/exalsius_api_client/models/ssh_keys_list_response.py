@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Self
 
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
@@ -29,11 +29,12 @@ from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
 
 class SshKeysListResponse(BaseModel):
     """
-    List of SSH keys
+    SshKeysListResponse
     """  # noqa: E501
 
     ssh_keys: List[SshKeysListResponseSshKeysInner]
-    __properties: ClassVar[List[str]] = ["ssh_keys"]
+    total: StrictInt = Field(description="The total number of SSH keys")
+    __properties: ClassVar[List[str]] = ["ssh_keys", "total"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,7 +100,8 @@ class SshKeysListResponse(BaseModel):
                     ]
                     if obj.get("ssh_keys") is not None
                     else None
-                )
+                ),
+                "total": obj.get("total"),
             }
         )
         return _obj

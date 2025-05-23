@@ -28,10 +28,10 @@ from exalsius_api_client.models.cluster import Cluster
 
 class ClustersListResponse(BaseModel):
     """
-    List of clusters
+    ClustersListResponse
     """  # noqa: E501
 
-    clusters: Optional[List[Cluster]] = None
+    clusters: List[Cluster]
     total: Optional[StrictInt] = Field(
         default=None, description="The total number of clusters"
     )

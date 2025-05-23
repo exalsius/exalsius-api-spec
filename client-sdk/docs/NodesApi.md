@@ -4,10 +4,10 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**delete_node**](NodesApi.md#delete_node) | **DELETE** /nodes/{node_id} | Delete a node from the pool
-[**describe_node**](NodesApi.md#describe_node) | **GET** /nodes/{node_id} | Get details of a single node in the node pool (self-managed or cloud)
-[**import_node_from_offer**](NodesApi.md#import_node_from_offer) | **POST** /nodes/import/offer/{offer_id} | Import a node from an offer
-[**import_ssh**](NodesApi.md#import_ssh) | **POST** /nodes/import/ssh | Import a self-managed node via SSH
+[**delete_node**](NodesApi.md#delete_node) | **DELETE** /node/{node_id} | Delete a node from the pool
+[**describe_node**](NodesApi.md#describe_node) | **GET** /node/{node_id} | Get details of a single node in the node pool (self-managed or cloud)
+[**import_node_from_offer**](NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
+[**import_ssh**](NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 [**list_nodes**](NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 
 
@@ -79,7 +79,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Node deleted |  -  |
+**200** | Node delete response |  -  |
 **404** | Node not found |  -  |
 **409** | Node is not in the &#x60;available&#x60; state |  -  |
 **500** | Internal Server Error |  -  |
@@ -154,14 +154,14 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Node details |  -  |
+**200** | A single node (self-managed or cloud) |  -  |
 **404** | Node not found |  -  |
 **500** | Internal Server Error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **import_node_from_offer**
-> NodesImportResponse import_node_from_offer(offer_id, amount=amount)
+> NodeImportResponse import_node_from_offer(offer_id, amount=amount)
 
 Import a node from an offer
 
@@ -191,7 +191,7 @@ On success, you'll receive one or more `nodeId` values. Use these IDs with the `
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.nodes_import_response import NodesImportResponse
+from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -230,7 +230,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesImportResponse**](NodesImportResponse.md)
+[**NodeImportResponse**](NodeImportResponse.md)
 
 ### Authorization
 
@@ -245,7 +245,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Nodes imported |  -  |
+**201** | Nodes successfully imported |  -  |
 **400** | Bad Request |  -  |
 **404** | Offer not found |  -  |
 **500** | Internal Server Error |  -  |
@@ -253,7 +253,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **import_ssh**
-> NodesImportResponse import_ssh(node_import_ssh_request)
+> NodeImportResponse import_ssh(node_import_ssh_request)
 
 Import a self-managed node via SSH
 
@@ -286,8 +286,8 @@ Returns the generated nodeId. Use that ID with the /clusters endpoints to includ
 
 ```python
 import exalsius_api_client
+from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import NodeImportSshRequest
-from exalsius_api_client.models.nodes_import_response import NodesImportResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -324,7 +324,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**NodesImportResponse**](NodesImportResponse.md)
+[**NodeImportResponse**](NodeImportResponse.md)
 
 ### Authorization
 
@@ -339,7 +339,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**201** | Nodes imported |  -  |
+**201** | Nodes successfully imported |  -  |
 **400** | Bad Request |  -  |
 **409** | Node already exists |  -  |
 **500** | Internal Server Error |  -  |
@@ -429,7 +429,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of nodes in the node pool |  -  |
+**200** | List of nodes in the node pool |  * X-Total-Count - Total number of available nodes <br>  |
 **400** | Invalid node_type |  -  |
 **500** | Internal Server Error |  -  |
 

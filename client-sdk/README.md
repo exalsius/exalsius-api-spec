@@ -105,24 +105,24 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ClustersApi* | [**add_cluster_services**](docs/ClustersApi.md#add_cluster_services) | **POST** /clusters/{cluster_id}/services | Add service deployments to a cluster
-*ClustersApi* | [**add_nodes**](docs/ClustersApi.md#add_nodes) | **POST** /clusters/{cluster_id}/nodes | Add nodes to a cluster
+*ClustersApi* | [**add_cluster_services**](docs/ClustersApi.md#add_cluster_services) | **POST** /cluster/{cluster_id}/services | Add service deployments to a cluster
+*ClustersApi* | [**add_nodes**](docs/ClustersApi.md#add_nodes) | **POST** /cluster/{cluster_id}/nodes | Add nodes to a cluster
 *ClustersApi* | [**create_cluster**](docs/ClustersApi.md#create_cluster) | **POST** /clusters | Create a cluster
-*ClustersApi* | [**delete_cluster**](docs/ClustersApi.md#delete_cluster) | **DELETE** /clusters/{cluster_id} | Delete (tear-down) a cluster
-*ClustersApi* | [**delete_node_from_cluster**](docs/ClustersApi.md#delete_node_from_cluster) | **DELETE** /clusters/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
-*ClustersApi* | [**deploy_cluster**](docs/ClustersApi.md#deploy_cluster) | **POST** /clusters/{cluster_id}/deploy | Deploy a new cluster
-*ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /clusters/{cluster_id} | Get details of a single cluster
-*ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /clusters/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
-*ClustersApi* | [**get_cluster_services**](docs/ClustersApi.md#get_cluster_services) | **GET** /clusters/{cluster_id}/services | Get services of a cluster
-*ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /clusters/{cluster_id}/nodes | Get nodes of a cluster
+*ClustersApi* | [**delete_cluster**](docs/ClustersApi.md#delete_cluster) | **DELETE** /cluster/{cluster_id} | Delete (tear-down) a cluster
+*ClustersApi* | [**delete_node_from_cluster**](docs/ClustersApi.md#delete_node_from_cluster) | **DELETE** /cluster/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
+*ClustersApi* | [**deploy_cluster**](docs/ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
+*ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
+*ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+*ClustersApi* | [**get_cluster_services**](docs/ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
+*ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
-*ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-keys | Delete an SSH key
+*ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
 *ManagementApi* | [**list_ssh_keys**](docs/ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
-*NodesApi* | [**delete_node**](docs/NodesApi.md#delete_node) | **DELETE** /nodes/{node_id} | Delete a node from the pool
-*NodesApi* | [**describe_node**](docs/NodesApi.md#describe_node) | **GET** /nodes/{node_id} | Get details of a single node in the node pool (self-managed or cloud)
-*NodesApi* | [**import_node_from_offer**](docs/NodesApi.md#import_node_from_offer) | **POST** /nodes/import/offer/{offer_id} | Import a node from an offer
-*NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /nodes/import/ssh | Import a self-managed node via SSH
+*NodesApi* | [**delete_node**](docs/NodesApi.md#delete_node) | **DELETE** /node/{node_id} | Delete a node from the pool
+*NodesApi* | [**describe_node**](docs/NodesApi.md#describe_node) | **GET** /node/{node_id} | Get details of a single node in the node pool (self-managed or cloud)
+*NodesApi* | [**import_node_from_offer**](docs/NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
+*NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *ServicesApi* | [**list_available_services**](docs/ServicesApi.md#list_available_services) | **GET** /services | List all available services
 *SupplyApi* | [**get_offers**](docs/SupplyApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
@@ -138,18 +138,17 @@ Class | Method | HTTP request | Description
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
  - [ClusterDeployResponse](docs/ClusterDeployResponse.md)
  - [ClusterKubeconfigResponse](docs/ClusterKubeconfigResponse.md)
+ - [ClusterNodeRemoveResponse](docs/ClusterNodeRemoveResponse.md)
  - [ClusterNodesResponse](docs/ClusterNodesResponse.md)
  - [ClusterResponse](docs/ClusterResponse.md)
  - [ClusterServicesResponse](docs/ClusterServicesResponse.md)
  - [ClustersListResponse](docs/ClustersListResponse.md)
  - [Error](docs/Error.md)
  - [Kubeconfig](docs/Kubeconfig.md)
- - [Node](docs/Node.md)
  - [NodeDeleteResponse](docs/NodeDeleteResponse.md)
- - [NodeDeletedResponse](docs/NodeDeletedResponse.md)
+ - [NodeImportResponse](docs/NodeImportResponse.md)
  - [NodeImportSshRequest](docs/NodeImportSshRequest.md)
  - [NodeResponse](docs/NodeResponse.md)
- - [NodesImportResponse](docs/NodesImportResponse.md)
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
  - [OffersListResponse](docs/OffersListResponse.md)

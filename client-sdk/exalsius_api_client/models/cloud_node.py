@@ -18,58 +18,31 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
-                      StrictStr)
+from pydantic import ConfigDict, Field, StrictFloat, StrictInt, StrictStr
 from typing_extensions import Self
 
+from exalsius_api_client.models.base_node import BaseNode
 
-class CloudNode(BaseModel):
+
+class CloudNode(BaseNode):
     """
     CloudNode
     """  # noqa: E501
 
-    id: StrictInt = Field(description="The unique identifier for the node")
-    node_type: StrictStr = Field(description="The type of the node")
-    description: Optional[StrictStr] = Field(
-        default=None, description="Description of the node"
+    provider: Optional[StrictStr] = Field(
+        default=None, description="The cloud provider of the node"
     )
-    location: StrictStr = Field(
-        description="The location of the node (e.g. city, data center, server rack, etc.)"
+    region: Optional[StrictStr] = Field(
+        default=None, description="The region of the node"
     )
-    gpu_count: Optional[StrictInt] = Field(
-        default=None, description="The number of GPUs"
-    )
-    gpu_vendor: Optional[StrictStr] = Field(
-        default=None, description="The vendor of the GPU"
-    )
-    gpu_type: Optional[StrictStr] = Field(
-        default=None, description="The type of the GPU"
-    )
-    gpu_memory: Optional[StrictInt] = Field(
-        default=None, description="The memory of the GPU in GB"
-    )
-    cpu_cores: Optional[StrictInt] = Field(
-        default=None, description="The number of CPU cores"
-    )
-    memory_gb: Optional[StrictInt] = Field(
-        default=None, description="The memory of the node in GB"
-    )
-    storage_gb: Optional[StrictInt] = Field(
-        default=None, description="The storage of the node in GB"
-    )
-    import_time: Optional[datetime] = Field(
-        default=None, description="The time the node was imported"
-    )
-    node_status: StrictStr = Field(description="The status of the node")
-    provider: StrictStr = Field(description="The cloud provider of the node")
-    region: StrictStr = Field(description="The region of the node")
     availability_zone: Optional[StrictStr] = Field(
         default=None, description="The availability zone of the node"
     )
-    instance_type: StrictStr = Field(description="The instance type of the node")
+    instance_type: Optional[StrictStr] = Field(
+        default=None, description="The instance type of the node"
+    )
     price_per_hour: Optional[Union[StrictFloat, StrictInt]] = Field(
         default=None, description="The price per hour for the node"
     )

@@ -1,13 +1,12 @@
 # NodesListResponse
 
-List of nodes in the node pool
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nodes** | [**List[BaseNode]**](BaseNode.md) |  | [optional] 
-**total** | **int** | The total number of nodes in the node pool | [optional] 
+**nodes** | [**List[BaseNode]**](BaseNode.md) |  | 
+**total** | **int** | Total number of nodes in the current result set | 
 
 ## Example
 

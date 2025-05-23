@@ -1,6 +1,5 @@
 # ClusterServicesResponse
 
-List of services in the cluster
 
 ## Properties
 

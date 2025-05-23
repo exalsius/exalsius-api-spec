@@ -7,12 +7,12 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | The unique identifier for the cluster | 
 **name** | **str** | The name of the cluster | [optional] 
-**cluster_status** | **str** | The status of the cluster | 
+**cluster_status** | **str** | The status of the cluster. - &#x60;STAGING&#x60;: Cluster is staging - &#x60;RUNNING&#x60;: Cluster is running - &#x60;DELETING&#x60;: Cluster is deleting - &#x60;DELETED&#x60;: Cluster is deleted  | 
 **created_at** | **datetime** | The date and time the cluster was created | 
 **updated_at** | **datetime** | The date and time the cluster was last updated | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the cluster will be deleted | [optional] 
-**control_plane_node_ids** | **List[int]** | The node IDs of the control plane nodes in the cluster | [optional] 
-**worker_node_ids** | **List[int]** | The node IDs of the worker nodes in the cluster | [optional] 
+**control_plane_node_ids** | **List[str]** | The node IDs of the control plane nodes in the cluster | [optional] 
+**worker_node_ids** | **List[str]** | The node IDs of the worker nodes in the cluster | [optional] 
 **service_deployments** | [**List[ServiceDeployment]**](ServiceDeployment.md) | The deployed services in the cluster | [optional] 
 **k8s_version** | **str** | The version of Kubernetes deployed in the cluster | [optional] 
 **current_costs** | **float** | The total costs of the cluster until now | [optional] 

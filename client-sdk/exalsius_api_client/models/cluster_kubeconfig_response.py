@@ -26,7 +26,7 @@ from typing_extensions import Self
 
 class ClusterKubeconfigResponse(BaseModel):
     """
-    The kubeconfig file for a cluster
+    ClusterKubeconfigResponse
     """  # noqa: E501
 
     kubeconfig: StrictStr = Field(description="The kubeconfig for the cluster")

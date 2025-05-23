@@ -1,12 +1,11 @@
 # SshKeyCreateResponse
 
-SSH key creation response
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ssh_key_id** | **int** | The ID of the created SSH key | 
+**ssh_key_id** | **str** | The ID of the created SSH key | 
 
 ## Example
 

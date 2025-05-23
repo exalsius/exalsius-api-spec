@@ -1,6 +1,5 @@
 # ClusterResponse
 
-Cluster details
 
 ## Properties
 
