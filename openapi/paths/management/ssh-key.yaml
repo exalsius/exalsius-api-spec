@@ -8,8 +8,7 @@ delete:
     Delete an SSH key from the management cluster.
 
     **Parameters**
-
-    - `id`: The ID of the SSH key to delete.
+    - `ssh_key_id`: The ID of the SSH key to delete.
 
   parameters:
     - name: ssh_key_id
@@ -18,6 +17,7 @@ delete:
       schema:
         type: string
         format: uuid
+      description: ID of the SSH key to delete
   responses:
     "204":
       description: SSH key deleted
