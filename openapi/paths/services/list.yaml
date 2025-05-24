@@ -19,29 +19,11 @@ get:
     '200':
       $ref: '../../components/responses/services-list-response.yaml'
     '404':
-      description: Services not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The services were not found."
-            instance: "/services"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: services-not-found
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/services"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
 
   x-codeSamples:
     - lang: curl

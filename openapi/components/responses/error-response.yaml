@@ -1,0 +1,126 @@
+description: Error response
+content:
+  application/problem+json:
+    schema:
+      $ref: '../schemas/error.yaml'
+    examples:
+      bad-request:
+        summary: Bad Request
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Bad Request"
+          status: 400
+          detail: "The request is invalid."
+          instance: "/clusters"
+      cluster-invalid-node-ids:
+        summary: Cluster Invalid Node IDs
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Bad Request"
+          status: 400
+          detail: "Node with ID not found"
+          instance: "/clusters/123/nodes"
+      cluster-not-in-staging-state:
+        summary: Cluster Not in Staging State
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Bad Request"
+          status: 400 
+          detail: "The cluster with ID 123 is not in the `staging` state."
+          instance: "/clusters/123"
+      node-invalid-type:
+        summary: Node Invalid Type
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Bad Request"
+          status: 400
+          detail: "Node type is invalid"
+          instance: "/nodes"
+      cluster-not-found:
+        summary: Cluster Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Cluster Not Found"
+          status: 404
+          detail: "The cluster with ID 123 was not found."
+          instance: "/clusters/123"
+      node-not-found:
+        summary: Node Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Not Found"
+          status: 404
+          detail: "The node with ID 123 was not found."
+          instance: "/nodes/123"
+      ssh-keys-not-found:
+        summary: SSH Keys Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Not Found"
+          status: 404
+          detail: "No SSH keys found"
+          instance: "/management/ssh-keys"
+      node-offer-not-found:
+        summary: Node Offer Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Not Found"
+          status: 404
+          detail: "The node offer with ID 123 was not found."
+          instance: "/nodes/import-offer"
+      services-not-found:
+        summary: Services Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Not Found"
+          status: 404
+          detail: "The services were not found."
+          instance: "/services"
+      cluster-no-nodes-in-staging:
+        summary: Cluster No Nodes in Staging
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Conflict"
+          status: 409
+          detail: "The cluster with ID 123 has no nodes in the `controlPlaneNodeIds` or `workerNodeIds` arrays."
+          instance: "/clusters/123"
+      cluster-node-already-in-cluster:
+        summary: Cluster Node Already in Cluster
+        value:
+          type: "https://api.exalsius.ai/errors/conflict"
+          title: "Conflict"
+          status: 409
+          detail: "The node with ID 123 is already in the cluster."
+          instance: "/clusters/123/nodes/123"
+      node-already-exists:
+        summary: Node Already Exists
+        value:
+          type: "https://api.exalsius.ai/errors/conflict"
+          title: "Conflict"
+          status: 409
+          detail: "The node with ID 123 already exists."
+          instance: "/nodes/123"
+      node-not-in-available-state:
+        summary: Node Not in Available State
+        value:
+          type: "https://api.exalsius.ai/errors/conflict"
+          title: "Conflict"
+          status: 409
+          detail: "The node with ID 123 is not in the `available` state."
+          instance: "/nodes/123"
+      server-error:
+        summary: Internal Server Error
+        value:
+            type: "https://api.exalsius.ai/errors/server-error"
+            title: "Internal Server Error"
+            status: 500
+            detail: "An internal server error occurred while processing the request."
+            instance: "/clusters/123"
+      cluster-node-not-found:
+        summary: Cluster Node Not Found
+        value:
+          type: "https://api.exalsius.ai/errors/not-found"
+          title: "Cluster Node Not Found"
+          status: 409
+          detail: "The cluster node with ID 123 was not found."
+          instance: "/cluster/123/nodes/123"

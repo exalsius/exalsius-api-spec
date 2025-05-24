@@ -23,29 +23,11 @@ get:
     '200':
       $ref: '../../components/responses/cluster-services-response.yaml'
     '404':
-      description: Cluster not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The cluster with ID 123 was not found."
-            instance: "/clusters/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/clusters/123/services"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
   x-codeSamples:
     - lang: curl
       label: cURL
@@ -92,41 +74,14 @@ post:
     '201':
       $ref: '../../components/responses/cluster-services-response.yaml'
     '400':
-      description: Invalid service deployments
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/bad-request"
-            title: "Bad Request"
-            status: 400
-            detail: "Invalid service deployments"
-            instance: "/clusters/123/services"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
     '404':
-      description: Cluster not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The cluster with ID 123 was not found."
-            instance: "/clusters/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/clusters/123/services"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
   x-codeSamples:
     - lang: curl
       label: cURL

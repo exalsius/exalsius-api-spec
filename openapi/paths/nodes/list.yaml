@@ -52,29 +52,11 @@ get:
     '200':
       $ref: '../../components/responses/nodes-list-response.yaml'
     '400':
-      description: Invalid node_type
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/bad-request"
-            title: "Bad Request"
-            status: 400
-            detail: "Invalid node_type"
-            instance: "/nodes"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: node-invalid-type
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/nodes"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
   x-codeSamples:
     - lang: curl
       label: cURL
