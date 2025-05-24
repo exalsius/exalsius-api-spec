@@ -159,50 +159,14 @@ post:
     '200':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
     '400':
-      description: Invalid node_ids
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/bad-request"
-            title: "Bad Request"
-            status: 400
-            detail: "Node with ID not found"
-            instance: "/clusters/123/nodes"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-invalid-node-ids
     '404':
-      description: Cluster not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The cluster with ID 123 was not found."
-            instance: "/clusters/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
     '409':
-      description: Nodes already in cluster
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/conflict"
-            title: "Conflict"
-            status: 409
-            detail: "The nodes with IDs 1234 and 1235 are already in the cluster."
-            instance: "/clusters/123/nodes"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-node-already-in-cluster
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/clusters/123/nodes"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

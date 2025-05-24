@@ -15,29 +15,11 @@ get:
     "200":
       $ref: "../../components/responses/ssh-keys-list-response.yaml"
     "404":
-      description: SSH keys not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "No SSH keys found"
-            instance: "/management/ssh-keys"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: ssh-keys-not-found
     "500":
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/management/ssh-keys"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: server-error
 
   x-codeSamples:
     - lang: curl
@@ -79,29 +61,11 @@ post:
     "201":
       $ref: "../../components/responses/ssh-key-create-response.yaml"
     "400":
-      description: Bad Request
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/bad-request"
-            title: "Bad Request"
-            status: 400
-            detail: "Bad request"
-            instance: "/management/ssh-keys"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: bad-request
     "500":
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/management/ssh-keys"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: server-error
 
   x-codeSamples:
     - lang: curl
