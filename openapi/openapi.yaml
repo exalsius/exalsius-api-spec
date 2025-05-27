@@ -161,6 +161,7 @@ components:
       $ref: ./components/responses/ssh-keys-list-response.yaml
     SshKeyCreateResponse:
       $ref: ./components/responses/ssh-key-create-response.yaml
+      
   securitySchemes:
     ApiKeyAuth:
       $ref: ./components/securitySchemes/ApiKeyAuth.yaml

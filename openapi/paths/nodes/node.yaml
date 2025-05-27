@@ -93,36 +93,14 @@ delete:
     '200':
       $ref: '../../components/responses/node-delete-response.yaml'
     '404':
-      description: Node not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The node with ID 123 was not found."
-            instance: "/nodes/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: node-not-found
     '409':
-      description: Node is not in the `available` state
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-          example:
-            type: "https://api.exalsius.ai/errors/conflict"
-            title: "Conflict"
-            status: 409
-            detail: "The node with ID 123 is not in the `available` state."
-            instance: "/nodes/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: node-not-in-available-state
     '500':
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: '../../components/schemas/error.yaml'
-            instance: "/nodes/123"
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
 
   x-codeSamples:
     - lang: curl

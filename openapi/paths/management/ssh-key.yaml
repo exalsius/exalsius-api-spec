@@ -8,6 +8,7 @@ delete:
     Delete an SSH key from the management cluster.
 
     **Parameters**
+
     - `ssh_key_id`: The ID of the SSH key to delete.
 
   parameters:
@@ -22,29 +23,11 @@ delete:
     "204":
       description: SSH key deleted
     "404":
-      description: SSH key not found
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The SSH key with ID 123 was not found."
-            instance: "/management/ssh-keys/123"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: ssh-keys-not-found
     "500":
-      description: Internal Server Error
-      content:
-        application/problem+json:
-          schema:
-            $ref: "../../components/schemas/error.yaml"
-          example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/management/ssh-keys"
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: server-error
 
   x-codeSamples:
     - lang: curl
