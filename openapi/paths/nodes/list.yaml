@@ -51,7 +51,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/nodes-list-response.yaml'
-    '400':
+    '422':
       $ref: '../../components/responses/error-response.yaml'
       useExample: node-invalid-type
     '500':
