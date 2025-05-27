@@ -79,8 +79,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of services |  -  |
-**404** | Services not found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -80,9 +80,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Node delete response |  -  |
-**404** | Node not found |  -  |
-**409** | Node is not in the &#x60;available&#x60; state |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Error response |  -  |
+**409** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -155,8 +155,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single node (self-managed or cloud) |  -  |
-**404** | Node not found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -246,9 +246,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Nodes successfully imported |  -  |
-**400** | Bad Request |  -  |
-**404** | Offer not found |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Error response |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -340,9 +340,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | Nodes successfully imported |  -  |
-**400** | Bad Request |  -  |
-**409** | Node already exists |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Error response |  -  |
+**409** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -430,8 +430,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of nodes in the node pool |  * X-Total-Count - Total number of available nodes <br>  |
-**400** | Invalid node_type |  -  |
-**500** | Internal Server Error |  -  |
+**422** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

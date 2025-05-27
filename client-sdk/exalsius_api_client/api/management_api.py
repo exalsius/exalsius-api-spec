@@ -318,7 +318,7 @@ class ManagementApi:
     ) -> None:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -386,7 +386,7 @@ class ManagementApi:
     ) -> ApiResponse[None]:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -454,7 +454,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters** - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str

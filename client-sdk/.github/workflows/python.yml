@@ -7,9 +7,6 @@ name: exalsius_api_client Python package
 
 on: [push, pull_request]
 
-permissions:
-  contents: read
-
 jobs:
   build:
 

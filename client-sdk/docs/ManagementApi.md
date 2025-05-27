@@ -87,8 +87,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **201** | SSH key creation response |  -  |
-**400** | Bad Request |  -  |
-**500** | Internal Server Error |  -  |
+**400** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -102,6 +102,7 @@ Delete an SSH key
 Delete an SSH key from the management cluster.
 
 **Parameters**
+
 - `ssh_key_id`: The ID of the SSH key to delete.
 
 
@@ -160,8 +161,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | SSH key deleted |  -  |
-**404** | SSH key not found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -233,8 +234,8 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of SSH keys |  -  |
-**404** | SSH keys not found |  -  |
-**500** | Internal Server Error |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

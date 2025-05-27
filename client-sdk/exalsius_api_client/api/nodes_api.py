@@ -1136,7 +1136,7 @@ class NodesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -1216,7 +1216,7 @@ class NodesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -1296,7 +1296,7 @@ class NodesApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "200": "NodesListResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
