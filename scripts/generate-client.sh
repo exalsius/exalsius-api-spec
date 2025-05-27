@@ -35,7 +35,7 @@ run_generator() {
     log "Generating client SDK python code..."
     docker run --rm -v "${REPO_DIR}:/local" \
         --user $(id -u):$(id -g) \
-        openapitools/openapi-generator-cli generate \
+        openapitools/openapi-generator-cli:v7.13.0 generate \
         -i local/dist/bundle.yaml \
         --package-name "exalsius_api_client" \
         -g python \
