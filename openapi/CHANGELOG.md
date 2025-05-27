@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.6](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.5...openapi-v1.1.6) (2025-05-27)
+
+
+### Bug Fixes
+
+* change node-invalid-type response code to 422 ([#37](https://github.com/exalsius/exalsius-api-spec/issues/37)) ([c1071c3](https://github.com/exalsius/exalsius-api-spec/commit/c1071c32adff7d6075461ed6a7f997b92ad9c78f))
+* use correct error response model ([#39](https://github.com/exalsius/exalsius-api-spec/issues/39)) ([e6f60dc](https://github.com/exalsius/exalsius-api-spec/commit/e6f60dc9dab4498e291f5c763e2a598bdfba8b0c))
+
 ## [1.1.5](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.4...openapi-v1.1.5) (2025-05-23)
 
 
