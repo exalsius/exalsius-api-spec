@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.6...openapi-v1.2.0) (2025-05-28)
+
+
+### Features
+
+* add ClusterAddNodeRequest model ([27bb895](https://github.com/exalsius/exalsius-api-spec/commit/27bb895494e0deeb4e2c8611ced12e2bfdd726e1))
+
+
+### Bug Fixes
+
+* add 409 conflict response when cluster already exists ([a00ce5d](https://github.com/exalsius/exalsius-api-spec/commit/a00ce5dfe863a14c6588ea70aa424d4a51756b4b))
+* add a ClusterDelete response model ([28bbe86](https://github.com/exalsius/exalsius-api-spec/commit/28bbe860d32d17099b13b53b05139bdaccb299ec))
+* adjust the ClusterNodeResponse schema ([5dfb3bc](https://github.com/exalsius/exalsius-api-spec/commit/5dfb3bcdbe892c1d725efeaee505a14bfefb6181))
+* change cluster_id format to string for delete_node request param ([8b94967](https://github.com/exalsius/exalsius-api-spec/commit/8b9496716ba94ba7ba2ef381d1a9761cc90d072c))
+* change cluster_id format to uuid strings ([c8396ca](https://github.com/exalsius/exalsius-api-spec/commit/c8396ca17b613513ea90e67efb17f238095345ca))
+* only allow strings for service deployment values to make it json serializable ([e6bd076](https://github.com/exalsius/exalsius-api-spec/commit/e6bd07639be82e2ef2c372d0e56f034f4da357ed))
+* remove NodeRole filter for /cluster/{id}/nodes ([e112b1e](https://github.com/exalsius/exalsius-api-spec/commit/e112b1e722180bad763e883543d5bb3d218e0a16))
+
 ## [1.1.6](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.1.5...openapi-v1.1.6) (2025-05-27)
 
 
