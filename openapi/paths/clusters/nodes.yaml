@@ -10,20 +10,12 @@ get:
     **Parameters**
 
     - `cluster_id`: The ID of the cluster to retrieve nodes from
-    - `node_role`: Only return nodes of this role (optional). Possible values:
-      - `control_plane`: only control plane nodes
-      - `worker`: only worker nodes
 
     **Examples**
 
     Here's an example of how to retrieve all nodes of a cluster:
       ```
       /clusters/123/nodes
-      ```
-
-    Here's an example of how to retrieve all control plane nodes of a cluster:
-      ```
-      /clusters/123/nodes?node_role=control_plane
       ```
   parameters:
     - name: cluster_id
@@ -33,22 +25,6 @@ get:
         type: integer
         format: int64
       description: ID of the cluster to retrieve nodes from
-    - name: node_role
-      in: query
-      required: false
-      schema:
-        type: string
-        enum: [CONTROL_PLANE, WORKER]
-        x-enum-varnames: [CONTROL_PLANE, WORKER]
-        description: >
-          The role of the nodes to retrieve.
-          - `CONTROL_PLANE`: Control plane node
-          - `WORKER`: Worker node
-      description: |
-        Only return nodes of this role.
-        Possible values:
-        - `control_plane` - only control plane nodes
-        - `worker` - only worker nodes
   responses:
     '200':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
