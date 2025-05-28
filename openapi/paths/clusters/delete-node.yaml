@@ -19,8 +19,8 @@ delete:
       in: path
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
   responses:
     '202':
       $ref: '../../components/responses/cluster-node-remove-response.yaml'
