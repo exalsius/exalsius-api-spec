@@ -5,6 +5,7 @@ required:
 properties:
   cluster_id:
     type: string
+    format: uuid
     description: The unique identifier of the cluster
   control_plane_node_ids:
     type: array

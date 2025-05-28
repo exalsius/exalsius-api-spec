@@ -21,25 +21,23 @@ get:
       description: |
         Only return clusters of this status.
         Possible values:
-        - `pending` - clusters that are pending
+        - `staging` - clusters that are staging
         - `running` - clusters that are running
         - `deleting` - clusters that are deleting
-        - `deleted` - clusters that are deleted
+        - `deleted` - clusters that are deleted (fully deleted)
         - `failed` - clusters that failed
       required: false
       schema:
         type: string
-        x-extensible-enum:
-          - value: PENDING
-            description: clusters that are pending
-          - value: RUNNING
-            description: clusters that are running
-          - value: DELETING
-            description: clusters that are deleting
-          - value: DELETED
-            description: clusters that are deleted
-          - value: FAILED
-            description: clusters that failed
+        enum: [STAGING, RUNNING, DELETING, DELETED, FAILED]
+        x-enum-varnames: [STAGING, RUNNING, DELETING, DELETED, FAILED]
+        description: >
+          The status of the clusters.
+          - `STAGING`: Clusters that are staging
+          - `RUNNING`: Clusters that are running
+          - `DELETING`: Clusters that are deleting
+          - `DELETED`: Clusters that are deleted
+          - `FAILED`: Clusters that failed
 
   responses:
     '200':
