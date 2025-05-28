@@ -97,7 +97,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_add_node_request.py
-test/test_cluster_delete_response.py
-test/test_cluster_node_to_add.py
 tox.ini
