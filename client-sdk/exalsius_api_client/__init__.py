@@ -34,18 +34,23 @@ from exalsius_api_client.exceptions import (ApiAttributeError, ApiException,
 from exalsius_api_client.models.base_node import BaseNode
 from exalsius_api_client.models.cloud_node import CloudNode
 from exalsius_api_client.models.cluster import Cluster
+from exalsius_api_client.models.cluster_add_node_request import \
+    ClusterAddNodeRequest
 from exalsius_api_client.models.cluster_add_service_request import \
     ClusterAddServiceRequest
 from exalsius_api_client.models.cluster_create_request import \
     ClusterCreateRequest
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse
+from exalsius_api_client.models.cluster_delete_response import \
+    ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse
 from exalsius_api_client.models.cluster_node_remove_response import \
     ClusterNodeRemoveResponse
+from exalsius_api_client.models.cluster_node_to_add import ClusterNodeToAdd
 from exalsius_api_client.models.cluster_nodes_response import \
     ClusterNodesResponse
 from exalsius_api_client.models.cluster_response import ClusterResponse

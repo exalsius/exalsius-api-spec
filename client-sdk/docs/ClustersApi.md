@@ -56,7 +56,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
+    cluster_id = 'cluster_id_example' # str | 
     cluster_add_service_request = exalsius_api_client.ClusterAddServiceRequest() # ClusterAddServiceRequest | 
 
     try:
@@ -75,7 +75,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**|  | 
+ **cluster_id** | **str**|  | 
  **cluster_add_service_request** | [**ClusterAddServiceRequest**](ClusterAddServiceRequest.md)|  | 
 
 ### Return type
@@ -103,7 +103,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **add_nodes**
-> ClusterNodesResponse add_nodes(cluster_id, node_ids, node_role=node_role)
+> ClusterNodesResponse add_nodes(cluster_id, cluster_add_node_request)
 
 Add nodes to a cluster
 
@@ -148,6 +148,7 @@ cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy`
 
 ```python
 import exalsius_api_client
+from exalsius_api_client.models.cluster_add_node_request import ClusterAddNodeRequest
 from exalsius_api_client.models.cluster_nodes_response import ClusterNodesResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
@@ -163,13 +164,12 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
-    node_ids = [56] # List[int] | 
-    node_role = 'node_role_example' # str |  (optional)
+    cluster_id = 'cluster_id_example' # str | 
+    cluster_add_node_request = exalsius_api_client.ClusterAddNodeRequest() # ClusterAddNodeRequest | 
 
     try:
         # Add nodes to a cluster
-        api_response = api_instance.add_nodes(cluster_id, node_ids, node_role=node_role)
+        api_response = api_instance.add_nodes(cluster_id, cluster_add_node_request)
         print("The response of ClustersApi->add_nodes:\n")
         pprint(api_response)
     except Exception as e:
@@ -183,9 +183,8 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**|  | 
- **node_ids** | [**List[int]**](int.md)|  | 
- **node_role** | **str**|  | [optional] 
+ **cluster_id** | **str**|  | 
+ **cluster_add_node_request** | [**ClusterAddNodeRequest**](ClusterAddNodeRequest.md)|  | 
 
 ### Return type
 
@@ -197,15 +196,14 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of nodes in the cluster |  -  |
-**400** | Error response |  -  |
+**201** | List of nodes in the cluster |  -  |
 **404** | Error response |  -  |
 **409** | Error response |  -  |
 **500** | Error response |  -  |
@@ -300,12 +298,13 @@ No authorization required
 |-------------|-------------|------------------|
 **201** | Cluster creation response |  -  |
 **400** | Error response |  -  |
+**409** | Error response |  -  |
 **500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster**
-> delete_cluster(cluster_id)
+> ClusterDeleteResponse delete_cluster(cluster_id)
 
 Delete (tear-down) a cluster
 
@@ -331,6 +330,7 @@ until it is fully deleted.
 
 ```python
 import exalsius_api_client
+from exalsius_api_client.models.cluster_delete_response import ClusterDeleteResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -345,11 +345,13 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | ID of the cluster to delete
+    cluster_id = 'cluster_id_example' # str | ID of the cluster to delete
 
     try:
         # Delete (tear-down) a cluster
-        api_instance.delete_cluster(cluster_id)
+        api_response = api_instance.delete_cluster(cluster_id)
+        print("The response of ClustersApi->delete_cluster:\n")
+        pprint(api_response)
     except Exception as e:
         print("Exception when calling ClustersApi->delete_cluster: %s\n" % e)
 ```
@@ -361,11 +363,11 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| ID of the cluster to delete | 
+ **cluster_id** | **str**| ID of the cluster to delete | 
 
 ### Return type
 
-void (empty response body)
+[**ClusterDeleteResponse**](ClusterDeleteResponse.md)
 
 ### Authorization
 
@@ -374,13 +376,13 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/problem+json
+ - **Accept**: application/json, application/problem+json
 
 ### HTTP response details
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**204** | Cluster deleted; nodes returned to pool |  -  |
+**200** | Cluster deletion response |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
@@ -417,8 +419,8 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
-    node_id = 56 # int | 
+    cluster_id = 'cluster_id_example' # str | 
+    node_id = 'node_id_example' # str | 
 
     try:
         # Delete a node from a cluster
@@ -436,8 +438,8 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**|  | 
- **node_id** | **int**|  | 
+ **cluster_id** | **str**|  | 
+ **node_id** | **str**|  | 
 
 ### Return type
 
@@ -508,7 +510,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
+    cluster_id = 'cluster_id_example' # str | 
 
     try:
         # Deploy a new cluster
@@ -526,7 +528,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**|  | 
+ **cluster_id** | **str**|  | 
 
 ### Return type
 
@@ -583,7 +585,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | ID of the cluster to describe
+    cluster_id = 'cluster_id_example' # str | ID of the cluster to describe
 
     try:
         # Get details of a single cluster
@@ -601,7 +603,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| ID of the cluster to describe | 
+ **cluster_id** | **str**| ID of the cluster to describe | 
 
 ### Return type
 
@@ -656,7 +658,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | The ID of the cluster to get the kubeconfig for
+    cluster_id = 'cluster_id_example' # str | The ID of the cluster to get the kubeconfig for
 
     try:
         # Get the kubeconfig for a cluster
@@ -674,7 +676,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| The ID of the cluster to get the kubeconfig for | 
+ **cluster_id** | **str**| The ID of the cluster to get the kubeconfig for | 
 
 ### Return type
 
@@ -734,7 +736,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
+    cluster_id = 'cluster_id_example' # str | 
 
     try:
         # Get services of a cluster
@@ -752,7 +754,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**|  | 
+ **cluster_id** | **str**|  | 
 
 ### Return type
 
@@ -778,7 +780,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_nodes**
-> ClusterNodesResponse get_nodes(cluster_id, node_role=node_role)
+> ClusterNodesResponse get_nodes(cluster_id)
 
 Get nodes of a cluster
 
@@ -789,20 +791,12 @@ Fetch all nodes that are part of a cluster.
 **Parameters**
 
 - `cluster_id`: The ID of the cluster to retrieve nodes from
-- `node_role`: Only return nodes of this role (optional). Possible values:
-  - `control_plane`: only control plane nodes
-  - `worker`: only worker nodes
 
 **Examples**
 
 Here's an example of how to retrieve all nodes of a cluster:
   ```
   /clusters/123/nodes
-  ```
-
-Here's an example of how to retrieve all control plane nodes of a cluster:
-  ```
-  /clusters/123/nodes?node_role=control_plane
   ```
 
 
@@ -826,12 +820,11 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | ID of the cluster to retrieve nodes from
-    node_role = 'node_role_example' # str | Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes  (optional)
+    cluster_id = 'cluster_id_example' # str | ID of the cluster to retrieve nodes from
 
     try:
         # Get nodes of a cluster
-        api_response = api_instance.get_nodes(cluster_id, node_role=node_role)
+        api_response = api_instance.get_nodes(cluster_id)
         print("The response of ClustersApi->get_nodes:\n")
         pprint(api_response)
     except Exception as e:
@@ -845,8 +838,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_id** | **int**| ID of the cluster to retrieve nodes from | 
- **node_role** | **str**| Only return nodes of this role. Possible values: - &#x60;control_plane&#x60; - only control plane nodes - &#x60;worker&#x60; - only worker nodes  | [optional] 
+ **cluster_id** | **str**| ID of the cluster to retrieve nodes from | 
 
 ### Return type
 
@@ -909,7 +901,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed  (optional)
+    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed  (optional)
 
     try:
         # List all clusters
@@ -927,7 +919,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;pending&#x60; - clusters that are pending - &#x60;running&#x60; - clusters that are running - &#x60;deleting&#x60; - clusters that are deleting - &#x60;deleted&#x60; - clusters that are deleted - &#x60;failed&#x60; - clusters that failed  | [optional] 
+ **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;staging&#x60; - clusters that are staging - &#x60;running&#x60; - clusters that are running - &#x60;deleting&#x60; - clusters that are deleting - &#x60;deleted&#x60; - clusters that are deleted (fully deleted) - &#x60;failed&#x60; - clusters that failed  | [optional] 
 
 ### Return type
 

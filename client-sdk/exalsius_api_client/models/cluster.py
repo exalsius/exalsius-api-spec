@@ -33,10 +33,10 @@ class Cluster(BaseModel):
     Cluster
     """  # noqa: E501
 
-    id: StrictInt = Field(description="The unique identifier for the cluster")
-    name: Optional[StrictStr] = Field(
-        default=None, description="The name of the cluster"
+    id: Optional[StrictStr] = Field(
+        default=None, description="The unique identifier for the cluster"
     )
+    name: StrictStr = Field(description="The name of the cluster")
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `STAGING`: Cluster is staging - `RUNNING`: Cluster is running - `DELETING`: Cluster is deleting - `DELETED`: Cluster is deleted "
     )

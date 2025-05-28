@@ -20,27 +20,19 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from exalsius_api_client.models.cluster_node_to_add import ClusterNodeToAdd
 
-class ClusterNodesResponse(BaseModel):
+
+class ClusterAddNodeRequest(BaseModel):
     """
-    ClusterNodesResponse
+    ClusterAddNodeRequest
     """  # noqa: E501
 
-    cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    control_plane_node_ids: Optional[List[StrictStr]] = None
-    worker_node_ids: Optional[List[StrictStr]] = None
-    total_nodes: Optional[StrictInt] = Field(
-        default=None, description="The total number of nodes in the cluster"
-    )
-    __properties: ClassVar[List[str]] = [
-        "cluster_id",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "total_nodes",
-    ]
+    nodes_to_add: List[ClusterNodeToAdd]
+    __properties: ClassVar[List[str]] = ["nodes_to_add"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +51,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a JSON string"""
+        """Create an instance of ClusterAddNodeRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +71,18 @@ class ClusterNodesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of each item in nodes_to_add (list)
+        _items = []
+        if self.nodes_to_add:
+            for _item_nodes_to_add in self.nodes_to_add:
+                if _item_nodes_to_add:
+                    _items.append(_item_nodes_to_add.to_dict())
+            _dict["nodes_to_add"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a dict"""
+        """Create an instance of ClusterAddNodeRequest from a dict"""
         if obj is None:
             return None
 
@@ -92,10 +91,11 @@ class ClusterNodesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cluster_id": obj.get("cluster_id"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "total_nodes": obj.get("total_nodes"),
+                "nodes_to_add": (
+                    [ClusterNodeToAdd.from_dict(_item) for _item in obj["nodes_to_add"]]
+                    if obj.get("nodes_to_add") is not None
+                    else None
+                )
             }
         )
         return _obj

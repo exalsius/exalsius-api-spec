@@ -20,27 +20,25 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
-class ClusterNodesResponse(BaseModel):
+class ClusterNodeToAdd(BaseModel):
     """
-    ClusterNodesResponse
+    ClusterNodeToAdd
     """  # noqa: E501
 
-    cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    control_plane_node_ids: Optional[List[StrictStr]] = None
-    worker_node_ids: Optional[List[StrictStr]] = None
-    total_nodes: Optional[StrictInt] = Field(
-        default=None, description="The total number of nodes in the cluster"
-    )
-    __properties: ClassVar[List[str]] = [
-        "cluster_id",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "total_nodes",
-    ]
+    node_id: StrictStr = Field(description="The ID of the node to add")
+    node_role: StrictStr = Field(description="The role of the node to add")
+    __properties: ClassVar[List[str]] = ["node_id", "node_role"]
+
+    @field_validator("node_role")
+    def node_role_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["CONTROL_PLANE", "WORKER"]):
+            raise ValueError("must be one of enum values ('CONTROL_PLANE', 'WORKER')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +57,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a JSON string"""
+        """Create an instance of ClusterNodeToAdd from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +81,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a dict"""
+        """Create an instance of ClusterNodeToAdd from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +89,6 @@ class ClusterNodesResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "cluster_id": obj.get("cluster_id"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "total_nodes": obj.get("total_nodes"),
-            }
+            {"node_id": obj.get("node_id"), "node_role": obj.get("node_role")}
         )
         return _obj

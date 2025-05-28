@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**cluster_id** | **int** | The ID of the cluster | 
+**cluster_id** | **str** | The ID of the cluster | 
 
 ## Example
 

@@ -86,7 +86,7 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_id = 56 # int | 
+    cluster_id = 'cluster_id_example' # str | 
     cluster_add_service_request = exalsius_api_client.ClusterAddServiceRequest() # ClusterAddServiceRequest | 
 
     try:
@@ -133,12 +133,15 @@ Class | Method | HTTP request | Description
  - [BaseNode](docs/BaseNode.md)
  - [CloudNode](docs/CloudNode.md)
  - [Cluster](docs/Cluster.md)
+ - [ClusterAddNodeRequest](docs/ClusterAddNodeRequest.md)
  - [ClusterAddServiceRequest](docs/ClusterAddServiceRequest.md)
  - [ClusterCreateRequest](docs/ClusterCreateRequest.md)
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
+ - [ClusterDeleteResponse](docs/ClusterDeleteResponse.md)
  - [ClusterDeployResponse](docs/ClusterDeployResponse.md)
  - [ClusterKubeconfigResponse](docs/ClusterKubeconfigResponse.md)
  - [ClusterNodeRemoveResponse](docs/ClusterNodeRemoveResponse.md)
+ - [ClusterNodeToAdd](docs/ClusterNodeToAdd.md)
  - [ClusterNodesResponse](docs/ClusterNodesResponse.md)
  - [ClusterResponse](docs/ClusterResponse.md)
  - [ClusterServicesResponse](docs/ClusterServicesResponse.md)

@@ -20,27 +20,20 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
-class ClusterNodesResponse(BaseModel):
+class ClusterDeleteResponse(BaseModel):
     """
-    ClusterNodesResponse
+    ClusterDeleteResponse
     """  # noqa: E501
 
-    cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    control_plane_node_ids: Optional[List[StrictStr]] = None
-    worker_node_ids: Optional[List[StrictStr]] = None
-    total_nodes: Optional[StrictInt] = Field(
-        default=None, description="The total number of nodes in the cluster"
+    cluster_id: StrictStr = Field(description="The ID of the deleted cluster")
+    node_ids: List[StrictStr] = Field(
+        description="The IDs of the nodes that were returned to the pool"
     )
-    __properties: ClassVar[List[str]] = [
-        "cluster_id",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "total_nodes",
-    ]
+    __properties: ClassVar[List[str]] = ["cluster_id", "node_ids"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +52,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a JSON string"""
+        """Create an instance of ClusterDeleteResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -83,7 +76,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a dict"""
+        """Create an instance of ClusterDeleteResponse from a dict"""
         if obj is None:
             return None
 
@@ -91,11 +84,6 @@ class ClusterNodesResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "cluster_id": obj.get("cluster_id"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "total_nodes": obj.get("total_nodes"),
-            }
+            {"cluster_id": obj.get("cluster_id"), "node_ids": obj.get("node_ids")}
         )
         return _obj

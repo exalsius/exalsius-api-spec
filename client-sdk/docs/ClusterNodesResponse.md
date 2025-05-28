@@ -6,8 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cluster_id** | **str** | The unique identifier of the cluster | 
-**nodes** | [**List[BaseNode]**](BaseNode.md) |  | 
-**total** | **int** | The total number of nodes in the cluster | [optional] 
+**control_plane_node_ids** | **List[str]** |  | [optional] 
+**worker_node_ids** | **List[str]** |  | [optional] 
+**total_nodes** | **int** | The total number of nodes in the cluster | [optional] 
 
 ## Example
 

@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
 
@@ -29,7 +29,7 @@ class ClusterCreateResponse(BaseModel):
     ClusterCreateResponse
     """  # noqa: E501
 
-    cluster_id: StrictInt = Field(description="The ID of the created cluster")
+    cluster_id: StrictStr = Field(description="The ID of the created cluster")
     __properties: ClassVar[List[str]] = ["cluster_id"]
 
     model_config = ConfigDict(

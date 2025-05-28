@@ -19,12 +19,16 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
+from exalsius_api_client.models.cluster_add_node_request import \
+    ClusterAddNodeRequest
 from exalsius_api_client.models.cluster_add_service_request import \
     ClusterAddServiceRequest
 from exalsius_api_client.models.cluster_create_request import \
     ClusterCreateRequest
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse
+from exalsius_api_client.models.cluster_delete_response import \
+    ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
@@ -56,7 +60,7 @@ class ClustersApi:
     @validate_call
     def add_cluster_services(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         cluster_add_service_request: ClusterAddServiceRequest,
         _request_timeout: Union[
             None,
@@ -75,7 +79,7 @@ class ClustersApi:
         **Add services to a cluster**  Add services to a cluster.  **Parameters**  - `clusterId`: The ID of the cluster to add services to.  **Request Body**  - `serviceDeployments`: An array of service deployments to be deployed to the cluster.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param cluster_add_service_request: (required)
         :type cluster_add_service_request: ClusterAddServiceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -127,7 +131,7 @@ class ClustersApi:
     @validate_call
     def add_cluster_services_with_http_info(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         cluster_add_service_request: ClusterAddServiceRequest,
         _request_timeout: Union[
             None,
@@ -146,7 +150,7 @@ class ClustersApi:
         **Add services to a cluster**  Add services to a cluster.  **Parameters**  - `clusterId`: The ID of the cluster to add services to.  **Request Body**  - `serviceDeployments`: An array of service deployments to be deployed to the cluster.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param cluster_add_service_request: (required)
         :type cluster_add_service_request: ClusterAddServiceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -198,7 +202,7 @@ class ClustersApi:
     @validate_call
     def add_cluster_services_without_preload_content(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         cluster_add_service_request: ClusterAddServiceRequest,
         _request_timeout: Union[
             None,
@@ -217,7 +221,7 @@ class ClustersApi:
         **Add services to a cluster**  Add services to a cluster.  **Parameters**  - `clusterId`: The ID of the cluster to add services to.  **Request Body**  - `serviceDeployments`: An array of service deployments to be deployed to the cluster.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param cluster_add_service_request: (required)
         :type cluster_add_service_request: ClusterAddServiceRequest
         :param _request_timeout: timeout setting for this request. If one
@@ -332,9 +336,8 @@ class ClustersApi:
     @validate_call
     def add_nodes(
         self,
-        cluster_id: StrictInt,
-        node_ids: List[StrictInt],
-        node_role: Optional[StrictStr] = None,
+        cluster_id: StrictStr,
+        cluster_add_node_request: ClusterAddNodeRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -352,11 +355,9 @@ class ClustersApi:
         **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
 
         :param cluster_id: (required)
-        :type cluster_id: int
-        :param node_ids: (required)
-        :type node_ids: List[int]
-        :param node_role:
-        :type node_role: str
+        :type cluster_id: str
+        :param cluster_add_node_request: (required)
+        :type cluster_add_node_request: ClusterAddNodeRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -381,8 +382,7 @@ class ClustersApi:
 
         _param = self._add_nodes_serialize(
             cluster_id=cluster_id,
-            node_ids=node_ids,
-            node_role=node_role,
+            cluster_add_node_request=cluster_add_node_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -390,8 +390,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ClusterNodesResponse",
-            "400": "Error",
+            "201": "ClusterNodesResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -408,9 +407,8 @@ class ClustersApi:
     @validate_call
     def add_nodes_with_http_info(
         self,
-        cluster_id: StrictInt,
-        node_ids: List[StrictInt],
-        node_role: Optional[StrictStr] = None,
+        cluster_id: StrictStr,
+        cluster_add_node_request: ClusterAddNodeRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -428,11 +426,9 @@ class ClustersApi:
         **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
 
         :param cluster_id: (required)
-        :type cluster_id: int
-        :param node_ids: (required)
-        :type node_ids: List[int]
-        :param node_role:
-        :type node_role: str
+        :type cluster_id: str
+        :param cluster_add_node_request: (required)
+        :type cluster_add_node_request: ClusterAddNodeRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -457,8 +453,7 @@ class ClustersApi:
 
         _param = self._add_nodes_serialize(
             cluster_id=cluster_id,
-            node_ids=node_ids,
-            node_role=node_role,
+            cluster_add_node_request=cluster_add_node_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -466,8 +461,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ClusterNodesResponse",
-            "400": "Error",
+            "201": "ClusterNodesResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -484,9 +478,8 @@ class ClustersApi:
     @validate_call
     def add_nodes_without_preload_content(
         self,
-        cluster_id: StrictInt,
-        node_ids: List[StrictInt],
-        node_role: Optional[StrictStr] = None,
+        cluster_id: StrictStr,
+        cluster_add_node_request: ClusterAddNodeRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -504,11 +497,9 @@ class ClustersApi:
         **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
 
         :param cluster_id: (required)
-        :type cluster_id: int
-        :param node_ids: (required)
-        :type node_ids: List[int]
-        :param node_role:
-        :type node_role: str
+        :type cluster_id: str
+        :param cluster_add_node_request: (required)
+        :type cluster_add_node_request: ClusterAddNodeRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -533,8 +524,7 @@ class ClustersApi:
 
         _param = self._add_nodes_serialize(
             cluster_id=cluster_id,
-            node_ids=node_ids,
-            node_role=node_role,
+            cluster_add_node_request=cluster_add_node_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -542,8 +532,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ClusterNodesResponse",
-            "400": "Error",
+            "201": "ClusterNodesResponse",
             "404": "Error",
             "409": "Error",
             "500": "Error",
@@ -556,8 +545,7 @@ class ClustersApi:
     def _add_nodes_serialize(
         self,
         cluster_id,
-        node_ids,
-        node_role,
+        cluster_add_node_request,
         _request_auth,
         _content_type,
         _headers,
@@ -566,9 +554,7 @@ class ClustersApi:
 
         _host = None
 
-        _collection_formats: Dict[str, str] = {
-            "node_ids": "multi",
-        }
+        _collection_formats: Dict[str, str] = {}
 
         _path_params: Dict[str, str] = {}
         _query_params: List[Tuple[str, str]] = []
@@ -583,23 +569,27 @@ class ClustersApi:
         if cluster_id is not None:
             _path_params["cluster_id"] = cluster_id
         # process the query parameters
-        if node_ids is not None:
-
-            _query_params.append(("node_ids", node_ids))
-
-        if node_role is not None:
-
-            _query_params.append(("node_role", node_role))
-
         # process the header parameters
         # process the form parameters
         # process the body parameter
+        if cluster_add_node_request is not None:
+            _body_params = cluster_add_node_request
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(
                 ["application/json", "application/problem+json"]
             )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
         _auth_settings: List[str] = []
@@ -674,6 +664,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -740,6 +731,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -806,6 +798,7 @@ class ClustersApi:
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "ClusterCreateResponse",
             "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -881,7 +874,7 @@ class ClustersApi:
     def delete_cluster(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to delete")
+            StrictStr, Field(description="ID of the cluster to delete")
         ],
         _request_timeout: Union[
             None,
@@ -894,13 +887,13 @@ class ClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> None:
+    ) -> ClusterDeleteResponse:
         """Delete (tear-down) a cluster
 
         **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
 
         :param cluster_id: ID of the cluster to delete (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -932,7 +925,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
+            "200": "ClusterDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -949,7 +942,7 @@ class ClustersApi:
     def delete_cluster_with_http_info(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to delete")
+            StrictStr, Field(description="ID of the cluster to delete")
         ],
         _request_timeout: Union[
             None,
@@ -962,13 +955,13 @@ class ClustersApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[None]:
+    ) -> ApiResponse[ClusterDeleteResponse]:
         """Delete (tear-down) a cluster
 
         **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
 
         :param cluster_id: ID of the cluster to delete (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1000,7 +993,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
+            "200": "ClusterDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -1017,7 +1010,7 @@ class ClustersApi:
     def delete_cluster_without_preload_content(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to delete")
+            StrictStr, Field(description="ID of the cluster to delete")
         ],
         _request_timeout: Union[
             None,
@@ -1036,7 +1029,7 @@ class ClustersApi:
         **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
 
         :param cluster_id: ID of the cluster to delete (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1068,7 +1061,7 @@ class ClustersApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "204": None,
+            "200": "ClusterDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -1110,7 +1103,7 @@ class ClustersApi:
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
             _header_params["Accept"] = self.api_client.select_header_accept(
-                ["application/problem+json"]
+                ["application/json", "application/problem+json"]
             )
 
         # authentication setting
@@ -1134,8 +1127,8 @@ class ClustersApi:
     @validate_call
     def delete_node_from_cluster(
         self,
-        cluster_id: StrictInt,
-        node_id: StrictInt,
+        cluster_id: StrictStr,
+        node_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1153,9 +1146,9 @@ class ClustersApi:
         **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param node_id: (required)
-        :type node_id: int
+        :type node_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1205,8 +1198,8 @@ class ClustersApi:
     @validate_call
     def delete_node_from_cluster_with_http_info(
         self,
-        cluster_id: StrictInt,
-        node_id: StrictInt,
+        cluster_id: StrictStr,
+        node_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1224,9 +1217,9 @@ class ClustersApi:
         **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param node_id: (required)
-        :type node_id: int
+        :type node_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1276,8 +1269,8 @@ class ClustersApi:
     @validate_call
     def delete_node_from_cluster_without_preload_content(
         self,
-        cluster_id: StrictInt,
-        node_id: StrictInt,
+        cluster_id: StrictStr,
+        node_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1295,9 +1288,9 @@ class ClustersApi:
         **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param node_id: (required)
-        :type node_id: int
+        :type node_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1400,7 +1393,7 @@ class ClustersApi:
     @validate_call
     def deploy_cluster(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1418,7 +1411,7 @@ class ClustersApi:
         **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1468,7 +1461,7 @@ class ClustersApi:
     @validate_call
     def deploy_cluster_with_http_info(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1486,7 +1479,7 @@ class ClustersApi:
         **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1536,7 +1529,7 @@ class ClustersApi:
     @validate_call
     def deploy_cluster_without_preload_content(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1554,7 +1547,7 @@ class ClustersApi:
         **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1655,7 +1648,7 @@ class ClustersApi:
     def describe_cluster(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to describe")
+            StrictStr, Field(description="ID of the cluster to describe")
         ],
         _request_timeout: Union[
             None,
@@ -1674,7 +1667,7 @@ class ClustersApi:
         **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
 
         :param cluster_id: ID of the cluster to describe (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1723,7 +1716,7 @@ class ClustersApi:
     def describe_cluster_with_http_info(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to describe")
+            StrictStr, Field(description="ID of the cluster to describe")
         ],
         _request_timeout: Union[
             None,
@@ -1742,7 +1735,7 @@ class ClustersApi:
         **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
 
         :param cluster_id: ID of the cluster to describe (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1791,7 +1784,7 @@ class ClustersApi:
     def describe_cluster_without_preload_content(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to describe")
+            StrictStr, Field(description="ID of the cluster to describe")
         ],
         _request_timeout: Union[
             None,
@@ -1810,7 +1803,7 @@ class ClustersApi:
         **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
 
         :param cluster_id: ID of the cluster to describe (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1909,7 +1902,7 @@ class ClustersApi:
     def get_cluster_kubeconfig(
         self,
         cluster_id: Annotated[
-            StrictInt,
+            StrictStr,
             Field(description="The ID of the cluster to get the kubeconfig for"),
         ],
         _request_timeout: Union[
@@ -1929,7 +1922,7 @@ class ClustersApi:
         **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1978,7 +1971,7 @@ class ClustersApi:
     def get_cluster_kubeconfig_with_http_info(
         self,
         cluster_id: Annotated[
-            StrictInt,
+            StrictStr,
             Field(description="The ID of the cluster to get the kubeconfig for"),
         ],
         _request_timeout: Union[
@@ -1998,7 +1991,7 @@ class ClustersApi:
         **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2047,7 +2040,7 @@ class ClustersApi:
     def get_cluster_kubeconfig_without_preload_content(
         self,
         cluster_id: Annotated[
-            StrictInt,
+            StrictStr,
             Field(description="The ID of the cluster to get the kubeconfig for"),
         ],
         _request_timeout: Union[
@@ -2067,7 +2060,7 @@ class ClustersApi:
         **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2165,7 +2158,7 @@ class ClustersApi:
     @validate_call
     def get_cluster_services(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2183,7 +2176,7 @@ class ClustersApi:
         **Get services of a cluster**  Get all services deployed in a cluster.  **Result**  Returns an array of service IDs deployed in the cluster To gather more information about a service, call the `GET /services/{serviceId}` endpoint.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2231,7 +2224,7 @@ class ClustersApi:
     @validate_call
     def get_cluster_services_with_http_info(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2249,7 +2242,7 @@ class ClustersApi:
         **Get services of a cluster**  Get all services deployed in a cluster.  **Result**  Returns an array of service IDs deployed in the cluster To gather more information about a service, call the `GET /services/{serviceId}` endpoint.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2297,7 +2290,7 @@ class ClustersApi:
     @validate_call
     def get_cluster_services_without_preload_content(
         self,
-        cluster_id: StrictInt,
+        cluster_id: StrictStr,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2315,7 +2308,7 @@ class ClustersApi:
         **Get services of a cluster**  Get all services deployed in a cluster.  **Result**  Returns an array of service IDs deployed in the cluster To gather more information about a service, call the `GET /services/{serviceId}` endpoint.
 
         :param cluster_id: (required)
-        :type cluster_id: int
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2414,14 +2407,8 @@ class ClustersApi:
     def get_nodes(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to retrieve nodes from")
+            StrictStr, Field(description="ID of the cluster to retrieve nodes from")
         ],
-        node_role: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes "
-            ),
-        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2436,12 +2423,10 @@ class ClustersApi:
     ) -> ClusterNodesResponse:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from - `node_role`: Only return nodes of this role (optional). Possible values:   - `control_plane`: only control plane nodes   - `worker`: only worker nodes  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```  Here's an example of how to retrieve all control plane nodes of a cluster:   ```   /clusters/123/nodes?node_role=control_plane   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
-        :type cluster_id: int
-        :param node_role: Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes
-        :type node_role: str
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2466,7 +2451,6 @@ class ClustersApi:
 
         _param = self._get_nodes_serialize(
             cluster_id=cluster_id,
-            node_role=node_role,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2491,14 +2475,8 @@ class ClustersApi:
     def get_nodes_with_http_info(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to retrieve nodes from")
+            StrictStr, Field(description="ID of the cluster to retrieve nodes from")
         ],
-        node_role: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes "
-            ),
-        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2513,12 +2491,10 @@ class ClustersApi:
     ) -> ApiResponse[ClusterNodesResponse]:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from - `node_role`: Only return nodes of this role (optional). Possible values:   - `control_plane`: only control plane nodes   - `worker`: only worker nodes  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```  Here's an example of how to retrieve all control plane nodes of a cluster:   ```   /clusters/123/nodes?node_role=control_plane   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
-        :type cluster_id: int
-        :param node_role: Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes
-        :type node_role: str
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2543,7 +2519,6 @@ class ClustersApi:
 
         _param = self._get_nodes_serialize(
             cluster_id=cluster_id,
-            node_role=node_role,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2568,14 +2543,8 @@ class ClustersApi:
     def get_nodes_without_preload_content(
         self,
         cluster_id: Annotated[
-            StrictInt, Field(description="ID of the cluster to retrieve nodes from")
+            StrictStr, Field(description="ID of the cluster to retrieve nodes from")
         ],
-        node_role: Annotated[
-            Optional[StrictStr],
-            Field(
-                description="Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes "
-            ),
-        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -2590,12 +2559,10 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from - `node_role`: Only return nodes of this role (optional). Possible values:   - `control_plane`: only control plane nodes   - `worker`: only worker nodes  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```  Here's an example of how to retrieve all control plane nodes of a cluster:   ```   /clusters/123/nodes?node_role=control_plane   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
-        :type cluster_id: int
-        :param node_role: Only return nodes of this role. Possible values: - `control_plane` - only control plane nodes - `worker` - only worker nodes
-        :type node_role: str
+        :type cluster_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -2620,7 +2587,6 @@ class ClustersApi:
 
         _param = self._get_nodes_serialize(
             cluster_id=cluster_id,
-            node_role=node_role,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -2640,7 +2606,6 @@ class ClustersApi:
     def _get_nodes_serialize(
         self,
         cluster_id,
-        node_role,
         _request_auth,
         _content_type,
         _headers,
@@ -2664,10 +2629,6 @@ class ClustersApi:
         if cluster_id is not None:
             _path_params["cluster_id"] = cluster_id
         # process the query parameters
-        if node_role is not None:
-
-            _query_params.append(("node_role", node_role))
-
         # process the header parameters
         # process the form parameters
         # process the body parameter
@@ -2702,7 +2663,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2721,7 +2682,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2773,7 +2734,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2792,7 +2753,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2844,7 +2805,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2863,7 +2824,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

@@ -33,7 +33,7 @@ class ServiceDeployment(BaseModel):
     service_name: Optional[StrictStr] = Field(
         default=None, description="The name of the service"
     )
-    values: Optional[Dict[str, Any]] = Field(
+    values: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="The values to set for the service"
     )
     __properties: ClassVar[List[str]] = ["service_id", "service_name", "values"]
