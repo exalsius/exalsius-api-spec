@@ -6,11 +6,19 @@ properties:
   cluster_id:
     type: string
     description: The unique identifier of the cluster
-  nodes:
+  control_plane_node_ids:
     type: array
     items:
-      $ref: './base-node.yaml'
-  total:
+      type: string
+      format: uuid
+      description: The unique identifier of the control plane nodes in the cluster
+  worker_node_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+      description: The unique identifier of the worker nodes in the cluster
+  total_nodes:
     type: integer
     format: int32
     description: The total number of nodes in the cluster

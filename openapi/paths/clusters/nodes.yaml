@@ -38,11 +38,12 @@ get:
       required: false
       schema:
         type: string
-        x-extensible-enum:
-          - value: CONTROL_PLANE
-            description: only control plane nodes
-          - value: WORKER
-            description: only worker nodes
+        enum: [CONTROL_PLANE, WORKER]
+        x-enum-varnames: [CONTROL_PLANE, WORKER]
+        description: >
+          The role of the nodes to retrieve.
+          - `CONTROL_PLANE`: Control plane node
+          - `WORKER`: Worker node
       description: |
         Only return nodes of this role.
         Possible values:
@@ -143,30 +144,28 @@ post:
       schema:
         type: array
         items:
-          type: integer
-          format: int64
+          type: string
+          format: uuid
     - name: node_role
       in: query
       required: false
       schema:
         type: string
-        x-extensible-enum:
-          - value: CONTROL_PLANE
-            description: only control plane nodes
-          - value: WORKER
-            description: only worker nodes
+        enum: [CONTROL_PLANE, WORKER]
+        x-enum-varnames: [CONTROL_PLANE, WORKER]
+        description: >
+          The role of the nodes to add.
+          - `CONTROL_PLANE`: Control plane node
+          - `WORKER`: Worker node
   responses:
-    '200':
+    '201':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
-    '400':
-      $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-invalid-node-ids
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
     '409':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-node-already-in-cluster
+      useExample: cluster-invalid-node-ids
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
