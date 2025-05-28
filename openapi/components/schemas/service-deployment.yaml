@@ -11,7 +11,8 @@ properties:
     example: "my-service"
   values:
     type: object
-    additionalProperties: true
+    additionalProperties:
+      type: string
     description: The values to set for the service
     example: { "key": "value" }
 required:
