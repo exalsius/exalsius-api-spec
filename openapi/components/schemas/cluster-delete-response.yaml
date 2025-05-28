@@ -1,0 +1,17 @@
+type: object
+required:
+  - cluster_id
+  - node_ids
+properties:
+  cluster_id:
+    type: integer
+    format: int64
+    example: 1
+    description: The ID of the deleted cluster
+  node_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+    example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174001"]
+    description: The IDs of the nodes that were returned to the pool

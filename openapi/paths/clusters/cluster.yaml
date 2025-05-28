@@ -68,7 +68,7 @@ delete:
       description: ID of the cluster to delete
   responses:
     '204':
-      description: Cluster deleted; nodes returned to pool
+      $ref: '../../components/responses/cluster-delete-response.yaml'
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
