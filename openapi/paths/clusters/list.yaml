@@ -101,6 +101,9 @@ post:
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-already-exists
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
