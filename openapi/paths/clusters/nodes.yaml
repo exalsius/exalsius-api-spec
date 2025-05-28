@@ -114,25 +114,12 @@ post:
       schema:
         type: string
         format: uuid
-    - name: node_ids
-      in: query
-      required: true
-      schema:
-        type: array
-        items:
-          type: string
-          format: uuid
-    - name: node_role
-      in: query
-      required: false
-      schema:
-        type: string
-        enum: [CONTROL_PLANE, WORKER]
-        x-enum-varnames: [CONTROL_PLANE, WORKER]
-        description: >
-          The role of the nodes to add.
-          - `CONTROL_PLANE`: Control plane node
-          - `WORKER`: Worker node
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/cluster-add-node-request.yaml'
   responses:
     '201':
       $ref: '../../components/responses/cluster-nodes-response.yaml'

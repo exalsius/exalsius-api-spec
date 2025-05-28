@@ -1,0 +1,15 @@
+type: object
+properties:
+  node_id:
+    type: string
+    format: uuid
+    description: The ID of the node to add
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  node_role:
+    type: string
+    enum: [CONTROL_PLANE, WORKER]
+    x-enum-varnames: [CONTROL_PLANE, WORKER]
+    description: The role of the node to add
+required:
+  - node_id
+  - node_role
