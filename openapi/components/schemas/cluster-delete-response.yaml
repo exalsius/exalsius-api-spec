@@ -4,9 +4,9 @@ required:
   - node_ids
 properties:
   cluster_id:
-    type: integer
-    format: int64
-    example: 1
+    type: string
+    format: uuid
+    example: "123e4567-e89b-12d3-a456-426614174000"
     description: The ID of the deleted cluster
   node_ids:
     type: array

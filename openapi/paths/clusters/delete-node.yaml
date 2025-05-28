@@ -13,8 +13,8 @@ delete:
       in: path
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
     - name: node_id
       in: path
       required: true

@@ -12,8 +12,8 @@ get:
       in: path
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
       description: ID of the cluster to describe
   responses:
     '200':
@@ -63,11 +63,11 @@ delete:
       in: path
       required: true
       schema:
-        type: integer
-        format: int64
+        type: string
+        format: uuid
       description: ID of the cluster to delete
   responses:
-    '204':
+    '200':
       $ref: '../../components/responses/cluster-delete-response.yaml'
     '404':
       $ref: '../../components/responses/error-response.yaml'
