@@ -1,0 +1,8 @@
+type: object
+properties:
+  nodes_to_add:
+    type: array
+    items:
+      $ref: '../../components/schemas/cluster-node-to-add.yaml'
+required:
+  - nodes_to_add
