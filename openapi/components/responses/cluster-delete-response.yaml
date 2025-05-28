@@ -1,0 +1,13 @@
+description: Cluster deletion response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-delete-response.yaml'
+    examples:
+      success:
+        summary: Cluster deleted
+        value:
+          cluster_id: 1
+          node_ids:
+            - "123e4567-e89b-12d3-a456-426614174000"
+            - "123e4567-e89b-12d3-a456-426614174001"
