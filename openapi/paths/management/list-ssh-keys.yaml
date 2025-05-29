@@ -60,7 +60,7 @@ post:
   responses:
     "201":
       $ref: "../../components/responses/ssh-key-create-response.yaml"
-    "400":
+    "422":
       $ref: "../../components/responses/error-response.yaml"
       useExample: bad-request
     "500":
