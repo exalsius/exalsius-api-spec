@@ -1,6 +1,6 @@
 get:
   operationId: getOffers
-  tags: [supply]
+  tags: [offers]
   summary: List and filter current GPU on-demand and spot market offers
   description: |
     **List GPU offers (on-demand & spot instances)**
