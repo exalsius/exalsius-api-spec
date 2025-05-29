@@ -1,7 +1,7 @@
 type: object
 required:
   - id
-  - provider
+  - cloud_provider
   - location
   - region
   - availability_zone
@@ -9,19 +9,160 @@ required:
   - gpu_count
   - gpu_vendor
   - gpu_type
-  - gpu_memory
-  - price_per_hour
+  - gpu_memory_mib
+  - total_gpu_memory_mib
+  - gpu_vendor
+  - main_memory_mib
+  - cpu_vendor
+  - cpu_arch
+  - num_vcpus
   - scrape_time
 properties:
   id:
     type: string
-    format: uuid
-    description: The unique identifier for the offer
-    example: "123e4567-e89b-12d3-a456-426614174000"
-  provider:
+    description: >
+      Unique identifier for the GPU instance.
+      Format: '{provider}-{instance_type}-{region}-{availability_zone}'
+      This ID must be unique across all instances.
+    example: "aws-g5.2xlarge-us-east-1-us-east-1b"
+  instance_type:
     type: string
-    description: The cloud provider of the offer
-    example: "aws"
+    description: The cloud provider's instance type identifier that represents this GPU configuration.
+    examples:
+      - g5.2xlarge
+      - NC24ads_A100_v4
+      - a2-highgpu-1g
+  cloud_provider:
+    type: string
+    description: The cloud service provider offering this GPU instance. Identifies which major cloud platform the instance belongs to.
+    enum:
+      - AWS
+      - AZURE
+      - GCP
+      - OCI
+      - UNKNOWN
+  gpu_count:
+    type: integer
+    format: int32
+    description: The number of physical GPUs available in this instance type. Must be a positive integer. It is 0 if the number of GPUs is not available.
+    minimum: 0
+    examples:
+      - 1
+      - 2
+      - 4
+      - 8
+  gpu_memory_mib:
+    type: integer
+    format: int32
+    description: The amount of memory per GPU in Mebibytes (MiB). Must be a positive integer. It is 0 if the memory is not available.
+    minimum: 0
+    examples:
+      - 16384
+      - 32768
+      - 81920
+      - 0
+  total_gpu_memory_mib:
+    type: integer
+    format: int32
+    description: The total amount of memory in Mebibytes (MiB) for all GPUs in the instance. Must be a positive integer. It is 0 if the total memory is not available.
+    minimum: 0
+    examples:
+      - 16384
+      - 32768
+      - 81920
+  gpu_type:
+    type: string
+    description: The specific GPU model/architecture available in this instance. Represents the actual hardware model of the GPU.
+    examples:
+      - A10G
+      - H100
+      - V100
+      - A100
+  gpu_vendor:
+    type: string
+    description: The manufacturer/vendor of the GPU hardware. Limited to a set of known GPU manufacturers in the cloud computing space.
+    enum:
+      - NVIDIA
+      - AMD
+      - INTEL
+      - UNKNOWN
+  main_memory_mib:
+    type: integer
+    format: int32
+    description: The amount of main memory in Mebibytes (MiB). Must be a positive integer.
+    minimum: 0
+    examples:
+      - 16384
+      - 32768
+      - 81920
+  cpu_vendor:
+    type: string
+    description: The manufacturer/vendor of the CPU hardware. Limited to a set of known CPU manufacturers in the cloud computing space.
+    enum:
+      - INTEL
+      - AMD
+      - UNKNOWN
+  cpu_arch:
+    type: string
+    description: The architecture of the CPU hardware.
+    enum:
+      - X86_64
+      - AARCH64
+      - ARM64
+  num_vcpus:
+    type: integer
+    format: int32
+    description: The number of virtual CPUs available in the instance. Must be a positive integer. It is 0 if the number of vCPUs is not available.
+    minimum: 0
+    examples:
+      - 1
+      - 2
+      - 4
+      - 8
+      - 0
+  effective_time:
+    type: string
+    format: date-time
+    description: Timestamp indicating when this price becomes valid. Must not be later than scrape_time.
+  scrape_time:
+    type: string
+    format: date-time
+    description: Timestamp recording when this price data was collected from the source.
+    example: "2024-03-20T15:30:00Z"
+  pricing_unit:
+    type: string
+    description: Time unit for the price value (e.g., hourly, monthly, yearly). Also used for normalization.
+    enum:
+      - HOURLY
+      - MONTHLY
+      - YEARLY
+      - UNKNOWN
+    example: "HOURLY"
+  price:
+    type: number
+    format: float
+    minimum: 0.0
+    description: The numerical price value with respect to the specified currency and time unit.
+    example: 0.526
+  currency:
+    type: string
+    description: The currency of the price value (e.g., USD, EUR). Used for currency conversion.
+    enum:
+      - USD
+      - EUR
+      - UNKNOWN
+  price_type:
+    type: string
+    description: Type of pricing model (on-demand or spot)
+    enum:
+      - ON_DEMAND
+      - SPOT
+  hourly_cost:
+    type: number
+    format: float
+    minimum: 0.0
+    description: Price normalized to hourly rate for comparison.
+    example: 0.526
   location:
     type: string
     description: The location of the offer
@@ -34,35 +175,3 @@ properties:
     type: string
     description: The availability zone of the offer
     example: "us-east-1a"
-  instance_type:
-    type: string
-    description: The instance type of the offer
-    example: "g4dn.xlarge"
-  gpu_count:
-    type: integer
-    description: The number of GPUs in the offer
-    format: int32
-    example: 1
-  gpu_vendor:
-    type: string
-    description: The vendor of the GPU
-    example: "NVIDIA"
-  gpu_type:
-    type: string
-    description: The type of the GPU
-    example: "T4"
-  gpu_memory:
-    type: integer
-    format: int32
-    description: The memory of the GPU in GB
-    example: 16
-  price_per_hour:
-    type: number
-    format: float
-    description: The price per hour for the offer
-    example: 0.526
-  scrape_time:
-    type: string
-    format: date-time
-    description: The time the offer was scraped
-    example: "2024-03-20T15:30:00Z"
