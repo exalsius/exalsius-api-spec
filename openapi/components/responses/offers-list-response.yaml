@@ -8,28 +8,48 @@ content:
         summary: List of offers
         value:
           offers:
-            - id: "123e4567-e89b-12d3-a456-426614174000"
-              provider: "AWS"
+            # This is an on-demand offer
+            - id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
+              cloud_provider: "AWS"
+              instance_type: "g4dn.xlarge"
               location: "us-east-1"
               region: "us-east-1"
-              availability_zone: "us-east-1a"
-              instance_type: "g4dn.xlarge"
+              availability_zone: "us-east-1a"       
               gpu_count: 1
-              gpu_vendor: "NVIDIA"
+              gpu_memory_mib: 8192
+              total_gpu_memory_mib: 8192
               gpu_type: "A100"
-              gpu_memory: 8192
-              price_per_hour: 1.0
+              gpu_vendor: "NVIDIA"
+              pricing_unit: "HOURLY"
+              main_memory_mib: 16384
+              cpu_vendor: "INTEL"
+              cpu_arch: "X86_64"
+              num_vcpus: 1
+              currency: "USD"
+              price_type: "ON_DEMAND"
+              hourly_cost: 2.0
               scrape_time: "2025-01-01T00:00:00Z"
-            - id: "123e4567-e89b-12d3-a456-426614174001"
-              provider: "AWS"
+              effective_time: "2025-01-01T00:00:00Z"
+            # This is a spot offer
+            - id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
+              cloud_provider: "AWS"
+              instance_type: "g4dn.xlarge"
               location: "us-east-1"
               region: "us-east-1"
-              availability_zone: "us-east-1a"
-              instance_type: "g4dn.xlarge"
+              availability_zone: "us-east-1a"       
               gpu_count: 1
-              gpu_vendor: "NVIDIA"
+              gpu_memory_mib: 8192
+              total_gpu_memory_mib: 8192
               gpu_type: "A100"
-              gpu_memory: 8192
-              price_per_hour: 1.0
+              gpu_vendor: "NVIDIA"
+              pricing_unit: "HOURLY"
+              main_memory_mib: 16384
+              cpu_vendor: "INTEL"
+              cpu_arch: "X86_64"
+              num_vcpus: 1
+              currency: "USD"
+              price_type: "ON_DEMAND"
+              hourly_cost: 1.0
               scrape_time: "2025-01-01T00:00:00Z"
+              effective_time: "2025-01-01T00:00:00Z"
           total: 2
