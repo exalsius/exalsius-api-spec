@@ -21,9 +21,8 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
-                      StrictStr)
-from typing_extensions import Self
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from typing_extensions import Annotated, Self
 
 
 class Offer(BaseModel):
@@ -31,36 +30,155 @@ class Offer(BaseModel):
     Offer
     """  # noqa: E501
 
-    id: StrictStr = Field(description="The unique identifier for the offer")
-    provider: StrictStr = Field(description="The cloud provider of the offer")
+    id: StrictStr = Field(
+        description="Unique identifier for the GPU instance. Format: '{provider}-{instance_type}-{region}-{availability_zone}' This ID must be unique across all instances. "
+    )
+    instance_type: StrictStr = Field(
+        description="The cloud provider's instance type identifier that represents this GPU configuration."
+    )
+    cloud_provider: StrictStr = Field(
+        description="The cloud service provider offering this GPU instance. Identifies which major cloud platform the instance belongs to."
+    )
+    gpu_count: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="The number of physical GPUs available in this instance type. Must be a positive integer. It is 0 if the number of GPUs is not available."
+    )
+    gpu_memory_mib: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="The amount of memory per GPU in Mebibytes (MiB). Must be a positive integer. It is 0 if the memory is not available."
+    )
+    total_gpu_memory_mib: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="The total amount of memory in Mebibytes (MiB) for all GPUs in the instance. Must be a positive integer. It is 0 if the total memory is not available."
+    )
+    gpu_type: StrictStr = Field(
+        description="The specific GPU model/architecture available in this instance. Represents the actual hardware model of the GPU."
+    )
+    gpu_vendor: StrictStr = Field(
+        description="The manufacturer/vendor of the GPU hardware. Limited to a set of known GPU manufacturers in the cloud computing space."
+    )
+    main_memory_mib: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="The amount of main memory in Mebibytes (MiB). Must be a positive integer."
+    )
+    cpu_vendor: StrictStr = Field(
+        description="The manufacturer/vendor of the CPU hardware. Limited to a set of known CPU manufacturers in the cloud computing space."
+    )
+    cpu_arch: StrictStr = Field(description="The architecture of the CPU hardware.")
+    num_vcpus: Annotated[int, Field(strict=True, ge=0)] = Field(
+        description="The number of virtual CPUs available in the instance. Must be a positive integer. It is 0 if the number of vCPUs is not available."
+    )
+    effective_time: Optional[datetime] = Field(
+        default=None,
+        description="Timestamp indicating when this price becomes valid. Must not be later than scrape_time.",
+    )
+    scrape_time: datetime = Field(
+        description="Timestamp recording when this price data was collected from the source."
+    )
+    pricing_unit: StrictStr = Field(
+        description="Time unit for the price value (e.g., hourly, monthly, yearly). Also used for normalization."
+    )
+    price: Optional[
+        Union[
+            Annotated[float, Field(strict=True, ge=0)],
+            Annotated[int, Field(strict=True, ge=0)],
+        ]
+    ] = Field(
+        default=None,
+        description="The numerical price value with respect to the specified currency and time unit.",
+    )
+    currency: StrictStr = Field(
+        description="The currency of the price value (e.g., USD, EUR). Used for currency conversion."
+    )
+    price_type: StrictStr = Field(
+        description="Type of pricing model (on-demand or spot)"
+    )
+    hourly_cost: Union[
+        Annotated[float, Field(strict=True, ge=0)],
+        Annotated[int, Field(strict=True, ge=0)],
+    ] = Field(description="Price normalized to hourly rate for comparison.")
     location: StrictStr = Field(description="The location of the offer")
     region: StrictStr = Field(description="The region of the offer")
     availability_zone: StrictStr = Field(
         description="The availability zone of the offer"
     )
-    instance_type: StrictStr = Field(description="The instance type of the offer")
-    gpu_count: StrictInt = Field(description="The number of GPUs in the offer")
-    gpu_vendor: StrictStr = Field(description="The vendor of the GPU")
-    gpu_type: StrictStr = Field(description="The type of the GPU")
-    gpu_memory: StrictInt = Field(description="The memory of the GPU in GB")
-    price_per_hour: Union[StrictFloat, StrictInt] = Field(
-        description="The price per hour for the offer"
-    )
-    scrape_time: datetime = Field(description="The time the offer was scraped")
     __properties: ClassVar[List[str]] = [
         "id",
-        "provider",
+        "instance_type",
+        "cloud_provider",
+        "gpu_count",
+        "gpu_memory_mib",
+        "total_gpu_memory_mib",
+        "gpu_type",
+        "gpu_vendor",
+        "main_memory_mib",
+        "cpu_vendor",
+        "cpu_arch",
+        "num_vcpus",
+        "effective_time",
+        "scrape_time",
+        "pricing_unit",
+        "price",
+        "currency",
+        "price_type",
+        "hourly_cost",
         "location",
         "region",
         "availability_zone",
-        "instance_type",
-        "gpu_count",
-        "gpu_vendor",
-        "gpu_type",
-        "gpu_memory",
-        "price_per_hour",
-        "scrape_time",
     ]
+
+    @field_validator("cloud_provider")
+    def cloud_provider_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["AWS", "AZURE", "GCP", "OCI", "UNKNOWN"]):
+            raise ValueError(
+                "must be one of enum values ('AWS', 'AZURE', 'GCP', 'OCI', 'UNKNOWN')"
+            )
+        return value
+
+    @field_validator("gpu_vendor")
+    def gpu_vendor_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["NVIDIA", "AMD", "INTEL", "HUAWEI", "GOOGLE", "UNKNOWN"]):
+            raise ValueError(
+                "must be one of enum values ('NVIDIA', 'AMD', 'INTEL', 'HUAWEI', 'GOOGLE', 'UNKNOWN')"
+            )
+        return value
+
+    @field_validator("cpu_vendor")
+    def cpu_vendor_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["INTEL", "AMD", "UNKNOWN"]):
+            raise ValueError("must be one of enum values ('INTEL', 'AMD', 'UNKNOWN')")
+        return value
+
+    @field_validator("cpu_arch")
+    def cpu_arch_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["X86_64", "AARCH64", "ARM64"]):
+            raise ValueError(
+                "must be one of enum values ('X86_64', 'AARCH64', 'ARM64')"
+            )
+        return value
+
+    @field_validator("pricing_unit")
+    def pricing_unit_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["HOURLY", "MONTHLY", "YEARLY", "UNKNOWN"]):
+            raise ValueError(
+                "must be one of enum values ('HOURLY', 'MONTHLY', 'YEARLY', 'UNKNOWN')"
+            )
+        return value
+
+    @field_validator("currency")
+    def currency_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["USD", "EUR", "UNKNOWN"]):
+            raise ValueError("must be one of enum values ('USD', 'EUR', 'UNKNOWN')")
+        return value
+
+    @field_validator("price_type")
+    def price_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["ON_DEMAND", "SPOT"]):
+            raise ValueError("must be one of enum values ('ON_DEMAND', 'SPOT')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -113,17 +231,27 @@ class Offer(BaseModel):
         _obj = cls.model_validate(
             {
                 "id": obj.get("id"),
-                "provider": obj.get("provider"),
+                "instance_type": obj.get("instance_type"),
+                "cloud_provider": obj.get("cloud_provider"),
+                "gpu_count": obj.get("gpu_count"),
+                "gpu_memory_mib": obj.get("gpu_memory_mib"),
+                "total_gpu_memory_mib": obj.get("total_gpu_memory_mib"),
+                "gpu_type": obj.get("gpu_type"),
+                "gpu_vendor": obj.get("gpu_vendor"),
+                "main_memory_mib": obj.get("main_memory_mib"),
+                "cpu_vendor": obj.get("cpu_vendor"),
+                "cpu_arch": obj.get("cpu_arch"),
+                "num_vcpus": obj.get("num_vcpus"),
+                "effective_time": obj.get("effective_time"),
+                "scrape_time": obj.get("scrape_time"),
+                "pricing_unit": obj.get("pricing_unit"),
+                "price": obj.get("price"),
+                "currency": obj.get("currency"),
+                "price_type": obj.get("price_type"),
+                "hourly_cost": obj.get("hourly_cost"),
                 "location": obj.get("location"),
                 "region": obj.get("region"),
                 "availability_zone": obj.get("availability_zone"),
-                "instance_type": obj.get("instance_type"),
-                "gpu_count": obj.get("gpu_count"),
-                "gpu_vendor": obj.get("gpu_vendor"),
-                "gpu_type": obj.get("gpu_type"),
-                "gpu_memory": obj.get("gpu_memory"),
-                "price_per_hour": obj.get("price_per_hour"),
-                "scrape_time": obj.get("scrape_time"),
             }
         )
         return _obj

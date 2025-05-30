@@ -124,8 +124,8 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**import_node_from_offer**](docs/NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
 *NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
+*OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
 *ServicesApi* | [**list_available_services**](docs/ServicesApi.md#list_available_services) | **GET** /services | List all available services
-*SupplyApi* | [**get_offers**](docs/SupplyApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
 
 
 ## Documentation For Models

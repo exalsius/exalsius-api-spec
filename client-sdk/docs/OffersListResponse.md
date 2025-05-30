@@ -6,7 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **offers** | [**List[Offer]**](Offer.md) |  | 
-**total** | **int** | The total number of offers | [optional] 
+**total** | **int** | The total number of offers matching the filters | 
+**next_cursor** | **str** | The cursor for the next page. If null, there are no more results. | [optional] 
+**prev_cursor** | **str** | The cursor for the previous page. If null, this is the first page. | [optional] 
 
 ## Example
 

@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 from exalsius_api_client.models.offer import Offer
@@ -32,10 +32,23 @@ class OffersListResponse(BaseModel):
     """  # noqa: E501
 
     offers: List[Offer]
-    total: Optional[StrictInt] = Field(
-        default=None, description="The total number of offers"
+    total: StrictInt = Field(
+        description="The total number of offers matching the filters"
     )
-    __properties: ClassVar[List[str]] = ["offers", "total"]
+    next_cursor: Optional[StrictStr] = Field(
+        default=None,
+        description="The cursor for the next page. If null, there are no more results.",
+    )
+    prev_cursor: Optional[StrictStr] = Field(
+        default=None,
+        description="The cursor for the previous page. If null, this is the first page.",
+    )
+    __properties: ClassVar[List[str]] = [
+        "offers",
+        "total",
+        "next_cursor",
+        "prev_cursor",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -100,6 +113,8 @@ class OffersListResponse(BaseModel):
                     else None
                 ),
                 "total": obj.get("total"),
+                "next_cursor": obj.get("next_cursor"),
+                "prev_cursor": obj.get("prev_cursor"),
             }
         )
         return _obj

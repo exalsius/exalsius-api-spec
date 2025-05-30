@@ -94,7 +94,7 @@ class ManagementApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "SshKeyCreateResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -160,7 +160,7 @@ class ManagementApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "SshKeyCreateResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -226,7 +226,7 @@ class ManagementApi:
 
         _response_types_map: Dict[str, Optional[str]] = {
             "201": "SshKeyCreateResponse",
-            "400": "Error",
+            "422": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(

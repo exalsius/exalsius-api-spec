@@ -30,6 +30,7 @@ docs/NodeResponse.md
 docs/NodesApi.md
 docs/NodesListResponse.md
 docs/Offer.md
+docs/OffersApi.md
 docs/OffersListResponse.md
 docs/SelfManagedNode.md
 docs/Service.md
@@ -41,14 +42,13 @@ docs/SshKeyCreateRequest.md
 docs/SshKeyCreateResponse.md
 docs/SshKeysListResponse.md
 docs/SshKeysListResponseSshKeysInner.md
-docs/SupplyApi.md
 exalsius_api_client/__init__.py
 exalsius_api_client/api/__init__.py
 exalsius_api_client/api/clusters_api.py
 exalsius_api_client/api/management_api.py
 exalsius_api_client/api/nodes_api.py
+exalsius_api_client/api/offers_api.py
 exalsius_api_client/api/services_api.py
-exalsius_api_client/api/supply_api.py
 exalsius_api_client/api_client.py
 exalsius_api_client/api_response.py
 exalsius_api_client/configuration.py
@@ -97,4 +97,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_offers_api.py
 tox.ini
