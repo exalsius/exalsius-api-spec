@@ -85,6 +85,7 @@ properties:
       - NVIDIA
       - AMD
       - INTEL
+      - HUAWEI
       - UNKNOWN
   main_memory_mib:
     type: integer
