@@ -16,6 +16,10 @@ required:
   - cpu_vendor
   - cpu_arch
   - num_vcpus
+  - price_type
+  - pricing_unit
+  - currency
+  - hourly_cost
   - scrape_time
 properties:
   id:
@@ -86,6 +90,7 @@ properties:
       - AMD
       - INTEL
       - HUAWEI
+      - GOOGLE
       - UNKNOWN
   main_memory_mib:
     type: integer

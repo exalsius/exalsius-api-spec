@@ -1,6 +1,7 @@
 type: object
 required:
   - offers
+  - total
 properties:
   offers:
     type: array
@@ -9,4 +10,10 @@ properties:
   total:
     type: integer
     format: int32
-    description: The total number of offers
+    description: The total number of offers matching the filters
+  next_cursor:
+    type: string
+    description: The cursor for the next page. If null, there are no more results.
+  prev_cursor:
+    type: string
+    description: The cursor for the previous page. If null, this is the first page.
