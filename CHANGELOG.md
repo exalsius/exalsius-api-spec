@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.2.0...v1.3.0) (2025-05-30)
+
+
+### Features
+
+* change offer schema to current gpu-scraper schema ([a438ef4](https://github.com/exalsius/exalsius-api-spec/commit/a438ef402e8a45e6e53a81732552174acc1e2012))
+
+
+### Bug Fixes
+
+* add gpu_vendor and cloud_provider enums in paths ([808c3ff](https://github.com/exalsius/exalsius-api-spec/commit/808c3ffda45ccdca2896e66d217edfefb9793f96))
+* add pagination for offers responses ([f0e13fa](https://github.com/exalsius/exalsius-api-spec/commit/f0e13fae27491516287882749c8b9823b323e664))
+* add pagination for offers responses ([e3ffeb3](https://github.com/exalsius/exalsius-api-spec/commit/e3ffeb3d5f789b90db799ca938385726dcb8b9ef))
+* change gpu_count parameter to in ([8650c00](https://github.com/exalsius/exalsius-api-spec/commit/8650c0076710ecc721499f80ed139aa51596b073))
+* change validation error response code to 422 ([1419f97](https://github.com/exalsius/exalsius-api-spec/commit/1419f979674a48c3641ebd3e157a32d3fc63d2ff))
+* rename supply to offers ([f7834d9](https://github.com/exalsius/exalsius-api-spec/commit/f7834d9b8e39fe47f37e1ef437cad78cc4b0865d))
+
 ## [1.2.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.1.6...v1.2.0) (2025-05-28)
 
 
