@@ -12,7 +12,6 @@ get:
     - `provider`: The cloud provider of the offer
     - `region`: The region of the offer
     - `gpu_count`: The minimum number of GPUs in the offer
-    - `price`: The maximum price per hour for the offer
     - `page_size`: The number of offers to return per page (default: 50, max: 100)
     - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
 
@@ -94,22 +93,13 @@ get:
     - name: gpu_count
       in: query
       schema:
-        type: number
+        type: integer
       description: The minimum number of GPUs in the offer
-      required: false
-    - name: price
-      in: query
-      schema:
-        type: number
-      description: The maximum price per hour for the offer
       required: false
     - name: page_size
       in: query
       schema:
         type: integer
-        minimum: 1
-        maximum: 100
-        default: 50
       description: The number of offers to return per page
       required: false
     - name: cursor
