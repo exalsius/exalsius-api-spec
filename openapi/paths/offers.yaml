@@ -13,7 +13,8 @@ get:
     - `region`: The region of the offer
     - `gpu_count`: The minimum number of GPUs in the offer
     - `price`: The maximum price per hour for the offer
-    - `limit`: The maximum number of offers to return
+    - `page_size`: The number of offers to return per page (default: 50, max: 100)
+    - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
 
     **Examples**
 
@@ -24,7 +25,7 @@ get:
 
     Here's an example of how to filter by provider:
       ```
-      /offers?provider=aws
+      /offers?cloud_provider=aws
       ```
 
     Here's an example of how to filter by provider and region:
@@ -36,12 +37,24 @@ get:
       ```
       /offers?provider=aws&region=us-east-1&gpuCount=1
       ```
+
+    Here's an example of pagination:
+      ```
+      # First page
+      /offers?page_size=20
+      
+      # Next page using cursor from previous response
+      /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9
+      ```
       
     **Result**
     
-    The response is paginated with a limit of 50 offers per page.
-    The offers are sorted by price per hour, from lowest to highest.
-
+    The response includes:
+    - A list of offers
+    - The total number of offers matching the filters
+    - A cursor for the next page (if there are more results)
+    - A cursor for the previous page (if not on the first page)
+    
   parameters:
     - name: gpu_vendor
       in: query
@@ -90,11 +103,20 @@ get:
         type: number
       description: The maximum price per hour for the offer
       required: false
-    - name: limit
+    - name: page_size
       in: query
       schema:
-        type: number
-      description: The maximum number of offers to return
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 50
+      description: The number of offers to return per page
+      required: false
+    - name: cursor
+      in: query
+      schema:
+        type: string
+      description: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
       required: false
       
   responses:
