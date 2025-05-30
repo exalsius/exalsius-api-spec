@@ -97,5 +97,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_offers_api.py
 tox.ini
