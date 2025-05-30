@@ -47,25 +47,29 @@ get:
       in: query
       schema:
         type: string
-        x-extensible-enum:
-          - value: NVIDIA
-            description: NVIDIA
-          - value: AMD
-            description: AMD
-          - value: INTEL
-            description: INTEL
-          - value: HUAWEI
-            description: HUAWEI
+        enum:
+          - NVIDIA
+          - AMD
+          - INTEL
+          - HUAWEI
+          - UNKNOWN
+      description: The vendor of the GPU
     - name: gpu_type
       in: query
       schema:
         type: string
       description: The type of the GPU
       required: false
-    - name: provider
+    - name: cloud_provider
       in: query
       schema:
         type: string
+        enum:
+          - AWS
+          - AZURE
+          - GCP
+          - OCI
+          - UNKNOWN
       description: The cloud provider of the offer
       required: false
     - name: region
