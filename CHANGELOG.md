@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.3.0...v1.3.1) (2025-06-01)
+
+
+### Bug Fixes
+
+* add a dedicated instance_id attribute to the offer schema ([#45](https://github.com/exalsius/exalsius-api-spec/issues/45)) ([c7c22a1](https://github.com/exalsius/exalsius-api-spec/commit/c7c22a1aa6b1dc1bc6e03579a1ae3c9fae676d07))
+
 ## [1.3.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.2.0...v1.3.0) (2025-05-30)
 
 
