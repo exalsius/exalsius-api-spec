@@ -9,7 +9,8 @@ content:
         value:
           offers:
             # This is an on-demand offer
-            - id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
+            - id: "123e4567-e89b-12d3-a456-426614174000"
+              instance_id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
               cloud_provider: "AWS"
               instance_type: "g4dn.xlarge"
               location: "us-east-1"
@@ -31,7 +32,8 @@ content:
               scrape_time: "2025-01-01T00:00:00Z"
               effective_time: "2025-01-01T00:00:00Z"
             # This is a spot offer
-            - id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
+            - id: "123e4567-e89b-12d3-a456-426614174001"
+              instance_id: "aws-g4dn.xlarge-us-east-1-us-east-1a"
               cloud_provider: "AWS"
               instance_type: "g4dn.xlarge"
               location: "us-east-1"
