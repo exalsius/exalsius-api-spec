@@ -21,7 +21,8 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
+                      StrictStr, field_validator)
 from typing_extensions import Annotated, Self
 
 
@@ -30,7 +31,10 @@ class Offer(BaseModel):
     Offer
     """  # noqa: E501
 
-    id: StrictStr = Field(
+    id: Optional[StrictStr] = Field(
+        default=None, description="The unique database ID of the offer"
+    )
+    instance_id: StrictStr = Field(
         description="Unique identifier for the GPU instance. Format: '{provider}-{instance_type}-{region}-{availability_zone}' This ID must be unique across all instances. "
     )
     instance_type: StrictStr = Field(
@@ -74,12 +78,7 @@ class Offer(BaseModel):
     pricing_unit: StrictStr = Field(
         description="Time unit for the price value (e.g., hourly, monthly, yearly). Also used for normalization."
     )
-    price: Optional[
-        Union[
-            Annotated[float, Field(strict=True, ge=0)],
-            Annotated[int, Field(strict=True, ge=0)],
-        ]
-    ] = Field(
+    price: Optional[Union[StrictFloat, StrictInt]] = Field(
         default=None,
         description="The numerical price value with respect to the specified currency and time unit.",
     )
@@ -89,10 +88,9 @@ class Offer(BaseModel):
     price_type: StrictStr = Field(
         description="Type of pricing model (on-demand or spot)"
     )
-    hourly_cost: Union[
-        Annotated[float, Field(strict=True, ge=0)],
-        Annotated[int, Field(strict=True, ge=0)],
-    ] = Field(description="Price normalized to hourly rate for comparison.")
+    hourly_cost: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=0, description="Price normalized to hourly rate for comparison."
+    )
     location: StrictStr = Field(description="The location of the offer")
     region: StrictStr = Field(description="The region of the offer")
     availability_zone: StrictStr = Field(
@@ -100,6 +98,7 @@ class Offer(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "id",
+        "instance_id",
         "instance_type",
         "cloud_provider",
         "gpu_count",
@@ -231,6 +230,7 @@ class Offer(BaseModel):
         _obj = cls.model_validate(
             {
                 "id": obj.get("id"),
+                "instance_id": obj.get("instance_id"),
                 "instance_type": obj.get("instance_type"),
                 "cloud_provider": obj.get("cloud_provider"),
                 "gpu_count": obj.get("gpu_count"),
@@ -248,7 +248,9 @@ class Offer(BaseModel):
                 "price": obj.get("price"),
                 "currency": obj.get("currency"),
                 "price_type": obj.get("price_type"),
-                "hourly_cost": obj.get("hourly_cost"),
+                "hourly_cost": (
+                    obj.get("hourly_cost") if obj.get("hourly_cost") is not None else 0
+                ),
                 "location": obj.get("location"),
                 "region": obj.get("region"),
                 "availability_zone": obj.get("availability_zone"),

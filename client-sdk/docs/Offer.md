@@ -5,7 +5,8 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | Unique identifier for the GPU instance. Format: &#39;{provider}-{instance_type}-{region}-{availability_zone}&#39; This ID must be unique across all instances.  | 
+**id** | **str** | The unique database ID of the offer | [optional] 
+**instance_id** | **str** | Unique identifier for the GPU instance. Format: &#39;{provider}-{instance_type}-{region}-{availability_zone}&#39; This ID must be unique across all instances.  | 
 **instance_type** | **str** | The cloud provider&#39;s instance type identifier that represents this GPU configuration. | 
 **cloud_provider** | **str** | The cloud service provider offering this GPU instance. Identifies which major cloud platform the instance belongs to. | 
 **gpu_count** | **int** | The number of physical GPUs available in this instance type. Must be a positive integer. It is 0 if the number of GPUs is not available. | 
@@ -23,7 +24,7 @@ Name | Type | Description | Notes
 **price** | **float** | The numerical price value with respect to the specified currency and time unit. | [optional] 
 **currency** | **str** | The currency of the price value (e.g., USD, EUR). Used for currency conversion. | 
 **price_type** | **str** | Type of pricing model (on-demand or spot) | 
-**hourly_cost** | **float** | Price normalized to hourly rate for comparison. | 
+**hourly_cost** | **float** | Price normalized to hourly rate for comparison. | [optional] [default to 0]
 **location** | **str** | The location of the offer | 
 **region** | **str** | The region of the offer | 
 **availability_zone** | **str** | The availability zone of the offer | 
