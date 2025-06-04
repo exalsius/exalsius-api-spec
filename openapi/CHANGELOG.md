@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.3.0...openapi-v1.3.1) (2025-06-04)
+
+
+### Bug Fixes
+
+* use b64 encoded ssh private key in request model ([#47](https://github.com/exalsius/exalsius-api-spec/issues/47)) ([20ecce2](https://github.com/exalsius/exalsius-api-spec/commit/20ecce28fe72f49e4577593ba66fa642d112f1aa))
+
 ## [1.3.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.2.0...openapi-v1.3.0) (2025-05-30)
 
 
