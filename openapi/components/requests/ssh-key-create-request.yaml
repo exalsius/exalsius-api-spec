@@ -7,7 +7,7 @@ properties:
     type: string
     description: The name of the SSH key
     example: "my-ssh-key"
-  private_key:
+  private_key_b64:
     type: string
-    description: The private key of the SSH key
-    example: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1234567890"
+    description: The private key of the SSH key b64 encoded
+    example: "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."
