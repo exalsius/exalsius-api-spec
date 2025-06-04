@@ -30,10 +30,10 @@ class SshKeyCreateRequest(BaseModel):
     """  # noqa: E501
 
     name: StrictStr = Field(description="The name of the SSH key")
-    private_key: Optional[StrictStr] = Field(
-        default=None, description="The private key of the SSH key"
+    private_key_b64: Optional[StrictStr] = Field(
+        default=None, description="The private key of the SSH key b64 encoded"
     )
-    __properties: ClassVar[List[str]] = ["name", "private_key"]
+    __properties: ClassVar[List[str]] = ["name", "private_key_b64"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,6 +84,6 @@ class SshKeyCreateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"name": obj.get("name"), "private_key": obj.get("private_key")}
+            {"name": obj.get("name"), "private_key_b64": obj.get("private_key_b64")}
         )
         return _obj

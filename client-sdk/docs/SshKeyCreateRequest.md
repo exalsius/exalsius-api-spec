@@ -6,7 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the SSH key | 
-**private_key** | **str** | The private key of the SSH key | [optional] 
+**private_key_b64** | **str** | The private key of the SSH key b64 encoded | [optional] 
 
 ## Example
 
