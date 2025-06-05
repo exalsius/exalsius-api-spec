@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.3.1...openapi-v1.3.2) (2025-06-05)
+
+
+### Bug Fixes
+
+* map cluster_status on colony condition values ([#49](https://github.com/exalsius/exalsius-api-spec/issues/49)) ([5e315b2](https://github.com/exalsius/exalsius-api-spec/commit/5e315b23d98dd8b245b87d825eebc2d6af7d5d9a))
+
 ## [1.3.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.3.0...openapi-v1.3.1) (2025-06-04)
 
 
