@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier for the cluster | [optional] 
 **name** | **str** | The name of the cluster | 
-**cluster_status** | **str** | The status of the cluster. - &#x60;STAGING&#x60;: Cluster is staging - &#x60;RUNNING&#x60;: Cluster is running - &#x60;DELETING&#x60;: Cluster is deleting - &#x60;DELETED&#x60;: Cluster is deleted  | 
+**cluster_status** | **str** | The status of the cluster. - &#x60;STAGING&#x60;: Cluster is staging - &#x60;PROVISIONING&#x60;: Cluster is provisioning - &#x60;READY&#x60;: Cluster is ready - &#x60;FAILED&#x60;: Cluster is failed  | 
 **created_at** | **datetime** | The date and time the cluster was created | 
 **updated_at** | **datetime** | The date and time the cluster was last updated | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the cluster will be deleted | [optional] 

@@ -38,7 +38,7 @@ class Cluster(BaseModel):
     )
     name: StrictStr = Field(description="The name of the cluster")
     cluster_status: StrictStr = Field(
-        description="The status of the cluster. - `STAGING`: Cluster is staging - `RUNNING`: Cluster is running - `DELETING`: Cluster is deleting - `DELETED`: Cluster is deleted "
+        description="The status of the cluster. - `STAGING`: Cluster is staging - `PROVISIONING`: Cluster is provisioning - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
     )
     created_at: datetime = Field(
         description="The date and time the cluster was created"
@@ -86,9 +86,9 @@ class Cluster(BaseModel):
     @field_validator("cluster_status")
     def cluster_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["STAGING", "RUNNING", "DELETING", "DELETED"]):
+        if value not in set(["STAGING", "PROVISIONING", "READY", "FAILED"]):
             raise ValueError(
-                "must be one of enum values ('STAGING', 'RUNNING', 'DELETING', 'DELETED')"
+                "must be one of enum values ('STAGING', 'PROVISIONING', 'READY', 'FAILED')"
             )
         return value
 
