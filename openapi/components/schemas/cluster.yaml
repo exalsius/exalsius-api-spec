@@ -15,15 +15,15 @@ properties:
     example: "my-cluster"
   cluster_status:
     type: string
-    enum: [STAGING, RUNNING, DELETING, DELETED]
-    x-enum-varnames: [STAGING, RUNNING, DELETING, DELETED]
+    enum: [STAGING, PROVISIONING, READY, FAILED]
+    x-enum-varnames: [STAGING, PROVISIONING, READY, FAILED]
     description: >
       The status of the cluster.
       - `STAGING`: Cluster is staging
-      - `RUNNING`: Cluster is running
-      - `DELETING`: Cluster is deleting
-      - `DELETED`: Cluster is deleted
-    example: "RUNNING"
+      - `PROVISIONING`: Cluster is provisioning
+      - `READY`: Cluster is ready
+      - `FAILED`: Cluster is failed
+    example: "PROVISIONING"
   created_at:
     type: string
     format: date-time
