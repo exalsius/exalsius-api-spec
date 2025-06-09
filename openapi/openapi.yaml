@@ -84,6 +84,10 @@ paths:
     $ref: ./paths/clusters/kubeconfig.yaml
   /services:
     $ref: ./paths/services/list.yaml
+  /management/credentials:
+    $ref: ./paths/management/list-credentials.yaml
+  /management/cluster-templates:
+    $ref: ./paths/management/list-cluster-templates.yaml
   /management/ssh-keys:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:

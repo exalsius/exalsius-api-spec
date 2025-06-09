@@ -1,0 +1,14 @@
+description: List of available cluster templates
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-template-list-response.yaml'
+    examples:
+      success:
+        summary: A list of available cluster templates
+        value:
+          cluster_templates:
+            - name: "my-cluster-template"
+              description: "These are credentials for the AWS cloud provider"
+              k8s_version: "1.30.0"
+          total: 1

@@ -1,0 +1,12 @@
+type: object
+required:
+  - cluster_templates
+properties:
+  cluster_templates:
+    type: array
+    items:
+      $ref: './cluster-template.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of available cluster templates
