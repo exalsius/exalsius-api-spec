@@ -40,8 +40,14 @@ from exalsius_api_client.models.cluster_nodes_response import \
 from exalsius_api_client.models.cluster_response import ClusterResponse
 from exalsius_api_client.models.cluster_services_response import \
     ClusterServicesResponse
+from exalsius_api_client.models.cluster_template import ClusterTemplate
+from exalsius_api_client.models.cluster_template_list_response import \
+    ClusterTemplateListResponse
 from exalsius_api_client.models.clusters_list_response import \
     ClustersListResponse
+from exalsius_api_client.models.credentials import Credentials
+from exalsius_api_client.models.credentials_list_response import \
+    CredentialsListResponse
 from exalsius_api_client.models.error import Error
 from exalsius_api_client.models.kubeconfig import Kubeconfig
 from exalsius_api_client.models.node_delete_response import NodeDeleteResponse
