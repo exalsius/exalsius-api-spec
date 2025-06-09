@@ -105,8 +105,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_template.py
-test/test_cluster_template_list_response.py
-test/test_credentials.py
-test/test_credentials_list_response.py
 tox.ini
