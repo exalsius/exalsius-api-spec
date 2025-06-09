@@ -1,0 +1,18 @@
+type: object
+required:
+  - name
+  - description
+  - k8s_version
+properties:
+  name:
+    type: string
+    description: The name of the cluster template
+    example: "my-cluster-template"
+  description:
+    type: string
+    description: The description of the cluster template
+    example: "These are credentials for the AWS cloud provider"
+  k8s_version:
+    type: string
+    description: The Kubernetes version of the cluster template
+    example: "1.30.0"
