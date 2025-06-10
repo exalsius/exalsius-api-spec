@@ -18,8 +18,12 @@ docs/ClusterNodeToAdd.md
 docs/ClusterNodesResponse.md
 docs/ClusterResponse.md
 docs/ClusterServicesResponse.md
+docs/ClusterTemplate.md
+docs/ClusterTemplateListResponse.md
 docs/ClustersApi.md
 docs/ClustersListResponse.md
+docs/Credentials.md
+docs/CredentialsListResponse.md
 docs/Error.md
 docs/Kubeconfig.md
 docs/ManagementApi.md
@@ -69,7 +73,11 @@ exalsius_api_client/models/cluster_node_to_add.py
 exalsius_api_client/models/cluster_nodes_response.py
 exalsius_api_client/models/cluster_response.py
 exalsius_api_client/models/cluster_services_response.py
+exalsius_api_client/models/cluster_template.py
+exalsius_api_client/models/cluster_template_list_response.py
 exalsius_api_client/models/clusters_list_response.py
+exalsius_api_client/models/credentials.py
+exalsius_api_client/models/credentials_list_response.py
 exalsius_api_client/models/error.py
 exalsius_api_client/models/kubeconfig.py
 exalsius_api_client/models/node_delete_response.py

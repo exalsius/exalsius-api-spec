@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_ssh_key**](ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 [**delete_ssh_key**](ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
+[**list_cluster_templates**](ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
+[**list_credentials**](ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 [**list_ssh_keys**](ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
 
 
@@ -161,6 +163,154 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **204** | SSH key deleted |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_cluster_templates**
+> ClusterTemplateListResponse list_cluster_templates()
+
+List all cluster templates
+
+**List all available cluster templates**
+
+List all cluster templates that are available in the management cluster for the current user.
+
+Cluster templates are used to create new clusters on public cloud providers or remote nodes.
+
+**Result**
+
+Returns an array of cluster templates objects.
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.cluster_template_list_response import ClusterTemplateListResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # List all cluster templates
+        api_response = api_instance.list_cluster_templates()
+        print("The response of ManagementApi->list_cluster_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManagementApi->list_cluster_templates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ClusterTemplateListResponse**](ClusterTemplateListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of available cluster templates |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_credentials**
+> CredentialsListResponse list_credentials()
+
+List all cloud provider credentials
+
+**List all available credentials**
+
+List all cloud provider credentials that are available to the management cluster for the current user.
+
+**Result**
+
+Returns an array of credentials objects (without exposing the credentials).
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.credentials_list_response import CredentialsListResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # List all cloud provider credentials
+        api_response = api_instance.list_credentials()
+        print("The response of ManagementApi->list_credentials:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManagementApi->list_credentials: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**CredentialsListResponse**](CredentialsListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of available credentials |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

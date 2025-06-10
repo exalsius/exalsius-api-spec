@@ -1,0 +1,24 @@
+get:
+  operationId: listClusterTemplates
+  tags: [management]
+  summary: List all cluster templates
+  description: |
+    **List all available cluster templates**
+
+    List all cluster templates that are available in the management cluster for the current user.
+    
+    Cluster templates are used to create new clusters on public cloud providers or remote nodes.
+
+    **Result**
+
+    Returns an array of cluster templates objects.
+
+  responses:
+    "200":
+      $ref: "../../components/responses/cluster-templates-list-response.yaml"
+    "404":
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: cluster-templates-not-found
+    "500":
+      $ref: "../../components/responses/error-response.yaml"
+      useExample: server-error

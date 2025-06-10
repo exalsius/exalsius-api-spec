@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.3.2...openapi-v1.4.0) (2025-06-09)
+
+
+### Features
+
+* add mgmt endpoints for credentials and cluster templates ([#51](https://github.com/exalsius/exalsius-api-spec/issues/51)) ([271e219](https://github.com/exalsius/exalsius-api-spec/commit/271e2195699a1cc7faa753e2ebd9bfcf2a9505f5))
+
 ## [1.3.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.3.1...openapi-v1.3.2) (2025-06-05)
 
 
