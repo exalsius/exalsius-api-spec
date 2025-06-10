@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.4.0...v1.4.1) (2025-06-10)
+
+
+### Bug Fixes
+
+* adjust oneOf and discriminator mapping for cloud and self-managed nodes ([#53](https://github.com/exalsius/exalsius-api-spec/issues/53)) ([99730a6](https://github.com/exalsius/exalsius-api-spec/commit/99730a60e8e0a050fac67814d67751bf5c7095bd))
+
 ## [1.4.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.3.3...v1.4.0) (2025-06-09)
 
 
