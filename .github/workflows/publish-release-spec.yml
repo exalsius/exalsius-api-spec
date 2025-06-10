@@ -23,7 +23,7 @@ jobs:
           mv dist/bundle.yaml dist/exalsius-openapi-${{ github.event.release.tag_name }}.yaml
 
       - name: Upload release assets
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v2.2.2
         with:
           files: |
             dist/exalsius-openapi-${{ github.event.release.tag_name }}.yaml
