@@ -158,6 +158,7 @@ Class | Method | HTTP request | Description
  - [NodeImportResponse](docs/NodeImportResponse.md)
  - [NodeImportSshRequest](docs/NodeImportSshRequest.md)
  - [NodeResponse](docs/NodeResponse.md)
+ - [NodeResponseNode](docs/NodeResponseNode.md)
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
  - [OffersListResponse](docs/OffersListResponse.md)
