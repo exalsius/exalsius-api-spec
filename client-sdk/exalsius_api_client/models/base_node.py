@@ -117,8 +117,8 @@ class BaseNode(BaseModel):
 
     # discriminator mappings
     __discriminator_value_class_map: ClassVar[Dict[str, str]] = {
-        "cloud": "CloudNode",
-        "self-managed": "SelfManagedNode",
+        "CLOUD": "CloudNode",
+        "SELF_MANAGED": "SelfManagedNode",
     }
 
     @classmethod

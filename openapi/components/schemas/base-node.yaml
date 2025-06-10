@@ -7,8 +7,8 @@ required:
 discriminator:
   propertyName: node_type
   mapping:
-    cloud: './cloud-node.yaml'
-    self-managed: './self-managed-node.yaml'
+    CLOUD: './cloud-node.yaml'
+    SELF_MANAGED: './self-managed-node.yaml'
 properties:
   id:
     type: string
