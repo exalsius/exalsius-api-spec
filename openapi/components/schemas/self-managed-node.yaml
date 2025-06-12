@@ -1,6 +1,10 @@
 allOf:
   - $ref: './base-node.yaml'
   - type: object
+    required:
+      - endpoint
+      - username
+      - ssh_key_id
     properties:
       endpoint:
         type: string
