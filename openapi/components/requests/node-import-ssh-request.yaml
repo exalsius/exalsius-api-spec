@@ -1,9 +1,14 @@
 type: object
 required:
+  - hostname
   - endpoint
   - username
   - ssh_key_id
 properties:
+  hostname:
+    type: string
+    description: The hostname of the node
+    example: "my-node-123"
   endpoint:
     type: string
     description: IP or hostname reachable over SSH
