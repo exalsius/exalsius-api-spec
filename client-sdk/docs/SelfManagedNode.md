@@ -5,9 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**endpoint** | **str** | The endpoint of the node (IP or hostname) and port | [optional] 
-**username** | **str** | The username to connect to the node | [optional] 
-**ssh_key_id** | **str** | The ID of the private SSH key to connect to the node | [optional] 
+**endpoint** | **str** | The endpoint of the node (IP or hostname) and port | 
+**username** | **str** | The username to connect to the node | 
+**ssh_key_id** | **str** | The ID of the private SSH key to connect to the node | 
 
 ## Example
 

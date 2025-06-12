@@ -31,7 +31,6 @@ docs/NodeDeleteResponse.md
 docs/NodeImportResponse.md
 docs/NodeImportSshRequest.md
 docs/NodeResponse.md
-docs/NodeResponseNode.md
 docs/NodesApi.md
 docs/NodesListResponse.md
 docs/Offer.md
@@ -85,7 +84,6 @@ exalsius_api_client/models/node_delete_response.py
 exalsius_api_client/models/node_import_response.py
 exalsius_api_client/models/node_import_ssh_request.py
 exalsius_api_client/models/node_response.py
-exalsius_api_client/models/node_response_node.py
 exalsius_api_client/models/nodes_list_response.py
 exalsius_api_client/models/offer.py
 exalsius_api_client/models/offers_list_response.py

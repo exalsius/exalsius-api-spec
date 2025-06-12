@@ -31,18 +31,17 @@ class SelfManagedNode(BaseNode):
     SelfManagedNode
     """  # noqa: E501
 
-    endpoint: Optional[StrictStr] = Field(
-        default=None, description="The endpoint of the node (IP or hostname) and port"
+    endpoint: StrictStr = Field(
+        description="The endpoint of the node (IP or hostname) and port"
     )
-    username: Optional[StrictStr] = Field(
-        default=None, description="The username to connect to the node"
-    )
-    ssh_key_id: Optional[StrictStr] = Field(
-        default=None, description="The ID of the private SSH key to connect to the node"
+    username: StrictStr = Field(description="The username to connect to the node")
+    ssh_key_id: StrictStr = Field(
+        description="The ID of the private SSH key to connect to the node"
     )
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
+        "hostname",
         "description",
         "location",
         "gpu_count",
@@ -111,6 +110,7 @@ class SelfManagedNode(BaseNode):
             {
                 "id": obj.get("id"),
                 "node_type": obj.get("node_type"),
+                "hostname": obj.get("hostname"),
                 "description": obj.get("description"),
                 "location": obj.get("location"),
                 "gpu_count": obj.get("gpu_count"),

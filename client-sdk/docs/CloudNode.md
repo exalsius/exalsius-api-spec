@@ -5,11 +5,11 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**provider** | **str** | The cloud provider of the node | [optional] 
-**region** | **str** | The region of the node | [optional] 
+**provider** | **str** | The cloud provider of the node | 
+**region** | **str** | The region of the node | 
 **availability_zone** | **str** | The availability zone of the node | [optional] 
-**instance_type** | **str** | The instance type of the node | [optional] 
-**price_per_hour** | **float** | The price per hour for the node | [optional] 
+**instance_type** | **str** | The instance type of the node | 
+**price_per_hour** | **float** | The price per hour for the node | 
 
 ## Example
 

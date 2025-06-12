@@ -6,7 +6,23 @@ A single node, either self-managed or cloud
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**node** | [**NodeResponseNode**](NodeResponseNode.md) |  | [optional] 
+**id** | **str** | The unique identifier for the node | 
+**node_type** | **str** | The type of the node. - &#x60;CLOUD&#x60;: Cloud node - &#x60;SELF_MANAGED&#x60;: Self-managed node  | 
+**hostname** | **str** | The hostname of the node | [optional] 
+**description** | **str** | Description of the node | [optional] 
+**location** | **str** | The location of the node (e.g. city, data center, server rack, etc.) | [optional] 
+**gpu_count** | **int** | The number of GPUs | [optional] 
+**gpu_vendor** | **str** | The vendor of the GPU | [optional] 
+**gpu_type** | **str** | The type of the GPU | [optional] 
+**gpu_memory** | **int** | The memory of the GPU in GB | [optional] 
+**cpu_cores** | **int** | The number of CPU cores | [optional] 
+**memory_gb** | **int** | The memory of the node in GB | [optional] 
+**storage_gb** | **int** | The storage of the node in GB | [optional] 
+**import_time** | **datetime** | The time the node was imported | [optional] 
+**node_status** | **str** | The status of the node. - &#x60;PENDING&#x60;: Node is pending, e.g. because it wasn&#39;t launched yet (CloudNode) or because it wasn&#39;t discovered yet (SelfManagedNode) - &#x60;AVAILABLE&#x60;: Node is available to be added to a cluster - &#x60;STAGED&#x60;: Node is staged in a cluster - &#x60;OCCUPIED&#x60;: Node is occupied in a cluster  | 
+**endpoint** | **str** | The endpoint of the node (IP or hostname) and port | 
+**username** | **str** | The username to connect to the node | 
+**ssh_key_id** | **str** | The ID of the private SSH key to connect to the node | 
 
 ## Example
 

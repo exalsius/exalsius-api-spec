@@ -29,6 +29,7 @@ class NodeImportSshRequest(BaseModel):
     NodeImportSshRequest
     """  # noqa: E501
 
+    hostname: StrictStr = Field(description="The hostname of the node")
     endpoint: StrictStr = Field(description="IP or hostname reachable over SSH")
     username: StrictStr = Field(description="Username to access the node")
     description: Optional[StrictStr] = Field(
@@ -38,6 +39,7 @@ class NodeImportSshRequest(BaseModel):
         description="The ID of the SSH key to use for the node"
     )
     __properties: ClassVar[List[str]] = [
+        "hostname",
         "endpoint",
         "username",
         "description",
@@ -94,6 +96,7 @@ class NodeImportSshRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "hostname": obj.get("hostname"),
                 "endpoint": obj.get("endpoint"),
                 "username": obj.get("username"),
                 "description": obj.get("description"),

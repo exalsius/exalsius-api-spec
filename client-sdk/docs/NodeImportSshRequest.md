@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**hostname** | **str** | The hostname of the node | 
 **endpoint** | **str** | IP or hostname reachable over SSH | 
 **username** | **str** | Username to access the node | 
 **description** | **str** | Description of the node | [optional] 

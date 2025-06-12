@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Self
 
-from exalsius_api_client.models.base_node import BaseNode
+from exalsius_api_client.models.node_response import NodeResponse
 
 
 class NodesListResponse(BaseModel):
@@ -31,7 +31,7 @@ class NodesListResponse(BaseModel):
     NodesListResponse
     """  # noqa: E501
 
-    nodes: List[BaseNode]
+    nodes: List[NodeResponse]
     total: StrictInt = Field(
         description="Total number of nodes in the current result set"
     )
@@ -95,7 +95,7 @@ class NodesListResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "nodes": (
-                    [BaseNode.from_dict(_item) for _item in obj["nodes"]]
+                    [NodeResponse.from_dict(_item) for _item in obj["nodes"]]
                     if obj.get("nodes") is not None
                     else None
                 ),

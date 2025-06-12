@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**nodes** | [**List[BaseNode]**](BaseNode.md) |  | 
+**nodes** | [**List[NodeResponse]**](NodeResponse.md) |  | 
 **total** | **int** | Total number of nodes in the current result set | 
 
 ## Example

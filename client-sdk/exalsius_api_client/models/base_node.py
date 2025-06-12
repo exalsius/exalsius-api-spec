@@ -40,6 +40,9 @@ class BaseNode(BaseModel):
     node_type: StrictStr = Field(
         description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
     )
+    hostname: Optional[StrictStr] = Field(
+        default=None, description="The hostname of the node"
+    )
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
@@ -77,6 +80,7 @@ class BaseNode(BaseModel):
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
+        "hostname",
         "description",
         "location",
         "gpu_count",

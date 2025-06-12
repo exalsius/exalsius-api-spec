@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier for the node | 
 **node_type** | **str** | The type of the node. - &#x60;CLOUD&#x60;: Cloud node - &#x60;SELF_MANAGED&#x60;: Self-managed node  | 
+**hostname** | **str** | The hostname of the node | [optional] 
 **description** | **str** | Description of the node | [optional] 
 **location** | **str** | The location of the node (e.g. city, data center, server rack, etc.) | [optional] 
 **gpu_count** | **int** | The number of GPUs | [optional] 

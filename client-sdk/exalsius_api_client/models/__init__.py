@@ -55,7 +55,6 @@ from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
     NodeImportSshRequest
 from exalsius_api_client.models.node_response import NodeResponse
-from exalsius_api_client.models.node_response_node import NodeResponseNode
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.models.offer import Offer
 from exalsius_api_client.models.offers_list_response import OffersListResponse

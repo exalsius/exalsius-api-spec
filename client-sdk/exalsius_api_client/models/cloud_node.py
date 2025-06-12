@@ -31,24 +31,19 @@ class CloudNode(BaseNode):
     CloudNode
     """  # noqa: E501
 
-    provider: Optional[StrictStr] = Field(
-        default=None, description="The cloud provider of the node"
-    )
-    region: Optional[StrictStr] = Field(
-        default=None, description="The region of the node"
-    )
+    provider: StrictStr = Field(description="The cloud provider of the node")
+    region: StrictStr = Field(description="The region of the node")
     availability_zone: Optional[StrictStr] = Field(
         default=None, description="The availability zone of the node"
     )
-    instance_type: Optional[StrictStr] = Field(
-        default=None, description="The instance type of the node"
-    )
-    price_per_hour: Optional[Union[StrictFloat, StrictInt]] = Field(
-        default=None, description="The price per hour for the node"
+    instance_type: StrictStr = Field(description="The instance type of the node")
+    price_per_hour: Union[StrictFloat, StrictInt] = Field(
+        description="The price per hour for the node"
     )
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
+        "hostname",
         "description",
         "location",
         "gpu_count",
@@ -119,6 +114,7 @@ class CloudNode(BaseNode):
             {
                 "id": obj.get("id"),
                 "node_type": obj.get("node_type"),
+                "hostname": obj.get("hostname"),
                 "description": obj.get("description"),
                 "location": obj.get("location"),
                 "gpu_count": obj.get("gpu_count"),
