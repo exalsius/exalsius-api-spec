@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.4.1...v1.5.0) (2025-06-12)
+
+
+### Features
+
+* add a hostname field for nodes ([75603c8](https://github.com/exalsius/exalsius-api-spec/commit/75603c8a35ac33e97ceaa30ff33d5f12fa40f739))
+
+
+### Bug Fixes
+
+* set required fields for node types to enable differentation ([b5e511a](https://github.com/exalsius/exalsius-api-spec/commit/b5e511abfe19a9801a0c331912e9d125e363ee77))
+* use NodeResponse when listing nodes ([81b64e3](https://github.com/exalsius/exalsius-api-spec/commit/81b64e37d75e6e79b739b4234e01a12871a53aa7))
+
 ## [1.4.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.4.0...v1.4.1) (2025-06-10)
 
 
