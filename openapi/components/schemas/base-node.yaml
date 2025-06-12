@@ -24,6 +24,10 @@ properties:
       - `CLOUD`: Cloud node
       - `SELF_MANAGED`: Self-managed node
     example: "CLOUD"
+  hostname:
+    type: string
+    description: The hostname of the node
+    example: "my-node-123"
   description:
     type: string
     description: Description of the node
