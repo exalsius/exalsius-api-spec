@@ -1,6 +1,11 @@
 allOf:
   - $ref: './base-node.yaml'
   - type: object
+    required:
+      - provider
+      - region
+      - instance_type
+      - price_per_hour
     properties:
       provider:
         type: string
