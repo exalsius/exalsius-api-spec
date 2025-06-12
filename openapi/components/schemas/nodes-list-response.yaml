@@ -7,7 +7,7 @@ properties:
   nodes:
     type: array
     items:
-      $ref: './base-node.yaml'
+      $ref: './node-response.yaml'
   total:
     type: integer
     format: int32
