@@ -1,0 +1,12 @@
+type: object
+required:
+  - resources
+properties:
+  resources:
+    type: array
+    items:
+      $ref: './node-resource.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of available resources in the cluster

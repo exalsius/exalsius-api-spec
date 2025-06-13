@@ -1,0 +1,11 @@
+description: List of workspace templates
+headers:
+  X-Total-Count:
+    description: Total number of existing workspace templates
+    schema:
+      type: integer
+      format: int32
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/workspace-template-list-response.yaml'

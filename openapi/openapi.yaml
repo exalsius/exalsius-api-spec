@@ -57,6 +57,10 @@ tags:
     description: Services to be deployed on the clusters
   - name: management
     description: Management of available SSH Keys
+  - name: workspaces
+    description: Applications to be deployed on the clusters (e.g. Jupyter Notebook Server, SSH Pod, etc.)
+  - name: workspace-templates
+    description: Templates for workspaces
 paths:
   /offers:
     $ref: ./paths/offers.yaml
@@ -74,6 +78,8 @@ paths:
     $ref: ./paths/clusters/cluster.yaml
   /cluster/{cluster_id}/nodes:
     $ref: ./paths/clusters/nodes.yaml
+  /cluster/{cluster_id}/resources:
+    $ref: ./paths/clusters/resources.yaml
   /cluster/{cluster_id}/nodes/{node_id}:
     $ref: ./paths/clusters/delete-node.yaml
   /cluster/{cluster_id}/services:
@@ -92,6 +98,14 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
+  /workspaces:
+    $ref: ./paths/workspaces/list.yaml
+  /workspace/{workspace_id}:
+    $ref: ./paths/workspaces/workspace.yaml
+  /workspace/{workspace_id}/stop:
+    $ref: ./paths/workspaces/stop-workspace.yaml
+  /workspace-templates:
+    $ref: ./paths/workspaces/templates.yaml
 components:
   schemas:
     Offer:
@@ -134,6 +148,18 @@ components:
       $ref: ./components/schemas/ssh-key.yaml
     Kubeconfig:
       $ref: ./components/schemas/kubeconfig.yaml
+    WorkspaceCreateResponse:
+      $ref: ./components/schemas/workspace-create-response.yaml
+    WorkspaceDeleteResponse:
+      $ref: ./components/schemas/workspace-delete-response.yaml
+    WorkspaceResponse:
+      $ref: ./components/schemas/workspace-response.yaml
+    WorkspaceStopResponse:
+      $ref: ./components/schemas/workspace-stop-response.yaml
+    WorkspaceTemplate:
+      $ref: ./components/schemas/workspace-template.yaml
+    WorkspaceListResponse:
+      $ref: ./components/schemas/workspaces-list-response.yaml
   responses:
     ClusterCreateResponse:
       $ref: ./components/responses/cluster-create-response.yaml
@@ -145,6 +171,8 @@ components:
       $ref: ./components/responses/cluster-node-remove-response.yaml
     ClusterNodesResponse:
       $ref: ./components/responses/cluster-nodes-response.yaml
+    ClusterResourcesListResponse:
+      $ref: ./components/responses/cluster-resources-list-response.yaml
     ClusterListResponse:
       $ref: ./components/responses/clusters-list-response.yaml
     ClusterServicesResponse:
@@ -165,6 +193,18 @@ components:
       $ref: ./components/responses/ssh-keys-list-response.yaml
     SshKeyCreateResponse:
       $ref: ./components/responses/ssh-key-create-response.yaml
+    WorkspaceCreateResponse:
+      $ref: ./components/responses/workspace-create-response.yaml
+    WorkspaceDeleteResponse:
+      $ref: ./components/responses/workspace-delete-response.yaml
+    WorkspaceResponse:
+      $ref: ./components/responses/workspace-response.yaml
+    WorkspaceStopResponse:
+      $ref: ./components/responses/workspace-stop-response.yaml
+    WorkspaceTemplateListResponse:
+      $ref: ./components/responses/workspace-template-list-response.yaml
+    WorkspaceListResponse:
+      $ref: ./components/responses/workspaces-list-response.yaml
   securitySchemes:
     ApiKeyAuth:
       $ref: ./components/securitySchemes/ApiKeyAuth.yaml

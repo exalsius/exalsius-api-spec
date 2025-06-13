@@ -1,0 +1,86 @@
+get:
+  operationId: describeWorkspace
+  tags: [workspaces]
+  summary: Get details of a single workspace
+  description: |
+    **Retrieve the details of a single workspace**
+
+    Fetch all metadata for one workspace.
+
+  parameters:
+    - name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the workspace to describe
+  responses:
+    '200':
+      $ref: '../../components/responses/workspace-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000")
+        print(response.json())
+
+delete:
+  operationId: deleteWorkspace
+  tags: [workspaces]
+  summary: Delete a workspace
+  description: |
+    **Delete a workspace**
+
+    Delete a workspace. 
+
+    **Note**
+
+    This operation is irreversible.
+
+    **Behavior**
+    
+    The workspace will be deleted as soon as possible. However, it may take a few minutes
+    for the workspace to be fully deleted.
+
+  parameters:
+    - name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the workspace to delete
+  responses:
+    '200':
+      $ref: '../../components/responses/workspace-delete-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X DELETE "https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.delete("https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000")

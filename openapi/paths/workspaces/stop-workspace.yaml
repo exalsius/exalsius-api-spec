@@ -1,0 +1,39 @@
+post:
+  operationId: stopWorkspace
+  tags: [workspaces]
+  summary: Stop a workspace
+  description: |
+    **Stop a workspace**
+
+    Stop a workspace. This will stop or delete all associated Pods but keep the attached persistent volume.
+
+  parameters:
+    - name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the workspace to stop
+  responses:
+    '200':
+      $ref: '../../components/responses/workspace-stop-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000/stop"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.post("https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000/stop")
+        print(response.json())
