@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**node_type** | **str** | The type of the node. Must be \&quot;CLOUD\&quot;. | [optional] 
 **provider** | **str** | The cloud provider of the node | 
 **region** | **str** | The region of the node | 
 **availability_zone** | **str** | The availability zone of the node | [optional] 

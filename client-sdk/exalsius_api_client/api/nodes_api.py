@@ -543,6 +543,7 @@ class NodesApi:
     def import_node_from_offer(
         self,
         offer_id: StrictStr,
+        hostname: Optional[StrictStr] = None,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -562,6 +563,8 @@ class NodesApi:
 
         :param offer_id: (required)
         :type offer_id: str
+        :param hostname:
+        :type hostname: str
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one
@@ -588,6 +591,7 @@ class NodesApi:
 
         _param = self._import_node_from_offer_serialize(
             offer_id=offer_id,
+            hostname=hostname,
             amount=amount,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -614,6 +618,7 @@ class NodesApi:
     def import_node_from_offer_with_http_info(
         self,
         offer_id: StrictStr,
+        hostname: Optional[StrictStr] = None,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -633,6 +638,8 @@ class NodesApi:
 
         :param offer_id: (required)
         :type offer_id: str
+        :param hostname:
+        :type hostname: str
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one
@@ -659,6 +666,7 @@ class NodesApi:
 
         _param = self._import_node_from_offer_serialize(
             offer_id=offer_id,
+            hostname=hostname,
             amount=amount,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -685,6 +693,7 @@ class NodesApi:
     def import_node_from_offer_without_preload_content(
         self,
         offer_id: StrictStr,
+        hostname: Optional[StrictStr] = None,
         amount: Optional[StrictInt] = None,
         _request_timeout: Union[
             None,
@@ -704,6 +713,8 @@ class NodesApi:
 
         :param offer_id: (required)
         :type offer_id: str
+        :param hostname:
+        :type hostname: str
         :param amount:
         :type amount: int
         :param _request_timeout: timeout setting for this request. If one
@@ -730,6 +741,7 @@ class NodesApi:
 
         _param = self._import_node_from_offer_serialize(
             offer_id=offer_id,
+            hostname=hostname,
             amount=amount,
             _request_auth=_request_auth,
             _content_type=_content_type,
@@ -751,6 +763,7 @@ class NodesApi:
     def _import_node_from_offer_serialize(
         self,
         offer_id,
+        hostname,
         amount,
         _request_auth,
         _content_type,
@@ -775,6 +788,10 @@ class NodesApi:
         if offer_id is not None:
             _path_params["offer_id"] = offer_id
         # process the query parameters
+        if hostname is not None:
+
+            _query_params.append(("hostname", hostname))
+
         if amount is not None:
 
             _query_params.append(("amount", amount))

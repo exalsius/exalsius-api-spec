@@ -7,7 +7,7 @@ A single node, either self-managed or cloud
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier for the node | 
-**node_type** | **str** | The type of the node. - &#x60;CLOUD&#x60;: Cloud node - &#x60;SELF_MANAGED&#x60;: Self-managed node  | 
+**node_type** | **str** | The type of the node. Must be \&quot;SELF_MANAGED\&quot;. | 
 **hostname** | **str** | The hostname of the node | [optional] 
 **description** | **str** | Description of the node | [optional] 
 **location** | **str** | The location of the node (e.g. city, data center, server rack, etc.) | [optional] 

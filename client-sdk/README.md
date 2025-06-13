@@ -153,6 +153,7 @@ Class | Method | HTTP request | Description
  - [Credentials](docs/Credentials.md)
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
  - [Error](docs/Error.md)
+ - [ErrorDetail](docs/ErrorDetail.md)
  - [Kubeconfig](docs/Kubeconfig.md)
  - [NodeDeleteResponse](docs/NodeDeleteResponse.md)
  - [NodeImportResponse](docs/NodeImportResponse.md)

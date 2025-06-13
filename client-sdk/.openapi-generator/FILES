@@ -25,6 +25,7 @@ docs/ClustersListResponse.md
 docs/Credentials.md
 docs/CredentialsListResponse.md
 docs/Error.md
+docs/ErrorDetail.md
 docs/Kubeconfig.md
 docs/ManagementApi.md
 docs/NodeDeleteResponse.md
@@ -79,6 +80,7 @@ exalsius_api_client/models/clusters_list_response.py
 exalsius_api_client/models/credentials.py
 exalsius_api_client/models/credentials_list_response.py
 exalsius_api_client/models/error.py
+exalsius_api_client/models/error_detail.py
 exalsius_api_client/models/kubeconfig.py
 exalsius_api_client/models/node_delete_response.py
 exalsius_api_client/models/node_import_response.py
@@ -105,4 +107,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_error_detail.py
 tox.ini

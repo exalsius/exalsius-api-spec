@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import ConfigDict, Field, StrictStr
+from pydantic import ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 from exalsius_api_client.models.base_node import BaseNode
@@ -31,6 +31,9 @@ class SelfManagedNode(BaseNode):
     SelfManagedNode
     """  # noqa: E501
 
+    node_type: Optional[StrictStr] = Field(
+        default=None, description='The type of the node. Must be "SELF_MANAGED".'
+    )
     endpoint: StrictStr = Field(
         description="The endpoint of the node (IP or hostname) and port"
     )
@@ -57,6 +60,16 @@ class SelfManagedNode(BaseNode):
         "username",
         "ssh_key_id",
     ]
+
+    @field_validator("node_type")
+    def node_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["SELF_MANAGED"]):
+            raise ValueError("must be one of enum values ('SELF_MANAGED')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

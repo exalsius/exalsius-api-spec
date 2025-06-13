@@ -161,7 +161,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **import_node_from_offer**
-> NodeImportResponse import_node_from_offer(offer_id, amount=amount)
+> NodeImportResponse import_node_from_offer(offer_id, hostname=hostname, amount=amount)
 
 Import a node from an offer
 
@@ -207,11 +207,12 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.NodesApi(api_client)
     offer_id = 'offer_id_example' # str | 
+    hostname = '' # str |  (optional) (default to '')
     amount = 1 # int |  (optional) (default to 1)
 
     try:
         # Import a node from an offer
-        api_response = api_instance.import_node_from_offer(offer_id, amount=amount)
+        api_response = api_instance.import_node_from_offer(offer_id, hostname=hostname, amount=amount)
         print("The response of NodesApi->import_node_from_offer:\n")
         pprint(api_response)
     except Exception as e:
@@ -226,6 +227,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **offer_id** | **str**|  | 
+ **hostname** | **str**|  | [optional] [default to &#39;&#39;]
  **amount** | **int**|  | [optional] [default to 1]
 
 ### Return type

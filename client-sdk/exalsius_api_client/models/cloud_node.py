@@ -20,7 +20,8 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import ConfigDict, Field, StrictFloat, StrictInt, StrictStr
+from pydantic import (ConfigDict, Field, StrictFloat, StrictInt, StrictStr,
+                      field_validator)
 from typing_extensions import Self
 
 from exalsius_api_client.models.base_node import BaseNode
@@ -31,6 +32,9 @@ class CloudNode(BaseNode):
     CloudNode
     """  # noqa: E501
 
+    node_type: Optional[StrictStr] = Field(
+        default=None, description='The type of the node. Must be "CLOUD".'
+    )
     provider: StrictStr = Field(description="The cloud provider of the node")
     region: StrictStr = Field(description="The region of the node")
     availability_zone: Optional[StrictStr] = Field(
@@ -61,6 +65,16 @@ class CloudNode(BaseNode):
         "instance_type",
         "price_per_hour",
     ]
+
+    @field_validator("node_type")
+    def node_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["CLOUD"]):
+            raise ValueError("must be one of enum values ('CLOUD')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,

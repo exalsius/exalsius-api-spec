@@ -5,6 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**node_type** | **str** | The type of the node. Must be \&quot;SELF_MANAGED\&quot;. | [optional] 
 **endpoint** | **str** | The endpoint of the node (IP or hostname) and port | 
 **username** | **str** | The username to connect to the node | 
 **ssh_key_id** | **str** | The ID of the private SSH key to connect to the node | 
