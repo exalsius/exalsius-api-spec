@@ -1,0 +1,83 @@
+type: object
+required:
+  - name
+  - cluster_id
+  - template
+  - resources
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier for the workspace
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    description: The name of the workspace
+    example: "my-workspace"
+  cluster_id:
+    type: string
+    format: uuid
+    description: The unique identifier of the associated cluster
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  workspace_status:
+    type: string
+    enum: [PENDING, RUNNING, STOPPED, DELETED, FAILED]
+    x-enum-varnames: [PENDING, RUNNING, STOPPED, DELETED, FAILED]
+    description: >
+      The status of the workspace.
+      - `PENDING`: Workspace is pending
+      - `RUNNING`: Workspace is running
+      - `STOPPED`: Workspace is stopped
+      - `DELETED`: Workspace is deleted
+      - `FAILED`: Workspace is failed
+  template:
+    $ref: './workspace-template.yaml'
+  owner:
+    type: string
+    description: The owner of the workspace
+    example: "John Doe"
+  description:
+    type: string
+    description: The description of the workspace
+    example: "This is a workspace for my project"
+  access_information:
+    type: string
+    description: Information about how to access the workspace
+    example: "ssh -i ~/.ssh/id_rsa user@host"
+  resources:
+    type: object
+    properties:
+        gpu_count:
+          type: integer
+          description: The number of GPUs
+          format: int32
+          example: 1
+        gpu_type:
+          type: string
+          description: The type of the GPU
+          example: "a100"
+        cpu_cores:
+          type: integer
+          description: The number of CPU cores
+          format: int32
+          example: 4
+        memory_gb:
+          type: integer
+          description: The memory of the node in GB
+          format: int32
+          example: 16
+        storage_gb:
+          type: integer
+          description: The storage of the node in GB
+          format: int32
+          example: 100
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time the workspace was created
+    example: "2025-01-01T00:00:00Z"
+  to_be_deleted_at:
+    type: string
+    format: date-time
+    description: The date and time the workspace will be deleted
+    example: "2025-02-01T00:00:00Z"
