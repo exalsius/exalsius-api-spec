@@ -1,0 +1,12 @@
+type: object
+required:
+  - workspace_templates
+properties:
+  workspace_templates:
+    type: array
+    items:
+      $ref: './workspace-template.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of workspace templates

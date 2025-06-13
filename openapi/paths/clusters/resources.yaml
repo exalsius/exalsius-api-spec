@@ -1,0 +1,38 @@
+get:
+  operationId: getClusterResources
+  tags: [clusters]
+  summary: List free / available resources in the cluster
+  description: |
+    **List free / available resources in the cluster**
+
+    List the free / available resources in the cluster.
+
+  parameters:
+    - name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the cluster to list resources for
+  responses:
+    '200':
+      $ref: '../../components/responses/cluster-resources-list-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/cluster/123/resources" 
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/cluster/123/resources")

@@ -1,0 +1,101 @@
+get:
+  operationId: listWorkspaces
+  tags: [workspaces]
+  summary: List all workspaces
+  description: |
+    **List all workspaces**
+
+    Retrieve all workspaces, with optional filters:
+    - `cluster_id`: filter by cluster ID
+
+    **Examples**
+
+    Here's an example of how to filter by cluster ID:
+    ```
+    /workspaces?cluster_id=123
+    ```
+
+  parameters:
+    - name: cluster_id
+      in: query
+      description: |
+        Only return workspaces that are associated with this cluster.
+      required: false
+      schema:
+        type: string
+        format: uuid
+
+  responses:
+    '200':
+      $ref: '../../components/responses/workspaces-list-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/workspaces"
+    - lang: python
+      label: Python
+      source: |
+        import requests 
+        response = requests.get("https://api.exalsius.ai/workspaces")
+        print(response.json())
+
+post:
+  operationId: createWorkspace
+  tags: [workspaces]
+  summary: Create a workspace
+  description: |
+    **Create a workspace**
+
+    Create a new workspace.
+
+    **Parameters**
+
+    - `name`: The name of the workspace
+    - `cluster_id`: The ID of the cluster to deploy the workspace to
+    - `template`: The template to use for the workspace
+    - `resources`: The resources to use for the workspace
+
+    **Behavior**
+
+    Creating a new workspace will result in a new workspace resource being created. The workspace will be in 
+    the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/workspace.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/workspace-create-response.yaml'
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-already-exists
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/workspaces" -H "Content-Type: application/json" -d '{"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": "jupyter-notebook", "resources": {"gpu_count": 1, "gpu_type": "a100", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.post("https://api.exalsius.ai/workspaces", json={"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": "jupyter-notebook", "resources": {"gpu_count": 1, "gpu_type": "a100", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}})
+        print(response.json())
+  

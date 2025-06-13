@@ -1,0 +1,21 @@
+type: object
+required:
+  - name
+  - variables
+properties:
+  name:
+    type: string
+    description: The name of the workspace template
+    example: "my-workspace-template"
+  description:
+    type: string
+    description: The description of the workspace template
+    example: "This workspace template configures a Jupyter Notebook server"
+  variables:
+    type: object
+    description: The variables of the workspace template
+    example: {
+      "notebook_port": "8888"
+    }
+    additionalProperties:
+      type: string

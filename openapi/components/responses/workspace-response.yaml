@@ -1,0 +1,5 @@
+description: A single workspace
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/workspace.yaml'

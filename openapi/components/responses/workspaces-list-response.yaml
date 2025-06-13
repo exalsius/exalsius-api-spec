@@ -1,0 +1,11 @@
+description: List of workspaces
+headers:
+  X-Total-Count:
+    description: Total number of existing workspaces
+    schema:
+      type: integer
+      format: int32
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/workspaces-list-response.yaml'

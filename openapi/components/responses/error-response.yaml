@@ -49,6 +49,24 @@ content:
             status: 404
             detail: "The cluster with ID 123 was not found."
             instance: "/clusters/123"
+      workspace-not-found:
+        summary: Workspace Not Found
+        value:
+          detail:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Workspace Not Found"
+            status: 404
+            detail: "The workspace with ID 123 was not found."
+            instance: "/workspaces/123"
+      workspace-template-not-found:
+        summary: Workspace Template Not Found
+        value:
+          detail:
+            type: "https://api.exalsius.ai/errors/not-found"
+            title: "Workspace Template Not Found"
+            status: 404
+            detail: "The workspace template with ID 123 was not found."
+            instance: "/workspace-templates/123"
       node-not-found:
         summary: Node Not Found
         value:
@@ -112,6 +130,15 @@ content:
             status: 409
             detail: "The node with ID 123 already exists."
             instance: "/nodes/123"
+      workspace-already-exists:
+        summary: Workspace Already Exists
+        value:
+          detail:
+            type: "https://api.exalsius.ai/errors/conflict"
+            title: "Conflict"
+            status: 409
+            detail: "The workspace with ID 123 already exists."
+            instance: "/workspaces/123"
       node-not-in-available-state:
         summary: Node Not in Available State
         value:

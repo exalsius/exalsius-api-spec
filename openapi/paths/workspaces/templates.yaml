@@ -1,0 +1,38 @@
+get:
+  operationId: listWorkspaceTemplates
+  tags: [workspace-templates]
+  summary: List all workspace templates
+  description: |
+    **List all workspace templates**
+
+    Retrieve all workspace templates.
+
+    **Note**
+
+    Workspace templates are used to create workspaces.
+
+    **Result**
+
+    Returns an array of workspace template objects.
+
+  responses:
+    '200':
+      $ref: '../../components/responses/workspace-template-list-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-template-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/workspace-templates" 
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/workspace-templates")

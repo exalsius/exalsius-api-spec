@@ -1,0 +1,5 @@
+description: List of free / available resources in the cluster
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-resources-list-response.yaml'
