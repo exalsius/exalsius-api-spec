@@ -7,6 +7,10 @@ allOf:
       - instance_type
       - price_per_hour
     properties:
+      node_type:
+        type: string
+        enum: ["CLOUD"]
+        description: The type of the node. Must be "CLOUD".
       provider:
         type: string
         description: The cloud provider of the node
