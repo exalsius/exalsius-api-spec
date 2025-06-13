@@ -6,6 +6,10 @@ allOf:
       - username
       - ssh_key_id
     properties:
+      node_type:
+        type: string
+        enum: ["SELF_MANAGED"]
+        description: The type of the node. Must be "SELF_MANAGED".
       endpoint:
         type: string
         description: The endpoint of the node (IP or hostname) and port

@@ -35,11 +35,12 @@ get:
           schema:
             $ref: '../../components/schemas/error.yaml'
           example:
-            type: "https://api.exalsius.ai/errors/not-found"
-            title: "Not Found"
-            status: 404
-            detail: "The cluster with ID 123 was not found."
-            instance: "/clusters/123"
+            detail:
+              type: "https://api.exalsius.ai/errors/not-found"
+              title: "Not Found"
+              status: 404
+              detail: "The cluster with ID 123 was not found."
+              instance: "/clusters/123"
     '500':
       description: Internal Server Error
       content:
@@ -47,11 +48,12 @@ get:
           schema:
             $ref: '../../components/schemas/error.yaml'
           example:
-            type: "https://api.exalsius.ai/errors/server-error"
-            title: "Internal Server Error"
-            status: 500
-            detail: "An internal server error occurred while processing the request."
-            instance: "/clusters/123/nodes"
+            detail:
+              type: "https://api.exalsius.ai/errors/server-error"
+              title: "Internal Server Error"
+              status: 500
+              detail: "An internal server error occurred while processing the request."
+              instance: "/clusters/123/nodes"
   
   x-codeSamples:
     - lang: curl
