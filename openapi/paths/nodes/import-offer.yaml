@@ -31,6 +31,14 @@ post:
       schema:
         type: string
         format: uuid
+    - name: hostname
+      in: query
+      required: false
+      schema:
+        type: string
+        description: The hostname of the node. If provided, the node will be added to the node pool with the given hostname.
+        example: "aws-node"
+        default: ""
     - name: amount
       in: query
       required: false
