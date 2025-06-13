@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.5.0...v1.5.1) (2025-06-13)
+
+
+### Bug Fixes
+
+* add hostname to import offer endpoint ([563db7c](https://github.com/exalsius/exalsius-api-spec/commit/563db7c1bf3da0a5886be35e348e28bc1013cc95))
+* adjust error response model to include nested details ([4d98e05](https://github.com/exalsius/exalsius-api-spec/commit/4d98e059500805fb87e55e1b221f1e9e5468b45d))
+
 ## [1.5.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.4.1...v1.5.0) (2025-06-12)
 
 
