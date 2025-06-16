@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.5.1...v1.6.0) (2025-06-16)
+
+
+### Features
+
+* move workspace-templates; refine specs ([6bb2c96](https://github.com/exalsius/exalsius-api-spec/commit/6bb2c96707470271c0e5293b33faa4b206f73829))
+
 ## [1.5.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.5.0...v1.5.1) (2025-06-13)
 
 

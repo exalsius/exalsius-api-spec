@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.5.1
+  version: 1.6.0
   x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
   x-audience:
     - exalsius-cli
@@ -58,16 +58,12 @@ tags:
   - name: management
     description: Management of SSH keys, templates, etc.
   - name: workspaces
-    description: Applications to be deployed on the clusters (e.g. Jupyter Notebook Server, SSH Pod, etc.)
+    description: >-
+      Applications to be deployed on the clusters (e.g. Jupyter Notebook Server,
+      SSH Pod, etc.)
 paths:
-  ############################################################
-  # Offers
-  ############################################################
   /offers:
     $ref: ./paths/offers.yaml
-  ############################################################
-  # Nodes
-  ############################################################
   /nodes:
     $ref: ./paths/nodes/list.yaml
   /node/{node_id}:
@@ -76,9 +72,6 @@ paths:
     $ref: ./paths/nodes/import-ssh.yaml
   /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
-  ############################################################
-  # Cluster
-  ############################################################
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /cluster/{cluster_id}:
@@ -95,14 +88,8 @@ paths:
     $ref: ./paths/clusters/deploy.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
-  ############################################################
-  # Services
-  ############################################################
   /services:
     $ref: ./paths/services/list.yaml
-  ############################################################
-  # Management
-  ############################################################
   /management/credentials:
     $ref: ./paths/management/list-credentials.yaml
   /management/cluster-templates:
@@ -113,9 +100,6 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
-  ############################################################
-  # Workspaces
-  ############################################################
   /workspaces:
     $ref: ./paths/workspaces/list.yaml
   /workspace/{workspace_id}:
