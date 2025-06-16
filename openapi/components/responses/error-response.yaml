@@ -66,7 +66,7 @@ content:
             title: "Workspace Template Not Found"
             status: 404
             detail: "The workspace template with ID 123 was not found."
-            instance: "/workspace-templates/123"
+            instance: "/management/workspace-templates/123"
       node-not-found:
         summary: Node Not Found
         value:

@@ -9,4 +9,4 @@ properties:
   total:
     type: integer
     format: int32
-    description: The total number of available resources in the cluster
+    description: The total number of available / occupied resources in the cluster

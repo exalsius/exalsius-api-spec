@@ -25,13 +25,13 @@ properties:
     properties:
       cpu:
         type: number
-        description: The number of available CPU cores
+        description: The number of occupied CPU cores
       memory:
         type: number
-        description: The number of available memory in GB
+        description: The number of occupied memory in GB
       storage:
         type: number
-        description: The number of available storage in GB
+        description: The number of occupied storage in GB
       gpu:
         type: number
-        description: The number of available GPUs
+        description: The number of occupied GPUs
