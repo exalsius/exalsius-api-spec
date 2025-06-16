@@ -1,6 +1,6 @@
 get:
   operationId: listWorkspaceTemplates
-  tags: [workspace-templates]
+  tags: [management]
   summary: List all workspace templates
   description: |
     **List all workspace templates**
@@ -29,10 +29,10 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/workspace-templates" 
+        curl -X GET "https://api.exalsius.ai/management/workspace-templates" 
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.get("https://api.exalsius.ai/workspace-templates")
+        response = requests.get("https://api.exalsius.ai/management/workspace-templates")

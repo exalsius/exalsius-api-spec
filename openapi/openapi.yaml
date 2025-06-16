@@ -56,14 +56,18 @@ tags:
   - name: services
     description: Services to be deployed on the clusters
   - name: management
-    description: Management of available SSH Keys
+    description: Management of SSH keys, templates, etc.
   - name: workspaces
     description: Applications to be deployed on the clusters (e.g. Jupyter Notebook Server, SSH Pod, etc.)
-  - name: workspace-templates
-    description: Templates for workspaces
 paths:
+  ############################################################
+  # Offers
+  ############################################################
   /offers:
     $ref: ./paths/offers.yaml
+  ############################################################
+  # Nodes
+  ############################################################
   /nodes:
     $ref: ./paths/nodes/list.yaml
   /node/{node_id}:
@@ -72,6 +76,9 @@ paths:
     $ref: ./paths/nodes/import-ssh.yaml
   /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
+  ############################################################
+  # Cluster
+  ############################################################
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /cluster/{cluster_id}:
@@ -88,24 +95,33 @@ paths:
     $ref: ./paths/clusters/deploy.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
+  ############################################################
+  # Services
+  ############################################################
   /services:
     $ref: ./paths/services/list.yaml
+  ############################################################
+  # Management
+  ############################################################
   /management/credentials:
     $ref: ./paths/management/list-credentials.yaml
   /management/cluster-templates:
     $ref: ./paths/management/list-cluster-templates.yaml
+  /management/workspace-templates:
+    $ref: ./paths/management/list-workspace-templates.yaml
   /management/ssh-keys:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
+  ############################################################
+  # Workspaces
+  ############################################################
   /workspaces:
     $ref: ./paths/workspaces/list.yaml
   /workspace/{workspace_id}:
     $ref: ./paths/workspaces/workspace.yaml
   /workspace/{workspace_id}/stop:
     $ref: ./paths/workspaces/stop-workspace.yaml
-  /workspace-templates:
-    $ref: ./paths/workspaces/templates.yaml
 components:
   schemas:
     Offer:
