@@ -1,4 +1,4 @@
-description: List of free / available resources in the cluster
+description: List of available / occupied resources in the cluster
 content:
   application/json:
     schema:

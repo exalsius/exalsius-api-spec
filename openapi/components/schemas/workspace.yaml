@@ -45,32 +45,8 @@ properties:
     description: Information about how to access the workspace
     example: "ssh -i ~/.ssh/id_rsa user@host"
   resources:
-    type: object
-    properties:
-        gpu_count:
-          type: integer
-          description: The number of GPUs
-          format: int32
-          example: 1
-        gpu_type:
-          type: string
-          description: The type of the GPU
-          example: "a100"
-        cpu_cores:
-          type: integer
-          description: The number of CPU cores
-          format: int32
-          example: 4
-        memory_gb:
-          type: integer
-          description: The memory of the node in GB
-          format: int32
-          example: 16
-        storage_gb:
-          type: integer
-          description: The storage of the node in GB
-          format: int32
-          example: 100
+    description: The resources allocated to the workspace
+    $ref: './resource-pool.yaml'
   created_at:
     type: string
     format: date-time
