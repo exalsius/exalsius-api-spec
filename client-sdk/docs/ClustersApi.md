@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**deploy_cluster**](ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
 [**describe_cluster**](ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 [**get_cluster_kubeconfig**](ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+[**get_cluster_resources**](ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 [**get_cluster_services**](ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
 [**get_nodes**](ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 [**list_clusters**](ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
@@ -696,6 +697,79 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The kubeconfig file for a cluster |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cluster_resources**
+> ClusterResourcesListResponse get_cluster_resources(cluster_id)
+
+List available / occupied resources in the cluster
+
+**List available / occupied resources in the cluster**
+
+List the available / occupied resources in the cluster.
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.cluster_resources_list_response import ClusterResourcesListResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ClustersApi(api_client)
+    cluster_id = 'cluster_id_example' # str | ID of the cluster to list resources for
+
+    try:
+        # List available / occupied resources in the cluster
+        api_response = api_instance.get_cluster_resources(cluster_id)
+        print("The response of ClustersApi->get_cluster_resources:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ClustersApi->get_cluster_resources: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | **str**| ID of the cluster to list resources for | 
+
+### Return type
+
+[**ClusterResourcesListResponse**](ClusterResourcesListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of available / occupied resources in the cluster |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

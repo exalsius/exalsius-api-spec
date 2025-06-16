@@ -6,3 +6,4 @@ from exalsius_api_client.api.management_api import ManagementApi
 from exalsius_api_client.api.nodes_api import NodesApi
 from exalsius_api_client.api.offers_api import OffersApi
 from exalsius_api_client.api.services_api import ServicesApi
+from exalsius_api_client.api.workspaces_api import WorkspacesApi

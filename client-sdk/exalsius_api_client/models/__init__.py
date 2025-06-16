@@ -37,6 +37,10 @@ from exalsius_api_client.models.cluster_node_remove_response import \
 from exalsius_api_client.models.cluster_node_to_add import ClusterNodeToAdd
 from exalsius_api_client.models.cluster_nodes_response import \
     ClusterNodesResponse
+from exalsius_api_client.models.cluster_resources_list_response import \
+    ClusterResourcesListResponse
+from exalsius_api_client.models.cluster_resources_list_response_resources_inner import \
+    ClusterResourcesListResponseResourcesInner
 from exalsius_api_client.models.cluster_response import ClusterResponse
 from exalsius_api_client.models.cluster_services_response import \
     ClusterServicesResponse
@@ -59,6 +63,7 @@ from exalsius_api_client.models.node_response import NodeResponse
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.models.offer import Offer
 from exalsius_api_client.models.offers_list_response import OffersListResponse
+from exalsius_api_client.models.resource_pool import ResourcePool
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
 from exalsius_api_client.models.service import Service
 from exalsius_api_client.models.service_deployment import ServiceDeployment
@@ -73,3 +78,16 @@ from exalsius_api_client.models.ssh_keys_list_response import \
     SshKeysListResponse
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
     SshKeysListResponseSshKeysInner
+from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_create_response import \
+    WorkspaceCreateResponse
+from exalsius_api_client.models.workspace_delete_response import \
+    WorkspaceDeleteResponse
+from exalsius_api_client.models.workspace_response import WorkspaceResponse
+from exalsius_api_client.models.workspace_stop_response import \
+    WorkspaceStopResponse
+from exalsius_api_client.models.workspace_template import WorkspaceTemplate
+from exalsius_api_client.models.workspace_template_list_response import \
+    WorkspaceTemplateListResponse
+from exalsius_api_client.models.workspaces_list_response import \
+    WorkspacesListResponse

@@ -431,7 +431,7 @@ No authorization required
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of nodes in the node pool |  * X-Total-Count - Total number of available nodes <br>  |
+**200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing workspaces <br>  |
 **422** | Error response |  -  |
 **500** | Error response |  -  |
 

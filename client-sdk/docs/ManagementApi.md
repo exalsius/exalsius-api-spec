@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**list_cluster_templates**](ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 [**list_credentials**](ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 [**list_ssh_keys**](ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
+[**list_workspace_templates**](ManagementApi.md#list_workspace_templates) | **GET** /management/workspace-templates | List all workspace templates
 
 
 # **add_ssh_key**
@@ -384,6 +385,83 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of SSH keys |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_workspace_templates**
+> WorkspaceTemplateListResponse list_workspace_templates()
+
+List all workspace templates
+
+**List all workspace templates**
+
+Retrieve all workspace templates.
+
+**Note**
+
+Workspace templates are used to create workspaces.
+
+**Result**
+
+Returns an array of workspace template objects.
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.workspace_template_list_response import WorkspaceTemplateListResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # List all workspace templates
+        api_response = api_instance.list_workspace_templates()
+        print("The response of ManagementApi->list_workspace_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManagementApi->list_workspace_templates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**WorkspaceTemplateListResponse**](WorkspaceTemplateListResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of workspace templates |  * X-Total-Count - Total number of existing workspaces <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**deploy_cluster**](docs/ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
 *ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+*ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 *ClustersApi* | [**get_cluster_services**](docs/ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
@@ -121,6 +122,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 *ManagementApi* | [**list_credentials**](docs/ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 *ManagementApi* | [**list_ssh_keys**](docs/ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
+*ManagementApi* | [**list_workspace_templates**](docs/ManagementApi.md#list_workspace_templates) | **GET** /management/workspace-templates | List all workspace templates
 *NodesApi* | [**delete_node**](docs/NodesApi.md#delete_node) | **DELETE** /node/{node_id} | Delete a node from the pool
 *NodesApi* | [**describe_node**](docs/NodesApi.md#describe_node) | **GET** /node/{node_id} | Get details of a single node in the node pool (self-managed or cloud)
 *NodesApi* | [**import_node_from_offer**](docs/NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
@@ -128,6 +130,11 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
 *ServicesApi* | [**list_available_services**](docs/ServicesApi.md#list_available_services) | **GET** /services | List all available services
+*WorkspacesApi* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /workspaces | Create a workspace
+*WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
+*WorkspacesApi* | [**describe_workspace**](docs/WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
+*WorkspacesApi* | [**list_workspaces**](docs/WorkspacesApi.md#list_workspaces) | **GET** /workspaces | List all workspaces
+*WorkspacesApi* | [**stop_workspace**](docs/WorkspacesApi.md#stop_workspace) | **POST** /workspace/{workspace_id}/stop | Stop a workspace
 
 
 ## Documentation For Models
@@ -145,6 +152,8 @@ Class | Method | HTTP request | Description
  - [ClusterNodeRemoveResponse](docs/ClusterNodeRemoveResponse.md)
  - [ClusterNodeToAdd](docs/ClusterNodeToAdd.md)
  - [ClusterNodesResponse](docs/ClusterNodesResponse.md)
+ - [ClusterResourcesListResponse](docs/ClusterResourcesListResponse.md)
+ - [ClusterResourcesListResponseResourcesInner](docs/ClusterResourcesListResponseResourcesInner.md)
  - [ClusterResponse](docs/ClusterResponse.md)
  - [ClusterServicesResponse](docs/ClusterServicesResponse.md)
  - [ClusterTemplate](docs/ClusterTemplate.md)
@@ -162,6 +171,7 @@ Class | Method | HTTP request | Description
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
  - [OffersListResponse](docs/OffersListResponse.md)
+ - [ResourcePool](docs/ResourcePool.md)
  - [SelfManagedNode](docs/SelfManagedNode.md)
  - [Service](docs/Service.md)
  - [ServiceDeployment](docs/ServiceDeployment.md)
@@ -171,6 +181,14 @@ Class | Method | HTTP request | Description
  - [SshKeyCreateResponse](docs/SshKeyCreateResponse.md)
  - [SshKeysListResponse](docs/SshKeysListResponse.md)
  - [SshKeysListResponseSshKeysInner](docs/SshKeysListResponseSshKeysInner.md)
+ - [Workspace](docs/Workspace.md)
+ - [WorkspaceCreateResponse](docs/WorkspaceCreateResponse.md)
+ - [WorkspaceDeleteResponse](docs/WorkspaceDeleteResponse.md)
+ - [WorkspaceResponse](docs/WorkspaceResponse.md)
+ - [WorkspaceStopResponse](docs/WorkspaceStopResponse.md)
+ - [WorkspaceTemplate](docs/WorkspaceTemplate.md)
+ - [WorkspaceTemplateListResponse](docs/WorkspaceTemplateListResponse.md)
+ - [WorkspacesListResponse](docs/WorkspacesListResponse.md)
 
 
 <a id="documentation-for-authorization"></a>
