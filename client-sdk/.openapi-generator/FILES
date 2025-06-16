@@ -131,16 +131,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_resources_list_response.py
-test/test_cluster_resources_list_response_resources_inner.py
-test/test_resource_pool.py
-test/test_workspace.py
-test/test_workspace_create_response.py
-test/test_workspace_delete_response.py
-test/test_workspace_response.py
-test/test_workspace_stop_response.py
-test/test_workspace_template.py
-test/test_workspace_template_list_response.py
-test/test_workspaces_api.py
-test/test_workspaces_list_response.py
 tox.ini
