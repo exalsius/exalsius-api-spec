@@ -73,7 +73,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../../components/schemas/workspace.yaml'
+          $ref: '../../components/requests/workspace-create-request.yaml'
   responses:
     '201':
       $ref: '../../components/responses/workspace-create-response.yaml'
