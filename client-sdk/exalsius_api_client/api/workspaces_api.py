@@ -19,11 +19,13 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
-from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_create_request import \
+    WorkspaceCreateRequest
 from exalsius_api_client.models.workspace_create_response import \
     WorkspaceCreateResponse
 from exalsius_api_client.models.workspace_delete_response import \
     WorkspaceDeleteResponse
+from exalsius_api_client.models.workspace_response import WorkspaceResponse
 from exalsius_api_client.models.workspace_stop_response import \
     WorkspaceStopResponse
 from exalsius_api_client.models.workspaces_list_response import \
@@ -46,7 +48,7 @@ class WorkspacesApi:
     @validate_call
     def create_workspace(
         self,
-        workspace: Workspace,
+        workspace_create_request: WorkspaceCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -63,8 +65,8 @@ class WorkspacesApi:
 
         **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
 
-        :param workspace: (required)
-        :type workspace: Workspace
+        :param workspace_create_request: (required)
+        :type workspace_create_request: WorkspaceCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -88,7 +90,7 @@ class WorkspacesApi:
         """  # noqa: E501
 
         _param = self._create_workspace_serialize(
-            workspace=workspace,
+            workspace_create_request=workspace_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -113,7 +115,7 @@ class WorkspacesApi:
     @validate_call
     def create_workspace_with_http_info(
         self,
-        workspace: Workspace,
+        workspace_create_request: WorkspaceCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -130,8 +132,8 @@ class WorkspacesApi:
 
         **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
 
-        :param workspace: (required)
-        :type workspace: Workspace
+        :param workspace_create_request: (required)
+        :type workspace_create_request: WorkspaceCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -155,7 +157,7 @@ class WorkspacesApi:
         """  # noqa: E501
 
         _param = self._create_workspace_serialize(
-            workspace=workspace,
+            workspace_create_request=workspace_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -180,7 +182,7 @@ class WorkspacesApi:
     @validate_call
     def create_workspace_without_preload_content(
         self,
-        workspace: Workspace,
+        workspace_create_request: WorkspaceCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -197,8 +199,8 @@ class WorkspacesApi:
 
         **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
 
-        :param workspace: (required)
-        :type workspace: Workspace
+        :param workspace_create_request: (required)
+        :type workspace_create_request: WorkspaceCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -222,7 +224,7 @@ class WorkspacesApi:
         """  # noqa: E501
 
         _param = self._create_workspace_serialize(
-            workspace=workspace,
+            workspace_create_request=workspace_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -242,7 +244,7 @@ class WorkspacesApi:
 
     def _create_workspace_serialize(
         self,
-        workspace,
+        workspace_create_request,
         _request_auth,
         _content_type,
         _headers,
@@ -267,8 +269,8 @@ class WorkspacesApi:
         # process the header parameters
         # process the form parameters
         # process the body parameter
-        if workspace is not None:
-            _body_params = workspace
+        if workspace_create_request is not None:
+            _body_params = workspace_create_request
 
         # set the HTTP header `Accept`
         if "Accept" not in _header_params:
@@ -575,7 +577,7 @@ class WorkspacesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> Workspace:
+    ) -> WorkspaceResponse:
         """Get details of a single workspace
 
         **Retrieve the details of a single workspace**  Fetch all metadata for one workspace.
@@ -613,7 +615,7 @@ class WorkspacesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Workspace",
+            "200": "WorkspaceResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -643,7 +645,7 @@ class WorkspacesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[Workspace]:
+    ) -> ApiResponse[WorkspaceResponse]:
         """Get details of a single workspace
 
         **Retrieve the details of a single workspace**  Fetch all metadata for one workspace.
@@ -681,7 +683,7 @@ class WorkspacesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Workspace",
+            "200": "WorkspaceResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -749,7 +751,7 @@ class WorkspacesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "Workspace",
+            "200": "WorkspaceResponse",
             "404": "Error",
             "500": "Error",
         }

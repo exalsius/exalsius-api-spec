@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 
 # **create_workspace**
-> WorkspaceCreateResponse create_workspace(workspace)
+> WorkspaceCreateResponse create_workspace(workspace_create_request)
 
 Create a workspace
 
@@ -38,7 +38,7 @@ the `pending` state until the `GET /workspace/{workspace_id}` operation is retur
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_create_request import WorkspaceCreateRequest
 from exalsius_api_client.models.workspace_create_response import WorkspaceCreateResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
@@ -54,11 +54,11 @@ configuration = exalsius_api_client.Configuration(
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.WorkspacesApi(api_client)
-    workspace = exalsius_api_client.Workspace() # Workspace | 
+    workspace_create_request = exalsius_api_client.WorkspaceCreateRequest() # WorkspaceCreateRequest | 
 
     try:
         # Create a workspace
-        api_response = api_instance.create_workspace(workspace)
+        api_response = api_instance.create_workspace(workspace_create_request)
         print("The response of WorkspacesApi->create_workspace:\n")
         pprint(api_response)
     except Exception as e:
@@ -72,7 +72,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | [**Workspace**](Workspace.md)|  | 
+ **workspace_create_request** | [**WorkspaceCreateRequest**](WorkspaceCreateRequest.md)|  | 
 
 ### Return type
 
@@ -181,7 +181,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **describe_workspace**
-> Workspace describe_workspace(workspace_id)
+> WorkspaceResponse describe_workspace(workspace_id)
 
 Get details of a single workspace
 
@@ -195,7 +195,7 @@ Fetch all metadata for one workspace.
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_response import WorkspaceResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -232,7 +232,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**Workspace**](Workspace.md)
+[**WorkspaceResponse**](WorkspaceResponse.md)
 
 ### Authorization
 

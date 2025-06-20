@@ -96,6 +96,8 @@ from exalsius_api_client.models.ssh_keys_list_response import \
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
     SshKeysListResponseSshKeysInner
 from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_create_request import \
+    WorkspaceCreateRequest
 from exalsius_api_client.models.workspace_create_response import \
     WorkspaceCreateResponse
 from exalsius_api_client.models.workspace_delete_response import \
