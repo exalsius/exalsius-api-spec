@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.6.0...openapi-v1.7.0) (2025-06-20)
+
+
+### Features
+
+* refine workspace specs ([0182ea1](https://github.com/exalsius/exalsius-api-spec/commit/0182ea1c2269304d788527cf62a2adc9418c9aa1))
+
 ## [1.6.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.5.1...openapi-v1.6.0) (2025-06-16)
 
 

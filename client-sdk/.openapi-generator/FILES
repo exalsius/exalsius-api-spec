@@ -51,6 +51,7 @@ docs/SshKeyCreateResponse.md
 docs/SshKeysListResponse.md
 docs/SshKeysListResponseSshKeysInner.md
 docs/Workspace.md
+docs/WorkspaceCreateRequest.md
 docs/WorkspaceCreateResponse.md
 docs/WorkspaceDeleteResponse.md
 docs/WorkspaceResponse.md
@@ -115,6 +116,7 @@ exalsius_api_client/models/ssh_key_create_response.py
 exalsius_api_client/models/ssh_keys_list_response.py
 exalsius_api_client/models/ssh_keys_list_response_ssh_keys_inner.py
 exalsius_api_client/models/workspace.py
+exalsius_api_client/models/workspace_create_request.py
 exalsius_api_client/models/workspace_create_response.py
 exalsius_api_client/models/workspace_delete_response.py
 exalsius_api_client/models/workspace_response.py

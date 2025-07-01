@@ -18,21 +18,47 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.cluster import Cluster
+from exalsius_api_client.models.resource_pool import ResourcePool
+from exalsius_api_client.models.workspace_template import WorkspaceTemplate
 
 
-class ClusterResponse(BaseModel):
+class WorkspaceCreateRequest(BaseModel):
     """
-    ClusterResponse
+    WorkspaceCreateRequest
     """  # noqa: E501
 
-    cluster: Cluster
-    __properties: ClassVar[List[str]] = ["cluster"]
+    name: StrictStr = Field(description="The name of the workspace")
+    cluster_id: StrictStr = Field(
+        description="The unique identifier of the associated cluster"
+    )
+    template: WorkspaceTemplate
+    resources: ResourcePool = Field(
+        description="The resources allocated to the workspace"
+    )
+    owner: Optional[StrictStr] = Field(
+        default=None, description="The owner of the workspace"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="The description of the workspace"
+    )
+    to_be_deleted_at: Optional[datetime] = Field(
+        default=None, description="The date and time the workspace will be deleted"
+    )
+    __properties: ClassVar[List[str]] = [
+        "name",
+        "cluster_id",
+        "template",
+        "resources",
+        "owner",
+        "description",
+        "to_be_deleted_at",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -51,7 +77,7 @@ class ClusterResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterResponse from a JSON string"""
+        """Create an instance of WorkspaceCreateRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -71,14 +97,17 @@ class ClusterResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of cluster
-        if self.cluster:
-            _dict["cluster"] = self.cluster.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of template
+        if self.template:
+            _dict["template"] = self.template.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of resources
+        if self.resources:
+            _dict["resources"] = self.resources.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterResponse from a dict"""
+        """Create an instance of WorkspaceCreateRequest from a dict"""
         if obj is None:
             return None
 
@@ -87,11 +116,21 @@ class ClusterResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cluster": (
-                    Cluster.from_dict(obj["cluster"])
-                    if obj.get("cluster") is not None
+                "name": obj.get("name"),
+                "cluster_id": obj.get("cluster_id"),
+                "template": (
+                    WorkspaceTemplate.from_dict(obj["template"])
+                    if obj.get("template") is not None
                     else None
-                )
+                ),
+                "resources": (
+                    ResourcePool.from_dict(obj["resources"])
+                    if obj.get("resources") is not None
+                    else None
+                ),
+                "owner": obj.get("owner"),
+                "description": obj.get("description"),
+                "to_be_deleted_at": obj.get("to_be_deleted_at"),
             }
         )
         return _obj
