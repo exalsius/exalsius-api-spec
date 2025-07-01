@@ -46,6 +46,7 @@ mock-server: build
 
 generate:
 	./scripts/generate-client.sh
+	./scripts/generate-typescript-client.sh
 .PHONY: generate
 
 generate-server: build
