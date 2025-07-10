@@ -1,0 +1,29 @@
+description: List of colonies
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/colonies-list-response.yaml'
+    examples:
+      success:
+        summary: A list of colonies
+        value:
+          colonies:
+            - id: "123e4567-e89b-12d3-a456-426614174000"
+              name: "my-colony"
+              owner: "my-user"
+              cluster_ids:
+                - "123e4567-e89b-12d3-a456-426614174000"
+                - "123e4567-e89b-12d3-a456-426614174001"
+              created_at: "2025-01-01T00:00:00Z"
+            - id: "123e4567-e89b-12d3-a456-426614174001"
+              name: "my-colony-2"
+              owner: "my-user"
+              cluster_ids:
+                - "123e4567-e89b-12d3-a456-426614174002"
+              created_at: "2025-01-01T00:00:00Z"
+          total: 2
+      empty:
+        summary: An empty list of colonies
+        value:
+          colonies: []
+          total: 0

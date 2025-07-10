@@ -1,0 +1,17 @@
+description: Colony details
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/colony-response.yaml'
+    examples:
+      colony-details:
+        summary: Colony details
+        value:
+          colony:
+            id: "123e4567-e89b-12d3-a456-426614174000"
+            name: "my-colony"
+            owner: "my-user"
+            cluster_ids:
+              - "123e4567-e89b-12d3-a456-426614174000"
+              - "123e4567-e89b-12d3-a456-426614174001"
+            created_at: "2025-01-01T00:00:00Z"

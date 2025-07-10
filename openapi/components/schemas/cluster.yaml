@@ -9,10 +9,23 @@ properties:
     format: uuid
     description: The unique identifier for the cluster
     example: "123e4567-e89b-12d3-a456-426614174000"
+  colony_id:
+    type: string
+    format: uuid
+    description: The unique identifier for the colony that the cluster belongs to
+    example: "123e4567-e89b-12d3-a456-426614174000"
   name:
     type: string
     description: The name of the cluster
     example: "my-cluster"
+  namespace:
+    type: string
+    description: The namespace the cluster resides in
+    example: "my-cluster"
+  owner:
+    type: string
+    description: The owner of the cluster
+    example: "my-user"
   cluster_status:
     type: string
     enum: [STAGING, PROVISIONING, READY, FAILED]
