@@ -1,0 +1,60 @@
+get:
+  operationId: describeColony
+  tags: [colonies]
+  summary: Get details of a single colony
+  description: |
+    **Retrieve the details of a single colony**
+
+    Fetch all metadata for one colony.
+
+  parameters:
+    - name: colony_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the colony to describe
+  responses:
+    '200':
+      $ref: '../../components/responses/colony-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+delete:
+  operationId: deleteColony
+  tags: [colonies]
+  summary: Delete (tear-down) a colony
+  description: |
+    **Delete a colony**
+
+    Permanently delete a colony. This also deletes all clusters
+    that belong to the colony.
+    Once deleted, the colony is no longer part of your account.
+
+    **Note**
+
+    This operation is irreversible.
+
+
+  parameters:
+    - name: colony_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the colony to delete
+  responses:
+    '200':
+      $ref: '../../components/responses/colony-delete-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: colony-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

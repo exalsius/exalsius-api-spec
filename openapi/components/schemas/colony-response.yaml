@@ -1,0 +1,6 @@
+type: object
+required:
+  - colony
+properties:
+  colony:
+    $ref: './colony.yaml'

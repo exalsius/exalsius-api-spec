@@ -1,0 +1,26 @@
+type: object
+required:
+  - name
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier for the colony
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    description: The name of the colony
+    example: "my-colony"
+  owner:
+    type: string
+    description: The owner of the colony (user id)
+    example: "my-user"
+  cluster_ids:
+    type: array
+    description: The unique identifiers for the clusters in the colony
+    example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174000"]
+  created_at:
+    type: string
+    format: date-time
+    description: The date and time the colony was created
+    example: "2021-01-01T00:00:00Z"

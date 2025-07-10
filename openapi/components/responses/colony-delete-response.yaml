@@ -1,0 +1,13 @@
+description: Colony deletion response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/colony-delete-response.yaml'
+    examples:
+      success:
+        summary: Colony deleted
+        value:
+          colony_id: "123e4567-e89b-12d3-a456-426614174000"
+          cluster_ids:
+            - "123e4567-e89b-12d3-a456-426614174000"
+            - "123e4567-e89b-12d3-a456-426614174001"

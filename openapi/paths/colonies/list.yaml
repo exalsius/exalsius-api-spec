@@ -1,0 +1,55 @@
+get:
+  operationId: listColonies
+  tags: [colonies]
+  summary: List all colonies
+  description: |
+    **List all colonies**
+
+    Retrieve all colonies
+
+  responses:
+    '200':
+      $ref: '../../components/responses/colonies-list-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: colony-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+post:
+  operationId: createColony
+  tags: [colonies]
+  summary: Create a colony
+  description: |
+    **Create a colony**
+
+    Create a new colony.
+
+    **Parameters**
+
+    - `name`: The name of the colony
+
+    **Behavior**
+
+    Creating a new colony will result in a new colony resource being created. 
+    Clusters will be added to the colony as they are created.
+
+  requestBody: 
+    required: true
+    content: 
+      application/json: 
+        schema:
+          $ref: '../../components/requests/colony-create-request.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/colony-create-response.yaml'
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: colony-already-exists
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

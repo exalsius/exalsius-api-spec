@@ -1,0 +1,17 @@
+type: object
+required:
+  - colony_id
+  - cluster_ids
+properties:
+  colony_id:
+    type: string
+    format: uuid
+    example: "123e4567-e89b-12d3-a456-426614174000"
+    description: The ID of the deleted colony
+  cluster_ids:
+    type: array
+    items:
+      type: string
+      format: uuid
+    example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174001"]
+    description: The IDs of the clusters that were deleted

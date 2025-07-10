@@ -1,0 +1,12 @@
+type: object
+required:
+  - colonies
+properties:
+  colonies:
+    type: array
+    items:
+      $ref: './colony.yaml'
+  total:
+    type: integer
+    format: int32
+    description: The total number of colonies
