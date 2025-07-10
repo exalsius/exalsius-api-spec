@@ -72,6 +72,10 @@ paths:
     $ref: ./paths/nodes/import-ssh.yaml
   /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
+  /colonies:
+    $ref: ./paths/colonies/list.yaml
+  /colony/{colony_id}:
+    $ref: ./paths/colonies/colony.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /cluster/{cluster_id}:
@@ -124,6 +128,16 @@ components:
       $ref: ./components/schemas/nodes-list-response.yaml
     NodeImportResponse:
       $ref: ./components/schemas/node-import-response.yaml
+    Colony:
+      $ref: ./components/schemas/colony.yaml
+    ColoniesListResponse:
+      $ref: ./components/schemas/colonies-list-response.yaml
+    ColonyCreateResponse:
+      $ref: ./components/schemas/colony-create-response.yaml
+    ColonyDeleteResponse:
+      $ref: ./components/schemas/colony-delete-response.yaml
+    ColonyResponse:
+      $ref: ./components/schemas/colony-response.yaml
     Cluster:
       $ref: ./components/schemas/cluster.yaml
     ClustersListResponse:
@@ -161,6 +175,12 @@ components:
     WorkspaceListResponse:
       $ref: ./components/schemas/workspaces-list-response.yaml
   responses:
+    ColonyCreateResponse:
+      $ref: ./components/responses/colony-create-response.yaml
+    ColonyDeleteResponse:
+      $ref: ./components/responses/colony-delete-response.yaml
+    ColonyResponse:
+      $ref: ./components/responses/colony-response.yaml
     ClusterCreateResponse:
       $ref: ./components/responses/cluster-create-response.yaml
     ClusterDeployResponse:
@@ -206,6 +226,13 @@ components:
     WorkspaceListResponse:
       $ref: ./components/responses/workspaces-list-response.yaml
   securitySchemes:
-    ApiKeyAuth:
-      $ref: ./components/securitySchemes/ApiKeyAuth.yaml
-security: []
+    OAuth2:
+      type: oauth2
+      flows: 
+        authorizationCode: 
+          authorizationUrl: https://exalsius.auth0.com/authorize
+          tokenUrl: https://exalsius.auth0.com/oauth/token
+          scopes:
+            openid: "Default login scope (not used for access control)"
+security:
+  - OAuth2: []
