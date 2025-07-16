@@ -24,8 +24,17 @@ properties:
     example: "my-cluster"
   owner:
     type: string
-    description: The owner of the cluster
+    description: The owner of the cluster (user id)
     example: "my-user"
+  cluster_type:
+    type: string
+    enum: [CLOUD, REMOTE, DOCKER]
+    x-enum-varnames: [CLOUD, REMOTE, DOCKER]
+    description: >
+      The type of the cluster.
+      - `CLOUD`: Cloud cluster, consisting of cloud instances
+      - `REMOTE`: Remote cluster, consisting of self-managed nodes
+      - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development)
   cluster_status:
     type: string
     enum: [STAGING, PROVISIONING, READY, FAILED]
