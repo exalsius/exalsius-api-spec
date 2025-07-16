@@ -15,8 +15,15 @@ properties:
     type: string
     description: The owner of the colony (user id)
     example: "my-user"
+  namespace:
+    type: string
+    description: The namespace of the colony
+    example: "my-colony-ns"
   cluster_ids:
     type: array
+    items:
+      type: string
+      format: uuid
     description: The unique identifiers for the clusters in the colony
     example: ["123e4567-e89b-12d3-a456-426614174000", "123e4567-e89b-12d3-a456-426614174000"]
   created_at:
