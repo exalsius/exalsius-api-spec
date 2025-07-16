@@ -147,11 +147,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_colonies_api.py
-test/test_colonies_list_response.py
-test/test_colony.py
-test/test_colony_create_request.py
-test/test_colony_create_response.py
-test/test_colony_delete_response.py
-test/test_colony_response.py
 tox.ini
