@@ -6,7 +6,11 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier for the cluster | [optional] 
+**colony_id** | **str** | The unique identifier for the colony that the cluster belongs to | [optional] 
 **name** | **str** | The name of the cluster | 
+**namespace** | **str** | The namespace the cluster resides in | [optional] 
+**owner** | **str** | The owner of the cluster (user id) | [optional] 
+**cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | [optional] 
 **cluster_status** | **str** | The status of the cluster. - &#x60;STAGING&#x60;: Cluster is staging - &#x60;PROVISIONING&#x60;: Cluster is provisioning - &#x60;READY&#x60;: Cluster is ready - &#x60;FAILED&#x60;: Cluster is failed  | 
 **created_at** | **datetime** | The date and time the cluster was created | 
 **updated_at** | **datetime** | The date and time the cluster was last updated | [optional] 

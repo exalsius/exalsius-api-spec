@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the cluster | 
+**colony_id** | **str** | The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony. | [optional] 
 **k8s_version** | **str** | The Kubernetes version of the cluster | 
 **to_be_deleted_at** | **datetime** | The date and time the cluster will be deleted (optional). | [optional] 
 **control_plane_node_ids** | **List[str]** | The IDs of the control plane nodes (optional). | [optional] 

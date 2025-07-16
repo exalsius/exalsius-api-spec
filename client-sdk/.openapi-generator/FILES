@@ -24,6 +24,13 @@ docs/ClusterTemplate.md
 docs/ClusterTemplateListResponse.md
 docs/ClustersApi.md
 docs/ClustersListResponse.md
+docs/ColoniesApi.md
+docs/ColoniesListResponse.md
+docs/Colony.md
+docs/ColonyCreateRequest.md
+docs/ColonyCreateResponse.md
+docs/ColonyDeleteResponse.md
+docs/ColonyResponse.md
 docs/Credentials.md
 docs/CredentialsListResponse.md
 docs/Error.md
@@ -63,6 +70,7 @@ docs/WorkspacesListResponse.md
 exalsius_api_client/__init__.py
 exalsius_api_client/api/__init__.py
 exalsius_api_client/api/clusters_api.py
+exalsius_api_client/api/colonies_api.py
 exalsius_api_client/api/management_api.py
 exalsius_api_client/api/nodes_api.py
 exalsius_api_client/api/offers_api.py
@@ -93,6 +101,12 @@ exalsius_api_client/models/cluster_services_response.py
 exalsius_api_client/models/cluster_template.py
 exalsius_api_client/models/cluster_template_list_response.py
 exalsius_api_client/models/clusters_list_response.py
+exalsius_api_client/models/colonies_list_response.py
+exalsius_api_client/models/colony.py
+exalsius_api_client/models/colony_create_request.py
+exalsius_api_client/models/colony_create_response.py
+exalsius_api_client/models/colony_delete_response.py
+exalsius_api_client/models/colony_response.py
 exalsius_api_client/models/credentials.py
 exalsius_api_client/models/credentials_list_response.py
 exalsius_api_client/models/error.py
@@ -133,4 +147,11 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_colonies_api.py
+test/test_colonies_list_response.py
+test/test_colony.py
+test/test_colony_create_request.py
+test/test_colony_create_response.py
+test/test_colony_delete_response.py
+test/test_colony_response.py
 tox.ini

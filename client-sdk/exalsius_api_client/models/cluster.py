@@ -36,7 +36,21 @@ class Cluster(BaseModel):
     id: Optional[StrictStr] = Field(
         default=None, description="The unique identifier for the cluster"
     )
+    colony_id: Optional[StrictStr] = Field(
+        default=None,
+        description="The unique identifier for the colony that the cluster belongs to",
+    )
     name: StrictStr = Field(description="The name of the cluster")
+    namespace: Optional[StrictStr] = Field(
+        default=None, description="The namespace the cluster resides in"
+    )
+    owner: Optional[StrictStr] = Field(
+        default=None, description="The owner of the cluster (user id)"
+    )
+    cluster_type: Optional[StrictStr] = Field(
+        default=None,
+        description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) ",
+    )
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `STAGING`: Cluster is staging - `PROVISIONING`: Cluster is provisioning - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
     )
@@ -70,7 +84,11 @@ class Cluster(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "id",
+        "colony_id",
         "name",
+        "namespace",
+        "owner",
+        "cluster_type",
         "cluster_status",
         "created_at",
         "updated_at",
@@ -82,6 +100,16 @@ class Cluster(BaseModel):
         "current_costs",
         "costs_per_hour",
     ]
+
+    @field_validator("cluster_type")
+    def cluster_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["CLOUD", "REMOTE", "DOCKER"]):
+            raise ValueError("must be one of enum values ('CLOUD', 'REMOTE', 'DOCKER')")
+        return value
 
     @field_validator("cluster_status")
     def cluster_status_validate_enum(cls, value):
@@ -150,7 +178,11 @@ class Cluster(BaseModel):
         _obj = cls.model_validate(
             {
                 "id": obj.get("id"),
+                "colony_id": obj.get("colony_id"),
                 "name": obj.get("name"),
+                "namespace": obj.get("namespace"),
+                "owner": obj.get("owner"),
+                "cluster_type": obj.get("cluster_type"),
                 "cluster_status": obj.get("cluster_status"),
                 "created_at": obj.get("created_at"),
                 "updated_at": obj.get("updated_at"),

@@ -117,6 +117,10 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**get_cluster_services**](docs/ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
+*ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
+*ColoniesApi* | [**delete_colony**](docs/ColoniesApi.md#delete_colony) | **DELETE** /colony/{colony_id} | Delete (tear-down) a colony
+*ColoniesApi* | [**describe_colony**](docs/ColoniesApi.md#describe_colony) | **GET** /colony/{colony_id} | Get details of a single colony
+*ColoniesApi* | [**list_colonies**](docs/ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
@@ -159,6 +163,12 @@ Class | Method | HTTP request | Description
  - [ClusterTemplate](docs/ClusterTemplate.md)
  - [ClusterTemplateListResponse](docs/ClusterTemplateListResponse.md)
  - [ClustersListResponse](docs/ClustersListResponse.md)
+ - [ColoniesListResponse](docs/ColoniesListResponse.md)
+ - [Colony](docs/Colony.md)
+ - [ColonyCreateRequest](docs/ColonyCreateRequest.md)
+ - [ColonyCreateResponse](docs/ColonyCreateResponse.md)
+ - [ColonyDeleteResponse](docs/ColonyDeleteResponse.md)
+ - [ColonyResponse](docs/ColonyResponse.md)
  - [Credentials](docs/Credentials.md)
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
  - [Error](docs/Error.md)

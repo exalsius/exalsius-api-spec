@@ -18,48 +18,22 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.service_deployment import ServiceDeployment
 
-
-class ClusterCreateRequest(BaseModel):
+class ColonyDeleteResponse(BaseModel):
     """
-    ClusterCreateRequest
+    ColonyDeleteResponse
     """  # noqa: E501
 
-    name: StrictStr = Field(description="The name of the cluster")
-    colony_id: Optional[StrictStr] = Field(
-        default=None,
-        description="The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.",
+    colony_id: StrictStr = Field(description="The ID of the deleted colony")
+    cluster_ids: List[StrictStr] = Field(
+        description="The IDs of the clusters that were deleted"
     )
-    k8s_version: StrictStr = Field(description="The Kubernetes version of the cluster")
-    to_be_deleted_at: Optional[datetime] = Field(
-        default=None,
-        description="The date and time the cluster will be deleted (optional).",
-    )
-    control_plane_node_ids: Optional[List[StrictStr]] = Field(
-        default=None, description="The IDs of the control plane nodes (optional)."
-    )
-    worker_node_ids: Optional[List[StrictStr]] = Field(
-        default=None, description="The IDs of the worker nodes (optional)."
-    )
-    service_deployments: Optional[List[ServiceDeployment]] = Field(
-        default=None, description="The services to deploy in the cluster (optional)."
-    )
-    __properties: ClassVar[List[str]] = [
-        "name",
-        "colony_id",
-        "k8s_version",
-        "to_be_deleted_at",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "service_deployments",
-    ]
+    __properties: ClassVar[List[str]] = ["colony_id", "cluster_ids"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,7 +52,7 @@ class ClusterCreateRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterCreateRequest from a JSON string"""
+        """Create an instance of ColonyDeleteResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,18 +72,11 @@ class ClusterCreateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in service_deployments (list)
-        _items = []
-        if self.service_deployments:
-            for _item_service_deployments in self.service_deployments:
-                if _item_service_deployments:
-                    _items.append(_item_service_deployments.to_dict())
-            _dict["service_deployments"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterCreateRequest from a dict"""
+        """Create an instance of ColonyDeleteResponse from a dict"""
         if obj is None:
             return None
 
@@ -117,21 +84,6 @@ class ClusterCreateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "name": obj.get("name"),
-                "colony_id": obj.get("colony_id"),
-                "k8s_version": obj.get("k8s_version"),
-                "to_be_deleted_at": obj.get("to_be_deleted_at"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "service_deployments": (
-                    [
-                        ServiceDeployment.from_dict(_item)
-                        for _item in obj["service_deployments"]
-                    ]
-                    if obj.get("service_deployments") is not None
-                    else None
-                ),
-            }
+            {"colony_id": obj.get("colony_id"), "cluster_ids": obj.get("cluster_ids")}
         )
         return _obj

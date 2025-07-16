@@ -19,6 +19,7 @@ __version__ = "1.7.0"
 
 # import apis into sdk package
 from exalsius_api_client.api.clusters_api import ClustersApi
+from exalsius_api_client.api.colonies_api import ColoniesApi
 from exalsius_api_client.api.management_api import ManagementApi
 from exalsius_api_client.api.nodes_api import NodesApi
 from exalsius_api_client.api.offers_api import OffersApi
@@ -66,6 +67,16 @@ from exalsius_api_client.models.cluster_template_list_response import \
     ClusterTemplateListResponse
 from exalsius_api_client.models.clusters_list_response import \
     ClustersListResponse
+from exalsius_api_client.models.colonies_list_response import \
+    ColoniesListResponse
+from exalsius_api_client.models.colony import Colony
+from exalsius_api_client.models.colony_create_request import \
+    ColonyCreateRequest
+from exalsius_api_client.models.colony_create_response import \
+    ColonyCreateResponse
+from exalsius_api_client.models.colony_delete_response import \
+    ColonyDeleteResponse
+from exalsius_api_client.models.colony_response import ColonyResponse
 from exalsius_api_client.models.credentials import Credentials
 from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse
