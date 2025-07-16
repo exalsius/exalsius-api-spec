@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.8.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.7.0...openapi-v1.8.0) (2025-07-16)
+
+
+### Features
+
+* add a cluster_type enum for the cluster scheme ([577c6d5](https://github.com/exalsius/exalsius-api-spec/commit/577c6d5e526732e764065ce26863582e34b3ec09))
+* add authentication; add colonies paths ([efee82d](https://github.com/exalsius/exalsius-api-spec/commit/efee82dc6e29b66bd6773fa9f090aff1f879d682))
+* add colonies endpoint descriptions ([20567da](https://github.com/exalsius/exalsius-api-spec/commit/20567daf010c45765f7a4778145156cfbb4ac026))
+* add the user_namespace to the colony api scheme ([8e046a4](https://github.com/exalsius/exalsius-api-spec/commit/8e046a4c8e1b8c7f7632ebd3f266399b68575a02))
+
+
+### Bug Fixes
+
+* add an optional colony_id parameter to cluster creation ([14cb538](https://github.com/exalsius/exalsius-api-spec/commit/14cb538591a6ffdf2778bcb105ccf3ccc0675a34))
+
 ## [1.7.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.6.0...openapi-v1.7.0) (2025-06-20)
 
 
