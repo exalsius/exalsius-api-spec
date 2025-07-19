@@ -58,6 +58,8 @@ from exalsius_api_client.models.colony_create_response import \
     ColonyCreateResponse
 from exalsius_api_client.models.colony_delete_response import \
     ColonyDeleteResponse
+from exalsius_api_client.models.colony_kubeconfig_response import \
+    ColonyKubeconfigResponse
 from exalsius_api_client.models.colony_response import ColonyResponse
 from exalsius_api_client.models.credentials import Credentials
 from exalsius_api_client.models.credentials_list_response import \
@@ -95,6 +97,7 @@ from exalsius_api_client.models.workspace_create_response import \
     WorkspaceCreateResponse
 from exalsius_api_client.models.workspace_delete_response import \
     WorkspaceDeleteResponse
+from exalsius_api_client.models.workspace_deployment import WorkspaceDeployment
 from exalsius_api_client.models.workspace_response import WorkspaceResponse
 from exalsius_api_client.models.workspace_stop_response import \
     WorkspaceStopResponse

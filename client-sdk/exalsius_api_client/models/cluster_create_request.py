@@ -21,7 +21,7 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 from exalsius_api_client.models.service_deployment import ServiceDeployment
@@ -33,11 +33,16 @@ class ClusterCreateRequest(BaseModel):
     """  # noqa: E501
 
     name: StrictStr = Field(description="The name of the cluster")
+    cluster_type: StrictStr = Field(
+        description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) "
+    )
     colony_id: Optional[StrictStr] = Field(
         default=None,
         description="The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.",
     )
-    k8s_version: StrictStr = Field(description="The Kubernetes version of the cluster")
+    k8s_version: Optional[StrictStr] = Field(
+        default=None, description="The Kubernetes version of the cluster"
+    )
     to_be_deleted_at: Optional[datetime] = Field(
         default=None,
         description="The date and time the cluster will be deleted (optional).",
@@ -53,6 +58,7 @@ class ClusterCreateRequest(BaseModel):
     )
     __properties: ClassVar[List[str]] = [
         "name",
+        "cluster_type",
         "colony_id",
         "k8s_version",
         "to_be_deleted_at",
@@ -60,6 +66,13 @@ class ClusterCreateRequest(BaseModel):
         "worker_node_ids",
         "service_deployments",
     ]
+
+    @field_validator("cluster_type")
+    def cluster_type_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in set(["CLOUD", "REMOTE", "DOCKER"]):
+            raise ValueError("must be one of enum values ('CLOUD', 'REMOTE', 'DOCKER')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -119,6 +132,7 @@ class ClusterCreateRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "name": obj.get("name"),
+                "cluster_type": obj.get("cluster_type"),
                 "colony_id": obj.get("colony_id"),
                 "k8s_version": obj.get("k8s_version"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),

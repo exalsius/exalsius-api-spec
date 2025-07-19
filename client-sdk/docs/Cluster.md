@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **control_plane_node_ids** | **List[str]** | The node IDs of the control plane nodes in the cluster | [optional] 
 **worker_node_ids** | **List[str]** | The node IDs of the worker nodes in the cluster | [optional] 
 **service_deployments** | [**List[ServiceDeployment]**](ServiceDeployment.md) | The deployed services in the cluster | [optional] 
+**workspace_deployments** | [**List[WorkspaceDeployment]**](WorkspaceDeployment.md) | The deployed workspaces in the cluster | [optional] 
 **k8s_version** | **str** | The version of Kubernetes deployed in the cluster | [optional] 
 **current_costs** | **float** | The total costs of the cluster until now | [optional] 
 **costs_per_hour** | **float** | The costs of the cluster per hour | [optional] 

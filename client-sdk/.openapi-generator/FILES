@@ -30,6 +30,7 @@ docs/Colony.md
 docs/ColonyCreateRequest.md
 docs/ColonyCreateResponse.md
 docs/ColonyDeleteResponse.md
+docs/ColonyKubeconfigResponse.md
 docs/ColonyResponse.md
 docs/Credentials.md
 docs/CredentialsListResponse.md
@@ -61,6 +62,7 @@ docs/Workspace.md
 docs/WorkspaceCreateRequest.md
 docs/WorkspaceCreateResponse.md
 docs/WorkspaceDeleteResponse.md
+docs/WorkspaceDeployment.md
 docs/WorkspaceResponse.md
 docs/WorkspaceStopResponse.md
 docs/WorkspaceTemplate.md
@@ -106,6 +108,7 @@ exalsius_api_client/models/colony.py
 exalsius_api_client/models/colony_create_request.py
 exalsius_api_client/models/colony_create_response.py
 exalsius_api_client/models/colony_delete_response.py
+exalsius_api_client/models/colony_kubeconfig_response.py
 exalsius_api_client/models/colony_response.py
 exalsius_api_client/models/credentials.py
 exalsius_api_client/models/credentials_list_response.py
@@ -133,6 +136,7 @@ exalsius_api_client/models/workspace.py
 exalsius_api_client/models/workspace_create_request.py
 exalsius_api_client/models/workspace_create_response.py
 exalsius_api_client/models/workspace_delete_response.py
+exalsius_api_client/models/workspace_deployment.py
 exalsius_api_client/models/workspace_response.py
 exalsius_api_client/models/workspace_stop_response.py
 exalsius_api_client/models/workspace_template.py
@@ -147,4 +151,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_colony_kubeconfig_response.py
+test/test_workspace_deployment.py
 tox.ini

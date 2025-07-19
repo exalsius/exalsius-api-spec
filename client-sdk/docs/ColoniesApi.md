@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_colony**](ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
 [**delete_colony**](ColoniesApi.md#delete_colony) | **DELETE** /colony/{colony_id} | Delete (tear-down) a colony
 [**describe_colony**](ColoniesApi.md#describe_colony) | **GET** /colony/{colony_id} | Get details of a single colony
+[**get_colony_kubeconfig**](ColoniesApi.md#get_colony_kubeconfig) | **GET** /colony/{colony_id}/kubeconfig | Get the kubeconfig for a colony
 [**list_colonies**](ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 
 
@@ -241,6 +242,79 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Colony details |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_colony_kubeconfig**
+> ColonyKubeconfigResponse get_colony_kubeconfig(colony_id)
+
+Get the kubeconfig for a colony
+
+**Get the kubeconfig for a colony**
+
+The kubeconfig file contains the credentials to access all clusters of the colony.
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.colony_kubeconfig_response import ColonyKubeconfigResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ColoniesApi(api_client)
+    colony_id = 'colony_id_example' # str | The ID of the colony to get the kubeconfig for
+
+    try:
+        # Get the kubeconfig for a colony
+        api_response = api_instance.get_colony_kubeconfig(colony_id)
+        print("The response of ColoniesApi->get_colony_kubeconfig:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ColoniesApi->get_colony_kubeconfig: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **colony_id** | **str**| The ID of the colony to get the kubeconfig for | 
+
+### Return type
+
+[**ColonyKubeconfigResponse**](ColonyKubeconfigResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The kubeconfig file for all clusters of a colony |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

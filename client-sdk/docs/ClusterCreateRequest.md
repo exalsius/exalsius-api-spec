@@ -6,8 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the cluster | 
+**cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | 
 **colony_id** | **str** | The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony. | [optional] 
-**k8s_version** | **str** | The Kubernetes version of the cluster | 
+**k8s_version** | **str** | The Kubernetes version of the cluster | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the cluster will be deleted (optional). | [optional] 
 **control_plane_node_ids** | **List[str]** | The IDs of the control plane nodes (optional). | [optional] 
 **worker_node_ids** | **List[str]** | The IDs of the worker nodes (optional). | [optional] 

@@ -120,6 +120,7 @@ Class | Method | HTTP request | Description
 *ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
 *ColoniesApi* | [**delete_colony**](docs/ColoniesApi.md#delete_colony) | **DELETE** /colony/{colony_id} | Delete (tear-down) a colony
 *ColoniesApi* | [**describe_colony**](docs/ColoniesApi.md#describe_colony) | **GET** /colony/{colony_id} | Get details of a single colony
+*ColoniesApi* | [**get_colony_kubeconfig**](docs/ColoniesApi.md#get_colony_kubeconfig) | **GET** /colony/{colony_id}/kubeconfig | Get the kubeconfig for a colony
 *ColoniesApi* | [**list_colonies**](docs/ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
@@ -168,6 +169,7 @@ Class | Method | HTTP request | Description
  - [ColonyCreateRequest](docs/ColonyCreateRequest.md)
  - [ColonyCreateResponse](docs/ColonyCreateResponse.md)
  - [ColonyDeleteResponse](docs/ColonyDeleteResponse.md)
+ - [ColonyKubeconfigResponse](docs/ColonyKubeconfigResponse.md)
  - [ColonyResponse](docs/ColonyResponse.md)
  - [Credentials](docs/Credentials.md)
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
@@ -195,6 +197,7 @@ Class | Method | HTTP request | Description
  - [WorkspaceCreateRequest](docs/WorkspaceCreateRequest.md)
  - [WorkspaceCreateResponse](docs/WorkspaceCreateResponse.md)
  - [WorkspaceDeleteResponse](docs/WorkspaceDeleteResponse.md)
+ - [WorkspaceDeployment](docs/WorkspaceDeployment.md)
  - [WorkspaceResponse](docs/WorkspaceResponse.md)
  - [WorkspaceStopResponse](docs/WorkspaceStopResponse.md)
  - [WorkspaceTemplate](docs/WorkspaceTemplate.md)

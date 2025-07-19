@@ -26,6 +26,7 @@ from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
 from typing_extensions import Self
 
 from exalsius_api_client.models.service_deployment import ServiceDeployment
+from exalsius_api_client.models.workspace_deployment import WorkspaceDeployment
 
 
 class Cluster(BaseModel):
@@ -73,6 +74,9 @@ class Cluster(BaseModel):
     service_deployments: Optional[List[ServiceDeployment]] = Field(
         default=None, description="The deployed services in the cluster"
     )
+    workspace_deployments: Optional[List[WorkspaceDeployment]] = Field(
+        default=None, description="The deployed workspaces in the cluster"
+    )
     k8s_version: Optional[StrictStr] = Field(
         default=None, description="The version of Kubernetes deployed in the cluster"
     )
@@ -96,6 +100,7 @@ class Cluster(BaseModel):
         "control_plane_node_ids",
         "worker_node_ids",
         "service_deployments",
+        "workspace_deployments",
         "k8s_version",
         "current_costs",
         "costs_per_hour",
@@ -164,6 +169,13 @@ class Cluster(BaseModel):
                 if _item_service_deployments:
                     _items.append(_item_service_deployments.to_dict())
             _dict["service_deployments"] = _items
+        # override the default output from pydantic by calling `to_dict()` of each item in workspace_deployments (list)
+        _items = []
+        if self.workspace_deployments:
+            for _item_workspace_deployments in self.workspace_deployments:
+                if _item_workspace_deployments:
+                    _items.append(_item_workspace_deployments.to_dict())
+            _dict["workspace_deployments"] = _items
         return _dict
 
     @classmethod
@@ -195,6 +207,14 @@ class Cluster(BaseModel):
                         for _item in obj["service_deployments"]
                     ]
                     if obj.get("service_deployments") is not None
+                    else None
+                ),
+                "workspace_deployments": (
+                    [
+                        WorkspaceDeployment.from_dict(_item)
+                        for _item in obj["workspace_deployments"]
+                    ]
+                    if obj.get("workspace_deployments") is not None
                     else None
                 ),
                 "k8s_version": obj.get("k8s_version"),
