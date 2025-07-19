@@ -76,6 +76,8 @@ paths:
     $ref: ./paths/colonies/list.yaml
   /colony/{colony_id}:
     $ref: ./paths/colonies/colony.yaml
+  /colony/{colony_id}/kubeconfig:
+    $ref: ./paths/colonies/kubeconfig.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /cluster/{cluster_id}:
