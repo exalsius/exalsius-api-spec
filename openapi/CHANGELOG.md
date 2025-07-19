@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.9.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.8.0...openapi-v1.9.0) (2025-07-19)
+
+
+### Features
+
+* add get kubeconfig endpoint to colony api ([5f9b3a4](https://github.com/exalsius/exalsius-api-spec/commit/5f9b3a4e6f5ff88864364efd43d7559ecf1ddcd5))
+
+
+### Bug Fixes
+
+* add cluster_type attribute to cluster model ([73e0e57](https://github.com/exalsius/exalsius-api-spec/commit/73e0e5701d74d0b9953b756383acdc57af88802e))
+* add workspace_deployments as attribute to cluster scheme ([be12011](https://github.com/exalsius/exalsius-api-spec/commit/be12011fff37cc6a7ce35b9e57cd6ce38771e965))
+
 ## [1.8.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.7.0...openapi-v1.8.0) (2025-07-16)
 
 
