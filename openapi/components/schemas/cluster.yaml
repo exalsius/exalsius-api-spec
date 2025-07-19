@@ -81,6 +81,11 @@ properties:
       $ref: '../../components/schemas/service-deployment.yaml'
     description: The deployed services in the cluster
     example: [{"service_id": 123, "service_name": "my-service", "values": {"key": "value"}}, {"service_id": 324, "service_name": "my-service-2", "values": {"key": "value"}}]
+  workspace_deployments:
+    type: array
+    items:
+      $ref: '../../components/schemas/workspace-deployment.yaml'
+    description: The deployed workspaces in the cluster
   k8s_version:
     type: string
     description: The version of Kubernetes deployed in the cluster
