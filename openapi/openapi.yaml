@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.9.0
+  version: 1.9.1
   x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
   x-audience:
     - exalsius-cli
@@ -232,9 +232,11 @@ components:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
+          authorizationUrl: >-
+            https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
           tokenUrl: https://exalsius.eu.auth0.com/oauth/token
           scopes:
-            openid: "Default login scope (not used for access control)"
+            openid: Default login scope (not used for access control)
 security:
-  - OAuth2: [openid]
+  - OAuth2:
+      - openid
