@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.9.0...openapi-v1.9.1) (2025-07-20)
+
+
+### Bug Fixes
+
+* set correct auth0 configuration settings ([#67](https://github.com/exalsius/exalsius-api-spec/issues/67)) ([8419309](https://github.com/exalsius/exalsius-api-spec/commit/8419309567f17e73d703c578dd731512318e5747))
+
 ## [1.9.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.8.0...openapi-v1.9.0) (2025-07-19)
 
 
