@@ -228,6 +228,13 @@ components:
     WorkspaceListResponse:
       $ref: ./components/responses/workspaces-list-response.yaml
   securitySchemes:
-    ApiKeyAuth:
-      $ref: ./components/securitySchemes/ApiKeyAuth.yaml
-security: []
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
+          tokenUrl: https://exalsius.eu.auth0.com/oauth/token
+          scopes:
+            openid: "Default login scope (not used for access control)"
+security:
+  - OAuth2: [openid]
