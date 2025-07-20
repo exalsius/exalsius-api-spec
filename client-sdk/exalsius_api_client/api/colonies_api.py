@@ -289,7 +289,7 @@ class ColoniesApi:
                 _header_params["Content-Type"] = _default_content_type
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="POST",
@@ -543,7 +543,7 @@ class ColoniesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="DELETE",
@@ -797,7 +797,7 @@ class ColoniesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -1054,7 +1054,7 @@ class ColoniesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="GET",
@@ -1287,7 +1287,7 @@ class ColoniesApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="GET",

@@ -35,6 +35,7 @@ the `pending` state until the `GET /workspace/{workspace_id}` operation is retur
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -49,6 +50,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -80,7 +87,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -119,6 +126,7 @@ for the workspace to be fully deleted.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -132,6 +140,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -163,7 +177,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -192,6 +206,7 @@ Fetch all metadata for one workspace.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -205,6 +220,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -236,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -273,6 +294,7 @@ Here's an example of how to filter by cluster ID:
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -286,6 +308,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -317,7 +345,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -346,6 +374,7 @@ Stop a workspace. This will stop or delete all associated Pods but keep the atta
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -359,6 +388,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -390,7 +425,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

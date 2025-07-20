@@ -430,7 +430,7 @@ class OffersApi:
             )
 
         # authentication setting
-        _auth_settings: List[str] = []
+        _auth_settings: List[str] = ["OAuth2"]
 
         return self.api_client.param_serialize(
             method="GET",

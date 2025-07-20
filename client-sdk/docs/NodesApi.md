@@ -24,6 +24,7 @@ If the node is currently in use (i.e. not available), detach it from its cluster
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -37,6 +38,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -68,7 +75,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -99,6 +106,7 @@ property to distinguish between self-managed (SSH) nodes and cloud-imported inst
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -112,6 +120,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -143,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -188,6 +202,7 @@ On success, you'll receive one or more `nodeId` values. Use these IDs with the `
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -201,6 +216,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -236,7 +257,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -285,6 +306,7 @@ Returns the generated nodeId. Use that ID with the /clusters endpoints to includ
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -299,6 +321,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -330,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -374,6 +402,7 @@ Here's an example of how to filter by node type:
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -387,6 +416,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -420,7 +455,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

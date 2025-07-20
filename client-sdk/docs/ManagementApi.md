@@ -33,6 +33,7 @@ Returns the SSH key object.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -47,6 +48,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -78,7 +85,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -111,6 +118,7 @@ Delete an SSH key from the management cluster.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -123,6 +131,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -152,7 +166,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -187,6 +201,7 @@ Returns an array of cluster templates objects.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -200,6 +215,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -227,7 +248,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -260,6 +281,7 @@ Returns an array of credentials objects (without exposing the credentials).
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -273,6 +295,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -300,7 +328,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -333,6 +361,7 @@ Returns an array of SSH key objects.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -346,6 +375,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -373,7 +408,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -410,6 +445,7 @@ Returns an array of workspace template objects.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -423,6 +459,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -450,7 +492,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

@@ -32,6 +32,7 @@ Clusters will be added to the colony as they are created.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -46,6 +47,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -77,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -113,6 +120,7 @@ This operation is irreversible.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -126,6 +134,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -157,7 +171,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -186,6 +200,7 @@ Fetch all metadata for one colony.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -199,6 +214,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -230,7 +251,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -259,6 +280,7 @@ The kubeconfig file contains the credentials to access all clusters of the colon
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -272,6 +294,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -303,7 +331,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 
@@ -332,6 +360,7 @@ Retrieve all colonies
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -345,6 +374,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -372,7 +407,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

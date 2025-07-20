@@ -27,6 +27,7 @@ Returns an array of service objects.
 
 ### Example
 
+* OAuth Authentication (OAuth2):
 
 ```python
 import exalsius_api_client
@@ -40,6 +41,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 # Enter a context with an instance of the API client
 with exalsius_api_client.ApiClient(configuration) as api_client:
@@ -67,7 +74,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[OAuth2](../README.md#OAuth2)
 
 ### HTTP request headers
 

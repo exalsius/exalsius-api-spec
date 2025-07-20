@@ -80,6 +80,12 @@ configuration = exalsius_api_client.Configuration(
     host = "https://api.exalsius.ai/v1"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
 
 
 # Enter a context with an instance of the API client
@@ -210,12 +216,14 @@ Class | Method | HTTP request | Description
 
 
 Authentication schemes defined for the API:
-<a id="ApiKeyAuth"></a>
-### ApiKeyAuth
+<a id="OAuth2"></a>
+### OAuth2
 
-- **Type**: API key
-- **API key parameter name**: X-API-Key
-- **Location**: HTTP header
+- **Type**: OAuth
+- **Flow**: accessCode
+- **Authorization URL**: https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
+- **Scopes**: 
+ - **openid**: Default login scope (not used for access control)
 
 
 ## Author
