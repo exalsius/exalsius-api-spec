@@ -45,7 +45,6 @@ properties:
     items:
       $ref: '../../components/schemas/workspace-access-information.yaml'
     description: The access information for the workspace
-    example: [{"access_type": "NODE_PORT", "port_name": "http", "port_description": "Connects with the jupyter notebook UI.", "protocol": "HTTP", "external_ip": "123.456.789.012"}]
   resources:
     description: The resources allocated to the workspace
     $ref: './resource-pool.yaml'

@@ -1,8 +1,8 @@
 type: object
 required:
   - access_type
-  - port_name
-  - protocol
+  - access_protocol
+  - port_number
 properties:
   access_type:
     type: string
@@ -11,22 +11,26 @@ properties:
     description: >
       The type of access information.
       - `NODE_PORT`: Node port access information
-  port_name:
+  access_description:
     type: string
-    description: The name of the port
-    example: "http"
-  port_description:
-    type: string
-    description: A description of the port
+    description: A description for the access type
     example: "Connects with the jupyter notebook UI."
-  protocol:
+  access_protocol:
     type: string
     enum: [HTTP, HTTPS]
     x-enum-varnames: [HTTP, HTTPS]
     description: >
-      The protocol of the port
+      The protocol of the access type
       - `HTTP`: HTTP protocol
       - `HTTPS`: HTTPS protocol
+  port_name:
+    type: string
+    description: The port name
+    example: "dashboard"
+  port_number:
+    type: integer
+    description: The port number
+    example: 8000
   external_ip:
     type: string
     description: The external IP address associated with the port
