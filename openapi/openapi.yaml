@@ -80,6 +80,8 @@ paths:
     $ref: ./paths/colonies/kubeconfig.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
+  /clusters/adopt:
+    $ref: ./paths/clusters/adopt-cluster.yaml
   /cluster/{cluster_id}:
     $ref: ./paths/clusters/cluster.yaml
   /cluster/{cluster_id}/nodes:
