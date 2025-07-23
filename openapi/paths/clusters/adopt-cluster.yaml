@@ -1,0 +1,27 @@
+post:
+  operationId: adoptCluster
+  tags: [clusters]
+  summary: Adopt a cluster
+  description: |
+    **Adopt a cluster**
+    Adopt an already existing Kubernetes cluster to manage it with exalsius.
+
+  requestBody: 
+    required: true
+    content: 
+      application/json: 
+        schema:
+          $ref: '../../components/requests/cluster-adopt-request.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/cluster-adopt-response.yaml'
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-already-exists
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+  

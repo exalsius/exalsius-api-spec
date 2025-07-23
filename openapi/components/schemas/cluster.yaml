@@ -28,12 +28,13 @@ properties:
     example: "my-user"
   cluster_type:
     type: string
-    enum: [CLOUD, REMOTE, DOCKER]
-    x-enum-varnames: [CLOUD, REMOTE, DOCKER]
+    enum: [CLOUD, REMOTE, ADOPTED, DOCKER]
+    x-enum-varnames: [CLOUD, REMOTE, ADOPTED, DOCKER]
     description: >
       The type of the cluster.
       - `CLOUD`: Cloud cluster, consisting of cloud instances
       - `REMOTE`: Remote cluster, consisting of self-managed nodes
+      - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster
       - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development)
   cluster_status:
     type: string

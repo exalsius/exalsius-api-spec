@@ -1,0 +1,10 @@
+description: Cluster adoption response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-create-response.yaml'
+    examples:
+      success:
+        summary: Cluster created
+        value:
+          cluster_id: "123e4567-e89b-12d3-a456-426614174000"
