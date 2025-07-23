@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.10.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.9.1...openapi-v1.10.0) (2025-07-23)
+
+
+### Features
+
+* extend spec for workspace-start ([2b62950](https://github.com/exalsius/exalsius-api-spec/commit/2b62950d4c601d40947baf7c5fe90b0e4b66b5db))
+
 ## [1.9.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.9.0...openapi-v1.9.1) (2025-07-20)
 
 
