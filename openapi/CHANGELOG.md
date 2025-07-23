@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.10.0...openapi-v1.11.0) (2025-07-23)
+
+
+### Features
+
+* add an endpoint to adopt clusters ([#71](https://github.com/exalsius/exalsius-api-spec/issues/71)) ([34d1c1e](https://github.com/exalsius/exalsius-api-spec/commit/34d1c1e342e6d3cf535eefb90bf34b846c4ef11a))
+
 ## [1.10.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.9.1...openapi-v1.10.0) (2025-07-23)
 
 
