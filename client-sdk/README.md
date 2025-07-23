@@ -145,6 +145,7 @@ Class | Method | HTTP request | Description
 *WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 *WorkspacesApi* | [**describe_workspace**](docs/WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
 *WorkspacesApi* | [**list_workspaces**](docs/WorkspacesApi.md#list_workspaces) | **GET** /workspaces | List all workspaces
+*WorkspacesApi* | [**start_workspace**](docs/WorkspacesApi.md#start_workspace) | **POST** /workspace/{workspace_id}/start | Start a workspace
 *WorkspacesApi* | [**stop_workspace**](docs/WorkspacesApi.md#stop_workspace) | **POST** /workspace/{workspace_id}/stop | Stop a workspace
 
 
@@ -205,6 +206,7 @@ Class | Method | HTTP request | Description
  - [WorkspaceDeleteResponse](docs/WorkspaceDeleteResponse.md)
  - [WorkspaceDeployment](docs/WorkspaceDeployment.md)
  - [WorkspaceResponse](docs/WorkspaceResponse.md)
+ - [WorkspaceStartResponse](docs/WorkspaceStartResponse.md)
  - [WorkspaceStopResponse](docs/WorkspaceStopResponse.md)
  - [WorkspaceTemplate](docs/WorkspaceTemplate.md)
  - [WorkspaceTemplateListResponse](docs/WorkspaceTemplateListResponse.md)

@@ -99,6 +99,8 @@ from exalsius_api_client.models.workspace_delete_response import \
     WorkspaceDeleteResponse
 from exalsius_api_client.models.workspace_deployment import WorkspaceDeployment
 from exalsius_api_client.models.workspace_response import WorkspaceResponse
+from exalsius_api_client.models.workspace_start_response import \
+    WorkspaceStartResponse
 from exalsius_api_client.models.workspace_stop_response import \
     WorkspaceStopResponse
 from exalsius_api_client.models.workspace_template import WorkspaceTemplate

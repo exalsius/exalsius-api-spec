@@ -64,6 +64,7 @@ docs/WorkspaceCreateResponse.md
 docs/WorkspaceDeleteResponse.md
 docs/WorkspaceDeployment.md
 docs/WorkspaceResponse.md
+docs/WorkspaceStartResponse.md
 docs/WorkspaceStopResponse.md
 docs/WorkspaceTemplate.md
 docs/WorkspaceTemplateListResponse.md
@@ -138,6 +139,7 @@ exalsius_api_client/models/workspace_create_response.py
 exalsius_api_client/models/workspace_delete_response.py
 exalsius_api_client/models/workspace_deployment.py
 exalsius_api_client/models/workspace_response.py
+exalsius_api_client/models/workspace_start_response.py
 exalsius_api_client/models/workspace_stop_response.py
 exalsius_api_client/models/workspace_template.py
 exalsius_api_client/models/workspace_template_list_response.py
@@ -151,4 +153,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_workspace_start_response.py
 tox.ini

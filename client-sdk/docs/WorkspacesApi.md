@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_workspace**](WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 [**describe_workspace**](WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
 [**list_workspaces**](WorkspacesApi.md#list_workspaces) | **GET** /workspaces | List all workspaces
+[**start_workspace**](WorkspacesApi.md#start_workspace) | **POST** /workspace/{workspace_id}/start | Start a workspace
 [**stop_workspace**](WorkspacesApi.md#stop_workspace) | **POST** /workspace/{workspace_id}/stop | Stop a workspace
 
 
@@ -357,6 +358,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of workspaces |  * X-Total-Count - Total number of existing workspaces <br>  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_workspace**
+> WorkspaceStartResponse start_workspace(workspace_id)
+
+Start a workspace
+
+**Start a workspace**
+
+Start a workspace. This will start all associated Pods, in case they were stopped previously.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.workspace_start_response import WorkspaceStartResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.WorkspacesApi(api_client)
+    workspace_id = 'workspace_id_example' # str | ID of the workspace to start
+
+    try:
+        # Start a workspace
+        api_response = api_instance.start_workspace(workspace_id)
+        print("The response of WorkspacesApi->start_workspace:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkspacesApi->start_workspace: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace_id** | **str**| ID of the workspace to start | 
+
+### Return type
+
+[**WorkspaceStartResponse**](WorkspaceStartResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workspace start response |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
