@@ -41,9 +41,11 @@ properties:
     description: The description of the workspace
     example: "This is a workspace for my project"
   access_information:
-    type: string
-    description: Information about how to access the workspace
-    example: "ssh -i ~/.ssh/id_rsa user@host"
+    type: array
+    items:
+      $ref: '../../components/schemas/workspace-access-information.yaml'
+    description: The access information for the workspace
+    example: [{"access_type": "NODE_PORT", "port_name": "http", "port_description": "Connects with the jupyter notebook UI.", "protocol": "HTTP", "external_ip": "123.456.789.012"}]
   resources:
     description: The resources allocated to the workspace
     $ref: './resource-pool.yaml'
