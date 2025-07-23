@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.12.0...v1.13.0) (2025-07-23)
+
+
+### Features
+
+* refine access information ([a7ba2f9](https://github.com/exalsius/exalsius-api-spec/commit/a7ba2f900592ace7e2a9750f63e84558e94052e2))
+
 ## [1.12.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.11.0...v1.12.0) (2025-07-23)
 
 
