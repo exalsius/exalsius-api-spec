@@ -113,6 +113,7 @@ Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *ClustersApi* | [**add_cluster_services**](docs/ClustersApi.md#add_cluster_services) | **POST** /cluster/{cluster_id}/services | Add service deployments to a cluster
 *ClustersApi* | [**add_nodes**](docs/ClustersApi.md#add_nodes) | **POST** /cluster/{cluster_id}/nodes | Add nodes to a cluster
+*ClustersApi* | [**adopt_cluster**](docs/ClustersApi.md#adopt_cluster) | **POST** /clusters/adopt | Adopt a cluster
 *ClustersApi* | [**create_cluster**](docs/ClustersApi.md#create_cluster) | **POST** /clusters | Create a cluster
 *ClustersApi* | [**delete_cluster**](docs/ClustersApi.md#delete_cluster) | **DELETE** /cluster/{cluster_id} | Delete (tear-down) a cluster
 *ClustersApi* | [**delete_node_from_cluster**](docs/ClustersApi.md#delete_node_from_cluster) | **DELETE** /cluster/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
@@ -156,6 +157,7 @@ Class | Method | HTTP request | Description
  - [Cluster](docs/Cluster.md)
  - [ClusterAddNodeRequest](docs/ClusterAddNodeRequest.md)
  - [ClusterAddServiceRequest](docs/ClusterAddServiceRequest.md)
+ - [ClusterAdoptRequest](docs/ClusterAdoptRequest.md)
  - [ClusterCreateRequest](docs/ClusterCreateRequest.md)
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
  - [ClusterDeleteResponse](docs/ClusterDeleteResponse.md)

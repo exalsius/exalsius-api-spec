@@ -6,6 +6,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_cluster_services**](ClustersApi.md#add_cluster_services) | **POST** /cluster/{cluster_id}/services | Add service deployments to a cluster
 [**add_nodes**](ClustersApi.md#add_nodes) | **POST** /cluster/{cluster_id}/nodes | Add nodes to a cluster
+[**adopt_cluster**](ClustersApi.md#adopt_cluster) | **POST** /clusters/adopt | Adopt a cluster
 [**create_cluster**](ClustersApi.md#create_cluster) | **POST** /clusters | Create a cluster
 [**delete_cluster**](ClustersApi.md#delete_cluster) | **DELETE** /cluster/{cluster_id} | Delete (tear-down) a cluster
 [**delete_node_from_cluster**](ClustersApi.md#delete_node_from_cluster) | **DELETE** /cluster/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
@@ -220,6 +221,87 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | List of nodes in the cluster |  -  |
 **404** | Error response |  -  |
+**409** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **adopt_cluster**
+> ClusterCreateResponse adopt_cluster(cluster_adopt_request)
+
+Adopt a cluster
+
+**Adopt a cluster**
+Adopt an already existing Kubernetes cluster to manage it with exalsius.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.cluster_adopt_request import ClusterAdoptRequest
+from exalsius_api_client.models.cluster_create_response import ClusterCreateResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ClustersApi(api_client)
+    cluster_adopt_request = exalsius_api_client.ClusterAdoptRequest() # ClusterAdoptRequest | 
+
+    try:
+        # Adopt a cluster
+        api_response = api_instance.adopt_cluster(cluster_adopt_request)
+        print("The response of ClustersApi->adopt_cluster:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ClustersApi->adopt_cluster: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_adopt_request** | [**ClusterAdoptRequest**](ClusterAdoptRequest.md)|  | 
+
+### Return type
+
+[**ClusterCreateResponse**](ClusterCreateResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Cluster adoption response |  -  |
+**400** | Error response |  -  |
 **409** | Error response |  -  |
 **500** | Error response |  -  |
 

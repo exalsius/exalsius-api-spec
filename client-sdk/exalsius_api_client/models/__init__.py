@@ -22,6 +22,8 @@ from exalsius_api_client.models.cluster_add_node_request import \
     ClusterAddNodeRequest
 from exalsius_api_client.models.cluster_add_service_request import \
     ClusterAddServiceRequest
+from exalsius_api_client.models.cluster_adopt_request import \
+    ClusterAdoptRequest
 from exalsius_api_client.models.cluster_create_request import \
     ClusterCreateRequest
 from exalsius_api_client.models.cluster_create_response import \

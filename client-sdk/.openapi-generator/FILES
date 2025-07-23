@@ -8,6 +8,7 @@ docs/CloudNode.md
 docs/Cluster.md
 docs/ClusterAddNodeRequest.md
 docs/ClusterAddServiceRequest.md
+docs/ClusterAdoptRequest.md
 docs/ClusterCreateRequest.md
 docs/ClusterCreateResponse.md
 docs/ClusterDeleteResponse.md
@@ -89,6 +90,7 @@ exalsius_api_client/models/cloud_node.py
 exalsius_api_client/models/cluster.py
 exalsius_api_client/models/cluster_add_node_request.py
 exalsius_api_client/models/cluster_add_service_request.py
+exalsius_api_client/models/cluster_adopt_request.py
 exalsius_api_client/models/cluster_create_request.py
 exalsius_api_client/models/cluster_create_response.py
 exalsius_api_client/models/cluster_delete_response.py
@@ -153,4 +155,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_cluster_adopt_request.py
 tox.ini

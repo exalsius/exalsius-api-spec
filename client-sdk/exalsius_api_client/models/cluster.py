@@ -50,7 +50,7 @@ class Cluster(BaseModel):
     )
     cluster_type: Optional[StrictStr] = Field(
         default=None,
-        description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) ",
+        description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) ",
     )
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `STAGING`: Cluster is staging - `PROVISIONING`: Cluster is provisioning - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
@@ -112,8 +112,10 @@ class Cluster(BaseModel):
         if value is None:
             return value
 
-        if value not in set(["CLOUD", "REMOTE", "DOCKER"]):
-            raise ValueError("must be one of enum values ('CLOUD', 'REMOTE', 'DOCKER')")
+        if value not in set(["CLOUD", "REMOTE", "ADOPTED", "DOCKER"]):
+            raise ValueError(
+                "must be one of enum values ('CLOUD', 'REMOTE', 'ADOPTED', 'DOCKER')"
+            )
         return value
 
     @field_validator("cluster_status")

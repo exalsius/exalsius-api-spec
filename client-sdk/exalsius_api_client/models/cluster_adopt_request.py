@@ -18,63 +18,35 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.service_deployment import ServiceDeployment
 
-
-class ClusterCreateRequest(BaseModel):
+class ClusterAdoptRequest(BaseModel):
     """
-    ClusterCreateRequest
+    ClusterAdoptRequest
     """  # noqa: E501
 
     name: StrictStr = Field(description="The name of the cluster")
-    cluster_type: StrictStr = Field(
-        description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) "
-    )
     colony_id: Optional[StrictStr] = Field(
         default=None,
         description="The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.",
     )
+    kubeconfig_b64: Optional[StrictStr] = Field(
+        default=None,
+        description="The kubeconfig of the cluster in base64 encoded string format",
+    )
     k8s_version: Optional[StrictStr] = Field(
         default=None, description="The Kubernetes version of the cluster"
     )
-    to_be_deleted_at: Optional[datetime] = Field(
-        default=None,
-        description="The date and time the cluster will be deleted (optional).",
-    )
-    control_plane_node_ids: Optional[List[StrictStr]] = Field(
-        default=None, description="The IDs of the control plane nodes (optional)."
-    )
-    worker_node_ids: Optional[List[StrictStr]] = Field(
-        default=None, description="The IDs of the worker nodes (optional)."
-    )
-    service_deployments: Optional[List[ServiceDeployment]] = Field(
-        default=None, description="The services to deploy in the cluster (optional)."
-    )
     __properties: ClassVar[List[str]] = [
         "name",
-        "cluster_type",
         "colony_id",
+        "kubeconfig_b64",
         "k8s_version",
-        "to_be_deleted_at",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "service_deployments",
     ]
-
-    @field_validator("cluster_type")
-    def cluster_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in set(["CLOUD", "REMOTE", "ADOPTED", "DOCKER"]):
-            raise ValueError(
-                "must be one of enum values ('CLOUD', 'REMOTE', 'ADOPTED', 'DOCKER')"
-            )
-        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -93,7 +65,7 @@ class ClusterCreateRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterCreateRequest from a JSON string"""
+        """Create an instance of ClusterAdoptRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -113,18 +85,11 @@ class ClusterCreateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in service_deployments (list)
-        _items = []
-        if self.service_deployments:
-            for _item_service_deployments in self.service_deployments:
-                if _item_service_deployments:
-                    _items.append(_item_service_deployments.to_dict())
-            _dict["service_deployments"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterCreateRequest from a dict"""
+        """Create an instance of ClusterAdoptRequest from a dict"""
         if obj is None:
             return None
 
@@ -134,20 +99,9 @@ class ClusterCreateRequest(BaseModel):
         _obj = cls.model_validate(
             {
                 "name": obj.get("name"),
-                "cluster_type": obj.get("cluster_type"),
                 "colony_id": obj.get("colony_id"),
+                "kubeconfig_b64": obj.get("kubeconfig_b64"),
                 "k8s_version": obj.get("k8s_version"),
-                "to_be_deleted_at": obj.get("to_be_deleted_at"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "service_deployments": (
-                    [
-                        ServiceDeployment.from_dict(_item)
-                        for _item in obj["service_deployments"]
-                    ]
-                    if obj.get("service_deployments") is not None
-                    else None
-                ),
             }
         )
         return _obj
