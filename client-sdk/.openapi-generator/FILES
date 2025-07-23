@@ -155,5 +155,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_adopt_request.py
 tox.ini
