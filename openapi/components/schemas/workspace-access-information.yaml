@@ -21,11 +21,12 @@ properties:
     example: "Connects with the jupyter notebook UI."
   protocol:
     type: string
-    enum: [HTTP]
-    x-enum-varnames: [HTTP]
+    enum: [HTTP, HTTPS]
+    x-enum-varnames: [HTTP, HTTPS]
     description: >
       The protocol of the port
       - `HTTP`: HTTP protocol
+      - `HTTPS`: HTTPS protocol
   external_ip:
     type: string
     description: The external IP address associated with the port
