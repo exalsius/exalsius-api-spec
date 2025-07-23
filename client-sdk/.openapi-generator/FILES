@@ -157,5 +157,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_workspace_access_information.py
 tox.ini
