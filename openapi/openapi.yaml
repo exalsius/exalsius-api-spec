@@ -112,6 +112,8 @@ paths:
     $ref: ./paths/workspaces/workspace.yaml
   /workspace/{workspace_id}/stop:
     $ref: ./paths/workspaces/stop-workspace.yaml
+  /workspace/{workspace_id}/start:
+    $ref: ./paths/workspaces/start-workspace.yaml
 components:
   schemas:
     Offer:
@@ -172,6 +174,8 @@ components:
       $ref: ./components/schemas/workspace-response.yaml
     WorkspaceStopResponse:
       $ref: ./components/schemas/workspace-stop-response.yaml
+    WorkspaceStartResponse:
+      $ref: ./components/schemas/workspace-start-response.yaml
     WorkspaceTemplate:
       $ref: ./components/schemas/workspace-template.yaml
     WorkspaceListResponse:
@@ -223,6 +227,8 @@ components:
       $ref: ./components/responses/workspace-response.yaml
     WorkspaceStopResponse:
       $ref: ./components/responses/workspace-stop-response.yaml
+    WorkspaceStartResponse:
+      $ref: ./components/responses/workspace-start-response.yaml
     WorkspaceTemplateListResponse:
       $ref: ./components/responses/workspace-template-list-response.yaml
     WorkspaceListResponse:

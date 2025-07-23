@@ -1,0 +1,39 @@
+post:
+  operationId: startWorkspace
+  tags: [workspaces]
+  summary: Start a workspace
+  description: |
+    **Start a workspace**
+
+    Start a workspace. This will start all associated Pods, in case they were stopped previously.
+
+  parameters:
+    - name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the workspace to start
+  responses:
+    '200':
+      $ref: '../../components/responses/workspace-start-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000/start"
+
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.post("https://api.exalsius.ai/workspace/123e4567-e89b-12d3-a456-426614174000/start")
+        print(response.json())
