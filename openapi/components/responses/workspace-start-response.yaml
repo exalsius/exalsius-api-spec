@@ -1,0 +1,10 @@
+description: Workspace start response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/workspace-start-response.yaml'
+    examples:
+      success:
+        summary: Workspace started
+        value:
+          workspace_id: "123e4567-e89b-12d3-a456-426614174000"
