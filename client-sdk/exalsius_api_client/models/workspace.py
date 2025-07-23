@@ -25,6 +25,8 @@ from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 from exalsius_api_client.models.resource_pool import ResourcePool
+from exalsius_api_client.models.workspace_access_information import \
+    WorkspaceAccessInformation
 from exalsius_api_client.models.workspace_template import WorkspaceTemplate
 
 
@@ -51,8 +53,8 @@ class Workspace(BaseModel):
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
     )
-    access_information: Optional[StrictStr] = Field(
-        default=None, description="Information about how to access the workspace"
+    access_information: Optional[List[WorkspaceAccessInformation]] = Field(
+        default=None, description="The access information for the workspace"
     )
     resources: ResourcePool = Field(
         description="The resources allocated to the workspace"
@@ -129,6 +131,13 @@ class Workspace(BaseModel):
         # override the default output from pydantic by calling `to_dict()` of template
         if self.template:
             _dict["template"] = self.template.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in access_information (list)
+        _items = []
+        if self.access_information:
+            for _item_access_information in self.access_information:
+                if _item_access_information:
+                    _items.append(_item_access_information.to_dict())
+            _dict["access_information"] = _items
         # override the default output from pydantic by calling `to_dict()` of resources
         if self.resources:
             _dict["resources"] = self.resources.to_dict()
@@ -156,7 +165,14 @@ class Workspace(BaseModel):
                 ),
                 "owner": obj.get("owner"),
                 "description": obj.get("description"),
-                "access_information": obj.get("access_information"),
+                "access_information": (
+                    [
+                        WorkspaceAccessInformation.from_dict(_item)
+                        for _item in obj["access_information"]
+                    ]
+                    if obj.get("access_information") is not None
+                    else None
+                ),
                 "resources": (
                     ResourcePool.from_dict(obj["resources"])
                     if obj.get("resources") is not None

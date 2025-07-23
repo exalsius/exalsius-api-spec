@@ -111,6 +111,8 @@ from exalsius_api_client.models.ssh_keys_list_response import \
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
     SshKeysListResponseSshKeysInner
 from exalsius_api_client.models.workspace import Workspace
+from exalsius_api_client.models.workspace_access_information import \
+    WorkspaceAccessInformation
 from exalsius_api_client.models.workspace_create_request import \
     WorkspaceCreateRequest
 from exalsius_api_client.models.workspace_create_response import \

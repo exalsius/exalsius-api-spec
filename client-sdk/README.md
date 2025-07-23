@@ -203,6 +203,7 @@ Class | Method | HTTP request | Description
  - [SshKeysListResponse](docs/SshKeysListResponse.md)
  - [SshKeysListResponseSshKeysInner](docs/SshKeysListResponseSshKeysInner.md)
  - [Workspace](docs/Workspace.md)
+ - [WorkspaceAccessInformation](docs/WorkspaceAccessInformation.md)
  - [WorkspaceCreateRequest](docs/WorkspaceCreateRequest.md)
  - [WorkspaceCreateResponse](docs/WorkspaceCreateResponse.md)
  - [WorkspaceDeleteResponse](docs/WorkspaceDeleteResponse.md)
