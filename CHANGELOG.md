@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.12.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.11.0...v1.12.0) (2025-07-23)
+
+
+### Features
+
+* add https to protocol enum ([78da767](https://github.com/exalsius/exalsius-api-spec/commit/78da76784bd296232c86a3f17e2c7007dc773b04))
+* transform access-information to object(s) ([63649a5](https://github.com/exalsius/exalsius-api-spec/commit/63649a53bb4bb44a8e96f0fb6a201e405fb268b0))
+
 ## [1.11.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.10.0...v1.11.0) (2025-07-23)
 
 
