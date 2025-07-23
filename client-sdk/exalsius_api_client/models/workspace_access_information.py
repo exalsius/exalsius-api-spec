@@ -20,7 +20,8 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (BaseModel, ConfigDict, Field, StrictInt, StrictStr,
+                      field_validator)
 from typing_extensions import Self
 
 
@@ -32,21 +33,23 @@ class WorkspaceAccessInformation(BaseModel):
     access_type: StrictStr = Field(
         description="The type of access information. - `NODE_PORT`: Node port access information "
     )
-    port_name: StrictStr = Field(description="The name of the port")
-    port_description: Optional[StrictStr] = Field(
-        default=None, description="A description of the port"
+    access_description: Optional[StrictStr] = Field(
+        default=None, description="A description for the access type"
     )
-    protocol: StrictStr = Field(
-        description="The protocol of the port - `HTTP`: HTTP protocol - `HTTPS`: HTTPS protocol "
+    access_protocol: StrictStr = Field(
+        description="The protocol of the access type - `HTTP`: HTTP protocol - `HTTPS`: HTTPS protocol "
     )
+    port_name: Optional[StrictStr] = Field(default=None, description="The port name")
+    port_number: StrictInt = Field(description="The port number")
     external_ip: Optional[StrictStr] = Field(
         default=None, description="The external IP address associated with the port"
     )
     __properties: ClassVar[List[str]] = [
         "access_type",
+        "access_description",
+        "access_protocol",
         "port_name",
-        "port_description",
-        "protocol",
+        "port_number",
         "external_ip",
     ]
 
@@ -57,8 +60,8 @@ class WorkspaceAccessInformation(BaseModel):
             raise ValueError("must be one of enum values ('NODE_PORT')")
         return value
 
-    @field_validator("protocol")
-    def protocol_validate_enum(cls, value):
+    @field_validator("access_protocol")
+    def access_protocol_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(["HTTP", "HTTPS"]):
             raise ValueError("must be one of enum values ('HTTP', 'HTTPS')")
@@ -115,9 +118,10 @@ class WorkspaceAccessInformation(BaseModel):
         _obj = cls.model_validate(
             {
                 "access_type": obj.get("access_type"),
+                "access_description": obj.get("access_description"),
+                "access_protocol": obj.get("access_protocol"),
                 "port_name": obj.get("port_name"),
-                "port_description": obj.get("port_description"),
-                "protocol": obj.get("protocol"),
+                "port_number": obj.get("port_number"),
                 "external_ip": obj.get("external_ip"),
             }
         )

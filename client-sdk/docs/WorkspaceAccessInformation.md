@@ -6,9 +6,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_type** | **str** | The type of access information. - &#x60;NODE_PORT&#x60;: Node port access information  | 
-**port_name** | **str** | The name of the port | 
-**port_description** | **str** | A description of the port | [optional] 
-**protocol** | **str** | The protocol of the port - &#x60;HTTP&#x60;: HTTP protocol - &#x60;HTTPS&#x60;: HTTPS protocol  | 
+**access_description** | **str** | A description for the access type | [optional] 
+**access_protocol** | **str** | The protocol of the access type - &#x60;HTTP&#x60;: HTTP protocol - &#x60;HTTPS&#x60;: HTTPS protocol  | 
+**port_name** | **str** | The port name | [optional] 
+**port_number** | **int** | The port number | 
 **external_ip** | **str** | The external IP address associated with the port | [optional] 
 
 ## Example
