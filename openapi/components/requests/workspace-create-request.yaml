@@ -19,10 +19,6 @@ properties:
   resources:
     description: The resources allocated to the workspace
     $ref: '../schemas/resource-pool.yaml'
-  owner:
-    type: string
-    description: The owner of the workspace
-    example: "John Doe"
   description:
     type: string
     description: The description of the workspace
