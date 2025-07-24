@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.13.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.13.0...openapi-v1.13.1) (2025-07-24)
+
+
+### Bug Fixes
+
+* remove owner from create-workspace-request ([479b8ef](https://github.com/exalsius/exalsius-api-spec/commit/479b8efd66afe648740363cbc920f7cec7a931e5))
+
 ## [1.13.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.12.0...openapi-v1.13.0) (2025-07-23)
 
 
