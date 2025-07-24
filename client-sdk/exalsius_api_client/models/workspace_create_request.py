@@ -41,9 +41,6 @@ class WorkspaceCreateRequest(BaseModel):
     resources: ResourcePool = Field(
         description="The resources allocated to the workspace"
     )
-    owner: Optional[StrictStr] = Field(
-        default=None, description="The owner of the workspace"
-    )
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
     )
@@ -55,7 +52,6 @@ class WorkspaceCreateRequest(BaseModel):
         "cluster_id",
         "template",
         "resources",
-        "owner",
         "description",
         "to_be_deleted_at",
     ]
@@ -128,7 +124,6 @@ class WorkspaceCreateRequest(BaseModel):
                     if obj.get("resources") is not None
                     else None
                 ),
-                "owner": obj.get("owner"),
                 "description": obj.get("description"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),
             }

@@ -9,7 +9,6 @@ Name | Type | Description | Notes
 **cluster_id** | **str** | The unique identifier of the associated cluster | 
 **template** | [**WorkspaceTemplate**](WorkspaceTemplate.md) |  | 
 **resources** | [**ResourcePool**](ResourcePool.md) | The resources allocated to the workspace | 
-**owner** | **str** | The owner of the workspace | [optional] 
 **description** | **str** | The description of the workspace | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the workspace will be deleted | [optional] 
 
