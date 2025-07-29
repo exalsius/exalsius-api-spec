@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.13.1...openapi-v1.14.0) (2025-07-29)
+
+
+### Features
+
+* add more filters and supported clouds for offers endpoint ([#79](https://github.com/exalsius/exalsius-api-spec/issues/79)) ([2354b04](https://github.com/exalsius/exalsius-api-spec/commit/2354b04215854f8cd27e76ed04867d57d34d9c26))
+
 ## [1.13.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.13.0...openapi-v1.13.1) (2025-07-24)
 
 
