@@ -32,7 +32,10 @@ class SshKey(BaseModel):
     id: Optional[StrictStr] = Field(default=None, description="The ID of the SSH key")
     name: StrictStr = Field(description="The name of the SSH key")
     private_key: StrictStr = Field(description="The private key of the SSH key")
-    __properties: ClassVar[List[str]] = ["id", "name", "private_key"]
+    owner: Optional[StrictStr] = Field(
+        default=None, description="The owner of the SSH key"
+    )
+    __properties: ClassVar[List[str]] = ["id", "name", "private_key", "owner"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -87,6 +90,7 @@ class SshKey(BaseModel):
                 "id": obj.get("id"),
                 "name": obj.get("name"),
                 "private_key": obj.get("private_key"),
+                "owner": obj.get("owner"),
             }
         )
         return _obj
