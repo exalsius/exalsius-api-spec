@@ -13,6 +13,10 @@ properties:
     type: string
     description: The private key of the SSH key
     example: "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"
+  owner:
+    type: string
+    description: The owner of the SSH key
+    example: "John Doe"
 required:
   - name
   - private_key
