@@ -33,6 +33,19 @@ get:
           - AZURE
           - GCP
           - OCI
+          - LAMBDA
+          - PAPERSPACE
+          - VAST
+          - FLUIDSTACK
+          - CUDO
+          - NEBIUS
+          - HYPERBOLIC
+          - SCP
+          - DO
+          - OVHCLOUD
+          - SCALEWAY
+          - PRIMEINTELLECT
+          - IBM
           - UNKNOWN
       description: The cloud provider of the offer
       required: false
