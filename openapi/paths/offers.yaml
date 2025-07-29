@@ -6,54 +6,6 @@ get:
     **List GPU offers (on-demand & spot instances)**
     Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
 
-    **Parameters (optional)**
-    - `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei)
-    - `gpu_type`: The type of the GPU
-    - `provider`: The cloud provider of the offer
-    - `region`: The region of the offer
-    - `gpu_count`: The minimum number of GPUs in the offer
-    - `page_size`: The number of offers to return per page (default: 50, max: 100)
-    - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
-
-    **Examples**
-
-    Here's an example of how to filter by vendor:
-      ```
-      /offers?gpu_vendor=nvidia
-      ```
-
-    Here's an example of how to filter by provider:
-      ```
-      /offers?cloud_provider=aws
-      ```
-
-    Here's an example of how to filter by provider and region:
-      ```
-      /offers?provider=aws&region=us-east-1
-      ```
-      
-    Here's an example of how to filter by provider, region, and gpuCount:
-      ```
-      /offers?provider=aws&region=us-east-1&gpuCount=1
-      ```
-
-    Here's an example of pagination:
-      ```
-      # First page
-      /offers?page_size=20
-      
-      # Next page using cursor from previous response
-      /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9
-      ```
-      
-    **Result**
-    
-    The response includes:
-    - A list of offers
-    - The total number of offers matching the filters
-    - A cursor for the next page (if there are more results)
-    - A cursor for the previous page (if not on the first page)
-    
   parameters:
     - name: gpu_vendor
       in: query
@@ -90,12 +42,122 @@ get:
         type: string
       description: The region of the offer, e.g. us-east-1
       required: false
-    - name: gpu_count
+    - name: availability_zone
+      in: query
+      schema:
+        type: string
+      description: The availability zone of the offer
+      required: false
+    - name: location
+      in: query
+      schema:
+        type: string
+      description: The location of the offer
+      required: false
+    - name: cpu_vendor
+      in: query
+      schema:
+        type: string
+        enum: [INTEL, AMD, UNKNOWN]
+      description: The vendor of the CPU
+      required: false
+    - name: cpu_arch
+      in: query
+      schema:
+        type: string
+        enum: [X86_64, AARCH64, ARM64, UNKNOWN]
+      description: The architecture of the CPU
+      required: false
+    - name: pricing_unit
+      in: query
+      schema:
+        type: string
+        enum: [HOURLY, MONTHLY, YEARLY, UNKNOWN]
+      description: The pricing unit
+      required: false
+    - name: price_type
+      in: query
+      schema:
+        type: string
+        enum: [ON_DEMAND, SPOT]
+      description: The type of pricing model
+      required: false
+
+    - name: gpu_count_min
       in: query
       schema:
         type: integer
-      description: The minimum number of GPUs in the offer
+      description: Minimum number of GPUs
       required: false
+    - name: gpu_count_max
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of GPUs
+      required: false
+    - name: gpu_memory_min
+      in: query
+      schema:
+        type: integer
+      description: Minimum GPU memory of single GPU (MiB)
+      required: false
+    - name: gpu_memory_max
+      in: query
+      schema:
+        type: integer
+      description: Maximum GPU memory of single GPU (MiB)
+      required: false
+    - name: total_gpu_memory_min
+      in: query
+      schema:
+        type: integer
+      description: Minimum total GPU memory (MiB)
+      required: false
+    - name: total_gpu_memory_max
+      in: query
+      schema:
+        type: integer
+      description: Maximum total GPU memory (MiB)
+      required: false
+    - name: main_memory_min
+      in: query
+      schema:
+        type: integer
+      description: Minimum main memory (MiB)
+      required: false
+    - name: main_memory_max
+      in: query
+      schema:
+        type: integer
+      description: Maximum main memory (MiB)
+      required: false
+    - name: vcpus_min
+      in: query
+      schema:
+        type: integer
+      description: Minimum number of virtual CPUs
+      required: false
+    - name: vcpus_max
+      in: query
+      schema:
+        type: integer
+      description: Maximum number of virtual CPUs
+      required: false
+    - name: price_min
+      in: query
+      schema:
+        type: number
+        format: float
+      description: Minimum price per hour
+      required: false
+    - name: price_max
+      in: query
+      schema:
+        type: number
+        format: float
+      description: Maximum price per hour
+      required: false
+
     - name: page_size
       in: query
       schema:
@@ -108,6 +170,29 @@ get:
         type: string
       description: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
       required: false
+
+    - name: sort_by
+      in: query
+      schema:
+        type: string
+        enum:
+          - price
+          - gpu_count
+          - gpu_memory_mib
+          - total_gpu_memory_mib
+          - main_memory_mib
+          - num_vcpus
+          - hourly_cost
+      description: Field to sort by
+      required: false
+    - name: sort_order
+      in: query
+      schema:
+        type: string
+        enum: [asc, desc]
+      description: Sort order
+      required: false
+      
       
   responses:
     '200':
