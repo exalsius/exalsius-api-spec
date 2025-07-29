@@ -48,6 +48,19 @@ properties:
       - AZURE
       - GCP
       - OCI
+      - LAMBDA
+      - PAPERSPACE
+      - VAST
+      - FLUIDSTACK
+      - CUDO
+      - NEBIUS
+      - HYPERBOLIC
+      - SCP
+      - DO
+      - OVHCLOUD
+      - SCALEWAY
+      - PRIMEINTELLECT
+      - IBM
       - UNKNOWN
   gpu_count:
     type: integer
