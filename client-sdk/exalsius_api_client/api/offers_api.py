@@ -51,9 +51,63 @@ class OffersApi:
             Optional[StrictStr],
             Field(description="The region of the offer, e.g. us-east-1"),
         ] = None,
-        gpu_count: Annotated[
+        availability_zone: Annotated[
+            Optional[StrictStr], Field(description="The availability zone of the offer")
+        ] = None,
+        location: Annotated[
+            Optional[StrictStr], Field(description="The location of the offer")
+        ] = None,
+        cpu_vendor: Annotated[
+            Optional[StrictStr], Field(description="The vendor of the CPU")
+        ] = None,
+        cpu_arch: Annotated[
+            Optional[StrictStr], Field(description="The architecture of the CPU")
+        ] = None,
+        pricing_unit: Annotated[
+            Optional[StrictStr], Field(description="The pricing unit")
+        ] = None,
+        price_type: Annotated[
+            Optional[StrictStr], Field(description="The type of pricing model")
+        ] = None,
+        gpu_count_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of GPUs")
+        ] = None,
+        gpu_count_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of GPUs")
+        ] = None,
+        gpu_memory_min: Annotated[
             Optional[StrictInt],
-            Field(description="The minimum number of GPUs in the offer"),
+            Field(description="Minimum GPU memory of single GPU (MiB)"),
+        ] = None,
+        gpu_memory_max: Annotated[
+            Optional[StrictInt],
+            Field(description="Maximum GPU memory of single GPU (MiB)"),
+        ] = None,
+        total_gpu_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum total GPU memory (MiB)")
+        ] = None,
+        total_gpu_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum total GPU memory (MiB)")
+        ] = None,
+        main_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum main memory (MiB)")
+        ] = None,
+        main_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum main memory (MiB)")
+        ] = None,
+        vcpus_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of virtual CPUs")
+        ] = None,
+        vcpus_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of virtual CPUs")
+        ] = None,
+        price_min: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Minimum price per hour"),
+        ] = None,
+        price_max: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Maximum price per hour"),
         ] = None,
         page_size: Annotated[
             Optional[StrictInt],
@@ -64,6 +118,12 @@ class OffersApi:
             Field(
                 description="The cursor for pagination. Use the `next_cursor` from the previous response to get the next page."
             ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr], Field(description="Field to sort by")
+        ] = None,
+        sort_order: Annotated[
+            Optional[StrictStr], Field(description="Sort order")
         ] = None,
         _request_timeout: Union[
             None,
@@ -79,7 +139,7 @@ class OffersApi:
     ) -> OffersListResponse:
         """List and filter current GPU on-demand and spot market offers
 
-        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.  **Parameters (optional)** - `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei) - `gpu_type`: The type of the GPU - `provider`: The cloud provider of the offer - `region`: The region of the offer - `gpu_count`: The minimum number of GPUs in the offer - `page_size`: The number of offers to return per page (default: 50, max: 100) - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.  **Examples**  Here's an example of how to filter by vendor:   ```   /offers?gpu_vendor=nvidia   ```  Here's an example of how to filter by provider:   ```   /offers?cloud_provider=aws   ```  Here's an example of how to filter by provider and region:   ```   /offers?provider=aws&region=us-east-1   ```    Here's an example of how to filter by provider, region, and gpuCount:   ```   /offers?provider=aws&region=us-east-1&gpuCount=1   ```  Here's an example of pagination:   ```   # First page   /offers?page_size=20      # Next page using cursor from previous response   /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9   ```    **Result**  The response includes: - A list of offers - The total number of offers matching the filters - A cursor for the next page (if there are more results) - A cursor for the previous page (if not on the first page)
+        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
 
         :param gpu_vendor: The vendor of the GPU
         :type gpu_vendor: str
@@ -89,12 +149,50 @@ class OffersApi:
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
         :type region: str
-        :param gpu_count: The minimum number of GPUs in the offer
-        :type gpu_count: int
+        :param availability_zone: The availability zone of the offer
+        :type availability_zone: str
+        :param location: The location of the offer
+        :type location: str
+        :param cpu_vendor: The vendor of the CPU
+        :type cpu_vendor: str
+        :param cpu_arch: The architecture of the CPU
+        :type cpu_arch: str
+        :param pricing_unit: The pricing unit
+        :type pricing_unit: str
+        :param price_type: The type of pricing model
+        :type price_type: str
+        :param gpu_count_min: Minimum number of GPUs
+        :type gpu_count_min: int
+        :param gpu_count_max: Maximum number of GPUs
+        :type gpu_count_max: int
+        :param gpu_memory_min: Minimum GPU memory of single GPU (MiB)
+        :type gpu_memory_min: int
+        :param gpu_memory_max: Maximum GPU memory of single GPU (MiB)
+        :type gpu_memory_max: int
+        :param total_gpu_memory_min: Minimum total GPU memory (MiB)
+        :type total_gpu_memory_min: int
+        :param total_gpu_memory_max: Maximum total GPU memory (MiB)
+        :type total_gpu_memory_max: int
+        :param main_memory_min: Minimum main memory (MiB)
+        :type main_memory_min: int
+        :param main_memory_max: Maximum main memory (MiB)
+        :type main_memory_max: int
+        :param vcpus_min: Minimum number of virtual CPUs
+        :type vcpus_min: int
+        :param vcpus_max: Maximum number of virtual CPUs
+        :type vcpus_max: int
+        :param price_min: Minimum price per hour
+        :type price_min: float
+        :param price_max: Maximum price per hour
+        :type price_max: float
         :param page_size: The number of offers to return per page
         :type page_size: int
         :param cursor: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
         :type cursor: str
+        :param sort_by: Field to sort by
+        :type sort_by: str
+        :param sort_order: Sort order
+        :type sort_order: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -122,9 +220,28 @@ class OffersApi:
             gpu_type=gpu_type,
             cloud_provider=cloud_provider,
             region=region,
-            gpu_count=gpu_count,
+            availability_zone=availability_zone,
+            location=location,
+            cpu_vendor=cpu_vendor,
+            cpu_arch=cpu_arch,
+            pricing_unit=pricing_unit,
+            price_type=price_type,
+            gpu_count_min=gpu_count_min,
+            gpu_count_max=gpu_count_max,
+            gpu_memory_min=gpu_memory_min,
+            gpu_memory_max=gpu_memory_max,
+            total_gpu_memory_min=total_gpu_memory_min,
+            total_gpu_memory_max=total_gpu_memory_max,
+            main_memory_min=main_memory_min,
+            main_memory_max=main_memory_max,
+            vcpus_min=vcpus_min,
+            vcpus_max=vcpus_max,
+            price_min=price_min,
+            price_max=price_max,
             page_size=page_size,
             cursor=cursor,
+            sort_by=sort_by,
+            sort_order=sort_order,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -161,9 +278,63 @@ class OffersApi:
             Optional[StrictStr],
             Field(description="The region of the offer, e.g. us-east-1"),
         ] = None,
-        gpu_count: Annotated[
+        availability_zone: Annotated[
+            Optional[StrictStr], Field(description="The availability zone of the offer")
+        ] = None,
+        location: Annotated[
+            Optional[StrictStr], Field(description="The location of the offer")
+        ] = None,
+        cpu_vendor: Annotated[
+            Optional[StrictStr], Field(description="The vendor of the CPU")
+        ] = None,
+        cpu_arch: Annotated[
+            Optional[StrictStr], Field(description="The architecture of the CPU")
+        ] = None,
+        pricing_unit: Annotated[
+            Optional[StrictStr], Field(description="The pricing unit")
+        ] = None,
+        price_type: Annotated[
+            Optional[StrictStr], Field(description="The type of pricing model")
+        ] = None,
+        gpu_count_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of GPUs")
+        ] = None,
+        gpu_count_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of GPUs")
+        ] = None,
+        gpu_memory_min: Annotated[
             Optional[StrictInt],
-            Field(description="The minimum number of GPUs in the offer"),
+            Field(description="Minimum GPU memory of single GPU (MiB)"),
+        ] = None,
+        gpu_memory_max: Annotated[
+            Optional[StrictInt],
+            Field(description="Maximum GPU memory of single GPU (MiB)"),
+        ] = None,
+        total_gpu_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum total GPU memory (MiB)")
+        ] = None,
+        total_gpu_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum total GPU memory (MiB)")
+        ] = None,
+        main_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum main memory (MiB)")
+        ] = None,
+        main_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum main memory (MiB)")
+        ] = None,
+        vcpus_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of virtual CPUs")
+        ] = None,
+        vcpus_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of virtual CPUs")
+        ] = None,
+        price_min: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Minimum price per hour"),
+        ] = None,
+        price_max: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Maximum price per hour"),
         ] = None,
         page_size: Annotated[
             Optional[StrictInt],
@@ -174,6 +345,12 @@ class OffersApi:
             Field(
                 description="The cursor for pagination. Use the `next_cursor` from the previous response to get the next page."
             ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr], Field(description="Field to sort by")
+        ] = None,
+        sort_order: Annotated[
+            Optional[StrictStr], Field(description="Sort order")
         ] = None,
         _request_timeout: Union[
             None,
@@ -189,7 +366,7 @@ class OffersApi:
     ) -> ApiResponse[OffersListResponse]:
         """List and filter current GPU on-demand and spot market offers
 
-        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.  **Parameters (optional)** - `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei) - `gpu_type`: The type of the GPU - `provider`: The cloud provider of the offer - `region`: The region of the offer - `gpu_count`: The minimum number of GPUs in the offer - `page_size`: The number of offers to return per page (default: 50, max: 100) - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.  **Examples**  Here's an example of how to filter by vendor:   ```   /offers?gpu_vendor=nvidia   ```  Here's an example of how to filter by provider:   ```   /offers?cloud_provider=aws   ```  Here's an example of how to filter by provider and region:   ```   /offers?provider=aws&region=us-east-1   ```    Here's an example of how to filter by provider, region, and gpuCount:   ```   /offers?provider=aws&region=us-east-1&gpuCount=1   ```  Here's an example of pagination:   ```   # First page   /offers?page_size=20      # Next page using cursor from previous response   /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9   ```    **Result**  The response includes: - A list of offers - The total number of offers matching the filters - A cursor for the next page (if there are more results) - A cursor for the previous page (if not on the first page)
+        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
 
         :param gpu_vendor: The vendor of the GPU
         :type gpu_vendor: str
@@ -199,12 +376,50 @@ class OffersApi:
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
         :type region: str
-        :param gpu_count: The minimum number of GPUs in the offer
-        :type gpu_count: int
+        :param availability_zone: The availability zone of the offer
+        :type availability_zone: str
+        :param location: The location of the offer
+        :type location: str
+        :param cpu_vendor: The vendor of the CPU
+        :type cpu_vendor: str
+        :param cpu_arch: The architecture of the CPU
+        :type cpu_arch: str
+        :param pricing_unit: The pricing unit
+        :type pricing_unit: str
+        :param price_type: The type of pricing model
+        :type price_type: str
+        :param gpu_count_min: Minimum number of GPUs
+        :type gpu_count_min: int
+        :param gpu_count_max: Maximum number of GPUs
+        :type gpu_count_max: int
+        :param gpu_memory_min: Minimum GPU memory of single GPU (MiB)
+        :type gpu_memory_min: int
+        :param gpu_memory_max: Maximum GPU memory of single GPU (MiB)
+        :type gpu_memory_max: int
+        :param total_gpu_memory_min: Minimum total GPU memory (MiB)
+        :type total_gpu_memory_min: int
+        :param total_gpu_memory_max: Maximum total GPU memory (MiB)
+        :type total_gpu_memory_max: int
+        :param main_memory_min: Minimum main memory (MiB)
+        :type main_memory_min: int
+        :param main_memory_max: Maximum main memory (MiB)
+        :type main_memory_max: int
+        :param vcpus_min: Minimum number of virtual CPUs
+        :type vcpus_min: int
+        :param vcpus_max: Maximum number of virtual CPUs
+        :type vcpus_max: int
+        :param price_min: Minimum price per hour
+        :type price_min: float
+        :param price_max: Maximum price per hour
+        :type price_max: float
         :param page_size: The number of offers to return per page
         :type page_size: int
         :param cursor: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
         :type cursor: str
+        :param sort_by: Field to sort by
+        :type sort_by: str
+        :param sort_order: Sort order
+        :type sort_order: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -232,9 +447,28 @@ class OffersApi:
             gpu_type=gpu_type,
             cloud_provider=cloud_provider,
             region=region,
-            gpu_count=gpu_count,
+            availability_zone=availability_zone,
+            location=location,
+            cpu_vendor=cpu_vendor,
+            cpu_arch=cpu_arch,
+            pricing_unit=pricing_unit,
+            price_type=price_type,
+            gpu_count_min=gpu_count_min,
+            gpu_count_max=gpu_count_max,
+            gpu_memory_min=gpu_memory_min,
+            gpu_memory_max=gpu_memory_max,
+            total_gpu_memory_min=total_gpu_memory_min,
+            total_gpu_memory_max=total_gpu_memory_max,
+            main_memory_min=main_memory_min,
+            main_memory_max=main_memory_max,
+            vcpus_min=vcpus_min,
+            vcpus_max=vcpus_max,
+            price_min=price_min,
+            price_max=price_max,
             page_size=page_size,
             cursor=cursor,
+            sort_by=sort_by,
+            sort_order=sort_order,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -271,9 +505,63 @@ class OffersApi:
             Optional[StrictStr],
             Field(description="The region of the offer, e.g. us-east-1"),
         ] = None,
-        gpu_count: Annotated[
+        availability_zone: Annotated[
+            Optional[StrictStr], Field(description="The availability zone of the offer")
+        ] = None,
+        location: Annotated[
+            Optional[StrictStr], Field(description="The location of the offer")
+        ] = None,
+        cpu_vendor: Annotated[
+            Optional[StrictStr], Field(description="The vendor of the CPU")
+        ] = None,
+        cpu_arch: Annotated[
+            Optional[StrictStr], Field(description="The architecture of the CPU")
+        ] = None,
+        pricing_unit: Annotated[
+            Optional[StrictStr], Field(description="The pricing unit")
+        ] = None,
+        price_type: Annotated[
+            Optional[StrictStr], Field(description="The type of pricing model")
+        ] = None,
+        gpu_count_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of GPUs")
+        ] = None,
+        gpu_count_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of GPUs")
+        ] = None,
+        gpu_memory_min: Annotated[
             Optional[StrictInt],
-            Field(description="The minimum number of GPUs in the offer"),
+            Field(description="Minimum GPU memory of single GPU (MiB)"),
+        ] = None,
+        gpu_memory_max: Annotated[
+            Optional[StrictInt],
+            Field(description="Maximum GPU memory of single GPU (MiB)"),
+        ] = None,
+        total_gpu_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum total GPU memory (MiB)")
+        ] = None,
+        total_gpu_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum total GPU memory (MiB)")
+        ] = None,
+        main_memory_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum main memory (MiB)")
+        ] = None,
+        main_memory_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum main memory (MiB)")
+        ] = None,
+        vcpus_min: Annotated[
+            Optional[StrictInt], Field(description="Minimum number of virtual CPUs")
+        ] = None,
+        vcpus_max: Annotated[
+            Optional[StrictInt], Field(description="Maximum number of virtual CPUs")
+        ] = None,
+        price_min: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Minimum price per hour"),
+        ] = None,
+        price_max: Annotated[
+            Optional[Union[StrictFloat, StrictInt]],
+            Field(description="Maximum price per hour"),
         ] = None,
         page_size: Annotated[
             Optional[StrictInt],
@@ -284,6 +572,12 @@ class OffersApi:
             Field(
                 description="The cursor for pagination. Use the `next_cursor` from the previous response to get the next page."
             ),
+        ] = None,
+        sort_by: Annotated[
+            Optional[StrictStr], Field(description="Field to sort by")
+        ] = None,
+        sort_order: Annotated[
+            Optional[StrictStr], Field(description="Sort order")
         ] = None,
         _request_timeout: Union[
             None,
@@ -299,7 +593,7 @@ class OffersApi:
     ) -> RESTResponseType:
         """List and filter current GPU on-demand and spot market offers
 
-        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.  **Parameters (optional)** - `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei) - `gpu_type`: The type of the GPU - `provider`: The cloud provider of the offer - `region`: The region of the offer - `gpu_count`: The minimum number of GPUs in the offer - `page_size`: The number of offers to return per page (default: 50, max: 100) - `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.  **Examples**  Here's an example of how to filter by vendor:   ```   /offers?gpu_vendor=nvidia   ```  Here's an example of how to filter by provider:   ```   /offers?cloud_provider=aws   ```  Here's an example of how to filter by provider and region:   ```   /offers?provider=aws&region=us-east-1   ```    Here's an example of how to filter by provider, region, and gpuCount:   ```   /offers?provider=aws&region=us-east-1&gpuCount=1   ```  Here's an example of pagination:   ```   # First page   /offers?page_size=20      # Next page using cursor from previous response   /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9   ```    **Result**  The response includes: - A list of offers - The total number of offers matching the filters - A cursor for the next page (if there are more results) - A cursor for the previous page (if not on the first page)
+        **List GPU offers (on-demand & spot instances)** Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
 
         :param gpu_vendor: The vendor of the GPU
         :type gpu_vendor: str
@@ -309,12 +603,50 @@ class OffersApi:
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
         :type region: str
-        :param gpu_count: The minimum number of GPUs in the offer
-        :type gpu_count: int
+        :param availability_zone: The availability zone of the offer
+        :type availability_zone: str
+        :param location: The location of the offer
+        :type location: str
+        :param cpu_vendor: The vendor of the CPU
+        :type cpu_vendor: str
+        :param cpu_arch: The architecture of the CPU
+        :type cpu_arch: str
+        :param pricing_unit: The pricing unit
+        :type pricing_unit: str
+        :param price_type: The type of pricing model
+        :type price_type: str
+        :param gpu_count_min: Minimum number of GPUs
+        :type gpu_count_min: int
+        :param gpu_count_max: Maximum number of GPUs
+        :type gpu_count_max: int
+        :param gpu_memory_min: Minimum GPU memory of single GPU (MiB)
+        :type gpu_memory_min: int
+        :param gpu_memory_max: Maximum GPU memory of single GPU (MiB)
+        :type gpu_memory_max: int
+        :param total_gpu_memory_min: Minimum total GPU memory (MiB)
+        :type total_gpu_memory_min: int
+        :param total_gpu_memory_max: Maximum total GPU memory (MiB)
+        :type total_gpu_memory_max: int
+        :param main_memory_min: Minimum main memory (MiB)
+        :type main_memory_min: int
+        :param main_memory_max: Maximum main memory (MiB)
+        :type main_memory_max: int
+        :param vcpus_min: Minimum number of virtual CPUs
+        :type vcpus_min: int
+        :param vcpus_max: Maximum number of virtual CPUs
+        :type vcpus_max: int
+        :param price_min: Minimum price per hour
+        :type price_min: float
+        :param price_max: Maximum price per hour
+        :type price_max: float
         :param page_size: The number of offers to return per page
         :type page_size: int
         :param cursor: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
         :type cursor: str
+        :param sort_by: Field to sort by
+        :type sort_by: str
+        :param sort_order: Sort order
+        :type sort_order: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -342,9 +674,28 @@ class OffersApi:
             gpu_type=gpu_type,
             cloud_provider=cloud_provider,
             region=region,
-            gpu_count=gpu_count,
+            availability_zone=availability_zone,
+            location=location,
+            cpu_vendor=cpu_vendor,
+            cpu_arch=cpu_arch,
+            pricing_unit=pricing_unit,
+            price_type=price_type,
+            gpu_count_min=gpu_count_min,
+            gpu_count_max=gpu_count_max,
+            gpu_memory_min=gpu_memory_min,
+            gpu_memory_max=gpu_memory_max,
+            total_gpu_memory_min=total_gpu_memory_min,
+            total_gpu_memory_max=total_gpu_memory_max,
+            main_memory_min=main_memory_min,
+            main_memory_max=main_memory_max,
+            vcpus_min=vcpus_min,
+            vcpus_max=vcpus_max,
+            price_min=price_min,
+            price_max=price_max,
             page_size=page_size,
             cursor=cursor,
+            sort_by=sort_by,
+            sort_order=sort_order,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -367,9 +718,28 @@ class OffersApi:
         gpu_type,
         cloud_provider,
         region,
-        gpu_count,
+        availability_zone,
+        location,
+        cpu_vendor,
+        cpu_arch,
+        pricing_unit,
+        price_type,
+        gpu_count_min,
+        gpu_count_max,
+        gpu_memory_min,
+        gpu_memory_max,
+        total_gpu_memory_min,
+        total_gpu_memory_max,
+        main_memory_min,
+        main_memory_max,
+        vcpus_min,
+        vcpus_max,
+        price_min,
+        price_max,
         page_size,
         cursor,
+        sort_by,
+        sort_order,
         _request_auth,
         _content_type,
         _headers,
@@ -407,9 +777,77 @@ class OffersApi:
 
             _query_params.append(("region", region))
 
-        if gpu_count is not None:
+        if availability_zone is not None:
 
-            _query_params.append(("gpu_count", gpu_count))
+            _query_params.append(("availability_zone", availability_zone))
+
+        if location is not None:
+
+            _query_params.append(("location", location))
+
+        if cpu_vendor is not None:
+
+            _query_params.append(("cpu_vendor", cpu_vendor))
+
+        if cpu_arch is not None:
+
+            _query_params.append(("cpu_arch", cpu_arch))
+
+        if pricing_unit is not None:
+
+            _query_params.append(("pricing_unit", pricing_unit))
+
+        if price_type is not None:
+
+            _query_params.append(("price_type", price_type))
+
+        if gpu_count_min is not None:
+
+            _query_params.append(("gpu_count_min", gpu_count_min))
+
+        if gpu_count_max is not None:
+
+            _query_params.append(("gpu_count_max", gpu_count_max))
+
+        if gpu_memory_min is not None:
+
+            _query_params.append(("gpu_memory_min", gpu_memory_min))
+
+        if gpu_memory_max is not None:
+
+            _query_params.append(("gpu_memory_max", gpu_memory_max))
+
+        if total_gpu_memory_min is not None:
+
+            _query_params.append(("total_gpu_memory_min", total_gpu_memory_min))
+
+        if total_gpu_memory_max is not None:
+
+            _query_params.append(("total_gpu_memory_max", total_gpu_memory_max))
+
+        if main_memory_min is not None:
+
+            _query_params.append(("main_memory_min", main_memory_min))
+
+        if main_memory_max is not None:
+
+            _query_params.append(("main_memory_max", main_memory_max))
+
+        if vcpus_min is not None:
+
+            _query_params.append(("vcpus_min", vcpus_min))
+
+        if vcpus_max is not None:
+
+            _query_params.append(("vcpus_max", vcpus_max))
+
+        if price_min is not None:
+
+            _query_params.append(("price_min", price_min))
+
+        if price_max is not None:
+
+            _query_params.append(("price_max", price_max))
 
         if page_size is not None:
 
@@ -418,6 +856,14 @@ class OffersApi:
         if cursor is not None:
 
             _query_params.append(("cursor", cursor))
+
+        if sort_by is not None:
+
+            _query_params.append(("sort_by", sort_by))
+
+        if sort_order is not None:
+
+            _query_params.append(("sort_order", sort_order))
 
         # process the header parameters
         # process the form parameters
