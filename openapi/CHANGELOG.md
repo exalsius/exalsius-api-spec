@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.14.1...openapi-v1.15.0) (2025-07-29)
+
+
+### Features
+
+* add owner for ssh keys ([ad603c8](https://github.com/exalsius/exalsius-api-spec/commit/ad603c8cac68765943977560648c974e995793e5))
+
 ## [1.14.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.14.0...openapi-v1.14.1) (2025-07-29)
 
 
