@@ -125,9 +125,30 @@ class Offer(BaseModel):
     @field_validator("cloud_provider")
     def cloud_provider_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["AWS", "AZURE", "GCP", "OCI", "UNKNOWN"]):
+        if value not in set(
+            [
+                "AWS",
+                "AZURE",
+                "GCP",
+                "OCI",
+                "LAMBDA",
+                "PAPERSPACE",
+                "VAST",
+                "FLUIDSTACK",
+                "CUDO",
+                "NEBIUS",
+                "HYPERBOLIC",
+                "SCP",
+                "DO",
+                "OVHCLOUD",
+                "SCALEWAY",
+                "PRIMEINTELLECT",
+                "IBM",
+                "UNKNOWN",
+            ]
+        ):
             raise ValueError(
-                "must be one of enum values ('AWS', 'AZURE', 'GCP', 'OCI', 'UNKNOWN')"
+                "must be one of enum values ('AWS', 'AZURE', 'GCP', 'OCI', 'LAMBDA', 'PAPERSPACE', 'VAST', 'FLUIDSTACK', 'CUDO', 'NEBIUS', 'HYPERBOLIC', 'SCP', 'DO', 'OVHCLOUD', 'SCALEWAY', 'PRIMEINTELLECT', 'IBM', 'UNKNOWN')"
             )
         return value
 
