@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.14.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.14.0...openapi-v1.14.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* extend CloudProvider enum in offers scheme ([#81](https://github.com/exalsius/exalsius-api-spec/issues/81)) ([470024e](https://github.com/exalsius/exalsius-api-spec/commit/470024e33672b237cb9a3a3365d5638f0939c64f))
+
 ## [1.14.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.13.1...openapi-v1.14.0) (2025-07-29)
 
 
