@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.15.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.14.1...v1.15.0) (2025-07-29)
+
+
+### Features
+
+* add owner for ssh keys ([ad603c8](https://github.com/exalsius/exalsius-api-spec/commit/ad603c8cac68765943977560648c974e995793e5))
+
+## [1.14.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.14.0...v1.14.1) (2025-07-29)
+
+
+### Bug Fixes
+
+* extend CloudProvider enum in offers scheme ([#81](https://github.com/exalsius/exalsius-api-spec/issues/81)) ([470024e](https://github.com/exalsius/exalsius-api-spec/commit/470024e33672b237cb9a3a3365d5638f0939c64f))
+
+## [1.14.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.13.1...v1.14.0) (2025-07-29)
+
+
+### Features
+
+* add more filters and supported clouds for offers endpoint ([#79](https://github.com/exalsius/exalsius-api-spec/issues/79)) ([2354b04](https://github.com/exalsius/exalsius-api-spec/commit/2354b04215854f8cd27e76ed04867d57d34d9c26))
+
 ## [1.13.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.13.0...v1.13.1) (2025-07-24)
 
 

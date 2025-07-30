@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **id** | **str** | The ID of the SSH key | [optional] 
 **name** | **str** | The name of the SSH key | 
 **private_key** | **str** | The private key of the SSH key | 
+**owner** | **str** | The owner of the SSH key | [optional] 
 
 ## Example
 

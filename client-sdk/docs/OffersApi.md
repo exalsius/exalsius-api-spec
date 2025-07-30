@@ -8,60 +8,12 @@ Method | HTTP request | Description
 
 
 # **get_offers**
-> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, gpu_count=gpu_count, page_size=page_size, cursor=cursor)
+> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order)
 
 List and filter current GPU on-demand and spot market offers
 
 **List GPU offers (on-demand & spot instances)**
 Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
-
-**Parameters (optional)**
-- `gpu_vendor`: The vendor of the GPU (nvidia, amd, intel, huawei)
-- `gpu_type`: The type of the GPU
-- `provider`: The cloud provider of the offer
-- `region`: The region of the offer
-- `gpu_count`: The minimum number of GPUs in the offer
-- `page_size`: The number of offers to return per page (default: 50, max: 100)
-- `cursor`: The cursor for pagination. Use the `next_cursor` from the previous response to get the next page.
-
-**Examples**
-
-Here's an example of how to filter by vendor:
-  ```
-  /offers?gpu_vendor=nvidia
-  ```
-
-Here's an example of how to filter by provider:
-  ```
-  /offers?cloud_provider=aws
-  ```
-
-Here's an example of how to filter by provider and region:
-  ```
-  /offers?provider=aws&region=us-east-1
-  ```
-  
-Here's an example of how to filter by provider, region, and gpuCount:
-  ```
-  /offers?provider=aws&region=us-east-1&gpuCount=1
-  ```
-
-Here's an example of pagination:
-  ```
-  # First page
-  /offers?page_size=20
-  
-  # Next page using cursor from previous response
-  /offers?page_size=20&cursor=eyJvZmZlcl9pZCI6ImF3cy1nNGRuLnhsYXJnZS11cy1lYXN0LTEtdXMtZWFzdC0xYSJ9
-  ```
-  
-**Result**
-
-The response includes:
-- A list of offers
-- The total number of offers matching the filters
-- A cursor for the next page (if there are more results)
-- A cursor for the previous page (if not on the first page)
 
 
 ### Example
@@ -95,13 +47,32 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     gpu_type = 'gpu_type_example' # str | The type of the GPU (optional)
     cloud_provider = 'cloud_provider_example' # str | The cloud provider of the offer (optional)
     region = 'region_example' # str | The region of the offer, e.g. us-east-1 (optional)
-    gpu_count = 56 # int | The minimum number of GPUs in the offer (optional)
+    availability_zone = 'availability_zone_example' # str | The availability zone of the offer (optional)
+    location = 'location_example' # str | The location of the offer (optional)
+    cpu_vendor = 'cpu_vendor_example' # str | The vendor of the CPU (optional)
+    cpu_arch = 'cpu_arch_example' # str | The architecture of the CPU (optional)
+    pricing_unit = 'pricing_unit_example' # str | The pricing unit (optional)
+    price_type = 'price_type_example' # str | The type of pricing model (optional)
+    gpu_count_min = 56 # int | Minimum number of GPUs (optional)
+    gpu_count_max = 56 # int | Maximum number of GPUs (optional)
+    gpu_memory_min = 56 # int | Minimum GPU memory of single GPU (MiB) (optional)
+    gpu_memory_max = 56 # int | Maximum GPU memory of single GPU (MiB) (optional)
+    total_gpu_memory_min = 56 # int | Minimum total GPU memory (MiB) (optional)
+    total_gpu_memory_max = 56 # int | Maximum total GPU memory (MiB) (optional)
+    main_memory_min = 56 # int | Minimum main memory (MiB) (optional)
+    main_memory_max = 56 # int | Maximum main memory (MiB) (optional)
+    vcpus_min = 56 # int | Minimum number of virtual CPUs (optional)
+    vcpus_max = 56 # int | Maximum number of virtual CPUs (optional)
+    price_min = 3.4 # float | Minimum price per hour (optional)
+    price_max = 3.4 # float | Maximum price per hour (optional)
     page_size = 56 # int | The number of offers to return per page (optional)
     cursor = 'cursor_example' # str | The cursor for pagination. Use the `next_cursor` from the previous response to get the next page. (optional)
+    sort_by = 'sort_by_example' # str | Field to sort by (optional)
+    sort_order = 'sort_order_example' # str | Sort order (optional)
 
     try:
         # List and filter current GPU on-demand and spot market offers
-        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, gpu_count=gpu_count, page_size=page_size, cursor=cursor)
+        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order)
         print("The response of OffersApi->get_offers:\n")
         pprint(api_response)
     except Exception as e:
@@ -119,9 +90,28 @@ Name | Type | Description  | Notes
  **gpu_type** | **str**| The type of the GPU | [optional] 
  **cloud_provider** | **str**| The cloud provider of the offer | [optional] 
  **region** | **str**| The region of the offer, e.g. us-east-1 | [optional] 
- **gpu_count** | **int**| The minimum number of GPUs in the offer | [optional] 
+ **availability_zone** | **str**| The availability zone of the offer | [optional] 
+ **location** | **str**| The location of the offer | [optional] 
+ **cpu_vendor** | **str**| The vendor of the CPU | [optional] 
+ **cpu_arch** | **str**| The architecture of the CPU | [optional] 
+ **pricing_unit** | **str**| The pricing unit | [optional] 
+ **price_type** | **str**| The type of pricing model | [optional] 
+ **gpu_count_min** | **int**| Minimum number of GPUs | [optional] 
+ **gpu_count_max** | **int**| Maximum number of GPUs | [optional] 
+ **gpu_memory_min** | **int**| Minimum GPU memory of single GPU (MiB) | [optional] 
+ **gpu_memory_max** | **int**| Maximum GPU memory of single GPU (MiB) | [optional] 
+ **total_gpu_memory_min** | **int**| Minimum total GPU memory (MiB) | [optional] 
+ **total_gpu_memory_max** | **int**| Maximum total GPU memory (MiB) | [optional] 
+ **main_memory_min** | **int**| Minimum main memory (MiB) | [optional] 
+ **main_memory_max** | **int**| Maximum main memory (MiB) | [optional] 
+ **vcpus_min** | **int**| Minimum number of virtual CPUs | [optional] 
+ **vcpus_max** | **int**| Maximum number of virtual CPUs | [optional] 
+ **price_min** | **float**| Minimum price per hour | [optional] 
+ **price_max** | **float**| Maximum price per hour | [optional] 
  **page_size** | **int**| The number of offers to return per page | [optional] 
  **cursor** | **str**| The cursor for pagination. Use the &#x60;next_cursor&#x60; from the previous response to get the next page. | [optional] 
+ **sort_by** | **str**| Field to sort by | [optional] 
+ **sort_order** | **str**| Sort order | [optional] 
 
 ### Return type
 
