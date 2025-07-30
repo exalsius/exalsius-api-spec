@@ -161,6 +161,7 @@ get:
       schema:
         type: number
         format: float
+        x-python-type: Optional[Union[float, int]]
       description: Minimum price per hour
       required: false
     - name: price_max
@@ -168,6 +169,7 @@ get:
       schema:
         type: number
         format: float
+        x-python-type: Optional[Union[float, int]]
       description: Maximum price per hour
       required: false
 
