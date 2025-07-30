@@ -39,7 +39,6 @@ get:
         format: int32
         minimum: 1
       description: The batch size.
-      example: 8
     - name: sequence_length
       in: query
       required: true
@@ -48,7 +47,15 @@ get:
         format: int32
         minimum: 1
       description: The sequence length.
-      example: 1024
+
+    - name: accumulation_steps
+      in: query
+      required: true
+      schema:
+        type: integer
+        format: int32
+        minimum: 1
+      description: Gradient Accumulation
 
   responses:
     '200':
