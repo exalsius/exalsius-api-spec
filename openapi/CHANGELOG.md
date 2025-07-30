@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.15.0...openapi-v1.15.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* provide additional type-context with x-extension ([#85](https://github.com/exalsius/exalsius-api-spec/issues/85)) ([155edfd](https://github.com/exalsius/exalsius-api-spec/commit/155edfd06205232f81597917e5bfecac1ed405ab))
+
 ## [1.15.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.14.1...openapi-v1.15.0) (2025-07-29)
 
 
