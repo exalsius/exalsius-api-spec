@@ -1,13 +1,48 @@
 type: object
 required:
   - model_name
+  - batch_size
+  - sequence_length
+  - optimizer
+  - accumulation_steps
 properties:
- model_name:
-  type: string
-  enum:
-    - llama3_2_1B
-    - llama3_2_3B
-    - llama3_2_3B_Instruct
-    - gemma3_1B_It
-    - qwen2_5_3B_Instruct
-    - gpt2
+  model_name:
+    type: string
+    enum:
+      - LLAMA3_2_1B
+      - LLAMA3_2_3B
+      - LLAMA3_2_3B_INSTRUCT
+      - GEMMA3_1B_IT
+      - QWEN2_5_3B_INSTRUCT
+      - GPT2
+  batch_size:
+    type: integer
+    format: int32
+    minimum: 1
+    examples:
+      - 8
+      - 16
+      - 32
+  sequence_length:
+    type: integer
+    format: int32
+    minimum: 1
+    examples:
+      - 16
+      - 32
+      - 64
+  optimizer:
+    type: string
+    enum:
+      - ADAM
+      - ADAMW
+  accumulation_steps:
+    type: integer
+    format: int32
+    minimum: 1
+    examples:
+      - 1
+      - 2
+      - 4
+
+
