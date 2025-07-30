@@ -1,0 +1,13 @@
+type: object
+required:
+  - model_name
+properties:
+ model_name:
+  type: string
+  enum:
+    - llama3_2_1B
+    - llama3_2_3B
+    - llama3_2_3B_Instruct
+    - gemma3_1B_It
+    - qwen2_5_3B_Instruct
+    - gpt2

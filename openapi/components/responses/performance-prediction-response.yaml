@@ -1,0 +1,5 @@
+description: Performance Prediction
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/performance-prediction-response.yaml'
