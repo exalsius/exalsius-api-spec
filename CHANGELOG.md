@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.15.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.2...v1.15.3) (2025-08-01)
+
+
+### Bug Fixes
+
+* adjust cluster_status phases in request schemes ([#90](https://github.com/exalsius/exalsius-api-spec/issues/90)) ([a485bb7](https://github.com/exalsius/exalsius-api-spec/commit/a485bb77fcbbdc0b3b548442ad1963436a1fdeec))
+
 ## [1.15.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.1...v1.15.2) (2025-08-01)
 
 
