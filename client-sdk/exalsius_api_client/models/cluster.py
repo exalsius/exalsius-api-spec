@@ -121,9 +121,9 @@ class Cluster(BaseModel):
     @field_validator("cluster_status")
     def cluster_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["STAGING", "PROVISIONING", "READY", "FAILED"]):
+        if value not in set(["PENDING", "DEPLOYING", "READY", "FAILED"]):
             raise ValueError(
-                "must be one of enum values ('STAGING', 'PROVISIONING', 'READY', 'FAILED')"
+                "must be one of enum values ('PENDING', 'DEPLOYING', 'READY', 'FAILED')"
             )
         return value
 

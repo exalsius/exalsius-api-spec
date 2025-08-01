@@ -3182,7 +3182,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3201,7 +3201,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3253,7 +3253,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3272,7 +3272,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3324,7 +3324,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3343,7 +3343,7 @@ class ClustersApi:
 
         **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

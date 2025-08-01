@@ -1141,7 +1141,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `staging` - clusters that are staging - `running` - clusters that are running - `deleting` - clusters that are deleting - `deleted` - clusters that are deleted (fully deleted) - `failed` - clusters that failed  (optional)
+    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed  (optional)
 
     try:
         # List all clusters
@@ -1159,7 +1159,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;staging&#x60; - clusters that are staging - &#x60;running&#x60; - clusters that are running - &#x60;deleting&#x60; - clusters that are deleting - &#x60;deleted&#x60; - clusters that are deleted (fully deleted) - &#x60;failed&#x60; - clusters that failed  | [optional] 
+ **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;pending&#x60; - clusters that are pending (not yet deployed) - &#x60;deploying&#x60; - clusters that are being deployed - &#x60;ready&#x60; - clusters that are ready - &#x60;failed&#x60; - clusters that failed  | [optional] 
 
 ### Return type
 
