@@ -38,8 +38,8 @@ properties:
       - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development)
   cluster_status:
     type: string
-    enum: [STAGING, PROVISIONING, READY, FAILED]
-    x-enum-varnames: [STAGING, PROVISIONING, READY, FAILED]
+    enum: [PENDING, DEPLOYING, READY, FAILED]
+    x-enum-varnames: [PENDING, DEPLOYING, READY, FAILED]
     description: >
       The status of the cluster.
       - `PENDING`: Cluster is pending (not yet deployed)

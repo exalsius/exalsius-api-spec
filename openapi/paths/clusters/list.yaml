@@ -21,23 +21,21 @@ get:
       description: |
         Only return clusters of this status.
         Possible values:
-        - `staging` - clusters that are staging
-        - `running` - clusters that are running
-        - `deleting` - clusters that are deleting
-        - `deleted` - clusters that are deleted (fully deleted)
+        - `pending` - clusters that are pending (not yet deployed)
+        - `deploying` - clusters that are being deployed
+        - `ready` - clusters that are ready
         - `failed` - clusters that failed
       required: false
       schema:
         type: string
-        enum: [STAGING, RUNNING, DELETING, DELETED, FAILED]
-        x-enum-varnames: [STAGING, RUNNING, DELETING, DELETED, FAILED]
+        enum: [PENDING, DEPLOYING, READY, FAILED]
+        x-enum-varnames: [PENDING, DEPLOYING, READY, FAILED]
         description: >
-          The status of the clusters.
-          - `STAGING`: Clusters that are staging
-          - `RUNNING`: Clusters that are running
-          - `DELETING`: Clusters that are deleting
-          - `DELETED`: Clusters that are deleted
-          - `FAILED`: Clusters that failed
+          The status of the cluster.
+          - `PENDING`: Cluster is pending (not yet deployed)
+          - `DEPLOYING`: Cluster is being deployed
+          - `READY`: Cluster is ready
+          - `FAILED`: Cluster is failed
 
   responses:
     '200':
