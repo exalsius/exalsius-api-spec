@@ -42,11 +42,11 @@ properties:
     x-enum-varnames: [STAGING, PROVISIONING, READY, FAILED]
     description: >
       The status of the cluster.
-      - `STAGING`: Cluster is staging
-      - `PROVISIONING`: Cluster is provisioning
+      - `PENDING`: Cluster is pending (not yet deployed)
+      - `DEPLOYING`: Cluster is being deployed
       - `READY`: Cluster is ready
       - `FAILED`: Cluster is failed
-    example: "PROVISIONING"
+    example: "DEPLOYING"
   created_at:
     type: string
     format: date-time
