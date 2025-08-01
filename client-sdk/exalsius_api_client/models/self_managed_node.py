@@ -44,6 +44,7 @@ class SelfManagedNode(BaseNode):
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
+        "namespace",
         "hostname",
         "description",
         "location",
@@ -123,6 +124,7 @@ class SelfManagedNode(BaseNode):
             {
                 "id": obj.get("id"),
                 "node_type": obj.get("node_type"),
+                "namespace": obj.get("namespace"),
                 "hostname": obj.get("hostname"),
                 "description": obj.get("description"),
                 "location": obj.get("location"),

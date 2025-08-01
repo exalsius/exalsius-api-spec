@@ -53,7 +53,7 @@ class Cluster(BaseModel):
         description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) ",
     )
     cluster_status: StrictStr = Field(
-        description="The status of the cluster. - `STAGING`: Cluster is staging - `PROVISIONING`: Cluster is provisioning - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
+        description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
     )
     created_at: datetime = Field(
         description="The date and time the cluster was created"

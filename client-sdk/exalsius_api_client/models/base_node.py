@@ -40,6 +40,10 @@ class BaseNode(BaseModel):
     node_type: StrictStr = Field(
         description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
     )
+    namespace: Optional[StrictStr] = Field(
+        default=None,
+        description="The namespace of the node (e.g. the namespace of the user that added the node)",
+    )
     hostname: Optional[StrictStr] = Field(
         default=None, description="The hostname of the node"
     )
@@ -75,11 +79,12 @@ class BaseNode(BaseModel):
         default=None, description="The time the node was imported"
     )
     node_status: StrictStr = Field(
-        description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `AVAILABLE`: Node is available to be added to a cluster - `STAGED`: Node is staged in a cluster - `OCCUPIED`: Node is occupied in a cluster "
+        description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed "
     )
     __properties: ClassVar[List[str]] = [
         "id",
         "node_type",
+        "namespace",
         "hostname",
         "description",
         "location",
@@ -104,9 +109,11 @@ class BaseNode(BaseModel):
     @field_validator("node_status")
     def node_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["PENDING", "AVAILABLE", "STAGED", "OCCUPIED"]):
+        if value not in set(
+            ["PENDING", "DISCOVERING", "AVAILABLE", "ADDED", "DEPLOYED", "FAILED"]
+        ):
             raise ValueError(
-                "must be one of enum values ('PENDING', 'AVAILABLE', 'STAGED', 'OCCUPIED')"
+                "must be one of enum values ('PENDING', 'DISCOVERING', 'AVAILABLE', 'ADDED', 'DEPLOYED', 'FAILED')"
             )
         return value
 
