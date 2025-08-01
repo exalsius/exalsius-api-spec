@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.15.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.1...v1.15.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* add a namespace field to indicate ownership of nodes ([2aa78a3](https://github.com/exalsius/exalsius-api-spec/commit/2aa78a3900bd46445f5d67e6ccf016196d554e88))
+* adjust cluster_status phases: Provisioning -&gt; Deploying, Staging -&gt; PENDING ([b4c481d](https://github.com/exalsius/exalsius-api-spec/commit/b4c481dea2598bdc1a56f77517709fb6d829a135))
+* rename and adjust node_status phases ([63f0ffa](https://github.com/exalsius/exalsius-api-spec/commit/63f0ffa7a3b9f850ed96ad07df586df06ea4d037))
+
 ## [1.15.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.0...v1.15.1) (2025-07-30)
 
 
