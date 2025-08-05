@@ -167,7 +167,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_service_create_response.py
-test/test_service_delete_response.py
-test/test_service_response.py
 tox.ini
