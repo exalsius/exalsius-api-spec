@@ -30,8 +30,8 @@ class SshKeyCreateRequest(BaseModel):
     """  # noqa: E501
 
     name: StrictStr = Field(description="The name of the SSH key")
-    private_key_b64: Optional[StrictStr] = Field(
-        default=None, description="The private key of the SSH key b64 encoded"
+    private_key_b64: StrictStr = Field(
+        description="The private key of the SSH key b64 encoded"
     )
     __properties: ClassVar[List[str]] = ["name", "private_key_b64"]
 

@@ -93,15 +93,15 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
     cluster_id = 'cluster_id_example' # str | 
-    cluster_add_service_request = exalsius_api_client.ClusterAddServiceRequest() # ClusterAddServiceRequest | 
+    cluster_add_node_request = exalsius_api_client.ClusterAddNodeRequest() # ClusterAddNodeRequest | 
 
     try:
-        # Add service deployments to a cluster
-        api_response = api_instance.add_cluster_services(cluster_id, cluster_add_service_request)
-        print("The response of ClustersApi->add_cluster_services:\n")
+        # Add nodes to a cluster
+        api_response = api_instance.add_nodes(cluster_id, cluster_add_node_request)
+        print("The response of ClustersApi->add_nodes:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling ClustersApi->add_cluster_services: %s\n" % e)
+        print("Exception when calling ClustersApi->add_nodes: %s\n" % e)
 
 ```
 
@@ -111,7 +111,6 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*ClustersApi* | [**add_cluster_services**](docs/ClustersApi.md#add_cluster_services) | **POST** /cluster/{cluster_id}/services | Add service deployments to a cluster
 *ClustersApi* | [**add_nodes**](docs/ClustersApi.md#add_nodes) | **POST** /cluster/{cluster_id}/nodes | Add nodes to a cluster
 *ClustersApi* | [**adopt_cluster**](docs/ClustersApi.md#adopt_cluster) | **POST** /clusters/adopt | Adopt a cluster
 *ClustersApi* | [**create_cluster**](docs/ClustersApi.md#create_cluster) | **POST** /clusters | Create a cluster
@@ -121,7 +120,6 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
-*ClustersApi* | [**get_cluster_services**](docs/ClustersApi.md#get_cluster_services) | **GET** /cluster/{cluster_id}/services | Get services of a cluster
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 *ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
@@ -133,6 +131,7 @@ Class | Method | HTTP request | Description
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 *ManagementApi* | [**list_credentials**](docs/ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
+*ManagementApi* | [**list_service_templates**](docs/ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
 *ManagementApi* | [**list_ssh_keys**](docs/ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
 *ManagementApi* | [**list_workspace_templates**](docs/ManagementApi.md#list_workspace_templates) | **GET** /management/workspace-templates | List all workspace templates
 *NodesApi* | [**delete_node**](docs/NodesApi.md#delete_node) | **DELETE** /node/{node_id} | Delete a node from the pool
@@ -141,7 +140,10 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
-*ServicesApi* | [**list_available_services**](docs/ServicesApi.md#list_available_services) | **GET** /services | List all available services
+*ServicesApi* | [**create_service_deployment**](docs/ServicesApi.md#create_service_deployment) | **POST** /services | Create a service deployment
+*ServicesApi* | [**delete_service_deployment**](docs/ServicesApi.md#delete_service_deployment) | **DELETE** /service/{service_deployment_id} | Delete a service deployment
+*ServicesApi* | [**describe_service_deployment**](docs/ServicesApi.md#describe_service_deployment) | **GET** /service/{service_deployment_id} | Get details of a single service deployment
+*ServicesApi* | [**list_services_deployments**](docs/ServicesApi.md#list_services_deployments) | **GET** /services | List all service deployments
 *WorkspacesApi* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /workspaces | Create a workspace
 *WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 *WorkspacesApi* | [**describe_workspace**](docs/WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
@@ -156,7 +158,6 @@ Class | Method | HTTP request | Description
  - [CloudNode](docs/CloudNode.md)
  - [Cluster](docs/Cluster.md)
  - [ClusterAddNodeRequest](docs/ClusterAddNodeRequest.md)
- - [ClusterAddServiceRequest](docs/ClusterAddServiceRequest.md)
  - [ClusterAdoptRequest](docs/ClusterAdoptRequest.md)
  - [ClusterCreateRequest](docs/ClusterCreateRequest.md)
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
@@ -194,8 +195,13 @@ Class | Method | HTTP request | Description
  - [OffersListResponse](docs/OffersListResponse.md)
  - [ResourcePool](docs/ResourcePool.md)
  - [SelfManagedNode](docs/SelfManagedNode.md)
- - [Service](docs/Service.md)
  - [ServiceDeployment](docs/ServiceDeployment.md)
+ - [ServiceDeploymentCreateRequest](docs/ServiceDeploymentCreateRequest.md)
+ - [ServiceDeploymentCreateResponse](docs/ServiceDeploymentCreateResponse.md)
+ - [ServiceDeploymentDeleteResponse](docs/ServiceDeploymentDeleteResponse.md)
+ - [ServiceDeploymentResponse](docs/ServiceDeploymentResponse.md)
+ - [ServiceTemplate](docs/ServiceTemplate.md)
+ - [ServiceTemplateListResponse](docs/ServiceTemplateListResponse.md)
  - [ServicesListResponse](docs/ServicesListResponse.md)
  - [SshKey](docs/SshKey.md)
  - [SshKeyCreateRequest](docs/SshKeyCreateRequest.md)

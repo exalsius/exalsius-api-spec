@@ -20,8 +20,6 @@ from exalsius_api_client.models.cloud_node import CloudNode
 from exalsius_api_client.models.cluster import Cluster
 from exalsius_api_client.models.cluster_add_node_request import \
     ClusterAddNodeRequest
-from exalsius_api_client.models.cluster_add_service_request import \
-    ClusterAddServiceRequest
 from exalsius_api_client.models.cluster_adopt_request import \
     ClusterAdoptRequest
 from exalsius_api_client.models.cluster_create_request import \
@@ -79,8 +77,18 @@ from exalsius_api_client.models.offer import Offer
 from exalsius_api_client.models.offers_list_response import OffersListResponse
 from exalsius_api_client.models.resource_pool import ResourcePool
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
-from exalsius_api_client.models.service import Service
 from exalsius_api_client.models.service_deployment import ServiceDeployment
+from exalsius_api_client.models.service_deployment_create_request import \
+    ServiceDeploymentCreateRequest
+from exalsius_api_client.models.service_deployment_create_response import \
+    ServiceDeploymentCreateResponse
+from exalsius_api_client.models.service_deployment_delete_response import \
+    ServiceDeploymentDeleteResponse
+from exalsius_api_client.models.service_deployment_response import \
+    ServiceDeploymentResponse
+from exalsius_api_client.models.service_template import ServiceTemplate
+from exalsius_api_client.models.service_template_list_response import \
+    ServiceTemplateListResponse
 from exalsius_api_client.models.services_list_response import \
     ServicesListResponse
 from exalsius_api_client.models.ssh_key import SshKey

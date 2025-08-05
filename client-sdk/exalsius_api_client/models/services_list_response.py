@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictInt
 from typing_extensions import Self
 
-from exalsius_api_client.models.service import Service
+from exalsius_api_client.models.service_deployment import ServiceDeployment
 
 
 class ServicesListResponse(BaseModel):
@@ -31,7 +31,7 @@ class ServicesListResponse(BaseModel):
     ServicesListResponse
     """  # noqa: E501
 
-    services: List[Service]
+    services: List[ServiceDeployment]
     total: Optional[StrictInt] = Field(
         default=None, description="The total number of services"
     )
@@ -95,7 +95,7 @@ class ServicesListResponse(BaseModel):
         _obj = cls.model_validate(
             {
                 "services": (
-                    [Service.from_dict(_item) for _item in obj["services"]]
+                    [ServiceDeployment.from_dict(_item) for _item in obj["services"]]
                     if obj.get("services") is not None
                     else None
                 ),

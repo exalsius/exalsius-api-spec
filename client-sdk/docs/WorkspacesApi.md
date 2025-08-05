@@ -357,7 +357,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of workspaces |  * X-Total-Count - Total number of existing workspaces <br>  |
+**200** | List of workspaces |  * X-Total-Count - Total number of existing service deployments <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

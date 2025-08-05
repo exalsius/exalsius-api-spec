@@ -34,9 +34,8 @@ class ClusterAdoptRequest(BaseModel):
         default=None,
         description="The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.",
     )
-    kubeconfig_b64: Optional[StrictStr] = Field(
-        default=None,
-        description="The kubeconfig of the cluster in base64 encoded string format",
+    kubeconfig_b64: StrictStr = Field(
+        description="The kubeconfig of the cluster in base64 encoded string format"
     )
     k8s_version: Optional[StrictStr] = Field(
         default=None, description="The Kubernetes version of the cluster"

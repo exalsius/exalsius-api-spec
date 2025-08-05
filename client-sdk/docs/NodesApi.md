@@ -466,7 +466,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing workspaces <br>  |
+**200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing service deployments <br>  |
 **422** | Error response |  -  |
 **500** | Error response |  -  |
 

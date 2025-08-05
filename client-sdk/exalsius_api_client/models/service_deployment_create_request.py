@@ -18,28 +18,37 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
+from exalsius_api_client.models.service_template import ServiceTemplate
 
-class ClusterNodesResponse(BaseModel):
+
+class ServiceDeploymentCreateRequest(BaseModel):
     """
-    ClusterNodesResponse
+    ServiceDeploymentCreateRequest
     """  # noqa: E501
 
-    cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    control_plane_node_ids: List[StrictStr]
-    worker_node_ids: List[StrictStr]
-    total_nodes: Optional[StrictInt] = Field(
-        default=None, description="The total number of nodes in the cluster"
+    name: StrictStr = Field(description="The name of the workspace")
+    cluster_id: StrictStr = Field(
+        description="The unique identifier of the associated cluster"
+    )
+    template: ServiceTemplate
+    description: Optional[StrictStr] = Field(
+        default=None, description="The description of the workspace"
+    )
+    to_be_deleted_at: Optional[datetime] = Field(
+        default=None, description="The date and time the workspace will be deleted"
     )
     __properties: ClassVar[List[str]] = [
+        "name",
         "cluster_id",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "total_nodes",
+        "template",
+        "description",
+        "to_be_deleted_at",
     ]
 
     model_config = ConfigDict(
@@ -59,7 +68,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a JSON string"""
+        """Create an instance of ServiceDeploymentCreateRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +88,14 @@ class ClusterNodesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of template
+        if self.template:
+            _dict["template"] = self.template.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a dict"""
+        """Create an instance of ServiceDeploymentCreateRequest from a dict"""
         if obj is None:
             return None
 
@@ -92,10 +104,15 @@ class ClusterNodesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
+                "name": obj.get("name"),
                 "cluster_id": obj.get("cluster_id"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "total_nodes": obj.get("total_nodes"),
+                "template": (
+                    ServiceTemplate.from_dict(obj["template"])
+                    if obj.get("template") is not None
+                    else None
+                ),
+                "description": obj.get("description"),
+                "to_be_deleted_at": obj.get("to_be_deleted_at"),
             }
         )
         return _obj

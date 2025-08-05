@@ -5,9 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_id** | **int** | The ID of the service | 
-**service_name** | **str** | The name of the service | [optional] 
-**values** | **Dict[str, str]** | The values to set for the service | [optional] 
+**id** | **str** | The ID of the service | [optional] 
+**name** | **str** | The name of the service deployment | 
+**cluster_id** | **str** | The ID of the cluster | 
+**template** | [**ServiceTemplate**](ServiceTemplate.md) |  | 
+**owner** | **str** | The user that deployed the service | [optional] 
+**description** | **str** | The description of the service deployment | [optional] 
+**created_at** | **datetime** |  | [optional] 
 
 ## Example
 

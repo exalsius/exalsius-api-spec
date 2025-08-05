@@ -20,27 +20,19 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict
 from typing_extensions import Self
 
+from exalsius_api_client.models.service_deployment import ServiceDeployment
 
-class ClusterNodesResponse(BaseModel):
+
+class ServiceDeploymentResponse(BaseModel):
     """
-    ClusterNodesResponse
+    ServiceDeploymentResponse
     """  # noqa: E501
 
-    cluster_id: StrictStr = Field(description="The unique identifier of the cluster")
-    control_plane_node_ids: List[StrictStr]
-    worker_node_ids: List[StrictStr]
-    total_nodes: Optional[StrictInt] = Field(
-        default=None, description="The total number of nodes in the cluster"
-    )
-    __properties: ClassVar[List[str]] = [
-        "cluster_id",
-        "control_plane_node_ids",
-        "worker_node_ids",
-        "total_nodes",
-    ]
+    service_deployment: ServiceDeployment
+    __properties: ClassVar[List[str]] = ["service_deployment"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -59,7 +51,7 @@ class ClusterNodesResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a JSON string"""
+        """Create an instance of ServiceDeploymentResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -79,11 +71,14 @@ class ClusterNodesResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of service_deployment
+        if self.service_deployment:
+            _dict["service_deployment"] = self.service_deployment.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterNodesResponse from a dict"""
+        """Create an instance of ServiceDeploymentResponse from a dict"""
         if obj is None:
             return None
 
@@ -92,10 +87,11 @@ class ClusterNodesResponse(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "cluster_id": obj.get("cluster_id"),
-                "control_plane_node_ids": obj.get("control_plane_node_ids"),
-                "worker_node_ids": obj.get("worker_node_ids"),
-                "total_nodes": obj.get("total_nodes"),
+                "service_deployment": (
+                    ServiceDeployment.from_dict(obj["service_deployment"])
+                    if obj.get("service_deployment") is not None
+                    else None
+                )
             }
         )
         return _obj

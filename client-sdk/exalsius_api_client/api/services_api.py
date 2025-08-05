@@ -19,6 +19,14 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
+from exalsius_api_client.models.service_deployment_create_request import \
+    ServiceDeploymentCreateRequest
+from exalsius_api_client.models.service_deployment_create_response import \
+    ServiceDeploymentCreateResponse
+from exalsius_api_client.models.service_deployment_delete_response import \
+    ServiceDeploymentDeleteResponse
+from exalsius_api_client.models.service_deployment_response import \
+    ServiceDeploymentResponse
 from exalsius_api_client.models.services_list_response import \
     ServicesListResponse
 from exalsius_api_client.rest import RESTResponseType
@@ -37,8 +45,9 @@ class ServicesApi:
         self.api_client = api_client
 
     @validate_call
-    def list_available_services(
+    def create_service_deployment(
         self,
+        service_deployment_create_request: ServiceDeploymentCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -50,11 +59,13 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServicesListResponse:
-        """List all available services
+    ) -> ServiceDeploymentCreateResponse:
+        """Create a service deployment
 
-        **List all available services**  List all services that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
 
+        :param service_deployment_create_request: (required)
+        :type service_deployment_create_request: ServiceDeploymentCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -77,7 +88,8 @@ class ServicesApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_available_services_serialize(
+        _param = self._create_service_deployment_serialize(
+            service_deployment_create_request=service_deployment_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -85,8 +97,9 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServicesListResponse",
-            "404": "Error",
+            "201": "ServiceDeploymentCreateResponse",
+            "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -99,8 +112,9 @@ class ServicesApi:
         ).data
 
     @validate_call
-    def list_available_services_with_http_info(
+    def create_service_deployment_with_http_info(
         self,
+        service_deployment_create_request: ServiceDeploymentCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -112,11 +126,13 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServicesListResponse]:
-        """List all available services
+    ) -> ApiResponse[ServiceDeploymentCreateResponse]:
+        """Create a service deployment
 
-        **List all available services**  List all services that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
 
+        :param service_deployment_create_request: (required)
+        :type service_deployment_create_request: ServiceDeploymentCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -139,7 +155,8 @@ class ServicesApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_available_services_serialize(
+        _param = self._create_service_deployment_serialize(
+            service_deployment_create_request=service_deployment_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -147,8 +164,9 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServicesListResponse",
-            "404": "Error",
+            "201": "ServiceDeploymentCreateResponse",
+            "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -161,8 +179,9 @@ class ServicesApi:
         )
 
     @validate_call
-    def list_available_services_without_preload_content(
+    def create_service_deployment_without_preload_content(
         self,
+        service_deployment_create_request: ServiceDeploymentCreateRequest,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -175,10 +194,12 @@ class ServicesApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """List all available services
+        """Create a service deployment
 
-        **List all available services**  List all services that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
 
+        :param service_deployment_create_request: (required)
+        :type service_deployment_create_request: ServiceDeploymentCreateRequest
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -201,7 +222,8 @@ class ServicesApi:
         :return: Returns the result object.
         """  # noqa: E501
 
-        _param = self._list_available_services_serialize(
+        _param = self._create_service_deployment_serialize(
+            service_deployment_create_request=service_deployment_create_request,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -209,8 +231,9 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServicesListResponse",
-            "404": "Error",
+            "201": "ServiceDeploymentCreateResponse",
+            "400": "Error",
+            "409": "Error",
             "500": "Error",
         }
         response_data = self.api_client.call_api(
@@ -218,8 +241,9 @@ class ServicesApi:
         )
         return response_data.response
 
-    def _list_available_services_serialize(
+    def _create_service_deployment_serialize(
         self,
+        service_deployment_create_request,
         _request_auth,
         _content_type,
         _headers,
@@ -241,6 +265,791 @@ class ServicesApi:
 
         # process the path parameters
         # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+        if service_deployment_create_request is not None:
+            _body_params = service_deployment_create_request
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
+
+        # set the HTTP header `Content-Type`
+        if _content_type:
+            _header_params["Content-Type"] = _content_type
+        else:
+            _default_content_type = self.api_client.select_header_content_type(
+                ["application/json"]
+            )
+            if _default_content_type is not None:
+                _header_params["Content-Type"] = _default_content_type
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2"]
+
+        return self.api_client.param_serialize(
+            method="POST",
+            resource_path="/services",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def delete_service_deployment(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the service deployment to delete")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ServiceDeploymentDeleteResponse:
+        """Delete a service deployment
+
+        **Delete a service deployment**  Delete a service deployment.
+
+        :param service_deployment_id: ID of the service deployment to delete (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentDeleteResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def delete_service_deployment_with_http_info(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the service deployment to delete")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ServiceDeploymentDeleteResponse]:
+        """Delete a service deployment
+
+        **Delete a service deployment**  Delete a service deployment.
+
+        :param service_deployment_id: ID of the service deployment to delete (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentDeleteResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def delete_service_deployment_without_preload_content(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the service deployment to delete")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Delete a service deployment
+
+        **Delete a service deployment**  Delete a service deployment.
+
+        :param service_deployment_id: ID of the service deployment to delete (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._delete_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentDeleteResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _delete_service_deployment_serialize(
+        self,
+        service_deployment_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if service_deployment_id is not None:
+            _path_params["service_deployment_id"] = service_deployment_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2"]
+
+        return self.api_client.param_serialize(
+            method="DELETE",
+            resource_path="/service/{service_deployment_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def describe_service_deployment(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the workspace to describe")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ServiceDeploymentResponse:
+        """Get details of a single service deployment
+
+        **Retrieve the details of a single service deployment**
+
+        :param service_deployment_id: ID of the workspace to describe (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._describe_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def describe_service_deployment_with_http_info(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the workspace to describe")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ServiceDeploymentResponse]:
+        """Get details of a single service deployment
+
+        **Retrieve the details of a single service deployment**
+
+        :param service_deployment_id: ID of the workspace to describe (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._describe_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def describe_service_deployment_without_preload_content(
+        self,
+        service_deployment_id: Annotated[
+            StrictStr, Field(description="ID of the workspace to describe")
+        ],
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """Get details of a single service deployment
+
+        **Retrieve the details of a single service deployment**
+
+        :param service_deployment_id: ID of the workspace to describe (required)
+        :type service_deployment_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._describe_service_deployment_serialize(
+            service_deployment_id=service_deployment_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServiceDeploymentResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _describe_service_deployment_serialize(
+        self,
+        service_deployment_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        if service_deployment_id is not None:
+            _path_params["service_deployment_id"] = service_deployment_id
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/service/{service_deployment_id}",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def list_services_deployments(
+        self,
+        cluster_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Only return services that are associated with this cluster. "
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ServicesListResponse:
+        """List all service deployments
+
+        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+
+        :param cluster_id: Only return services that are associated with this cluster.
+        :type cluster_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_services_deployments_serialize(
+            cluster_id=cluster_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServicesListResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def list_services_deployments_with_http_info(
+        self,
+        cluster_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Only return services that are associated with this cluster. "
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[ServicesListResponse]:
+        """List all service deployments
+
+        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+
+        :param cluster_id: Only return services that are associated with this cluster.
+        :type cluster_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_services_deployments_serialize(
+            cluster_id=cluster_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServicesListResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def list_services_deployments_without_preload_content(
+        self,
+        cluster_id: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Only return services that are associated with this cluster. "
+            ),
+        ] = None,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List all service deployments
+
+        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+
+        :param cluster_id: Only return services that are associated with this cluster.
+        :type cluster_id: str
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._list_services_deployments_serialize(
+            cluster_id=cluster_id,
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "ServicesListResponse",
+            "404": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _list_services_deployments_serialize(
+        self,
+        cluster_id,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        if cluster_id is not None:
+
+            _query_params.append(("cluster_id", cluster_id))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter

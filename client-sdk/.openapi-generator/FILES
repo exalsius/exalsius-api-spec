@@ -7,7 +7,6 @@ docs/BaseNode.md
 docs/CloudNode.md
 docs/Cluster.md
 docs/ClusterAddNodeRequest.md
-docs/ClusterAddServiceRequest.md
 docs/ClusterAdoptRequest.md
 docs/ClusterCreateRequest.md
 docs/ClusterCreateResponse.md
@@ -50,8 +49,13 @@ docs/OffersApi.md
 docs/OffersListResponse.md
 docs/ResourcePool.md
 docs/SelfManagedNode.md
-docs/Service.md
 docs/ServiceDeployment.md
+docs/ServiceDeploymentCreateRequest.md
+docs/ServiceDeploymentCreateResponse.md
+docs/ServiceDeploymentDeleteResponse.md
+docs/ServiceDeploymentResponse.md
+docs/ServiceTemplate.md
+docs/ServiceTemplateListResponse.md
 docs/ServicesApi.md
 docs/ServicesListResponse.md
 docs/SshKey.md
@@ -90,7 +94,6 @@ exalsius_api_client/models/base_node.py
 exalsius_api_client/models/cloud_node.py
 exalsius_api_client/models/cluster.py
 exalsius_api_client/models/cluster_add_node_request.py
-exalsius_api_client/models/cluster_add_service_request.py
 exalsius_api_client/models/cluster_adopt_request.py
 exalsius_api_client/models/cluster_create_request.py
 exalsius_api_client/models/cluster_create_response.py
@@ -128,8 +131,13 @@ exalsius_api_client/models/offer.py
 exalsius_api_client/models/offers_list_response.py
 exalsius_api_client/models/resource_pool.py
 exalsius_api_client/models/self_managed_node.py
-exalsius_api_client/models/service.py
 exalsius_api_client/models/service_deployment.py
+exalsius_api_client/models/service_deployment_create_request.py
+exalsius_api_client/models/service_deployment_create_response.py
+exalsius_api_client/models/service_deployment_delete_response.py
+exalsius_api_client/models/service_deployment_response.py
+exalsius_api_client/models/service_template.py
+exalsius_api_client/models/service_template_list_response.py
 exalsius_api_client/models/services_list_response.py
 exalsius_api_client/models/ssh_key.py
 exalsius_api_client/models/ssh_key_create_request.py
@@ -157,4 +165,10 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_service_deployment_create_request.py
+test/test_service_deployment_create_response.py
+test/test_service_deployment_delete_response.py
+test/test_service_deployment_response.py
+test/test_service_template.py
+test/test_service_template_list_response.py
 tox.ini
