@@ -1,33 +1,24 @@
 type: object
 required:
-  - name
-  - cluster_id
-  - template
+  - service_deployment_id
+  - service_name
+  - service_template
+  - owner
 properties:
-  id:
+  service_deployment_id:
     type: string
     format: uuid
     description: The ID of the service
     example: "123e4567-e89b-12d3-a456-426614174000"
-  name:
+  service_name:
     type: string
     description: The name of the service deployment
     example: "my-service-deployment"
-  cluster_id:
+  service_template:
     type: string
-    format: uuid
-    description: The ID of the cluster
-    example: "123e4567-e89b-12d3-a456-426614174000"
-  template:
-    $ref: './service-template.yaml'
+    description: The name of the service template
+    example: "my-service-template"
   owner:
     type: string
     description: The user that deployed the service
     example: "John Doe"
-  description:
-    type: string
-    description: The description of the service deployment
-    example: "This is a description of my service deployment"
-  created_at:
-    type: string
-    format: date-time

@@ -2,7 +2,7 @@ description: Service deployment deletion response
 content:
   application/json:
     schema:
-      $ref: '../schemas/service-deployment-delete-response.yaml'
+      $ref: '../schemas/service-delete-response.yaml'
     examples:
       success:
         summary: Service deployment deleted
