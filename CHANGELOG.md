@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.0...v1.16.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* naming conflict in service / service_deployments ([#94](https://github.com/exalsius/exalsius-api-spec/issues/94)) ([94d0046](https://github.com/exalsius/exalsius-api-spec/commit/94d0046a341dcd7cfce78b5da5a8963d859d7a69))
+
 ## [1.16.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.3...v1.16.0) (2025-08-05)
 
 

@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "1.16.0"
+__version__ = "1.16.1"
 
 # import apis into sdk package
 from exalsius_api_client.api.clusters_api import ClustersApi
