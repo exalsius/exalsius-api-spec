@@ -5,7 +5,7 @@ properties:
   services:
     type: array
     items:
-      $ref: './service-deployment.yaml'
+      $ref: './service.yaml'
   total:
     type: integer
     format: int32

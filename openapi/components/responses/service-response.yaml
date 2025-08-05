@@ -2,4 +2,4 @@ description: A single service deployment
 content:
   application/json:
     schema:
-      $ref: '../schemas/service-deployment-response.yaml'
+      $ref: '../schemas/service-response.yaml'

@@ -15,7 +15,7 @@ get:
       description: ID of the workspace to describe
   responses:
     '200':
-      $ref: '../../components/responses/service-deployment-response.yaml'
+      $ref: '../../components/responses/service-response.yaml'
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: service-deployment-not-found
@@ -42,7 +42,7 @@ delete:
       description: ID of the service deployment to delete
   responses:
     '200':
-      $ref: '../../components/responses/service-deployment-delete-response.yaml'
+      $ref: '../../components/responses/service-delete-response.yaml'
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: workspace-not-found

@@ -51,7 +51,7 @@ post:
           $ref: '../../components/requests/service-deployment-create-request.yaml'
   responses:
     '201':
-      $ref: '../../components/responses/service-deployment-create-response.yaml'
+      $ref: '../../components/responses/service-create-response.yaml'
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request

@@ -1,17 +1,18 @@
 type: object
 required:
-  - id
   - name
+  - cluster_id
+  - template
 properties:
   id:
     type: string
     format: uuid
-    description: The unique identifier for the service deployment
+    description: The unique identifier for the service
     example: "123e4567-e89b-12d3-a456-426614174000"
   name:
     type: string
     description: The name of the service
-    example: "gpu-operator-24-9-2"
+    example: "my-service"
   cluster_id:
     type: string
     format: uuid
@@ -25,10 +26,10 @@ properties:
     example: "John Doe"
   description:
     type: string
-    description: The description of the service deployment
+    description: The description of the service
     example: "This is a description of my service"
   created_at:
     type: string
     format: date-time
-    description: The date and time the service deployment was created
+    description: The date and time the service was created
     example: "2025-01-01T00:00:00Z"
