@@ -1,4 +1,10 @@
 description: List of services
+headers:
+  X-Total-Count:
+    description: Total number of existing service deployments
+    schema:
+      type: integer
+      format: int32
 content:
   application/json:
     schema:

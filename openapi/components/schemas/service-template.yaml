@@ -1,0 +1,21 @@
+type: object
+required: 
+  - name
+  - variables
+properties:
+  name:
+    type: string
+    description: The name of the service template
+    example: "my-service-template"
+  description:
+    type: string
+    description: The description of the service template
+    example: "This service template configures the Ray Deployment"
+  variables:
+    type: object
+    description: The variables of the service template
+    example: {
+      "ray_cluster_name": "my-ray-cluster"
+    }
+    additionalProperties:
+      type: string
