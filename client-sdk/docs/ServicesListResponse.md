@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**services** | [**List[ServiceDeployment]**](ServiceDeployment.md) |  | 
+**services** | [**List[Service]**](Service.md) |  | 
 **total** | **int** | The total number of services | [optional] 
 
 ## Example

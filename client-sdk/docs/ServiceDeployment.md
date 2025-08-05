@@ -5,13 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **str** | The ID of the service | [optional] 
-**name** | **str** | The name of the service deployment | 
-**cluster_id** | **str** | The ID of the cluster | 
-**template** | [**ServiceTemplate**](ServiceTemplate.md) |  | 
-**owner** | **str** | The user that deployed the service | [optional] 
-**description** | **str** | The description of the service deployment | [optional] 
-**created_at** | **datetime** |  | [optional] 
+**service_deployment_id** | **str** | The ID of the service | 
+**service_name** | **str** | The name of the service deployment | 
+**service_template** | **str** | The name of the service template | 
+**owner** | **str** | The user that deployed the service | 
 
 ## Example
 

@@ -20,22 +20,19 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.service import Service
 
-
-class ServicesListResponse(BaseModel):
+class ServiceCreateResponse(BaseModel):
     """
-    ServicesListResponse
+    ServiceCreateResponse
     """  # noqa: E501
 
-    services: List[Service]
-    total: Optional[StrictInt] = Field(
-        default=None, description="The total number of services"
+    service_deployment_id: StrictStr = Field(
+        description="The ID of the created service deployment"
     )
-    __properties: ClassVar[List[str]] = ["services", "total"]
+    __properties: ClassVar[List[str]] = ["service_deployment_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -54,7 +51,7 @@ class ServicesListResponse(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ServicesListResponse from a JSON string"""
+        """Create an instance of ServiceCreateResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -74,18 +71,11 @@ class ServicesListResponse(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in services (list)
-        _items = []
-        if self.services:
-            for _item_services in self.services:
-                if _item_services:
-                    _items.append(_item_services.to_dict())
-            _dict["services"] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ServicesListResponse from a dict"""
+        """Create an instance of ServiceCreateResponse from a dict"""
         if obj is None:
             return None
 
@@ -93,13 +83,6 @@ class ServicesListResponse(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {
-                "services": (
-                    [Service.from_dict(_item) for _item in obj["services"]]
-                    if obj.get("services") is not None
-                    else None
-                ),
-                "total": obj.get("total"),
-            }
+            {"service_deployment_id": obj.get("service_deployment_id")}
         )
         return _obj

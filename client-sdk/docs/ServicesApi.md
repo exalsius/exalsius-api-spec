@@ -11,7 +11,7 @@ Method | HTTP request | Description
 
 
 # **create_service_deployment**
-> ServiceDeploymentCreateResponse create_service_deployment(service_deployment_create_request)
+> ServiceCreateResponse create_service_deployment(service_deployment_create_request)
 
 Create a service deployment
 
@@ -32,8 +32,8 @@ Create a new service deployment.
 
 ```python
 import exalsius_api_client
+from exalsius_api_client.models.service_create_response import ServiceCreateResponse
 from exalsius_api_client.models.service_deployment_create_request import ServiceDeploymentCreateRequest
-from exalsius_api_client.models.service_deployment_create_response import ServiceDeploymentCreateResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -76,7 +76,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceDeploymentCreateResponse**](ServiceDeploymentCreateResponse.md)
+[**ServiceCreateResponse**](ServiceCreateResponse.md)
 
 ### Authorization
 
@@ -99,7 +99,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_service_deployment**
-> ServiceDeploymentDeleteResponse delete_service_deployment(service_deployment_id)
+> ServiceDeleteResponse delete_service_deployment(service_deployment_id)
 
 Delete a service deployment
 
@@ -114,7 +114,7 @@ Delete a service deployment.
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.service_deployment_delete_response import ServiceDeploymentDeleteResponse
+from exalsius_api_client.models.service_delete_response import ServiceDeleteResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -157,7 +157,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceDeploymentDeleteResponse**](ServiceDeploymentDeleteResponse.md)
+[**ServiceDeleteResponse**](ServiceDeleteResponse.md)
 
 ### Authorization
 
@@ -179,7 +179,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **describe_service_deployment**
-> ServiceDeploymentResponse describe_service_deployment(service_deployment_id)
+> ServiceResponse describe_service_deployment(service_deployment_id)
 
 Get details of a single service deployment
 
@@ -192,7 +192,7 @@ Get details of a single service deployment
 
 ```python
 import exalsius_api_client
-from exalsius_api_client.models.service_deployment_response import ServiceDeploymentResponse
+from exalsius_api_client.models.service_response import ServiceResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -235,7 +235,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ServiceDeploymentResponse**](ServiceDeploymentResponse.md)
+[**ServiceResponse**](ServiceResponse.md)
 
 ### Authorization
 

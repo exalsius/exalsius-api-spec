@@ -18,13 +18,10 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
-
-from exalsius_api_client.models.service_template import ServiceTemplate
 
 
 class ServiceDeployment(BaseModel):
@@ -32,25 +29,15 @@ class ServiceDeployment(BaseModel):
     ServiceDeployment
     """  # noqa: E501
 
-    id: Optional[StrictStr] = Field(default=None, description="The ID of the service")
-    name: StrictStr = Field(description="The name of the service deployment")
-    cluster_id: StrictStr = Field(description="The ID of the cluster")
-    template: ServiceTemplate
-    owner: Optional[StrictStr] = Field(
-        default=None, description="The user that deployed the service"
-    )
-    description: Optional[StrictStr] = Field(
-        default=None, description="The description of the service deployment"
-    )
-    created_at: Optional[datetime] = None
+    service_deployment_id: StrictStr = Field(description="The ID of the service")
+    service_name: StrictStr = Field(description="The name of the service deployment")
+    service_template: StrictStr = Field(description="The name of the service template")
+    owner: StrictStr = Field(description="The user that deployed the service")
     __properties: ClassVar[List[str]] = [
-        "id",
-        "name",
-        "cluster_id",
-        "template",
+        "service_deployment_id",
+        "service_name",
+        "service_template",
         "owner",
-        "description",
-        "created_at",
     ]
 
     model_config = ConfigDict(
@@ -90,9 +77,6 @@ class ServiceDeployment(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of template
-        if self.template:
-            _dict["template"] = self.template.to_dict()
         return _dict
 
     @classmethod
@@ -106,17 +90,10 @@ class ServiceDeployment(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "id": obj.get("id"),
-                "name": obj.get("name"),
-                "cluster_id": obj.get("cluster_id"),
-                "template": (
-                    ServiceTemplate.from_dict(obj["template"])
-                    if obj.get("template") is not None
-                    else None
-                ),
+                "service_deployment_id": obj.get("service_deployment_id"),
+                "service_name": obj.get("service_name"),
+                "service_template": obj.get("service_template"),
                 "owner": obj.get("owner"),
-                "description": obj.get("description"),
-                "created_at": obj.get("created_at"),
             }
         )
         return _obj

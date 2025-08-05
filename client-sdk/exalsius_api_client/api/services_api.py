@@ -19,14 +19,13 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
+from exalsius_api_client.models.service_create_response import \
+    ServiceCreateResponse
+from exalsius_api_client.models.service_delete_response import \
+    ServiceDeleteResponse
 from exalsius_api_client.models.service_deployment_create_request import \
     ServiceDeploymentCreateRequest
-from exalsius_api_client.models.service_deployment_create_response import \
-    ServiceDeploymentCreateResponse
-from exalsius_api_client.models.service_deployment_delete_response import \
-    ServiceDeploymentDeleteResponse
-from exalsius_api_client.models.service_deployment_response import \
-    ServiceDeploymentResponse
+from exalsius_api_client.models.service_response import ServiceResponse
 from exalsius_api_client.models.services_list_response import \
     ServicesListResponse
 from exalsius_api_client.rest import RESTResponseType
@@ -59,7 +58,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServiceDeploymentCreateResponse:
+    ) -> ServiceCreateResponse:
         """Create a service deployment
 
         **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
@@ -97,7 +96,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServiceDeploymentCreateResponse",
+            "201": "ServiceCreateResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -126,7 +125,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServiceDeploymentCreateResponse]:
+    ) -> ApiResponse[ServiceCreateResponse]:
         """Create a service deployment
 
         **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
@@ -164,7 +163,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServiceDeploymentCreateResponse",
+            "201": "ServiceCreateResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -231,7 +230,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "201": "ServiceDeploymentCreateResponse",
+            "201": "ServiceCreateResponse",
             "400": "Error",
             "409": "Error",
             "500": "Error",
@@ -322,7 +321,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServiceDeploymentDeleteResponse:
+    ) -> ServiceDeleteResponse:
         """Delete a service deployment
 
         **Delete a service deployment**  Delete a service deployment.
@@ -360,7 +359,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentDeleteResponse",
+            "200": "ServiceDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -390,7 +389,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServiceDeploymentDeleteResponse]:
+    ) -> ApiResponse[ServiceDeleteResponse]:
         """Delete a service deployment
 
         **Delete a service deployment**  Delete a service deployment.
@@ -428,7 +427,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentDeleteResponse",
+            "200": "ServiceDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -496,7 +495,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentDeleteResponse",
+            "200": "ServiceDeleteResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -576,7 +575,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ServiceDeploymentResponse:
+    ) -> ServiceResponse:
         """Get details of a single service deployment
 
         **Retrieve the details of a single service deployment**
@@ -614,7 +613,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentResponse",
+            "200": "ServiceResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -644,7 +643,7 @@ class ServicesApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[ServiceDeploymentResponse]:
+    ) -> ApiResponse[ServiceResponse]:
         """Get details of a single service deployment
 
         **Retrieve the details of a single service deployment**
@@ -682,7 +681,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentResponse",
+            "200": "ServiceResponse",
             "404": "Error",
             "500": "Error",
         }
@@ -750,7 +749,7 @@ class ServicesApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "ServiceDeploymentResponse",
+            "200": "ServiceResponse",
             "404": "Error",
             "500": "Error",
         }
