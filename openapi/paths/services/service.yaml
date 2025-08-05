@@ -1,0 +1,51 @@
+get:
+  operationId: describeServiceDeployment
+  tags: [services]
+  summary: Get details of a single service deployment
+  description: |
+    **Retrieve the details of a single service deployment**
+
+  parameters:
+    - name: service_deployment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the workspace to describe
+  responses:
+    '200':
+      $ref: '../../components/responses/service-deployment-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: service-deployment-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+delete:
+  operationId: deleteServiceDeployment
+  tags: [services]
+  summary: Delete a service deployment
+  description: |
+    **Delete a service deployment**
+
+    Delete a service deployment.
+
+  parameters:
+    - name: service_deployment_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the service deployment to delete
+  responses:
+    '200':
+      $ref: '../../components/responses/service-deployment-delete-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

@@ -1,0 +1,11 @@
+description: List of service templates
+headers:
+  X-Total-Count:
+    description: Total number of existing service templates
+    schema:
+      type: integer
+      format: int32
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/service-template-list-response.yaml'

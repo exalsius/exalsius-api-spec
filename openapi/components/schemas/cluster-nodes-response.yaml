@@ -1,7 +1,8 @@
 type: object
 required:
   - cluster_id
-  - nodes
+  - control_plane_node_ids
+  - worker_node_ids
 properties:
   cluster_id:
     type: string
