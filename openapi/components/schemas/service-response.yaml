@@ -3,5 +3,5 @@ required:
   - service_deployment
 properties:
   service_deployment:
-    $ref: './service-deployment.yaml'
+    $ref: './service.yaml'
   
