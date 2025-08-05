@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.3...v1.16.0) (2025-08-05)
+
+
+### Features
+
+* add service deployment api endpoints ([#92](https://github.com/exalsius/exalsius-api-spec/issues/92)) ([0f2fd4d](https://github.com/exalsius/exalsius-api-spec/commit/0f2fd4d30bb338158977d69dac4af6e3bd9d5b70))
+
 ## [1.15.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.2...v1.15.3) (2025-08-01)
 
 
