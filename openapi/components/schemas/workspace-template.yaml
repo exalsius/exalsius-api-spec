@@ -17,5 +17,3 @@ properties:
     example: {
       "notebook_port": "8888"
     }
-    additionalProperties:
-      type: string
