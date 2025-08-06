@@ -15,7 +15,13 @@ properties:
     type: object
     description: The variables of the service template
     example: {
-      "ray_cluster_name": "my-ray-cluster"
+      "ray_cluster_name": "my-ray-cluster",
+      "config": {
+        "replicas": 3,
+        "resources": {
+          "cpu": "2",
+          "memory": "4Gi"
+        }
+      },
+      "enabled": true
     }
-    additionalProperties:
-      type: string
