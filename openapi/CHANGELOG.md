@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.16.1...openapi-v1.16.2) (2025-08-06)
+
+
+### Bug Fixes
+
+* allow arbitrary json for service and workspace values ([#96](https://github.com/exalsius/exalsius-api-spec/issues/96)) ([79d15bb](https://github.com/exalsius/exalsius-api-spec/commit/79d15bb0df3700d27bf22102f37d9029120eaa16))
+
 ## [1.16.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.16.0...openapi-v1.16.1) (2025-08-05)
 
 
