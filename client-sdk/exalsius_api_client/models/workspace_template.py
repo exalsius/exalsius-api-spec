@@ -33,7 +33,7 @@ class WorkspaceTemplate(BaseModel):
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace template"
     )
-    variables: Dict[str, StrictStr] = Field(
+    variables: Dict[str, Any] = Field(
         description="The variables of the workspace template"
     )
     __properties: ClassVar[List[str]] = ["name", "description", "variables"]

@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the service template | 
 **description** | **str** | The description of the service template | [optional] 
-**variables** | **Dict[str, str]** | The variables of the service template | 
+**variables** | **object** | The variables of the service template | 
 
 ## Example
 

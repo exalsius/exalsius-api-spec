@@ -33,7 +33,7 @@ class ServiceTemplate(BaseModel):
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the service template"
     )
-    variables: Dict[str, StrictStr] = Field(
+    variables: Dict[str, Any] = Field(
         description="The variables of the service template"
     )
     __properties: ClassVar[List[str]] = ["name", "description", "variables"]

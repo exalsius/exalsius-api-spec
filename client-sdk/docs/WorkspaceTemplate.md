@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the workspace template | 
 **description** | **str** | The description of the workspace template | [optional] 
-**variables** | **Dict[str, str]** | The variables of the workspace template | 
+**variables** | **object** | The variables of the workspace template | 
 
 ## Example
 
