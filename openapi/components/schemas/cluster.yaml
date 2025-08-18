@@ -47,6 +47,12 @@ properties:
       - `READY`: Cluster is ready
       - `FAILED`: Cluster is failed
     example: "DEPLOYING"
+  cluster_labels:
+    type: object
+    additionalProperties:
+      type: string
+    description: The labels of the cluster (optional).
+    example: {"cluster.exalsius.ai/gpu-type": "A100", "cluster.exalsius.ai/workload-type": "volcano"}
   created_at:
     type: string
     format: date-time
