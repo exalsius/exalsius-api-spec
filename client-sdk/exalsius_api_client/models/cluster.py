@@ -55,6 +55,9 @@ class Cluster(BaseModel):
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
     )
+    cluster_labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="The labels of the cluster (optional)."
+    )
     created_at: datetime = Field(
         description="The date and time the cluster was created"
     )
@@ -94,6 +97,7 @@ class Cluster(BaseModel):
         "owner",
         "cluster_type",
         "cluster_status",
+        "cluster_labels",
         "created_at",
         "updated_at",
         "to_be_deleted_at",
@@ -198,6 +202,7 @@ class Cluster(BaseModel):
                 "owner": obj.get("owner"),
                 "cluster_type": obj.get("cluster_type"),
                 "cluster_status": obj.get("cluster_status"),
+                "cluster_labels": obj.get("cluster_labels"),
                 "created_at": obj.get("created_at"),
                 "updated_at": obj.get("updated_at"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),

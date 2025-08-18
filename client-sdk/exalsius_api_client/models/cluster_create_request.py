@@ -40,6 +40,9 @@ class ClusterCreateRequest(BaseModel):
         default=None,
         description="The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.",
     )
+    cluster_labels: Optional[Dict[str, StrictStr]] = Field(
+        default=None, description="The labels of the cluster (optional)."
+    )
     k8s_version: Optional[StrictStr] = Field(
         default=None, description="The Kubernetes version of the cluster"
     )
@@ -60,6 +63,7 @@ class ClusterCreateRequest(BaseModel):
         "name",
         "cluster_type",
         "colony_id",
+        "cluster_labels",
         "k8s_version",
         "to_be_deleted_at",
         "control_plane_node_ids",
@@ -136,6 +140,7 @@ class ClusterCreateRequest(BaseModel):
                 "name": obj.get("name"),
                 "cluster_type": obj.get("cluster_type"),
                 "colony_id": obj.get("colony_id"),
+                "cluster_labels": obj.get("cluster_labels"),
                 "k8s_version": obj.get("k8s_version"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),
                 "control_plane_node_ids": obj.get("control_plane_node_ids"),
