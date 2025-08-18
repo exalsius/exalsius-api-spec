@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.16.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.2...v1.16.3) (2025-08-18)
+
+
+### Bug Fixes
+
+* add a cluster_labels attribute ([62f08d6](https://github.com/exalsius/exalsius-api-spec/commit/62f08d692cc80dfbd5c3ec11fcd03dc946a329a7))
+
 ## [1.16.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.1...v1.16.2) (2025-08-06)
 
 
