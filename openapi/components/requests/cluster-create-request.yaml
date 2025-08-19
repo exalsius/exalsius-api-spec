@@ -21,6 +21,12 @@ properties:
     type: string
     description: The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.
     example: "123e4567-e89b-12d3-a456-426614174000"
+  cluster_labels:
+    type: object
+    additionalProperties:
+      type: string
+    description: The labels of the cluster (optional).
+    example: {"cluster.exalsius.ai/gpu-type": "A100", "cluster.exalsius.ai/workload-type": "volcano"}
   k8s_version:
     type: string
     description: The Kubernetes version of the cluster
@@ -48,4 +54,3 @@ properties:
       $ref: '../schemas/service-deployment.yaml'
     description: The services to deploy in the cluster (optional).
     example: [{"service_id": "ffd4c2f4-ec48-41f1-be56-52ba90f661b6", "service_name": "my-service", "values": {"key": "value"}}]
-    

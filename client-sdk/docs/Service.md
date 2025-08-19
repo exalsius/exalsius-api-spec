@@ -5,9 +5,13 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**id** | **int** | The unique identifier for the service | 
+**id** | **str** | The unique identifier for the service | [optional] 
 **name** | **str** | The name of the service | 
+**cluster_id** | **str** | The unique identifier of the associated cluster | 
+**template** | [**ServiceTemplate**](ServiceTemplate.md) |  | 
+**owner** | **str** | The user that deployed the service | [optional] 
 **description** | **str** | The description of the service | [optional] 
+**created_at** | **datetime** | The date and time the service was created | [optional] 
 
 ## Example
 

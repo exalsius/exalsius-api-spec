@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.15.0
+  version: 1.16.3
   x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
   x-audience:
     - exalsius-cli
@@ -92,20 +92,18 @@ paths:
     $ref: ./paths/clusters/resources.yaml
   /cluster/{cluster_id}/nodes/{node_id}:
     $ref: ./paths/clusters/delete-node.yaml
-  /cluster/{cluster_id}/services:
-    $ref: ./paths/clusters/services.yaml
   /cluster/{cluster_id}/deploy:
     $ref: ./paths/clusters/deploy.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
-  /services:
-    $ref: ./paths/services/list.yaml
   /management/credentials:
     $ref: ./paths/management/list-credentials.yaml
   /management/cluster-templates:
     $ref: ./paths/management/list-cluster-templates.yaml
   /management/workspace-templates:
     $ref: ./paths/management/list-workspace-templates.yaml
+  /management/service-templates:
+    $ref: ./paths/management/list-service-templates.yaml
   /management/ssh-keys:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
@@ -118,6 +116,10 @@ paths:
     $ref: ./paths/workspaces/stop-workspace.yaml
   /workspace/{workspace_id}/start:
     $ref: ./paths/workspaces/start-workspace.yaml
+  /services:
+    $ref: ./paths/services/list.yaml
+  /service/{service_deployment_id}:
+    $ref: ./paths/services/service.yaml
 components:
   schemas:
     Offer:
@@ -163,7 +165,7 @@ components:
     ClusterNodeRemoveResponse:
       $ref: ./components/schemas/cluster-node-remove-response.yaml
     Service:
-      $ref: ./components/schemas/service.yaml
+      $ref: ./components/schemas/service-deployment.yaml
     ServiceDeployment:
       $ref: ./components/schemas/service-deployment.yaml
     SshKey:

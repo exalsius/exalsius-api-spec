@@ -1,0 +1,7 @@
+type: object
+required:
+  - service_deployment
+properties:
+  service_deployment:
+    $ref: './service.yaml'
+  

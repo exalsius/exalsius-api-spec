@@ -22,17 +22,12 @@ content:
                 - "123e4567-e89b-12d3-a456-426614174003"
                 - "123e4567-e89b-12d3-a456-426614174004"
                 - "123e4567-e89b-12d3-a456-426614174005"
-              service_deployments:
-                - service_id: 123
-                  service_name: "my-service"
-                  values:
-                    key: "value"
               k8s_version: "1.30.0"
               current_costs: 100.0
               costs_per_hour: 1.0
             - id: "123e4567-e89b-12d3-a456-426614174001"
               name: "my-cluster-2"
-              cluster_status: "STAGING"
+              cluster_status: "PENDING"
               created_at: "2025-01-01T00:00:00Z"
               updated_at: "2025-01-01T00:00:00Z"
               to_be_deleted_at: "2025-02-01T00:00:00Z"
@@ -44,11 +39,6 @@ content:
                 - "123e4567-e89b-12d3-a456-426614174009"
                 - "123e4567-e89b-12d3-a456-426614174010"
                 - "123e4567-e89b-12d3-a456-426614174011"
-              service_deployments:
-                - service_id: 123
-                  service_name: "my-service-2"
-                  values:
-                    key: "value"
               k8s_version: "1.30.0"
               current_costs: 200.0
               costs_per_hour: 2.0

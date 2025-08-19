@@ -38,15 +38,21 @@ properties:
       - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development)
   cluster_status:
     type: string
-    enum: [STAGING, PROVISIONING, READY, FAILED]
-    x-enum-varnames: [STAGING, PROVISIONING, READY, FAILED]
+    enum: [PENDING, DEPLOYING, READY, FAILED]
+    x-enum-varnames: [PENDING, DEPLOYING, READY, FAILED]
     description: >
       The status of the cluster.
-      - `STAGING`: Cluster is staging
-      - `PROVISIONING`: Cluster is provisioning
+      - `PENDING`: Cluster is pending (not yet deployed)
+      - `DEPLOYING`: Cluster is being deployed
       - `READY`: Cluster is ready
       - `FAILED`: Cluster is failed
-    example: "PROVISIONING"
+    example: "DEPLOYING"
+  cluster_labels:
+    type: object
+    additionalProperties:
+      type: string
+    description: The labels of the cluster (optional).
+    example: {"cluster.exalsius.ai/gpu-type": "A100", "cluster.exalsius.ai/workload-type": "volcano"}
   created_at:
     type: string
     format: date-time

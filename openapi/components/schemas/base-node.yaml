@@ -24,6 +24,10 @@ properties:
       - `CLOUD`: Cloud node
       - `SELF_MANAGED`: Self-managed node
     example: "CLOUD"
+  namespace:
+    type: string
+    description: The namespace of the node (e.g. the namespace of the user that added the node)
+    example: "my-namespace"
   hostname:
     type: string
     description: The hostname of the node
@@ -76,11 +80,13 @@ properties:
     example: "2021-01-01T00:00:00Z"
   node_status:
     type: string
-    enum: [PENDING, AVAILABLE, STAGED, OCCUPIED]
+    enum: [PENDING, DISCOVERING, AVAILABLE, ADDED, DEPLOYED, FAILED]
     description: |
       The status of the node.
       - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode)
+      - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes)
       - `AVAILABLE`: Node is available to be added to a cluster
-      - `STAGED`: Node is staged in a cluster
-      - `OCCUPIED`: Node is occupied in a cluster
+      - `ADDED`: Node is added to a cluster
+      - `DEPLOYED`: Node is deployed in a cluster
+      - `FAILED`: The discovering process of the node failed
     example: "AVAILABLE"

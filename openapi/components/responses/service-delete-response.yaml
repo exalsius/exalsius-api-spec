@@ -1,0 +1,10 @@
+description: Service deployment deletion response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/service-delete-response.yaml'
+    examples:
+      success:
+        summary: Service deployment deleted
+        value:
+          service_deployment_id: "123e4567-e89b-12d3-a456-426614174000"

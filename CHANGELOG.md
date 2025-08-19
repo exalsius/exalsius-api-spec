@@ -1,5 +1,56 @@
 # Changelog
 
+## [1.16.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.2...v1.16.3) (2025-08-18)
+
+
+### Bug Fixes
+
+* add a cluster_labels attribute ([62f08d6](https://github.com/exalsius/exalsius-api-spec/commit/62f08d692cc80dfbd5c3ec11fcd03dc946a329a7))
+
+## [1.16.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.1...v1.16.2) (2025-08-06)
+
+
+### Bug Fixes
+
+* allow arbitrary json for service and workspace values ([#96](https://github.com/exalsius/exalsius-api-spec/issues/96)) ([79d15bb](https://github.com/exalsius/exalsius-api-spec/commit/79d15bb0df3700d27bf22102f37d9029120eaa16))
+
+## [1.16.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.0...v1.16.1) (2025-08-05)
+
+
+### Bug Fixes
+
+* naming conflict in service / service_deployments ([#94](https://github.com/exalsius/exalsius-api-spec/issues/94)) ([94d0046](https://github.com/exalsius/exalsius-api-spec/commit/94d0046a341dcd7cfce78b5da5a8963d859d7a69))
+
+## [1.16.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.3...v1.16.0) (2025-08-05)
+
+
+### Features
+
+* add service deployment api endpoints ([#92](https://github.com/exalsius/exalsius-api-spec/issues/92)) ([0f2fd4d](https://github.com/exalsius/exalsius-api-spec/commit/0f2fd4d30bb338158977d69dac4af6e3bd9d5b70))
+
+## [1.15.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.2...v1.15.3) (2025-08-01)
+
+
+### Bug Fixes
+
+* adjust cluster_status phases in request schemes ([#90](https://github.com/exalsius/exalsius-api-spec/issues/90)) ([a485bb7](https://github.com/exalsius/exalsius-api-spec/commit/a485bb77fcbbdc0b3b548442ad1963436a1fdeec))
+
+## [1.15.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.1...v1.15.2) (2025-08-01)
+
+
+### Bug Fixes
+
+* add a namespace field to indicate ownership of nodes ([2aa78a3](https://github.com/exalsius/exalsius-api-spec/commit/2aa78a3900bd46445f5d67e6ccf016196d554e88))
+* adjust cluster_status phases: Provisioning -&gt; Deploying, Staging -&gt; PENDING ([b4c481d](https://github.com/exalsius/exalsius-api-spec/commit/b4c481dea2598bdc1a56f77517709fb6d829a135))
+* rename and adjust node_status phases ([63f0ffa](https://github.com/exalsius/exalsius-api-spec/commit/63f0ffa7a3b9f850ed96ad07df586df06ea4d037))
+
+## [1.15.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.15.0...v1.15.1) (2025-07-30)
+
+
+### Bug Fixes
+
+* provide additional type-context with x-extension ([#85](https://github.com/exalsius/exalsius-api-spec/issues/85)) ([155edfd](https://github.com/exalsius/exalsius-api-spec/commit/155edfd06205232f81597917e5bfecac1ed405ab))
+
 ## [1.15.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.14.1...v1.15.0) (2025-07-29)
 
 

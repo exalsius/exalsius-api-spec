@@ -1,19 +1,22 @@
 get:
-  operationId: listAvailableServices
+  operationId: listServicesDeployments
   tags: [services]
-  summary: List all available services
+  summary: List all service deployments
   description: |
-    **List all available services**
+    **List all service deployments**
 
-    List all services that can be deployed.
+    Retrieve all service deployments, with optional filters:
+    - `cluster_id`: filter by cluster ID
 
-    **Note**
-
-    Services can be added to the exalsius management cluster using the `exalsius-operator`.
-
-    **Result**
-
-    Returns an array of service objects.
+  parameters:
+    - name: cluster_id
+      in: query
+      description: |
+        Only return services that are associated with this cluster.
+      required: false
+      schema:
+        type: string
+        format: uuid
 
   responses:
     '200':
@@ -25,17 +28,36 @@ get:
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
 
-  x-codeSamples:
-    - lang: curl
-      label: cURL
-      source: |
-        curl -X GET "https://api.exalsius.ai/services"
-    - lang: python
-      label: Python
-      source: |
-        import requests
-        import os
+post:
+  operationId: createServiceDeployment
+  tags: [services]
+  summary: Create a service deployment
+  description: |
+    **Create a service deployment**
 
-        url = "https://api.exalsius.ai/services"
-        response = requests.get(url)
-        print(response.json())
+    Create a new service deployment.
+
+    **Parameters**
+
+    - `name`: The name of the service deployment
+    - `cluster_id`: The ID of the cluster to deploy the service to
+    - `template`: The service template to use for the service deployment
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/service-deployment-create-request.yaml'
+  responses:
+    '201':
+      $ref: '../../components/responses/service-create-response.yaml'
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: workspace-already-exists
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

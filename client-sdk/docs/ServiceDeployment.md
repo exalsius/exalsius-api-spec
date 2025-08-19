@@ -5,9 +5,10 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**service_id** | **int** | The ID of the service | 
-**service_name** | **str** | The name of the service | [optional] 
-**values** | **Dict[str, str]** | The values to set for the service | [optional] 
+**service_deployment_id** | **str** | The ID of the service | 
+**service_name** | **str** | The name of the service deployment | 
+**service_template** | **str** | The name of the service template | 
+**owner** | **str** | The user that deployed the service | 
 
 ## Example
 

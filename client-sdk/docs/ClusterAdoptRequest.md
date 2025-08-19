@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the cluster | 
 **colony_id** | **str** | The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony. | [optional] 
-**kubeconfig_b64** | **str** | The kubeconfig of the cluster in base64 encoded string format | [optional] 
+**kubeconfig_b64** | **str** | The kubeconfig of the cluster in base64 encoded string format | 
 **k8s_version** | **str** | The Kubernetes version of the cluster | [optional] 
 
 ## Example

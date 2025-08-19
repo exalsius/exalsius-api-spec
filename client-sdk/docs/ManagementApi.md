@@ -8,6 +8,7 @@ Method | HTTP request | Description
 [**delete_ssh_key**](ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
 [**list_cluster_templates**](ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 [**list_credentials**](ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
+[**list_service_templates**](ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
 [**list_ssh_keys**](ManagementApi.md#list_ssh_keys) | **GET** /management/ssh-keys | List all SSH keys
 [**list_workspace_templates**](ManagementApi.md#list_workspace_templates) | **GET** /management/workspace-templates | List all workspace templates
 
@@ -345,6 +346,90 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **list_service_templates**
+> ServiceTemplateListResponse list_service_templates()
+
+List all available service templates
+
+**List all available services**
+
+List all services templates that can be deployed.
+
+**Note**
+
+Services can be added to the exalsius management cluster using the `exalsius-operator`.
+
+**Result**
+
+Returns an array of service objects.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.service_template_list_response import ServiceTemplateListResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # List all available service templates
+        api_response = api_instance.list_service_templates()
+        print("The response of ManagementApi->list_service_templates:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManagementApi->list_service_templates: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ServiceTemplateListResponse**](ServiceTemplateListResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | List of service templates |  * X-Total-Count - Total number of existing service deployments <br>  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list_ssh_keys**
 > SshKeysListResponse list_ssh_keys()
 
@@ -503,7 +588,7 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of workspace templates |  * X-Total-Count - Total number of existing workspaces <br>  |
+**200** | List of workspace templates |  * X-Total-Count - Total number of existing service deployments <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

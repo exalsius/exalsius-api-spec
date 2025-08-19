@@ -1,0 +1,9 @@
+type: object
+required:
+  - service_deployment_id
+properties:
+  service_deployment_id:
+    type: string
+    format: uuid
+    example: "123e4567-e89b-12d3-a456-426614174000"
+    description: The ID of the deleted service deployment

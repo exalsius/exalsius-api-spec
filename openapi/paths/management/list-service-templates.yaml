@@ -1,0 +1,41 @@
+get:
+  operationId: listServiceTemplates
+  tags: [management]
+  summary: List all available service templates
+  description: |
+    **List all available services**
+
+    List all services templates that can be deployed.
+
+    **Note**
+
+    Services can be added to the exalsius management cluster using the `exalsius-operator`.
+
+    **Result**
+
+    Returns an array of service objects.
+
+  responses:
+    '200':
+      $ref: '../../components/responses/service-template-list-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: services-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/services"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        import os
+
+        url = "https://api.exalsius.ai/services"
+        response = requests.get(url)
+        print(response.json())

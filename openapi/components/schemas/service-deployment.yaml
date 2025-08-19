@@ -1,19 +1,24 @@
 type: object
+required:
+  - service_deployment_id
+  - service_name
+  - service_template
+  - owner
 properties:
-  service_id:
-    type: integer
-    format: int64
+  service_deployment_id:
+    type: string
+    format: uuid
     description: The ID of the service
-    example: 1
+    example: "123e4567-e89b-12d3-a456-426614174000"
   service_name:
     type: string
-    description: The name of the service
-    example: "my-service"
-  values:
-    type: object
-    additionalProperties:
-      type: string
-    description: The values to set for the service
-    example: { "key": "value" }
-required:
-  - service_id
+    description: The name of the service deployment
+    example: "my-service-deployment"
+  service_template:
+    type: string
+    description: The name of the service template
+    example: "my-service-template"
+  owner:
+    type: string
+    description: The user that deployed the service
+    example: "John Doe"
