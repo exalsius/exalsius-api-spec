@@ -6,6 +6,7 @@ required:
 properties:
   model_name:
     type: string
+    description: Model name
     enum:
       - LLAMA3_2_1B
       - LLAMA3_2_3B
