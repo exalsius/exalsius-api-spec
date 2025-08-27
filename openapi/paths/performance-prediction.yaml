@@ -12,12 +12,12 @@ get:
       schema:
         type: string
         enum:
-          - llama3_2_1B
-          - llama3_2_3B
-          - llama3_2_3B_Instruct
-          - gemma3_1B_It
-          - qwen2_5_3B_Instruct
-          - gpt2
+          - LLAMA3_2_1B
+          - LLAMA3_2_3B
+          - LLAMA3_2_3B_INSTRUCT
+          - GEMMA3_1B_IT
+          - QWEN2_5_3B_INSTRUCT
+          - GPT2
       description: Define the model for which you want a performance prediction.
 
     - name: optimizer
