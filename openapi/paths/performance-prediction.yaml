@@ -1,60 +1,16 @@
-get:
+post:
   summary: Get performance predictions for a configuration
   description: >
     This endpoint returns predicted runtime and memory usage
     for a given configuration of model, optimizer, batch size, and sequence length.
   operationId: get-performance-prediction
   tags: [performance-prediction]
-  parameters:
-    - name: model_name
-      in: query
-      required: true
-      schema:
-        type: string
-        enum:
-          - LLAMA3_2_1B
-          - LLAMA3_2_3B
-          - LLAMA3_2_3B_INSTRUCT
-          - GEMMA3_1B_IT
-          - QWEN2_5_3B_INSTRUCT
-          - GPT2
-      description: Define the model for which you want a performance prediction.
-
-    - name: optimizer
-      in: query
-      required: true
-      schema:
-        type: string
-        enum:
-          - adam
-          - adamw
-      description: The optimizer selected for training.
-
-    - name: batch_size
-      in: query
-      required: true
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      description: The batch size.
-    - name: sequence_length
-      in: query
-      required: true
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      description: The sequence length.
-
-    - name: accumulation_steps
-      in: query
-      required: true
-      schema:
-        type: integer
-        format: int32
-        minimum: 1
-      description: Gradient Accumulation
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/requests/performance-prediction-request.yaml'
 
   responses:
     '200':
