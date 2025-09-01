@@ -1,0 +1,6 @@
+type: object
+required:
+  - performance_prediction
+properties:
+  performance_prediction:
+    $ref: './performance-prediction.yaml'

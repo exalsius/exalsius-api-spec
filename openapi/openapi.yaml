@@ -64,6 +64,8 @@ tags:
 paths:
   /offers:
     $ref: ./paths/offers.yaml
+  /performance-prediction:
+    $ref: ./paths/performance-prediction.yaml
   /nodes:
     $ref: ./paths/nodes/list.yaml
   /node/{node_id}:

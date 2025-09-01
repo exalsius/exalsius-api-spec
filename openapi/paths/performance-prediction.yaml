@@ -1,0 +1,26 @@
+post:
+  summary: Get performance predictions for a configuration
+  description: >
+    This endpoint returns predicted runtime and memory usage
+    for a given configuration of model, optimizer, batch size, and sequence length.
+  operationId: get-performance-prediction
+  tags: [performance-prediction]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../components/requests/performance-prediction-request.yaml'
+
+  responses:
+    '200':
+      $ref: '../components/responses/performance-prediction-response.yaml'
+    '400':
+      $ref: '../components/responses/error-response.yaml'
+      useExample: bad-request
+    '422':
+      $ref: '../components/responses/error-response.yaml'
+      useExample: performance-prediction-unknown-parameter
+    '500':
+      $ref: '../components/responses/error-response.yaml'
+      useExample: server-error

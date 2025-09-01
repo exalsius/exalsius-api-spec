@@ -1,0 +1,43 @@
+type: object
+required:
+  - model_name
+  - optimizer
+  - batch_size
+  - sequence_length
+  - accumulation_steps
+properties:
+  model_name:
+    type: string
+    enum:
+      - LLAMA3_2_1B
+      - LLAMA3_2_3B
+      - LLAMA3_2_3B_INSTRUCT
+      - GEMMA3_1B_IT
+      - QWEN2_5_3B_INSTRUCT
+      - GPT2
+    description: Define the model for which you want a performance prediction.
+
+  optimizer:
+    type: string
+    enum:
+      - adam
+      - adamw
+    description: The optimizer selected for training.
+
+  batch_size:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The batch size.
+
+  sequence_length:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The sequence length.
+
+  accumulation_steps:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The number of gradient accumulation steps. Select 1 for no gradient accumulation.
