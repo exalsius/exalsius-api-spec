@@ -175,8 +175,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_performance_prediction.py
-test/test_performance_prediction_api.py
-test/test_performance_prediction_request.py
-test/test_performance_prediction_response.py
 tox.ini
