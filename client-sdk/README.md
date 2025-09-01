@@ -140,6 +140,7 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
+*PerformancePredictionApi* | [**get_performance_prediction**](docs/PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get performance predictions for a configuration
 *ServicesApi* | [**create_service_deployment**](docs/ServicesApi.md#create_service_deployment) | **POST** /services | Create a service deployment
 *ServicesApi* | [**delete_service_deployment**](docs/ServicesApi.md#delete_service_deployment) | **DELETE** /service/{service_deployment_id} | Delete a service deployment
 *ServicesApi* | [**describe_service_deployment**](docs/ServicesApi.md#describe_service_deployment) | **GET** /service/{service_deployment_id} | Get details of a single service deployment
@@ -193,6 +194,9 @@ Class | Method | HTTP request | Description
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
  - [OffersListResponse](docs/OffersListResponse.md)
+ - [PerformancePrediction](docs/PerformancePrediction.md)
+ - [PerformancePredictionRequest](docs/PerformancePredictionRequest.md)
+ - [PerformancePredictionResponse](docs/PerformancePredictionResponse.md)
  - [ResourcePool](docs/ResourcePool.md)
  - [SelfManagedNode](docs/SelfManagedNode.md)
  - [Service](docs/Service.md)

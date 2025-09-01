@@ -75,6 +75,12 @@ from exalsius_api_client.models.node_response import NodeResponse
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.models.offer import Offer
 from exalsius_api_client.models.offers_list_response import OffersListResponse
+from exalsius_api_client.models.performance_prediction import \
+    PerformancePrediction
+from exalsius_api_client.models.performance_prediction_request import \
+    PerformancePredictionRequest
+from exalsius_api_client.models.performance_prediction_response import \
+    PerformancePredictionResponse
 from exalsius_api_client.models.resource_pool import ResourcePool
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
 from exalsius_api_client.models.service import Service

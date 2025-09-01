@@ -47,6 +47,10 @@ docs/NodesListResponse.md
 docs/Offer.md
 docs/OffersApi.md
 docs/OffersListResponse.md
+docs/PerformancePrediction.md
+docs/PerformancePredictionApi.md
+docs/PerformancePredictionRequest.md
+docs/PerformancePredictionResponse.md
 docs/ResourcePool.md
 docs/SelfManagedNode.md
 docs/Service.md
@@ -84,6 +88,7 @@ exalsius_api_client/api/colonies_api.py
 exalsius_api_client/api/management_api.py
 exalsius_api_client/api/nodes_api.py
 exalsius_api_client/api/offers_api.py
+exalsius_api_client/api/performance_prediction_api.py
 exalsius_api_client/api/services_api.py
 exalsius_api_client/api/workspaces_api.py
 exalsius_api_client/api_client.py
@@ -130,6 +135,9 @@ exalsius_api_client/models/node_response.py
 exalsius_api_client/models/nodes_list_response.py
 exalsius_api_client/models/offer.py
 exalsius_api_client/models/offers_list_response.py
+exalsius_api_client/models/performance_prediction.py
+exalsius_api_client/models/performance_prediction_request.py
+exalsius_api_client/models/performance_prediction_response.py
 exalsius_api_client/models/resource_pool.py
 exalsius_api_client/models/self_managed_node.py
 exalsius_api_client/models/service.py
@@ -167,4 +175,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_performance_prediction.py
+test/test_performance_prediction_api.py
+test/test_performance_prediction_request.py
+test/test_performance_prediction_response.py
 tox.ini
