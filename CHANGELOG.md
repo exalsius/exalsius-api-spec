@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.17.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.3...v1.17.0) (2025-09-01)
+
+
+### Features
+
+* performance prediction schemes and API endpoints ([#99](https://github.com/exalsius/exalsius-api-spec/issues/99)) ([041e7bf](https://github.com/exalsius/exalsius-api-spec/commit/041e7bf15007fbda3a3d28c0eb05595c703ac26c))
+
 ## [1.16.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.2...v1.16.3) (2025-08-18)
 
 
