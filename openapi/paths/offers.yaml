@@ -213,6 +213,7 @@ get:
       schema:
         type: boolean
         default: false
+        x-python-type: Optional[bool]
       description: Whether to include non-GPU instances
       required: false
       
