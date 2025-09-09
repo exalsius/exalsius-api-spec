@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.17.0...v1.18.0) (2025-09-09)
+
+
+### Features
+
+* add offers query parameter for non-gpu-instances ([#101](https://github.com/exalsius/exalsius-api-spec/issues/101)) ([adef684](https://github.com/exalsius/exalsius-api-spec/commit/adef68494117c4b76f70d9f1f2d2e67d3d18c62f))
+
 ## [1.17.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.16.3...v1.17.0) (2025-09-01)
 
 
