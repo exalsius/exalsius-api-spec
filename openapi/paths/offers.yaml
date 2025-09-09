@@ -207,6 +207,14 @@ get:
         enum: [asc, desc]
       description: Sort order
       required: false
+
+    - name: non_gpu_instances
+      in: query
+      schema:
+        type: boolean
+        default: false
+      description: Whether to include non-GPU instances
+      required: false
       
       
   responses:
