@@ -14,7 +14,8 @@ Do not edit the class manually.
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import (Field, StrictBool, StrictFloat, StrictInt, StrictStr,
+                      validate_call)
 from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
@@ -125,6 +126,10 @@ class OffersApi:
         sort_order: Annotated[
             Optional[StrictStr], Field(description="Sort order")
         ] = None,
+        non_gpu_instances: Annotated[
+            Optional[StrictBool],
+            Field(description="Whether to include non-GPU instances"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -193,6 +198,8 @@ class OffersApi:
         :type sort_by: str
         :param sort_order: Sort order
         :type sort_order: str
+        :param non_gpu_instances: Whether to include non-GPU instances
+        :type non_gpu_instances: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -242,6 +249,7 @@ class OffersApi:
             cursor=cursor,
             sort_by=sort_by,
             sort_order=sort_order,
+            non_gpu_instances=non_gpu_instances,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -352,6 +360,10 @@ class OffersApi:
         sort_order: Annotated[
             Optional[StrictStr], Field(description="Sort order")
         ] = None,
+        non_gpu_instances: Annotated[
+            Optional[StrictBool],
+            Field(description="Whether to include non-GPU instances"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -420,6 +432,8 @@ class OffersApi:
         :type sort_by: str
         :param sort_order: Sort order
         :type sort_order: str
+        :param non_gpu_instances: Whether to include non-GPU instances
+        :type non_gpu_instances: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -469,6 +483,7 @@ class OffersApi:
             cursor=cursor,
             sort_by=sort_by,
             sort_order=sort_order,
+            non_gpu_instances=non_gpu_instances,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -579,6 +594,10 @@ class OffersApi:
         sort_order: Annotated[
             Optional[StrictStr], Field(description="Sort order")
         ] = None,
+        non_gpu_instances: Annotated[
+            Optional[StrictBool],
+            Field(description="Whether to include non-GPU instances"),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -647,6 +666,8 @@ class OffersApi:
         :type sort_by: str
         :param sort_order: Sort order
         :type sort_order: str
+        :param non_gpu_instances: Whether to include non-GPU instances
+        :type non_gpu_instances: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -696,6 +717,7 @@ class OffersApi:
             cursor=cursor,
             sort_by=sort_by,
             sort_order=sort_order,
+            non_gpu_instances=non_gpu_instances,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -740,6 +762,7 @@ class OffersApi:
         cursor,
         sort_by,
         sort_order,
+        non_gpu_instances,
         _request_auth,
         _content_type,
         _headers,
@@ -864,6 +887,10 @@ class OffersApi:
         if sort_order is not None:
 
             _query_params.append(("sort_order", sort_order))
+
+        if non_gpu_instances is not None:
+
+            _query_params.append(("non_gpu_instances", non_gpu_instances))
 
         # process the header parameters
         # process the form parameters

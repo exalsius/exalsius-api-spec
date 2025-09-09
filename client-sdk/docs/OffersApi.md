@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_offers**
-> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order)
+> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
 
 List and filter current GPU on-demand and spot market offers
 
@@ -69,10 +69,11 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     cursor = 'cursor_example' # str | The cursor for pagination. Use the `next_cursor` from the previous response to get the next page. (optional)
     sort_by = 'sort_by_example' # str | Field to sort by (optional)
     sort_order = 'sort_order_example' # str | Sort order (optional)
+    non_gpu_instances = False # bool | Whether to include non-GPU instances (optional) (default to False)
 
     try:
         # List and filter current GPU on-demand and spot market offers
-        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order)
+        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
         print("The response of OffersApi->get_offers:\n")
         pprint(api_response)
     except Exception as e:
@@ -112,6 +113,7 @@ Name | Type | Description  | Notes
  **cursor** | **str**| The cursor for pagination. Use the &#x60;next_cursor&#x60; from the previous response to get the next page. | [optional] 
  **sort_by** | **str**| Field to sort by | [optional] 
  **sort_order** | **str**| Sort order | [optional] 
+ **non_gpu_instances** | **bool**| Whether to include non-GPU instances | [optional] [default to False]
 
 ### Return type
 
