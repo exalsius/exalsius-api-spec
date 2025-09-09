@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.18.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.18.0...v1.18.1) (2025-09-09)
+
+
+### Bug Fixes
+
+* overwrite query param type ([#103](https://github.com/exalsius/exalsius-api-spec/issues/103)) ([83eae33](https://github.com/exalsius/exalsius-api-spec/commit/83eae331f03f0717a8306fec8f8f948b0a2b973c))
+
 ## [1.18.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.17.0...v1.18.0) (2025-09-09)
 
 
