@@ -18,7 +18,7 @@ properties:
     $ref: '../schemas/workspace-template.yaml'
   resources:
     description: The resources allocated to the workspace
-    $ref: '../schemas/resource-pool.yaml'
+    $ref: '../schemas/hardware.yaml'
   description:
     type: string
     description: The description of the workspace

@@ -1,0 +1,5 @@
+description: Node patch response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/node-patch-response.yaml'

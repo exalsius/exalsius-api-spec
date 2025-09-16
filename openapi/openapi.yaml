@@ -138,6 +138,8 @@ components:
       $ref: ./components/schemas/nodes-list-response.yaml
     NodeImportResponse:
       $ref: ./components/schemas/node-import-response.yaml
+    NodePatchResponse:
+      $ref: ./components/schemas/node-patch-response.yaml
     Colony:
       $ref: ./components/schemas/colony.yaml
     ColoniesListResponse:
@@ -219,6 +221,8 @@ components:
       $ref: ./components/responses/nodes-list-response.yaml
     NodeImportResponse:
       $ref: ./components/responses/node-import-response.yaml
+    NodePatchResponse:
+      $ref: ./components/responses/node-patch-response.yaml
     ServiceListResponse:
       $ref: ./components/responses/services-list-response.yaml
     SshKeyListResponse:
@@ -249,6 +253,7 @@ components:
           tokenUrl: https://exalsius.eu.auth0.com/oauth/token
           scopes:
             openid: Default login scope (not used for access control)
+            nodeagent: Authorization scope for a node agent
 security:
   - OAuth2:
       - openid

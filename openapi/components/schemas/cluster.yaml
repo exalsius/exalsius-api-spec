@@ -87,7 +87,7 @@ properties:
     items:
       $ref: '../../components/schemas/service-deployment.yaml'
     description: The deployed services in the cluster
-    example: [{"service_id": 123, "service_name": "my-service", "values": {"key": "value"}}, {"service_id": 324, "service_name": "my-service-2", "values": {"key": "value"}}]
+    example: [{"service_deployment_id": 123, "service_name": "my-service"}, {"service_deployment_id": 324, "service_name": "my-service-2"}]
   workspace_deployments:
     type: array
     items:

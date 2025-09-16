@@ -1,3 +1,4 @@
+title: Hardware
 type: object
 properties:
   gpu_count:
@@ -13,6 +14,11 @@ properties:
     type: string
     description: The type of the GPU
     example: "a100"
+  gpu_memory:
+    type: integer
+    description: The memory of the GPU in GB
+    format: int32
+    example: 80
   cpu_cores:
     type: integer
     description: The number of CPU cores
