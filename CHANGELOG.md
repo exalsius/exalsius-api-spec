@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.19.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.18.1...v1.19.0) (2025-09-16)
+
+
+### Features
+
+* add node-patch possibility; refine scopes ([#105](https://github.com/exalsius/exalsius-api-spec/issues/105)) ([668e3c2](https://github.com/exalsius/exalsius-api-spec/commit/668e3c276d1874cc8b28721834f98c846fbe3a9b))
+
 ## [1.18.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.18.0...v1.18.1) (2025-09-09)
 
 
