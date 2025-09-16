@@ -249,11 +249,14 @@ components:
       flows:
         authorizationCode:
           authorizationUrl: >-
-            https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
+            https://exalsius.eu.auth0.com/authorize?audience=http://api.exalsius.ai
           tokenUrl: https://exalsius.eu.auth0.com/oauth/token
           scopes:
-            openid: Default login scope (not used for access control)
-            nodeagent: Authorization scope for a node agent
+            openid: "Request an ID token (mandatory for OIDC)"
+            userview: "Scope used for all other operations"
+            nodeagent: "Scope used for node agent operations"
+# Default scopes for all API operations
 security:
   - OAuth2:
       - openid
+      - userview

@@ -116,8 +116,9 @@ patch:
   summary: Patch a node
   security:
     - OAuth2:
-      - nodeagent
+      # This operation is only accessible with the nodeagent scope
       - openid
+      - nodeagent
   description: |
     **Patch a node**
 
