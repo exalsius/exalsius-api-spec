@@ -179,7 +179,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_hardware.py
-test/test_node_patch_request.py
-test/test_node_patch_response.py
 tox.ini
