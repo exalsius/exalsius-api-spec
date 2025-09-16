@@ -4,8 +4,9 @@ post:
   summary: Import a self-managed node via SSH
   security:
     - OAuth2:
-      - nodeagent
+      # This operation is only accessible with the nodeagent scope
       - openid
+      - nodeagent
   description: |
     **Import a self-managed node into the pool**
 
