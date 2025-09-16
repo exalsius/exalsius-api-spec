@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
 
@@ -32,18 +32,23 @@ class NodeImportSshRequest(BaseModel):
     hostname: StrictStr = Field(description="The hostname of the node")
     endpoint: StrictStr = Field(description="IP or hostname reachable over SSH")
     username: StrictStr = Field(description="Username to access the node")
+    ssh_key_id: StrictStr = Field(
+        description="The ID of the SSH key to use for the node"
+    )
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
-    ssh_key_id: StrictStr = Field(
-        description="The ID of the SSH key to use for the node"
+    deploy_node_agent: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether to deploy the node agent on the node via SSH after the connection has been verified",
     )
     __properties: ClassVar[List[str]] = [
         "hostname",
         "endpoint",
         "username",
-        "description",
         "ssh_key_id",
+        "description",
+        "deploy_node_agent",
     ]
 
     model_config = ConfigDict(
@@ -99,8 +104,13 @@ class NodeImportSshRequest(BaseModel):
                 "hostname": obj.get("hostname"),
                 "endpoint": obj.get("endpoint"),
                 "username": obj.get("username"),
-                "description": obj.get("description"),
                 "ssh_key_id": obj.get("ssh_key_id"),
+                "description": obj.get("description"),
+                "deploy_node_agent": (
+                    obj.get("deploy_node_agent")
+                    if obj.get("deploy_node_agent") is not None
+                    else False
+                ),
             }
         )
         return _obj

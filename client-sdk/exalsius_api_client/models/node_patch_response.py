@@ -20,57 +20,17 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import ConfigDict, Field, StrictStr, field_validator
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.base_node import BaseNode
 
-
-class SelfManagedNode(BaseNode):
+class NodePatchResponse(BaseModel):
     """
-    SelfManagedNode
+    NodePatchResponse
     """  # noqa: E501
 
-    node_type: Optional[StrictStr] = Field(
-        default=None, description='The type of the node. Must be "SELF_MANAGED".'
-    )
-    endpoint: StrictStr = Field(
-        description="The endpoint of the node (IP or hostname) and port"
-    )
-    username: StrictStr = Field(description="The username to connect to the node")
-    ssh_key_id: StrictStr = Field(
-        description="The ID of the private SSH key to connect to the node"
-    )
-    __properties: ClassVar[List[str]] = [
-        "gpu_count",
-        "gpu_vendor",
-        "gpu_type",
-        "gpu_memory",
-        "cpu_cores",
-        "memory_gb",
-        "storage_gb",
-        "id",
-        "node_type",
-        "namespace",
-        "hostname",
-        "description",
-        "location",
-        "import_time",
-        "node_status",
-        "endpoint",
-        "username",
-        "ssh_key_id",
-    ]
-
-    @field_validator("node_type")
-    def node_type_validate_enum(cls, value):
-        """Validates the enum"""
-        if value is None:
-            return value
-
-        if value not in set(["SELF_MANAGED"]):
-            raise ValueError("must be one of enum values ('SELF_MANAGED')")
-        return value
+    node_id: StrictStr = Field(description="The ID of the node")
+    __properties: ClassVar[List[str]] = ["node_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -89,7 +49,7 @@ class SelfManagedNode(BaseNode):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of SelfManagedNode from a JSON string"""
+        """Create an instance of NodePatchResponse from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -113,33 +73,12 @@ class SelfManagedNode(BaseNode):
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of SelfManagedNode from a dict"""
+        """Create an instance of NodePatchResponse from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "gpu_count": obj.get("gpu_count"),
-                "gpu_vendor": obj.get("gpu_vendor"),
-                "gpu_type": obj.get("gpu_type"),
-                "gpu_memory": obj.get("gpu_memory"),
-                "cpu_cores": obj.get("cpu_cores"),
-                "memory_gb": obj.get("memory_gb"),
-                "storage_gb": obj.get("storage_gb"),
-                "id": obj.get("id"),
-                "node_type": obj.get("node_type"),
-                "namespace": obj.get("namespace"),
-                "hostname": obj.get("hostname"),
-                "description": obj.get("description"),
-                "location": obj.get("location"),
-                "import_time": obj.get("import_time"),
-                "node_status": obj.get("node_status"),
-                "endpoint": obj.get("endpoint"),
-                "username": obj.get("username"),
-                "ssh_key_id": obj.get("ssh_key_id"),
-            }
-        )
+        _obj = cls.model_validate({"node_id": obj.get("node_id")})
         return _obj

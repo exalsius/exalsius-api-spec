@@ -23,7 +23,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.resource_pool import ResourcePool
+from exalsius_api_client.models.hardware import Hardware
 
 
 class ClusterResourcesListResponseResourcesInner(BaseModel):
@@ -34,10 +34,10 @@ class ClusterResourcesListResponseResourcesInner(BaseModel):
     node_id: Optional[StrictStr] = Field(
         default=None, description="The unique identifier for the node"
     )
-    available: Optional[ResourcePool] = Field(
+    available: Optional[Hardware] = Field(
         default=None, description="The available resources on the node"
     )
-    occupied: Optional[ResourcePool] = Field(
+    occupied: Optional[Hardware] = Field(
         default=None, description="The occupied resources on the node"
     )
     __properties: ClassVar[List[str]] = ["node_id", "available", "occupied"]
@@ -100,12 +100,12 @@ class ClusterResourcesListResponseResourcesInner(BaseModel):
             {
                 "node_id": obj.get("node_id"),
                 "available": (
-                    ResourcePool.from_dict(obj["available"])
+                    Hardware.from_dict(obj["available"])
                     if obj.get("available") is not None
                     else None
                 ),
                 "occupied": (
-                    ResourcePool.from_dict(obj["occupied"])
+                    Hardware.from_dict(obj["occupied"])
                     if obj.get("occupied") is not None
                     else None
                 ),

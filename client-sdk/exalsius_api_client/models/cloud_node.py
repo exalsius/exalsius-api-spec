@@ -45,12 +45,6 @@ class CloudNode(BaseNode):
         description="The price per hour for the node"
     )
     __properties: ClassVar[List[str]] = [
-        "id",
-        "node_type",
-        "namespace",
-        "hostname",
-        "description",
-        "location",
         "gpu_count",
         "gpu_vendor",
         "gpu_type",
@@ -58,6 +52,12 @@ class CloudNode(BaseNode):
         "cpu_cores",
         "memory_gb",
         "storage_gb",
+        "id",
+        "node_type",
+        "namespace",
+        "hostname",
+        "description",
+        "location",
         "import_time",
         "node_status",
         "provider",
@@ -127,12 +127,6 @@ class CloudNode(BaseNode):
 
         _obj = cls.model_validate(
             {
-                "id": obj.get("id"),
-                "node_type": obj.get("node_type"),
-                "namespace": obj.get("namespace"),
-                "hostname": obj.get("hostname"),
-                "description": obj.get("description"),
-                "location": obj.get("location"),
                 "gpu_count": obj.get("gpu_count"),
                 "gpu_vendor": obj.get("gpu_vendor"),
                 "gpu_type": obj.get("gpu_type"),
@@ -140,6 +134,12 @@ class CloudNode(BaseNode):
                 "cpu_cores": obj.get("cpu_cores"),
                 "memory_gb": obj.get("memory_gb"),
                 "storage_gb": obj.get("storage_gb"),
+                "id": obj.get("id"),
+                "node_type": obj.get("node_type"),
+                "namespace": obj.get("namespace"),
+                "hostname": obj.get("hostname"),
+                "description": obj.get("description"),
+                "location": obj.get("location"),
                 "import_time": obj.get("import_time"),
                 "node_status": obj.get("node_status"),
                 "provider": obj.get("provider"),

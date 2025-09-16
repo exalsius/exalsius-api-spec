@@ -13,7 +13,7 @@ Name | Type | Description | Notes
 **owner** | **str** | The owner of the workspace | [optional] 
 **description** | **str** | The description of the workspace | [optional] 
 **access_information** | [**List[WorkspaceAccessInformation]**](WorkspaceAccessInformation.md) | The access information for the workspace | [optional] 
-**resources** | [**ResourcePool**](ResourcePool.md) | The resources allocated to the workspace | 
+**resources** | [**Hardware**](Hardware.md) | The resources allocated to the workspace | 
 **created_at** | **datetime** | The date and time the workspace was created | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the workspace will be deleted | [optional] 
 

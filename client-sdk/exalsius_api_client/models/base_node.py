@@ -36,24 +36,6 @@ class BaseNode(BaseModel):
     BaseNode
     """  # noqa: E501
 
-    id: StrictStr = Field(description="The unique identifier for the node")
-    node_type: StrictStr = Field(
-        description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
-    )
-    namespace: Optional[StrictStr] = Field(
-        default=None,
-        description="The namespace of the node (e.g. the namespace of the user that added the node)",
-    )
-    hostname: Optional[StrictStr] = Field(
-        default=None, description="The hostname of the node"
-    )
-    description: Optional[StrictStr] = Field(
-        default=None, description="Description of the node"
-    )
-    location: Optional[StrictStr] = Field(
-        default=None,
-        description="The location of the node (e.g. city, data center, server rack, etc.)",
-    )
     gpu_count: Optional[StrictInt] = Field(
         default=None, description="The number of GPUs"
     )
@@ -75,6 +57,24 @@ class BaseNode(BaseModel):
     storage_gb: Optional[StrictInt] = Field(
         default=None, description="The storage of the node in GB"
     )
+    id: StrictStr = Field(description="The unique identifier for the node")
+    node_type: StrictStr = Field(
+        description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
+    )
+    namespace: Optional[StrictStr] = Field(
+        default=None,
+        description="The namespace of the node (e.g. the namespace of the user that added the node)",
+    )
+    hostname: Optional[StrictStr] = Field(
+        default=None, description="The hostname of the node"
+    )
+    description: Optional[StrictStr] = Field(
+        default=None, description="Description of the node"
+    )
+    location: Optional[StrictStr] = Field(
+        default=None,
+        description="The location of the node (e.g. city, data center, server rack, etc.)",
+    )
     import_time: Optional[datetime] = Field(
         default=None, description="The time the node was imported"
     )
@@ -82,12 +82,6 @@ class BaseNode(BaseModel):
         description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed "
     )
     __properties: ClassVar[List[str]] = [
-        "id",
-        "node_type",
-        "namespace",
-        "hostname",
-        "description",
-        "location",
         "gpu_count",
         "gpu_vendor",
         "gpu_type",
@@ -95,6 +89,12 @@ class BaseNode(BaseModel):
         "cpu_cores",
         "memory_gb",
         "storage_gb",
+        "id",
+        "node_type",
+        "namespace",
+        "hostname",
+        "description",
+        "location",
         "import_time",
         "node_status",
     ]

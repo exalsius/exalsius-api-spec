@@ -139,6 +139,7 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**import_node_from_offer**](docs/NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
 *NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
+*NodesApi* | [**patch_node**](docs/NodesApi.md#patch_node) | **PATCH** /node/{node_id} | Patch a node
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
 *PerformancePredictionApi* | [**get_performance_prediction**](docs/PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get performance predictions for a configuration
 *ServicesApi* | [**create_service_deployment**](docs/ServicesApi.md#create_service_deployment) | **POST** /services | Create a service deployment
@@ -186,10 +187,13 @@ Class | Method | HTTP request | Description
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
  - [Error](docs/Error.md)
  - [ErrorDetail](docs/ErrorDetail.md)
+ - [Hardware](docs/Hardware.md)
  - [Kubeconfig](docs/Kubeconfig.md)
  - [NodeDeleteResponse](docs/NodeDeleteResponse.md)
  - [NodeImportResponse](docs/NodeImportResponse.md)
  - [NodeImportSshRequest](docs/NodeImportSshRequest.md)
+ - [NodePatchRequest](docs/NodePatchRequest.md)
+ - [NodePatchResponse](docs/NodePatchResponse.md)
  - [NodeResponse](docs/NodeResponse.md)
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
@@ -197,7 +201,6 @@ Class | Method | HTTP request | Description
  - [PerformancePrediction](docs/PerformancePrediction.md)
  - [PerformancePredictionRequest](docs/PerformancePredictionRequest.md)
  - [PerformancePredictionResponse](docs/PerformancePredictionResponse.md)
- - [ResourcePool](docs/ResourcePool.md)
  - [SelfManagedNode](docs/SelfManagedNode.md)
  - [Service](docs/Service.md)
  - [ServiceCreateResponse](docs/ServiceCreateResponse.md)
@@ -240,6 +243,7 @@ Authentication schemes defined for the API:
 - **Authorization URL**: https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
 - **Scopes**: 
  - **openid**: Default login scope (not used for access control)
+ - **nodeagent**: Authorization scope for a node agent
 
 
 ## Author

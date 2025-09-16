@@ -24,7 +24,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.resource_pool import ResourcePool
+from exalsius_api_client.models.hardware import Hardware
 from exalsius_api_client.models.workspace_template import WorkspaceTemplate
 
 
@@ -38,9 +38,7 @@ class WorkspaceCreateRequest(BaseModel):
         description="The unique identifier of the associated cluster"
     )
     template: WorkspaceTemplate
-    resources: ResourcePool = Field(
-        description="The resources allocated to the workspace"
-    )
+    resources: Hardware = Field(description="The resources allocated to the workspace")
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
     )
@@ -120,7 +118,7 @@ class WorkspaceCreateRequest(BaseModel):
                     else None
                 ),
                 "resources": (
-                    ResourcePool.from_dict(obj["resources"])
+                    Hardware.from_dict(obj["resources"])
                     if obj.get("resources") is not None
                     else None
                 ),

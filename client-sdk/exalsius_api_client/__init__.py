@@ -86,11 +86,14 @@ from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse
 from exalsius_api_client.models.error import Error
 from exalsius_api_client.models.error_detail import ErrorDetail
+from exalsius_api_client.models.hardware import Hardware
 from exalsius_api_client.models.kubeconfig import Kubeconfig
 from exalsius_api_client.models.node_delete_response import NodeDeleteResponse
 from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
     NodeImportSshRequest
+from exalsius_api_client.models.node_patch_request import NodePatchRequest
+from exalsius_api_client.models.node_patch_response import NodePatchResponse
 from exalsius_api_client.models.node_response import NodeResponse
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.models.offer import Offer
@@ -101,7 +104,6 @@ from exalsius_api_client.models.performance_prediction_request import \
     PerformancePredictionRequest
 from exalsius_api_client.models.performance_prediction_response import \
     PerformancePredictionResponse
-from exalsius_api_client.models.resource_pool import ResourcePool
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
 from exalsius_api_client.models.service import Service
 from exalsius_api_client.models.service_create_response import \

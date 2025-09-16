@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**import_node_from_offer**](NodesApi.md#import_node_from_offer) | **POST** /node/import/offer/{offer_id} | Import a node from an offer
 [**import_ssh**](NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 [**list_nodes**](NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
+[**patch_node**](NodesApi.md#patch_node) | **PATCH** /node/{node_id} | Patch a node
 
 
 # **delete_node**
@@ -468,6 +469,89 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing service deployments <br>  |
 **422** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **patch_node**
+> NodePatchResponse patch_node(node_id, node_patch_request=node_patch_request)
+
+Patch a node
+
+**Patch a node**
+
+Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.node_patch_request import NodePatchRequest
+from exalsius_api_client.models.node_patch_response import NodePatchResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.NodesApi(api_client)
+    node_id = 'node_id_example' # str | 
+    node_patch_request = exalsius_api_client.NodePatchRequest() # NodePatchRequest |  (optional)
+
+    try:
+        # Patch a node
+        api_response = api_instance.patch_node(node_id, node_patch_request=node_patch_request)
+        print("The response of NodesApi->patch_node:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodesApi->patch_node: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **node_id** | **str**|  | 
+ **node_patch_request** | [**NodePatchRequest**](NodePatchRequest.md)|  | [optional] 
+
+### Return type
+
+[**NodePatchResponse**](NodePatchResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Node patch response |  -  |
+**404** | Error response |  -  |
 **500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
