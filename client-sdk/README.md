@@ -240,10 +240,11 @@ Authentication schemes defined for the API:
 
 - **Type**: OAuth
 - **Flow**: accessCode
-- **Authorization URL**: https://exalsius.eu.auth0.com/authorize?audience=myapiaudience=http://api.exalsius.ai
+- **Authorization URL**: https://exalsius.eu.auth0.com/authorize?audience=http://api.exalsius.ai
 - **Scopes**: 
- - **openid**: Default login scope (not used for access control)
- - **nodeagent**: Authorization scope for a node agent
+ - **openid**: Request an ID token (mandatory for OIDC)
+ - **userview**: Scope used for all other operations
+ - **nodeagent**: Scope used for node agent operations
 
 
 ## Author
