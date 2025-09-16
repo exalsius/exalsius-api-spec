@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.20.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.19.0...v1.20.0) (2025-09-16)
+
+
+### Features
+
+* add fine-grained scoping ([#107](https://github.com/exalsius/exalsius-api-spec/issues/107)) ([d7bfe72](https://github.com/exalsius/exalsius-api-spec/commit/d7bfe725265d21ef426519fd2294a9220d143cdc))
+
 ## [1.19.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.18.1...v1.19.0) (2025-09-16)
 
 
