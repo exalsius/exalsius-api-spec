@@ -23,10 +23,10 @@ content:
               - "123e4567-e89b-12d3-a456-426614174004"
               - "123e4567-e89b-12d3-a456-426614174005"
             service_deployments:
-              - service_id: 123
+              - service_deployment_id: 123abc
                 service_name: "my-service"
-                values:
-                  key: "value"
+                service_template: "my-service-template"
+                owner: "my-user"
             k8s_version: "1.30.0"
             current_costs: 100.0
             costs_per_hour: 1.0

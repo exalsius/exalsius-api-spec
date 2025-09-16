@@ -16,10 +16,10 @@ properties:
           example: "123e4567-e89b-12d3-a456-426614174000"
         available:
           description: The available resources on the node
-          $ref: './resource-pool.yaml'
+          $ref: './hardware.yaml'
         occupied:
           description: The occupied resources on the node
-          $ref: './resource-pool.yaml'
+          $ref: './hardware.yaml'
   total:
     type: integer
     format: int32

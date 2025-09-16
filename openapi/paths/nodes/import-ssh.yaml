@@ -2,6 +2,10 @@ post:
   operationId: importSsh
   tags: [nodes]
   summary: Import a self-managed node via SSH
+  security:
+    - OAuth2:
+      - nodeagent
+      - openid
   description: |
     **Import a self-managed node into the pool**
 

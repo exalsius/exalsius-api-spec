@@ -1,92 +1,61 @@
 title: BaseNode
-type: object
-required:
-  - id
-  - node_type
-  - node_status
-discriminator:
-  propertyName: node_type
-  mapping:
-    CLOUD: './cloud-node.yaml'
-    SELF_MANAGED: './self-managed-node.yaml'
-properties:
-  id:
-    type: string
-    format: uuid
-    description: The unique identifier for the node
-    example: "123e4567-e89b-12d3-a456-426614174000"
-  node_type:
-    type: string
-    enum: [CLOUD, SELF_MANAGED]
-    x-enum-varnames: [CLOUD, SELF_MANAGED]
-    description: >
-      The type of the node.
-      - `CLOUD`: Cloud node
-      - `SELF_MANAGED`: Self-managed node
-    example: "CLOUD"
-  namespace:
-    type: string
-    description: The namespace of the node (e.g. the namespace of the user that added the node)
-    example: "my-namespace"
-  hostname:
-    type: string
-    description: The hostname of the node
-    example: "my-node-123"
-  description:
-    type: string
-    description: Description of the node
-    example: "My self-managed / cloud node"
-  location:
-    type: string
-    description: The location of the node (e.g. city, data center, server rack, etc.)
-    example: "Virginia"
-  gpu_count:
-    type: integer
-    description: The number of GPUs
-    format: int32
-    example: 1
-  gpu_vendor:
-    type: string
-    description: The vendor of the GPU
-    example: "nvidia"
-  gpu_type:
-    type: string
-    description: The type of the GPU
-    example: "a100"
-  gpu_memory:
-    type: integer
-    description: The memory of the GPU in GB
-    format: int32
-    example: 80
-  cpu_cores:
-    type: integer
-    description: The number of CPU cores
-    format: int32
-    example: 4
-  memory_gb:
-    type: integer
-    description: The memory of the node in GB
-    format: int32
-    example: 16
-  storage_gb:
-    type: integer
-    description: The storage of the node in GB
-    format: int32
-    example: 100
-  import_time:
-    type: string
-    description: The time the node was imported
-    format: date-time
-    example: "2021-01-01T00:00:00Z"
-  node_status:
-    type: string
-    enum: [PENDING, DISCOVERING, AVAILABLE, ADDED, DEPLOYED, FAILED]
-    description: |
-      The status of the node.
-      - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode)
-      - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes)
-      - `AVAILABLE`: Node is available to be added to a cluster
-      - `ADDED`: Node is added to a cluster
-      - `DEPLOYED`: Node is deployed in a cluster
-      - `FAILED`: The discovering process of the node failed
-    example: "AVAILABLE"
+allOf:
+  - $ref: './hardware.yaml'
+  - type: object
+    required:
+      - id
+      - node_type
+      - node_status
+    discriminator:
+      propertyName: node_type
+      mapping:
+        CLOUD: './cloud-node.yaml'
+        SELF_MANAGED: './self-managed-node.yaml'
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: The unique identifier for the node
+        example: "123e4567-e89b-12d3-a456-426614174000"
+      node_type:
+        type: string
+        enum: [CLOUD, SELF_MANAGED]
+        x-enum-varnames: [CLOUD, SELF_MANAGED]
+        description: >
+          The type of the node.
+          - `CLOUD`: Cloud node
+          - `SELF_MANAGED`: Self-managed node
+        example: "CLOUD"
+      namespace:
+        type: string
+        description: The namespace of the node (e.g. the namespace of the user that added the node)
+        example: "my-namespace"
+      hostname:
+        type: string
+        description: The hostname of the node
+        example: "my-node-123"
+      description:
+        type: string
+        description: Description of the node
+        example: "My self-managed / cloud node"
+      location:
+        type: string
+        description: The location of the node (e.g. city, data center, server rack, etc.)
+        example: "Virginia"
+      import_time:
+        type: string
+        description: The time the node was imported
+        format: date-time
+        example: "2021-01-01T00:00:00Z"
+      node_status:
+        type: string
+        enum: [PENDING, DISCOVERING, AVAILABLE, ADDED, DEPLOYED, FAILED]
+        description: |
+          The status of the node.
+          - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode)
+          - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes)
+          - `AVAILABLE`: Node is available to be added to a cluster
+          - `ADDED`: Node is added to a cluster
+          - `DEPLOYED`: Node is deployed in a cluster
+          - `FAILED`: The discovering process of the node failed
+        example: "AVAILABLE"

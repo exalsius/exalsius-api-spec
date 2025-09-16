@@ -1,0 +1,9 @@
+title: NodePatchRequest
+allOf:
+  - $ref: '../schemas/hardware.yaml'
+  - type: object
+    properties:
+      description:
+        type: string
+        description: Description of the node
+        example: "My self-managed node"

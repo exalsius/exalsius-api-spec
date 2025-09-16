@@ -109,3 +109,40 @@ delete:
 
         delete_node(123)
         print(response)
+
+patch:
+  operationId: patchNode
+  tags: [nodes]
+  summary: Patch a node
+  security:
+    - OAuth2:
+      - nodeagent
+      - openid
+  description: |
+    **Patch a node**
+
+    Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+
+  parameters:
+    - name: node_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+  
+  requestBody:
+    required: false
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/node-patch-request.yaml'
+  responses:
+    '200':
+      $ref: '../../components/responses/node-patch-response.yaml'
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: node-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
