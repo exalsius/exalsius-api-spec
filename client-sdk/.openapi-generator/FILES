@@ -181,5 +181,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_node_agent_deployment_configuration.py
 tox.ini
