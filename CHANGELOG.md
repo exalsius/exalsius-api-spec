@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.20.0...v1.21.0) (2025-09-18)
+
+
+### Features
+
+* refine scheme for node-agent-deployment process ([#109](https://github.com/exalsius/exalsius-api-spec/issues/109)) ([6e189a3](https://github.com/exalsius/exalsius-api-spec/commit/6e189a341f5d8746c8fede4b7a2f89a64828018e))
+
 ## [1.20.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.19.0...v1.20.0) (2025-09-16)
 
 
