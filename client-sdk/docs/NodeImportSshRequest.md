@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **username** | **str** | Username to access the node | 
 **ssh_key_id** | **str** | The ID of the SSH key to use for the node | 
 **description** | **str** | Description of the node | [optional] 
-**deploy_node_agent** | **bool** | Whether to deploy the node agent on the node via SSH after the connection has been verified | [optional] [default to False]
+**node_agent_deployment_config** | [**NodeAgentDeploymentConfiguration**](NodeAgentDeploymentConfiguration.md) |  | [optional] 
 
 ## Example
 

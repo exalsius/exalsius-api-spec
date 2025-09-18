@@ -68,6 +68,8 @@ from exalsius_api_client.models.error import Error
 from exalsius_api_client.models.error_detail import ErrorDetail
 from exalsius_api_client.models.hardware import Hardware
 from exalsius_api_client.models.kubeconfig import Kubeconfig
+from exalsius_api_client.models.node_agent_deployment_configuration import \
+    NodeAgentDeploymentConfiguration
 from exalsius_api_client.models.node_delete_response import NodeDeleteResponse
 from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \

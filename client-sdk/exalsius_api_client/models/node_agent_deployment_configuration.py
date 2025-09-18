@@ -23,33 +23,14 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.node_agent_deployment_configuration import \
-    NodeAgentDeploymentConfiguration
 
-
-class NodeImportSshRequest(BaseModel):
+class NodeAgentDeploymentConfiguration(BaseModel):
     """
-    NodeImportSshRequest
+    NodeAgentDeploymentConfiguration
     """  # noqa: E501
 
-    hostname: StrictStr = Field(description="The hostname of the node")
-    endpoint: StrictStr = Field(description="IP or hostname reachable over SSH")
-    username: StrictStr = Field(description="Username to access the node")
-    ssh_key_id: StrictStr = Field(
-        description="The ID of the SSH key to use for the node"
-    )
-    description: Optional[StrictStr] = Field(
-        default=None, description="Description of the node"
-    )
-    node_agent_deployment_config: Optional[NodeAgentDeploymentConfiguration] = None
-    __properties: ClassVar[List[str]] = [
-        "hostname",
-        "endpoint",
-        "username",
-        "ssh_key_id",
-        "description",
-        "node_agent_deployment_config",
-    ]
+    refresh_token: StrictStr = Field(description="The refresh token for the node agent")
+    __properties: ClassVar[List[str]] = ["refresh_token"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -68,7 +49,7 @@ class NodeImportSshRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of NodeImportSshRequest from a JSON string"""
+        """Create an instance of NodeAgentDeploymentConfiguration from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -88,36 +69,16 @@ class NodeImportSshRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of node_agent_deployment_config
-        if self.node_agent_deployment_config:
-            _dict["node_agent_deployment_config"] = (
-                self.node_agent_deployment_config.to_dict()
-            )
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of NodeImportSshRequest from a dict"""
+        """Create an instance of NodeAgentDeploymentConfiguration from a dict"""
         if obj is None:
             return None
 
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "hostname": obj.get("hostname"),
-                "endpoint": obj.get("endpoint"),
-                "username": obj.get("username"),
-                "ssh_key_id": obj.get("ssh_key_id"),
-                "description": obj.get("description"),
-                "node_agent_deployment_config": (
-                    NodeAgentDeploymentConfiguration.from_dict(
-                        obj["node_agent_deployment_config"]
-                    )
-                    if obj.get("node_agent_deployment_config") is not None
-                    else None
-                ),
-            }
-        )
+        _obj = cls.model_validate({"refresh_token": obj.get("refresh_token")})
         return _obj

@@ -39,6 +39,7 @@ docs/ErrorDetail.md
 docs/Hardware.md
 docs/Kubeconfig.md
 docs/ManagementApi.md
+docs/NodeAgentDeploymentConfiguration.md
 docs/NodeDeleteResponse.md
 docs/NodeImportResponse.md
 docs/NodeImportSshRequest.md
@@ -131,6 +132,7 @@ exalsius_api_client/models/error.py
 exalsius_api_client/models/error_detail.py
 exalsius_api_client/models/hardware.py
 exalsius_api_client/models/kubeconfig.py
+exalsius_api_client/models/node_agent_deployment_configuration.py
 exalsius_api_client/models/node_delete_response.py
 exalsius_api_client/models/node_import_response.py
 exalsius_api_client/models/node_import_ssh_request.py
@@ -179,4 +181,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_node_agent_deployment_configuration.py
 tox.ini
