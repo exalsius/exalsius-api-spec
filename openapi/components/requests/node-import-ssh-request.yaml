@@ -25,6 +25,4 @@ properties:
     type: string
     description: Description of the node
     example: "My self-managed node"
-  node_agent_deployment_config:
-    $ref: '../schemas/node-agent-deployment-configuration.yaml'
 
