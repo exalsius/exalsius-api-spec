@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.1...openapi-v1.21.2) (2025-09-22)
+
+
+### Bug Fixes
+
+* remove node-agent deployment configuration ([#113](https://github.com/exalsius/exalsius-api-spec/issues/113)) ([5cbce43](https://github.com/exalsius/exalsius-api-spec/commit/5cbce4320292c5b7d053eedfc3db69aabc9fbf05))
+
 ## [1.21.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.0...openapi-v1.21.1) (2025-09-22)
 
 
