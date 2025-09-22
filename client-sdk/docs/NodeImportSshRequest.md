@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **username** | **str** | Username to access the node | 
 **ssh_key_id** | **str** | The ID of the SSH key to use for the node | 
 **description** | **str** | Description of the node | [optional] 
-**node_agent_deployment_config** | [**NodeAgentDeploymentConfiguration**](NodeAgentDeploymentConfiguration.md) |  | [optional] 
 
 ## Example
 

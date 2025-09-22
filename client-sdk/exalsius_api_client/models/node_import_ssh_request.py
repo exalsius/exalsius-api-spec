@@ -23,9 +23,6 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.node_agent_deployment_configuration import \
-    NodeAgentDeploymentConfiguration
-
 
 class NodeImportSshRequest(BaseModel):
     """
@@ -41,14 +38,12 @@ class NodeImportSshRequest(BaseModel):
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
-    node_agent_deployment_config: Optional[NodeAgentDeploymentConfiguration] = None
     __properties: ClassVar[List[str]] = [
         "hostname",
         "endpoint",
         "username",
         "ssh_key_id",
         "description",
-        "node_agent_deployment_config",
     ]
 
     model_config = ConfigDict(
@@ -88,11 +83,6 @@ class NodeImportSshRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of node_agent_deployment_config
-        if self.node_agent_deployment_config:
-            _dict["node_agent_deployment_config"] = (
-                self.node_agent_deployment_config.to_dict()
-            )
         return _dict
 
     @classmethod
@@ -111,13 +101,6 @@ class NodeImportSshRequest(BaseModel):
                 "username": obj.get("username"),
                 "ssh_key_id": obj.get("ssh_key_id"),
                 "description": obj.get("description"),
-                "node_agent_deployment_config": (
-                    NodeAgentDeploymentConfiguration.from_dict(
-                        obj["node_agent_deployment_config"]
-                    )
-                    if obj.get("node_agent_deployment_config") is not None
-                    else None
-                ),
             }
         )
         return _obj
