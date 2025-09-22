@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.21.0...v1.21.1) (2025-09-22)
+
+
+### Bug Fixes
+
+* adapt auth scopes ([#111](https://github.com/exalsius/exalsius-api-spec/issues/111)) ([dc56c5d](https://github.com/exalsius/exalsius-api-spec/commit/dc56c5d1fedf802dac2a5f2bd6680cc6352907e7))
+
 ## [1.21.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.20.0...v1.21.0) (2025-09-18)
 
 
