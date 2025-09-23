@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.3](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.2...openapi-v1.21.3) (2025-09-23)
+
+
+### Bug Fixes
+
+* extend node-patch response ([#115](https://github.com/exalsius/exalsius-api-spec/issues/115)) ([7cbc936](https://github.com/exalsius/exalsius-api-spec/commit/7cbc9366a254fb84b37ea314c2a0450a034c1e06))
+
 ## [1.21.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.1...openapi-v1.21.2) (2025-09-22)
 
 
