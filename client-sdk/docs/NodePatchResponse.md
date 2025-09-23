@@ -6,6 +6,9 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **node_id** | **str** | The ID of the node | 
+**next_access_token** | **str** | The next access token for the node | [optional] 
+**next_access_token_expires_in** | **int** | The number of seconds until the next access token expires | [optional] 
+**next_access_token_type** | **str** | The type of the next access token | [optional] 
 
 ## Example
 

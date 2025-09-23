@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
 
@@ -30,7 +30,22 @@ class NodePatchResponse(BaseModel):
     """  # noqa: E501
 
     node_id: StrictStr = Field(description="The ID of the node")
-    __properties: ClassVar[List[str]] = ["node_id"]
+    next_access_token: Optional[StrictStr] = Field(
+        default=None, description="The next access token for the node"
+    )
+    next_access_token_expires_in: Optional[StrictInt] = Field(
+        default=None,
+        description="The number of seconds until the next access token expires",
+    )
+    next_access_token_type: Optional[StrictStr] = Field(
+        default=None, description="The type of the next access token"
+    )
+    __properties: ClassVar[List[str]] = [
+        "node_id",
+        "next_access_token",
+        "next_access_token_expires_in",
+        "next_access_token_type",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,5 +95,12 @@ class NodePatchResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"node_id": obj.get("node_id")})
+        _obj = cls.model_validate(
+            {
+                "node_id": obj.get("node_id"),
+                "next_access_token": obj.get("next_access_token"),
+                "next_access_token_expires_in": obj.get("next_access_token_expires_in"),
+                "next_access_token_type": obj.get("next_access_token_type"),
+            }
+        )
         return _obj
