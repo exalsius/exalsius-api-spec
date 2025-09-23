@@ -7,3 +7,16 @@ properties:
     format: uuid
     description: The ID of the node
     example: "123e4567-e89b-12d3-a456-426614174000"
+  next_access_token:
+    type: string
+    description: The next access token for the node
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  next_access_token_expires_in:
+    type: integer
+    description: The number of seconds until the next access token expires
+    format: int32
+    example: 3600
+  next_access_token_type:
+    type: string
+    description: The type of the next access token
+    example: "Bearer"
