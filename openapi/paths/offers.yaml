@@ -21,6 +21,7 @@ get:
           - AMD
           - INTEL
           - HUAWEI
+          - AWS
           - UNKNOWN
       description: The vendor of the GPU
     - name: gpu_type
