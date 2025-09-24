@@ -155,9 +155,11 @@ class Offer(BaseModel):
     @field_validator("gpu_vendor")
     def gpu_vendor_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["NVIDIA", "AMD", "INTEL", "HUAWEI", "GOOGLE", "UNKNOWN"]):
+        if value not in set(
+            ["NVIDIA", "AMD", "INTEL", "HUAWEI", "GOOGLE", "AWS", "UNKNOWN"]
+        ):
             raise ValueError(
-                "must be one of enum values ('NVIDIA', 'AMD', 'INTEL', 'HUAWEI', 'GOOGLE', 'UNKNOWN')"
+                "must be one of enum values ('NVIDIA', 'AMD', 'INTEL', 'HUAWEI', 'GOOGLE', 'AWS', 'UNKNOWN')"
             )
         return value
 
