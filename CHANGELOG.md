@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.6](https://github.com/exalsius/exalsius-api-spec/compare/v1.21.5...v1.21.6) (2025-09-24)
+
+
+### Bug Fixes
+
+* adjust offer model scheme with new GPUVendor enum ([#121](https://github.com/exalsius/exalsius-api-spec/issues/121)) ([e7bf0a8](https://github.com/exalsius/exalsius-api-spec/commit/e7bf0a87ad0f6421e4870d872a8c5a0fa97a4406))
+
 ## [1.21.5](https://github.com/exalsius/exalsius-api-spec/compare/v1.21.4...v1.21.5) (2025-09-24)
 
 
