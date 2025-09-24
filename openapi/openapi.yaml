@@ -253,6 +253,7 @@ components:
           tokenUrl: https://exalsius.eu.auth0.com/oauth/token
           scopes:
             openid: Request an ID token (mandatory for OIDC)
+            gpuradar: Scope used for GPU radar operations
             nodeagent: Scope used for node agent operations
 security:
   - OAuth2:

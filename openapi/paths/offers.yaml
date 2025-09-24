@@ -2,6 +2,11 @@ get:
   operationId: getOffers
   tags: [offers]
   summary: List and filter current GPU on-demand and spot market offers
+  security:
+    - OAuth2:
+      # This operation is accessible by users (openid) and m2m applications with scope gpuradar
+      - openid
+      - gpuradar
   description: |
     **List GPU offers (on-demand & spot instances)**
     Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
