@@ -108,6 +108,7 @@ properties:
       - INTEL
       - HUAWEI
       - GOOGLE
+      - AWS
       - UNKNOWN
   main_memory_mib:
     type: integer
