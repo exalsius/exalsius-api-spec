@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.5](https://github.com/exalsius/exalsius-api-spec/compare/v1.21.4...v1.21.5) (2025-09-24)
+
+
+### Bug Fixes
+
+* add AWS to GPUVendor enum ([#119](https://github.com/exalsius/exalsius-api-spec/issues/119)) ([c537dab](https://github.com/exalsius/exalsius-api-spec/commit/c537dab2fb3bff5eb813d3ed1c7cff91546181ec))
+
 ## [1.21.4](https://github.com/exalsius/exalsius-api-spec/compare/v1.21.3...v1.21.4) (2025-09-24)
 
 
