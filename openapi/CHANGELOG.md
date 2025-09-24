@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.21.4](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.3...openapi-v1.21.4) (2025-09-24)
+
+
+### Bug Fixes
+
+* refine security scopes ([#117](https://github.com/exalsius/exalsius-api-spec/issues/117)) ([ef14bc9](https://github.com/exalsius/exalsius-api-spec/commit/ef14bc9480ac3041a933b1120d76acd9f9aca47d))
+
 ## [1.21.3](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.2...openapi-v1.21.3) (2025-09-23)
 
 
