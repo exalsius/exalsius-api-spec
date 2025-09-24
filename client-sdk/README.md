@@ -243,6 +243,7 @@ Authentication schemes defined for the API:
 - **Authorization URL**: https://exalsius.eu.auth0.com/authorize?audience=http://api.exalsius.ai
 - **Scopes**: 
  - **openid**: Request an ID token (mandatory for OIDC)
+ - **gpuradar**: Scope used for GPU radar operations
  - **nodeagent**: Scope used for node agent operations
 
 
