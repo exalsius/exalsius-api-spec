@@ -23,3 +23,8 @@ allOf:
         format: uuid
         description: The ID of the private SSH key to connect to the node
         example: "123e4567-e89b-12d3-a456-426614174000"
+      last_heartbeat_date:
+        type: string
+        format: date-time
+        description: The last time a heartbeat was received from the node
+        example: "2021-01-01T00:00:00Z"
