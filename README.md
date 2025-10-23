@@ -94,6 +94,7 @@ Replace `<version>` with the released version tag, for example `1.2.3`.
 
 ### Generating Server Stubs
 
-The **[exalsius-api](https://github.com/exalsius/exalsius-api)** repository provides a `generate-server-stub.sh` script to generate FastAPI routers and models based on a specific version of the API specification.
+The **[exalsius-api](https://github.com/exalsius/exalsius-api)** repository provides a `generate-server.sh` script to generate FastAPI routers and models based on a specific version of the API specification.
+Use `generate-server.sh -l /path/to/bundle.yml` in the **[exalsius-api](https://github.com/exalsius/exalsius-api)** repository.  
 
 For details, see the **exalsius-api** repository’s [README](https://github.com/exalsius/exalsius-api).
