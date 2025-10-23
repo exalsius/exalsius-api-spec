@@ -66,6 +66,14 @@ delete:
         type: string
         format: uuid
       description: ID of the cluster to delete
+    - name: propagate
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: false
+        x-python-type: Optional[bool]
+      description: Whether to propagate the deletion to all nodes in the given cluster
   responses:
     '200':
       $ref: '../../components/responses/cluster-delete-response.yaml'
