@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.22.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.6...openapi-v1.22.0) (2025-10-24)
+
+
+### Features
+
+* add last_heartbeat_data to check if node is healthy ([#123](https://github.com/exalsius/exalsius-api-spec/issues/123)) ([ae26640](https://github.com/exalsius/exalsius-api-spec/commit/ae266400a3c1618c31785a0b602101c665a33cf9))
+* add propagate option for cluster delete endpoint. ([#124](https://github.com/exalsius/exalsius-api-spec/issues/124)) ([bf27543](https://github.com/exalsius/exalsius-api-spec/commit/bf27543879ae8edd9efd3564716162ff9631af4c))
+
 ## [1.21.6](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.5...openapi-v1.21.6) (2025-09-24)
 
 
