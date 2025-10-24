@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **endpoint** | **str** | The endpoint of the node (IP or hostname) and port | 
 **username** | **str** | The username to connect to the node | 
 **ssh_key_id** | **str** | The ID of the private SSH key to connect to the node | 
+**last_heartbeat_date** | **datetime** | The last time a heartbeat was received from the node | [optional] 
 
 ## Example
 

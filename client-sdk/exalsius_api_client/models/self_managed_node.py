@@ -18,6 +18,7 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import ConfigDict, Field, StrictStr, field_validator
@@ -41,6 +42,9 @@ class SelfManagedNode(BaseNode):
     ssh_key_id: StrictStr = Field(
         description="The ID of the private SSH key to connect to the node"
     )
+    last_heartbeat_date: Optional[datetime] = Field(
+        default=None, description="The last time a heartbeat was received from the node"
+    )
     __properties: ClassVar[List[str]] = [
         "gpu_count",
         "gpu_vendor",
@@ -60,6 +64,7 @@ class SelfManagedNode(BaseNode):
         "endpoint",
         "username",
         "ssh_key_id",
+        "last_heartbeat_date",
     ]
 
     @field_validator("node_type")
@@ -140,6 +145,7 @@ class SelfManagedNode(BaseNode):
                 "endpoint": obj.get("endpoint"),
                 "username": obj.get("username"),
                 "ssh_key_id": obj.get("ssh_key_id"),
+                "last_heartbeat_date": obj.get("last_heartbeat_date"),
             }
         )
         return _obj
