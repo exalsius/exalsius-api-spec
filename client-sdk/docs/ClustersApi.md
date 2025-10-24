@@ -314,7 +314,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_cluster**
-> ClusterDeleteResponse delete_cluster(cluster_id)
+> ClusterDeleteResponse delete_cluster(cluster_id, propagate=propagate)
 
 Delete (tear-down) a cluster
 
@@ -363,10 +363,11 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
     cluster_id = 'cluster_id_example' # str | ID of the cluster to delete
+    propagate = False # bool | Whether to propagate the deletion to all nodes in the given cluster (optional) (default to False)
 
     try:
         # Delete (tear-down) a cluster
-        api_response = api_instance.delete_cluster(cluster_id)
+        api_response = api_instance.delete_cluster(cluster_id, propagate=propagate)
         print("The response of ClustersApi->delete_cluster:\n")
         pprint(api_response)
     except Exception as e:
@@ -381,6 +382,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **cluster_id** | **str**| ID of the cluster to delete | 
+ **propagate** | **bool**| Whether to propagate the deletion to all nodes in the given cluster | [optional] [default to False]
 
 ### Return type
 

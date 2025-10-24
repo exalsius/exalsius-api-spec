@@ -14,7 +14,8 @@ Do not edit the class manually.
 
 from typing import Any, Dict, List, Optional, Tuple, Union
 
-from pydantic import Field, StrictFloat, StrictInt, StrictStr, validate_call
+from pydantic import (Field, StrictBool, StrictFloat, StrictInt, StrictStr,
+                      validate_call)
 from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
@@ -861,6 +862,12 @@ class ClustersApi:
         cluster_id: Annotated[
             StrictStr, Field(description="ID of the cluster to delete")
         ],
+        propagate: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Whether to propagate the deletion to all nodes in the given cluster"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -879,6 +886,8 @@ class ClustersApi:
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
+        :param propagate: Whether to propagate the deletion to all nodes in the given cluster
+        :type propagate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -903,6 +912,7 @@ class ClustersApi:
 
         _param = self._delete_cluster_serialize(
             cluster_id=cluster_id,
+            propagate=propagate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -929,6 +939,12 @@ class ClustersApi:
         cluster_id: Annotated[
             StrictStr, Field(description="ID of the cluster to delete")
         ],
+        propagate: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Whether to propagate the deletion to all nodes in the given cluster"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -947,6 +963,8 @@ class ClustersApi:
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
+        :param propagate: Whether to propagate the deletion to all nodes in the given cluster
+        :type propagate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -971,6 +989,7 @@ class ClustersApi:
 
         _param = self._delete_cluster_serialize(
             cluster_id=cluster_id,
+            propagate=propagate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -997,6 +1016,12 @@ class ClustersApi:
         cluster_id: Annotated[
             StrictStr, Field(description="ID of the cluster to delete")
         ],
+        propagate: Annotated[
+            Optional[StrictBool],
+            Field(
+                description="Whether to propagate the deletion to all nodes in the given cluster"
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1015,6 +1040,8 @@ class ClustersApi:
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
+        :param propagate: Whether to propagate the deletion to all nodes in the given cluster
+        :type propagate: bool
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1039,6 +1066,7 @@ class ClustersApi:
 
         _param = self._delete_cluster_serialize(
             cluster_id=cluster_id,
+            propagate=propagate,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1058,6 +1086,7 @@ class ClustersApi:
     def _delete_cluster_serialize(
         self,
         cluster_id,
+        propagate,
         _request_auth,
         _content_type,
         _headers,
@@ -1081,6 +1110,10 @@ class ClustersApi:
         if cluster_id is not None:
             _path_params["cluster_id"] = cluster_id
         # process the query parameters
+        if propagate is not None:
+
+            _query_params.append(("propagate", propagate))
+
         # process the header parameters
         # process the form parameters
         # process the body parameter
