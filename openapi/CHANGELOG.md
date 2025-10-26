@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.22.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.22.0...openapi-v1.22.1) (2025-10-26)
+
+
+### Bug Fixes
+
+* enable setting target namespace for services and workspaces ([#126](https://github.com/exalsius/exalsius-api-spec/issues/126)) ([d0e4b60](https://github.com/exalsius/exalsius-api-spec/commit/d0e4b60075fe9c6bb705c9a8669c2152a12348c1))
+
 ## [1.22.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.21.6...openapi-v1.22.0) (2025-10-24)
 
 
