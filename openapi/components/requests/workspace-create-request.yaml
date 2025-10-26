@@ -19,6 +19,10 @@ properties:
   resources:
     description: The resources allocated to the workspace
     $ref: '../schemas/hardware.yaml'
+  namespace:
+    type: string
+    description: The namespace in which the workspace should be deployed in the target cluster
+    example: "default"
   description:
     type: string
     description: The description of the workspace
