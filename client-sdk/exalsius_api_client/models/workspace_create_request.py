@@ -39,6 +39,10 @@ class WorkspaceCreateRequest(BaseModel):
     )
     template: WorkspaceTemplate
     resources: Hardware = Field(description="The resources allocated to the workspace")
+    namespace: Optional[StrictStr] = Field(
+        default=None,
+        description="The namespace in which the workspace should be deployed in the target cluster",
+    )
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
     )
@@ -50,6 +54,7 @@ class WorkspaceCreateRequest(BaseModel):
         "cluster_id",
         "template",
         "resources",
+        "namespace",
         "description",
         "to_be_deleted_at",
     ]
@@ -122,6 +127,7 @@ class WorkspaceCreateRequest(BaseModel):
                     if obj.get("resources") is not None
                     else None
                 ),
+                "namespace": obj.get("namespace"),
                 "description": obj.get("description"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),
             }

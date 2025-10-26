@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **cluster_id** | **str** | The unique identifier of the associated cluster | 
 **template** | [**WorkspaceTemplate**](WorkspaceTemplate.md) |  | 
 **resources** | [**Hardware**](Hardware.md) | The resources allocated to the workspace | 
+**namespace** | **str** | The namespace in which the workspace should be deployed in the target cluster | [optional] 
 **description** | **str** | The description of the workspace | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the workspace will be deleted | [optional] 
 

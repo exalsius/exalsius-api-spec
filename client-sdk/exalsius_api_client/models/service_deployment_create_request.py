@@ -37,6 +37,10 @@ class ServiceDeploymentCreateRequest(BaseModel):
         description="The unique identifier of the associated cluster"
     )
     template: ServiceTemplate
+    namespace: Optional[StrictStr] = Field(
+        default=None,
+        description="The namespace in which the service should be deployed in the target cluster",
+    )
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
     )
@@ -47,6 +51,7 @@ class ServiceDeploymentCreateRequest(BaseModel):
         "name",
         "cluster_id",
         "template",
+        "namespace",
         "description",
         "to_be_deleted_at",
     ]
@@ -111,6 +116,7 @@ class ServiceDeploymentCreateRequest(BaseModel):
                     if obj.get("template") is not None
                     else None
                 ),
+                "namespace": obj.get("namespace"),
                 "description": obj.get("description"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),
             }
