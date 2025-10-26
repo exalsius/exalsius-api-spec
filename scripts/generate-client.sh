@@ -7,6 +7,8 @@ REPO_DIR="$( cd "${SCRIPT_DIR}/.." && pwd )"
 CLIENT_SDK_DIR="client-sdk"
 API_VERSION=$(grep -oP 'version: \K[^"]+' ${REPO_DIR}/openapi/openapi.yaml)
 
+OPENAPI_GENERATOR_VERSION="7.14.0"
+
 log() {
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
 }
@@ -35,7 +37,7 @@ run_generator() {
     log "Generating client SDK python code..."
     docker run --rm -v "${REPO_DIR}:/local" \
         --user $(id -u):$(id -g) \
-        openapitools/openapi-generator-cli:v7.13.0 generate \
+        openapitools/openapi-generator-cli:v${OPENAPI_GENERATOR_VERSION} generate \
         -i local/dist/bundle.yaml \
         --package-name "exalsius_api_client" \
         -g python \
