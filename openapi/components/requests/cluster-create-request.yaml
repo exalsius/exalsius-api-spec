@@ -27,13 +27,13 @@ properties:
       type: string
     description: The labels of the cluster (optional).
     example: {"cluster.exalsius.ai/gpu-type": "A100", "cluster.exalsius.ai/workload-type": "volcano"}
-  machinePreStartCommands:
+  machine_pre_start_commands:
     type: array
     items:
       type: string
     description: The commands to run on the machine before the cluster is started (optional).
     example: ["echo 'Hello, world!'"]
-  localStorage:
+  local_storage:
     type: object
     description: Local storage configuration
     properties:
