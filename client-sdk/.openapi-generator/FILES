@@ -183,6 +183,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_create_request_local_storage.py
-test/test_cluster_local_storage.py
 tox.ini
