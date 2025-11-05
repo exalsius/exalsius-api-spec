@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.23.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.22.1...openapi-v1.23.0) (2025-11-05)
+
+
+### Features
+
+* add pre_start_commands and local storage configuration to clusters ([#128](https://github.com/exalsius/exalsius-api-spec/issues/128)) ([7a8fe95](https://github.com/exalsius/exalsius-api-spec/commit/7a8fe956439cea3c756f2b0d43cc55b4f4a71c17))
+
 ## [1.22.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.22.0...openapi-v1.22.1) (2025-10-26)
 
 
