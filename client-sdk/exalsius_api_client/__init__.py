@@ -42,10 +42,12 @@ __all__ = [
     "ClusterAddNodeRequest",
     "ClusterAdoptRequest",
     "ClusterCreateRequest",
+    "ClusterCreateRequestLocalStorage",
     "ClusterCreateResponse",
     "ClusterDeleteResponse",
     "ClusterDeployResponse",
     "ClusterKubeconfigResponse",
+    "ClusterLocalStorage",
     "ClusterNodeRemoveResponse",
     "ClusterNodeToAdd",
     "ClusterNodesResponse",
@@ -143,6 +145,8 @@ from exalsius_api_client.models.cluster_adopt_request import \
     ClusterAdoptRequest as ClusterAdoptRequest
 from exalsius_api_client.models.cluster_create_request import \
     ClusterCreateRequest as ClusterCreateRequest
+from exalsius_api_client.models.cluster_create_request_local_storage import \
+    ClusterCreateRequestLocalStorage as ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse as ClusterCreateResponse
 from exalsius_api_client.models.cluster_delete_response import \
@@ -151,6 +155,8 @@ from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse as ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse as ClusterKubeconfigResponse
+from exalsius_api_client.models.cluster_local_storage import \
+    ClusterLocalStorage as ClusterLocalStorage
 from exalsius_api_client.models.cluster_node_remove_response import \
     ClusterNodeRemoveResponse as ClusterNodeRemoveResponse
 from exalsius_api_client.models.cluster_node_to_add import \

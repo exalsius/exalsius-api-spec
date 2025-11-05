@@ -25,6 +25,8 @@ from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
                       StrictStr, field_validator)
 from typing_extensions import Self
 
+from exalsius_api_client.models.cluster_local_storage import \
+    ClusterLocalStorage
 from exalsius_api_client.models.service_deployment import ServiceDeployment
 from exalsius_api_client.models.workspace_deployment import WorkspaceDeployment
 
@@ -58,6 +60,11 @@ class Cluster(BaseModel):
     cluster_labels: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="The labels of the cluster (optional)."
     )
+    machine_pre_start_commands: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The commands to run on the machine before the cluster is started",
+    )
+    local_storage: Optional[ClusterLocalStorage] = None
     created_at: datetime = Field(
         description="The date and time the cluster was created"
     )
@@ -98,6 +105,8 @@ class Cluster(BaseModel):
         "cluster_type",
         "cluster_status",
         "cluster_labels",
+        "machine_pre_start_commands",
+        "local_storage",
         "created_at",
         "updated_at",
         "to_be_deleted_at",
@@ -168,6 +177,9 @@ class Cluster(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of local_storage
+        if self.local_storage:
+            _dict["local_storage"] = self.local_storage.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in service_deployments (list)
         _items = []
         if self.service_deployments:
@@ -203,6 +215,12 @@ class Cluster(BaseModel):
                 "cluster_type": obj.get("cluster_type"),
                 "cluster_status": obj.get("cluster_status"),
                 "cluster_labels": obj.get("cluster_labels"),
+                "machine_pre_start_commands": obj.get("machine_pre_start_commands"),
+                "local_storage": (
+                    ClusterLocalStorage.from_dict(obj["local_storage"])
+                    if obj.get("local_storage") is not None
+                    else None
+                ),
                 "created_at": obj.get("created_at"),
                 "updated_at": obj.get("updated_at"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),

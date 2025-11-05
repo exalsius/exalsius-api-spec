@@ -24,6 +24,8 @@ from exalsius_api_client.models.cluster_adopt_request import \
     ClusterAdoptRequest
 from exalsius_api_client.models.cluster_create_request import \
     ClusterCreateRequest
+from exalsius_api_client.models.cluster_create_request_local_storage import \
+    ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse
 from exalsius_api_client.models.cluster_delete_response import \
@@ -32,6 +34,8 @@ from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse
+from exalsius_api_client.models.cluster_local_storage import \
+    ClusterLocalStorage
 from exalsius_api_client.models.cluster_node_remove_response import \
     ClusterNodeRemoveResponse
 from exalsius_api_client.models.cluster_node_to_add import ClusterNodeToAdd

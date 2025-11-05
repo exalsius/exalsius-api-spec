@@ -24,6 +24,8 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
+from exalsius_api_client.models.cluster_create_request_local_storage import \
+    ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.service_deployment import ServiceDeployment
 
 
@@ -43,6 +45,11 @@ class ClusterCreateRequest(BaseModel):
     cluster_labels: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="The labels of the cluster (optional)."
     )
+    machine_pre_start_commands: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The commands to run on the machine before the cluster is started (optional).",
+    )
+    local_storage: Optional[ClusterCreateRequestLocalStorage] = None
     k8s_version: Optional[StrictStr] = Field(
         default=None, description="The Kubernetes version of the cluster"
     )
@@ -64,6 +71,8 @@ class ClusterCreateRequest(BaseModel):
         "cluster_type",
         "colony_id",
         "cluster_labels",
+        "machine_pre_start_commands",
+        "local_storage",
         "k8s_version",
         "to_be_deleted_at",
         "control_plane_node_ids",
@@ -117,6 +126,9 @@ class ClusterCreateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of local_storage
+        if self.local_storage:
+            _dict["local_storage"] = self.local_storage.to_dict()
         # override the default output from pydantic by calling `to_dict()` of each item in service_deployments (list)
         _items = []
         if self.service_deployments:
@@ -141,6 +153,12 @@ class ClusterCreateRequest(BaseModel):
                 "cluster_type": obj.get("cluster_type"),
                 "colony_id": obj.get("colony_id"),
                 "cluster_labels": obj.get("cluster_labels"),
+                "machine_pre_start_commands": obj.get("machine_pre_start_commands"),
+                "local_storage": (
+                    ClusterCreateRequestLocalStorage.from_dict(obj["local_storage"])
+                    if obj.get("local_storage") is not None
+                    else None
+                ),
                 "k8s_version": obj.get("k8s_version"),
                 "to_be_deleted_at": obj.get("to_be_deleted_at"),
                 "control_plane_node_ids": obj.get("control_plane_node_ids"),

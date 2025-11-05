@@ -13,6 +13,8 @@ Name | Type | Description | Notes
 **cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;ADOPTED&#x60;: Adopted cluster, consisting of an already existing kubernetes cluster - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | [optional] 
 **cluster_status** | **str** | The status of the cluster. - &#x60;PENDING&#x60;: Cluster is pending (not yet deployed) - &#x60;DEPLOYING&#x60;: Cluster is being deployed - &#x60;READY&#x60;: Cluster is ready - &#x60;FAILED&#x60;: Cluster is failed  | 
 **cluster_labels** | **Dict[str, str]** | The labels of the cluster (optional). | [optional] 
+**machine_pre_start_commands** | **List[str]** | The commands to run on the machine before the cluster is started | [optional] 
+**local_storage** | [**ClusterLocalStorage**](ClusterLocalStorage.md) |  | [optional] 
 **created_at** | **datetime** | The date and time the cluster was created | 
 **updated_at** | **datetime** | The date and time the cluster was last updated | [optional] 
 **to_be_deleted_at** | **datetime** | The date and time the cluster will be deleted | [optional] 
