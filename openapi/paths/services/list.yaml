@@ -97,7 +97,7 @@ post:
       useExample: bad-request
     '409':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: workspace-already-exists
+      useExample: service-already-exists
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error

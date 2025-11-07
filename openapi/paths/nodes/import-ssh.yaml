@@ -58,7 +58,7 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/nodes/import-ssh" -H "Content-Type: application/json" -d '{"endpoint": "192.168.1.1:22", "username": "ubuntu", "sshKeyId": "123e4567-e89b-12d3-a456-426614174000"}'
+        curl -X POST "https://api.exalsius.ai/node/import/ssh" -H "Content-Type: application/json" -d '{"hostname": "my-server-001", "endpoint": "192.168.1.1:22", "username": "ubuntu", "ssh_key_id": "123e4567-e89b-12d3-a456-426614174000"}'
     - lang: python
       label: Python
       source: |
@@ -77,14 +77,15 @@ post:
             Returns:
                 dict: The JSON response containing the node
             """
-            url = "https://api.exalsius.ai/nodes/import-ssh"
+            url = "https://api.exalsius.ai/node/import/ssh"
             headers = {
                 "Content-Type": "application/json"
             }
             data = {
+                "hostname": "my-server-001",
                 "endpoint": endpoint,
                 "username": username,
-                "sshKeyId": ssh_key_id
+                "ssh_key_id": ssh_key_id
             }
             response = requests.post(url, headers=headers, json=data)
             return response.json()

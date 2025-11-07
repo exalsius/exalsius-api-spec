@@ -9,7 +9,7 @@ post:
     
     **Behavior:**
     - All Pods associated with the workspace will be started
-    - The workspace status will transition from `RUNNING`
+    - The workspace status will transition to `RUNNING`
     - Access information (ports, IPs) will be published (or restored if the workspace was previously stopped)
     - Persistent volumes remain intact and data is preserved
 
