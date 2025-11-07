@@ -4,8 +4,16 @@ get:
   summary: List available / occupied resources in the cluster
   description: |
     **List available / occupied resources in the cluster**
-
-    List the available / occupied resources in the cluster.
+    
+    Retrieve detailed resource information for all nodes in the cluster, showing both available and 
+    occupied resources (CPU, memory, storage, GPU). This information helps you understand cluster 
+    capacity, utilization, and plan for workload placement.
+    
+    **Response:**
+    Returns a list of nodes with their resource information, including:
+    - Available resources: CPU cores, memory (GB), storage (GB), GPU count and type
+    - Occupied resources: Currently used resources on each node
+    - Total resource counts across the cluster
 
   parameters:
     - name: cluster_id
@@ -18,6 +26,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/cluster-resources-list-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
@@ -29,10 +38,10 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/cluster/123/resources" 
+        curl -X GET "https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/resources" 
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.get("https://api.exalsius.ai/cluster/123/resources")
+        response = requests.get("https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/resources")

@@ -4,8 +4,10 @@ get:
   summary: Get details of a single cluster
   description: |
     **Retrieve the details of a single cluster**
-
-    Fetch all metadata for one cluster.
+    
+    Fetch comprehensive metadata for a specific cluster, including its status, node configuration, 
+    Kubernetes version, associated services, cost information, and lifecycle timestamps. This information 
+    helps you understand the cluster's current state and configuration.
 
   parameters:
     - name: cluster_id
@@ -18,6 +20,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/cluster-response.yaml'
+      useExample: cluster-details
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
@@ -29,12 +32,12 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000"
+        curl -X GET "https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000"
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.get("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000")
+        response = requests.get("https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000")
         print(response.json())
 
 delete:
@@ -43,20 +46,21 @@ delete:
   summary: Delete (tear-down) a cluster
   description: |
     **Delete a cluster**
-
-    Permanently delete a cluster. Once deleted, the cluster is no longer part of your 
-    account and cannot be used in any further deployments. When a cluster is deleted, the
-    nodes are returned to the node pool and can be used in future deployments.
-
-    **Note**
-
-    This operation is irreversible.
-
-    **Behavior**
-
-    The cluster will be deleted as soon as possible. However, it may take a few minutes
-    for the cluster to be fully deleted. The cluster will be in the `deleting` state
-    until it is fully deleted.
+    
+    Permanently delete a cluster and tear down all associated infrastructure. This operation will 
+    terminate all resources running on the cluster, including workspaces and services.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Behavior:**
+    - The cluster will be deleted as soon as possible
+    - The deletion process may take several minutes to complete
+    - The cluster will transition to the `DELETING` state during the process
+    - Once deleted, nodes are returned to the node pool and can be reused in future deployments
+    - All workspaces and services running on the cluster will be terminated
+    
+    **Parameters:**
+    - `propagate`: If `true`, the deletion will also remove nodes from the node pool (default: `false`)
 
   parameters:
     - name: cluster_id
@@ -77,6 +81,7 @@ delete:
   responses:
     '200':
       $ref: '../../components/responses/cluster-delete-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
@@ -88,11 +93,11 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/clusters/123"
+        curl -X DELETE "https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000"
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.delete("https://api.exalsius.ai/clusters/123")
+        response = requests.delete("https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000")
         print(response.json())

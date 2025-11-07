@@ -4,7 +4,22 @@ post:
   summary: Adopt a cluster
   description: |
     **Adopt a cluster**
-    Adopt an already existing Kubernetes cluster to manage it with exalsius.
+    
+    Adopt an existing Kubernetes cluster that is already running and managed outside of exalsius. This 
+    allows you to bring your own Kubernetes cluster under exalsius management, enabling you to use 
+    exalsius features like workspace provisioning, service deployment, and resource monitoring.
+    
+    **Parameters:**
+    - `name`: A descriptive name for the adopted cluster
+    - `kubeconfig_b64`: The base64-encoded kubeconfig file for accessing the cluster
+    - `k8s_version`: The Kubernetes version of the cluster (optional, but recommended)
+    - `colony_id`: The ID of the colony to add the cluster to (optional)
+    
+    **Behavior:**
+    - The cluster will be registered in exalsius and can be managed through the API
+    - You can deploy workspaces and services to the adopted cluster
+    - The cluster will appear in cluster listings and can be monitored like any other cluster
+    - The original cluster management remains unchanged; exalsius only manages workloads on the cluster
 
   requestBody: 
     required: true
@@ -12,9 +27,17 @@ post:
       application/json: 
         schema:
           $ref: '../../components/requests/cluster-adopt-request.yaml'
+        examples:
+          adopt-existing-cluster:
+            summary: Adopt an existing Kubernetes cluster
+            value:
+              name: "my-adopted-cluster"
+              kubeconfig_b64: "YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIHNlcnZlcjogaHR0cHM6Ly9hcGkuZXhhbHNpdXMuYWkvY2x1c3RlcnMvMTIz..."
+              k8s_version: "1.30"
   responses:
     '201':
       $ref: '../../components/responses/cluster-adopt-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request

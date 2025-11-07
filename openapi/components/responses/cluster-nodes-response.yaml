@@ -3,3 +3,15 @@ content:
   application/json:
     schema:
       $ref: '../schemas/cluster-nodes-response.yaml'
+    examples:
+      default:
+        summary: Cluster nodes
+        value:
+          cluster_id: "123e4567-e89b-12d3-a456-426614174000"
+          control_plane_node_ids:
+            - "123e4567-e89b-12d3-a456-426614174001"
+            - "123e4567-e89b-12d3-a456-426614174002"
+          worker_node_ids:
+            - "123e4567-e89b-12d3-a456-426614174003"
+            - "123e4567-e89b-12d3-a456-426614174004"
+          total_nodes: 4
