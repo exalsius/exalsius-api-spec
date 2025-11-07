@@ -34,7 +34,7 @@ The repository provides several `make` targets to simplify common tasks.
 | `make generate`         | Generates the Python client SDK using `scripts/generate-client.sh`.                             |
 
 
-## Contribution and Release Workflow
+## Contribution and Release Workflow: Instructions
 <h1 align="center">
   <br>
   <img height="300" src="assets/workflow.png"> <br>
