@@ -55,5 +55,5 @@ content:
               scrape_time: "2025-01-01T00:00:00Z"
               effective_time: "2025-01-01T00:00:00Z"
           total: 2
-          next_cursor: "eyJpZCI6IjEyM2U0NTY3LWU4OWItMTJkMy1hNDU2LTQyNjYxNDE3NDAwMSJ9"
-          prev_cursor: null
+          next_cursor: "eyJpZCI6IjEyM2U0NTY3LWU4OWItMTJkMy1hNDU2LTQyNjYxNDE3NDAwMSJ8"
+          prev_cursor: "eyJpZCI6IjEyM2U0NTY3LWU4OWItMTJkMy1hNDU2LTQyNjYxNDE3NDAwMSJ9"

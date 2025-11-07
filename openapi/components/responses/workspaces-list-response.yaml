@@ -52,5 +52,5 @@ content:
                 memory_gb: 8
                 storage_gb: 50
               created_at: "2025-01-02T00:00:00Z"
-              to_be_deleted_at: null
+              to_be_deleted_at: "2025-01-20T00:00:00Z"
           total: 2
