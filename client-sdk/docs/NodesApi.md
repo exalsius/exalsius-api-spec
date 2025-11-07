@@ -19,8 +19,20 @@ Delete a node from the pool
 
 **Delete a node from the pool**
 
-Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments. 
-If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+Permanently delete a node from your node pool. This operation is only allowed when the node is in the 
+`AVAILABLE` state.
+
+**Warning: This operation is irreversible.**
+
+**Prerequisites:**
+- The node must be in the `AVAILABLE` state
+- If the node is currently in use (i.e., not available), you must first detach it from its cluster
+
+**Behavior:**
+- The node will be permanently removed from your node pool
+- Once deleted, the node cannot be used in any cluster deployments
+- For cloud nodes, this does not terminate the instance; it only removes it from the pool
+- For self-managed nodes, the node is simply removed from management
 
 
 ### Example
@@ -99,10 +111,12 @@ Name | Type | Description  | Notes
 
 Get details of a single node in the node pool (self-managed or cloud)
 
-**Retrieve the details of single node in the node pool**
+**Retrieve the details of a single node in the node pool**
 
-Fetch all metadata for one node in your pool. The returned object includes a nodeType 
-property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+Fetch comprehensive metadata for a specific node in your pool. The response includes a `node_type` 
+property to distinguish between self-managed (SSH) nodes and cloud-imported instances. The response 
+structure varies based on the node type, with cloud nodes including pricing and instance information, 
+while self-managed nodes include SSH connection details and heartbeat information.
 
 
 ### Example
@@ -185,7 +199,7 @@ Import a node from an offer
 Use this operation to import one or more nodes of a given cloud instance type into the node pool.
 
 **Parameters**
-  - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).
+  - `offer_id`: The identifier of the cloud provider's offer you wish to import (see GET /offers).
   - `amount`: The number of instances of the instance type to import.
 
 **Behavior**
@@ -193,12 +207,12 @@ Use this operation to import one or more nodes of a given cloud instance type in
 Importing a node from an offer to the node pool does not yet start a virtual machine and
 therefore does not yet involve any costs. A virtual machine of the given instance type
 will only be started when you deploy a cluster using the node.
-The `pricePerHour` of the node will be the price of the offer at the time of import.
-When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.
+The `price_per_hour` of the node will be the price of the offer at the time of import.
+When deploying a cluster, the actual hourly rate will be the `price_per_hour` of the offer at that time.
 
 **Result**
 
-On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+On success, you'll receive one or more node IDs. Use these IDs with the `/clusters` endpoint to add nodes to your clusters.
 
 
 ### Example
@@ -295,14 +309,14 @@ In order to import a self-managed node, you need to provide the following inform
 
 **Behavior**
 
-On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.
+On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.
 
 **Monitoring**
-You can poll its status at any time via GET /nodes/{nodeId}.
+You can poll its status at any time via GET /node/{node_id}.
 
 **Result**
 
-Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
 
 ### Example
@@ -333,7 +347,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.NodesApi(api_client)
-    node_import_ssh_request = exalsius_api_client.NodeImportSshRequest() # NodeImportSshRequest | 
+    node_import_ssh_request = {"hostname":"my-server-001","endpoint":"192.168.1.100:22","username":"ubuntu","ssh_key_id":"123e4567-e89b-12d3-a456-426614174000","description":"On-premises GPU server"} # NodeImportSshRequest | 
 
     try:
         # Import a self-managed node via SSH
@@ -384,15 +398,18 @@ List all imported nodes in the node pool
 
 **List nodes in the pool**
 
-Retrieve all imported nodes, with optional filters:
-- `node_type`: self-managed or cloud-imported
-- `provider`: AWS, Azure, etc.
+Retrieve all nodes in your node pool, including both self-managed (SSH) nodes and cloud-imported nodes.
+Nodes can be filtered by type and provider to help you find specific nodes.
+
+**Filtering:**
+- `node_type`: Filter by node type - `CLOUD` for cloud-imported nodes or `SELF_MANAGED` for SSH-managed nodes
+- `provider`: Filter by cloud provider (e.g., "aws", "azure", "gcp") - only applies to cloud nodes
 
 **Examples**
 
 Here's an example of how to filter by node type:
   ```
-  /nodes?node_type=self-managed
+  /nodes?node_type=SELF_MANAGED
   ```
   
   Here's an example of how to filter by provider:
@@ -428,7 +445,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.NodesApi(api_client)
-    node_type = 'node_type_example' # str | Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes  (optional)
+    node_type = 'node_type_example' # str | Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes  (optional)
     provider = 'provider_example' # str | Only return nodes of this provider. Example: - `aws` - only AWS node instances  (optional)
 
     try:
@@ -447,7 +464,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **node_type** | **str**| Only return nodes of this type.   Possible values: - &#x60;self-managed&#x60; - only self-managed (SSH) nodes   - &#x60;cloud&#x60; - only cloud-imported nodes  | [optional] 
+ **node_type** | **str**| Only return nodes of this type.   Possible values: - &#x60;SELF_MANAGED&#x60; - only self-managed (SSH) nodes   - &#x60;CLOUD&#x60; - only cloud-imported nodes  | [optional] 
  **provider** | **str**| Only return nodes of this provider. Example: - &#x60;aws&#x60; - only AWS node instances  | [optional] 
 
 ### Return type
@@ -467,7 +484,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing service deployments <br>  |
+**200** | List of nodes in the node pool |  * X-Total-Count - Total number of existing service templates <br>  |
 **422** | Error response |  -  |
 **500** | Error response |  -  |
 
@@ -480,7 +497,14 @@ Patch a node
 
 **Patch a node**
 
-Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+Update a node's properties or send a heartbeat signal. This endpoint is typically used by node agents 
+to report status updates and maintain connectivity.
+
+**Behavior:**
+- If request body is provided, the node's properties (description, hardware specs) will be updated
+- If no request body is provided, this acts as a heartbeat to indicate the node is still active
+- For self-managed nodes, this updates the `last_heartbeat_date`
+- Returns an access token that can be used for subsequent operations
 
 
 ### Example

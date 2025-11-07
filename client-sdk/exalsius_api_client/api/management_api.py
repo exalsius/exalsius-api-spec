@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -66,7 +66,7 @@ class ManagementApi:
     ) -> SshKeyCreateResponse:
         """Add an SSH key
 
-        **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -132,7 +132,7 @@ class ManagementApi:
     ) -> ApiResponse[SshKeyCreateResponse]:
         """Add an SSH key
 
-        **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -198,7 +198,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Add an SSH key
 
-        **Add an SSH key**  Add an SSH key to the management cluster.  **Request Body**  - `name`: The name of the SSH key. - `private_key`: The private key of the SSH key.  **Result**  Returns the SSH key object.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -326,7 +326,7 @@ class ManagementApi:
     ) -> None:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -394,7 +394,7 @@ class ManagementApi:
     ) -> ApiResponse[None]:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -462,7 +462,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Delete an SSH key
 
-        **Delete an SSH key**  Delete an SSH key from the management cluster.  **Parameters**  - `ssh_key_id`: The ID of the SSH key to delete.
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -577,7 +577,7 @@ class ManagementApi:
     ) -> ClusterTemplateListResponse:
         """List all cluster templates
 
-        **List all available cluster templates**  List all cluster templates that are available in the management cluster for the current user.  Cluster templates are used to create new clusters on public cloud providers or remote nodes.  **Result**  Returns an array of cluster templates objects.
+        **List all available cluster templates**  Retrieve all cluster templates available in the management cluster. Cluster templates define the  configuration and Kubernetes version for new cluster deployments.  **Usage:** Cluster templates are used when creating new clusters via the `POST /clusters` endpoint. Each template  specifies the Kubernetes version and deployment configuration that will be applied to new clusters.  **Result:** Returns an array of cluster template objects, each containing the template name, description, and  Kubernetes version.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -639,7 +639,7 @@ class ManagementApi:
     ) -> ApiResponse[ClusterTemplateListResponse]:
         """List all cluster templates
 
-        **List all available cluster templates**  List all cluster templates that are available in the management cluster for the current user.  Cluster templates are used to create new clusters on public cloud providers or remote nodes.  **Result**  Returns an array of cluster templates objects.
+        **List all available cluster templates**  Retrieve all cluster templates available in the management cluster. Cluster templates define the  configuration and Kubernetes version for new cluster deployments.  **Usage:** Cluster templates are used when creating new clusters via the `POST /clusters` endpoint. Each template  specifies the Kubernetes version and deployment configuration that will be applied to new clusters.  **Result:** Returns an array of cluster template objects, each containing the template name, description, and  Kubernetes version.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -701,7 +701,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all cluster templates
 
-        **List all available cluster templates**  List all cluster templates that are available in the management cluster for the current user.  Cluster templates are used to create new clusters on public cloud providers or remote nodes.  **Result**  Returns an array of cluster templates objects.
+        **List all available cluster templates**  Retrieve all cluster templates available in the management cluster. Cluster templates define the  configuration and Kubernetes version for new cluster deployments.  **Usage:** Cluster templates are used when creating new clusters via the `POST /clusters` endpoint. Each template  specifies the Kubernetes version and deployment configuration that will be applied to new clusters.  **Result:** Returns an array of cluster template objects, each containing the template name, description, and  Kubernetes version.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -810,7 +810,7 @@ class ManagementApi:
     ) -> CredentialsListResponse:
         """List all cloud provider credentials
 
-        **List all available credentials**  List all cloud provider credentials that are available to the management cluster for the current user.  **Result**  Returns an array of credentials objects (without exposing the credentials).
+        **List all available credentials**  Retrieve all cloud provider credentials associated with your account. Credentials are used to authenticate  with cloud providers when importing nodes or deploying clusters.  **Result:** Returns an array of credential objects containing metadata (name, description, provider type) but never  the actual credential values for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -872,7 +872,7 @@ class ManagementApi:
     ) -> ApiResponse[CredentialsListResponse]:
         """List all cloud provider credentials
 
-        **List all available credentials**  List all cloud provider credentials that are available to the management cluster for the current user.  **Result**  Returns an array of credentials objects (without exposing the credentials).
+        **List all available credentials**  Retrieve all cloud provider credentials associated with your account. Credentials are used to authenticate  with cloud providers when importing nodes or deploying clusters.  **Result:** Returns an array of credential objects containing metadata (name, description, provider type) but never  the actual credential values for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -934,7 +934,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all cloud provider credentials
 
-        **List all available credentials**  List all cloud provider credentials that are available to the management cluster for the current user.  **Result**  Returns an array of credentials objects (without exposing the credentials).
+        **List all available credentials**  Retrieve all cloud provider credentials associated with your account. Credentials are used to authenticate  with cloud providers when importing nodes or deploying clusters.  **Result:** Returns an array of credential objects containing metadata (name, description, provider type) but never  the actual credential values for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1043,7 +1043,7 @@ class ManagementApi:
     ) -> ServiceTemplateListResponse:
         """List all available service templates
 
-        **List all available services**  List all services templates that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **List all available service templates**  Retrieve all service templates available in the management cluster. Service templates define infrastructure  services (such as Ray clusters, monitoring systems, etc.) that can be deployed on clusters.  **Usage:** Service templates are used when creating new service deployments via the `POST /services` endpoint.  Each template specifies the service type and configuration variables that can be customized.  **Note:** Service templates can be added to the exalsius management cluster using the `exalsius-operator`.  **Result:** Returns an array of service template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1105,7 +1105,7 @@ class ManagementApi:
     ) -> ApiResponse[ServiceTemplateListResponse]:
         """List all available service templates
 
-        **List all available services**  List all services templates that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **List all available service templates**  Retrieve all service templates available in the management cluster. Service templates define infrastructure  services (such as Ray clusters, monitoring systems, etc.) that can be deployed on clusters.  **Usage:** Service templates are used when creating new service deployments via the `POST /services` endpoint.  Each template specifies the service type and configuration variables that can be customized.  **Note:** Service templates can be added to the exalsius management cluster using the `exalsius-operator`.  **Result:** Returns an array of service template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1167,7 +1167,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all available service templates
 
-        **List all available services**  List all services templates that can be deployed.  **Note**  Services can be added to the exalsius management cluster using the `exalsius-operator`.  **Result**  Returns an array of service objects.
+        **List all available service templates**  Retrieve all service templates available in the management cluster. Service templates define infrastructure  services (such as Ray clusters, monitoring systems, etc.) that can be deployed on clusters.  **Usage:** Service templates are used when creating new service deployments via the `POST /services` endpoint.  Each template specifies the service type and configuration variables that can be customized.  **Note:** Service templates can be added to the exalsius management cluster using the `exalsius-operator`.  **Result:** Returns an array of service template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1276,7 +1276,7 @@ class ManagementApi:
     ) -> SshKeysListResponse:
         """List all SSH keys
 
-        **List all SSH keys**  List all SSH keys that are available to the management cluster for the current user.  **Result**  Returns an array of SSH key objects.
+        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1338,7 +1338,7 @@ class ManagementApi:
     ) -> ApiResponse[SshKeysListResponse]:
         """List all SSH keys
 
-        **List all SSH keys**  List all SSH keys that are available to the management cluster for the current user.  **Result**  Returns an array of SSH key objects.
+        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1400,7 +1400,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all SSH keys
 
-        **List all SSH keys**  List all SSH keys that are available to the management cluster for the current user.  **Result**  Returns an array of SSH key objects.
+        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1509,7 +1509,7 @@ class ManagementApi:
     ) -> WorkspaceTemplateListResponse:
         """List all workspace templates
 
-        **List all workspace templates**  Retrieve all workspace templates.  **Note**  Workspace templates are used to create workspaces.  **Result**  Returns an array of workspace template objects.
+        **List all workspace templates**  Retrieve all workspace templates available in the management cluster. Workspace templates define the  application configuration and environment setup for new workspace deployments.  **Usage:** Workspace templates are used when creating new workspaces via the `POST /workspaces` endpoint. Each  template specifies the application type (e.g., Jupyter Notebook, VS Code Server) and configuration  variables that can be customized.  **Result:** Returns an array of workspace template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1571,7 +1571,7 @@ class ManagementApi:
     ) -> ApiResponse[WorkspaceTemplateListResponse]:
         """List all workspace templates
 
-        **List all workspace templates**  Retrieve all workspace templates.  **Note**  Workspace templates are used to create workspaces.  **Result**  Returns an array of workspace template objects.
+        **List all workspace templates**  Retrieve all workspace templates available in the management cluster. Workspace templates define the  application configuration and environment setup for new workspace deployments.  **Usage:** Workspace templates are used when creating new workspaces via the `POST /workspaces` endpoint. Each  template specifies the application type (e.g., Jupyter Notebook, VS Code Server) and configuration  variables that can be customized.  **Result:** Returns an array of workspace template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1633,7 +1633,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all workspace templates
 
-        **List all workspace templates**  Retrieve all workspace templates.  **Note**  Workspace templates are used to create workspaces.  **Result**  Returns an array of workspace template objects.
+        **List all workspace templates**  Retrieve all workspace templates available in the management cluster. Workspace templates define the  application configuration and environment setup for new workspace deployments.  **Usage:** Workspace templates are used when creating new workspaces via the `POST /workspaces` endpoint. Each  template specifies the application type (e.g., Jupyter Notebook, VS Code Server) and configuration  variables that can be customized.  **Result:** Returns an array of workspace template objects, each containing the template name, description, and  available configuration variables.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

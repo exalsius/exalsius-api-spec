@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -61,7 +61,7 @@ class ServicesApi:
     ) -> ServiceCreateResponse:
         """Create a service deployment
 
-        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
+        **Create a service deployment**  Create a new infrastructure service deployment on a cluster. Service deployments are reusable infrastructure components such as distributed computing frameworks (Ray), monitoring systems (Prometheus), or other cluster-level services.  **Parameters:** - `name`: The name of the service deployment (must be unique within the cluster) - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use, including template name and configuration variables  **Behavior:** Creating a new service deployment will result in a new service resource being created on the specified cluster. The service will be deployed according to the template configuration and variables provided.
 
         :param service_deployment_create_request: (required)
         :type service_deployment_create_request: ServiceDeploymentCreateRequest
@@ -128,7 +128,7 @@ class ServicesApi:
     ) -> ApiResponse[ServiceCreateResponse]:
         """Create a service deployment
 
-        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
+        **Create a service deployment**  Create a new infrastructure service deployment on a cluster. Service deployments are reusable infrastructure components such as distributed computing frameworks (Ray), monitoring systems (Prometheus), or other cluster-level services.  **Parameters:** - `name`: The name of the service deployment (must be unique within the cluster) - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use, including template name and configuration variables  **Behavior:** Creating a new service deployment will result in a new service resource being created on the specified cluster. The service will be deployed according to the template configuration and variables provided.
 
         :param service_deployment_create_request: (required)
         :type service_deployment_create_request: ServiceDeploymentCreateRequest
@@ -195,7 +195,7 @@ class ServicesApi:
     ) -> RESTResponseType:
         """Create a service deployment
 
-        **Create a service deployment**  Create a new service deployment.  **Parameters**  - `name`: The name of the service deployment - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use for the service deployment
+        **Create a service deployment**  Create a new infrastructure service deployment on a cluster. Service deployments are reusable infrastructure components such as distributed computing frameworks (Ray), monitoring systems (Prometheus), or other cluster-level services.  **Parameters:** - `name`: The name of the service deployment (must be unique within the cluster) - `cluster_id`: The ID of the cluster to deploy the service to - `template`: The service template to use, including template name and configuration variables  **Behavior:** Creating a new service deployment will result in a new service resource being created on the specified cluster. The service will be deployed according to the template configuration and variables provided.
 
         :param service_deployment_create_request: (required)
         :type service_deployment_create_request: ServiceDeploymentCreateRequest
@@ -324,7 +324,7 @@ class ServicesApi:
     ) -> ServiceDeleteResponse:
         """Delete a service deployment
 
-        **Delete a service deployment**  Delete a service deployment.
+        **Delete a service deployment**  Permanently delete a service deployment and remove all associated resources from the cluster.  **Warning: This operation is irreversible.**  **Behavior:** - The service deployment will be marked for deletion immediately - All associated Pods, Services, and other Kubernetes resources will be terminated - The deletion process may take a few minutes to complete - Once deleted, the service deployment cannot be recovered
 
         :param service_deployment_id: ID of the service deployment to delete (required)
         :type service_deployment_id: str
@@ -392,7 +392,7 @@ class ServicesApi:
     ) -> ApiResponse[ServiceDeleteResponse]:
         """Delete a service deployment
 
-        **Delete a service deployment**  Delete a service deployment.
+        **Delete a service deployment**  Permanently delete a service deployment and remove all associated resources from the cluster.  **Warning: This operation is irreversible.**  **Behavior:** - The service deployment will be marked for deletion immediately - All associated Pods, Services, and other Kubernetes resources will be terminated - The deletion process may take a few minutes to complete - Once deleted, the service deployment cannot be recovered
 
         :param service_deployment_id: ID of the service deployment to delete (required)
         :type service_deployment_id: str
@@ -460,7 +460,7 @@ class ServicesApi:
     ) -> RESTResponseType:
         """Delete a service deployment
 
-        **Delete a service deployment**  Delete a service deployment.
+        **Delete a service deployment**  Permanently delete a service deployment and remove all associated resources from the cluster.  **Warning: This operation is irreversible.**  **Behavior:** - The service deployment will be marked for deletion immediately - All associated Pods, Services, and other Kubernetes resources will be terminated - The deletion process may take a few minutes to complete - Once deleted, the service deployment cannot be recovered
 
         :param service_deployment_id: ID of the service deployment to delete (required)
         :type service_deployment_id: str
@@ -562,7 +562,7 @@ class ServicesApi:
     def describe_service_deployment(
         self,
         service_deployment_id: Annotated[
-            StrictStr, Field(description="ID of the workspace to describe")
+            StrictStr, Field(description="ID of the service deployment to describe")
         ],
         _request_timeout: Union[
             None,
@@ -578,9 +578,9 @@ class ServicesApi:
     ) -> ServiceResponse:
         """Get details of a single service deployment
 
-        **Retrieve the details of a single service deployment**
+        **Retrieve the details of a single service deployment**  Fetch comprehensive metadata for a specific service deployment, including its configuration, template details, cluster association, owner information, and creation timestamp.
 
-        :param service_deployment_id: ID of the workspace to describe (required)
+        :param service_deployment_id: ID of the service deployment to describe (required)
         :type service_deployment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -630,7 +630,7 @@ class ServicesApi:
     def describe_service_deployment_with_http_info(
         self,
         service_deployment_id: Annotated[
-            StrictStr, Field(description="ID of the workspace to describe")
+            StrictStr, Field(description="ID of the service deployment to describe")
         ],
         _request_timeout: Union[
             None,
@@ -646,9 +646,9 @@ class ServicesApi:
     ) -> ApiResponse[ServiceResponse]:
         """Get details of a single service deployment
 
-        **Retrieve the details of a single service deployment**
+        **Retrieve the details of a single service deployment**  Fetch comprehensive metadata for a specific service deployment, including its configuration, template details, cluster association, owner information, and creation timestamp.
 
-        :param service_deployment_id: ID of the workspace to describe (required)
+        :param service_deployment_id: ID of the service deployment to describe (required)
         :type service_deployment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -698,7 +698,7 @@ class ServicesApi:
     def describe_service_deployment_without_preload_content(
         self,
         service_deployment_id: Annotated[
-            StrictStr, Field(description="ID of the workspace to describe")
+            StrictStr, Field(description="ID of the service deployment to describe")
         ],
         _request_timeout: Union[
             None,
@@ -714,9 +714,9 @@ class ServicesApi:
     ) -> RESTResponseType:
         """Get details of a single service deployment
 
-        **Retrieve the details of a single service deployment**
+        **Retrieve the details of a single service deployment**  Fetch comprehensive metadata for a specific service deployment, including its configuration, template details, cluster association, owner information, and creation timestamp.
 
-        :param service_deployment_id: ID of the workspace to describe (required)
+        :param service_deployment_id: ID of the service deployment to describe (required)
         :type service_deployment_id: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -835,7 +835,7 @@ class ServicesApi:
     ) -> ServicesListResponse:
         """List all service deployments
 
-        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+        **List all service deployments**  Retrieve all service deployments associated with your account. Service deployments are infrastructure services (such as Ray clusters, monitoring services, etc.) that are deployed on your clusters. You can optionally filter service deployments by cluster ID to see only services deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter service deployments by the cluster they are deployed on (UUID format)
 
         :param cluster_id: Only return services that are associated with this cluster.
         :type cluster_id: str
@@ -906,7 +906,7 @@ class ServicesApi:
     ) -> ApiResponse[ServicesListResponse]:
         """List all service deployments
 
-        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+        **List all service deployments**  Retrieve all service deployments associated with your account. Service deployments are infrastructure services (such as Ray clusters, monitoring services, etc.) that are deployed on your clusters. You can optionally filter service deployments by cluster ID to see only services deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter service deployments by the cluster they are deployed on (UUID format)
 
         :param cluster_id: Only return services that are associated with this cluster.
         :type cluster_id: str
@@ -977,7 +977,7 @@ class ServicesApi:
     ) -> RESTResponseType:
         """List all service deployments
 
-        **List all service deployments**  Retrieve all service deployments, with optional filters: - `cluster_id`: filter by cluster ID
+        **List all service deployments**  Retrieve all service deployments associated with your account. Service deployments are infrastructure services (such as Ray clusters, monitoring services, etc.) that are deployed on your clusters. You can optionally filter service deployments by cluster ID to see only services deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter service deployments by the cluster they are deployed on (UUID format)
 
         :param cluster_id: Only return services that are associated with this cluster.
         :type cluster_id: str

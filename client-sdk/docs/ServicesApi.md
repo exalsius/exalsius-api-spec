@@ -17,13 +17,18 @@ Create a service deployment
 
 **Create a service deployment**
 
-Create a new service deployment.
+Create a new infrastructure service deployment on a cluster. Service deployments are reusable infrastructure
+components such as distributed computing frameworks (Ray), monitoring systems (Prometheus), or other
+cluster-level services.
 
-**Parameters**
-
-- `name`: The name of the service deployment
+**Parameters:**
+- `name`: The name of the service deployment (must be unique within the cluster)
 - `cluster_id`: The ID of the cluster to deploy the service to
-- `template`: The service template to use for the service deployment
+- `template`: The service template to use, including template name and configuration variables
+
+**Behavior:**
+Creating a new service deployment will result in a new service resource being created on the specified cluster.
+The service will be deployed according to the template configuration and variables provided.
 
 
 ### Example
@@ -54,7 +59,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ServicesApi(api_client)
-    service_deployment_create_request = exalsius_api_client.ServiceDeploymentCreateRequest() # ServiceDeploymentCreateRequest | 
+    service_deployment_create_request = {"name":"my-ray-cluster","cluster_id":"123e4567-e89b-12d3-a456-426614174000","template":{"name":"ray-deployment","variables":{"ray_cluster_name":"my-ray-cluster","config":{"replicas":3,"resources":{"cpu":"2","memory":"4Gi"}},"enabled":true}},"description":"Ray cluster for distributed machine learning","namespace":"default"} # ServiceDeploymentCreateRequest | 
 
     try:
         # Create a service deployment
@@ -105,7 +110,15 @@ Delete a service deployment
 
 **Delete a service deployment**
 
-Delete a service deployment.
+Permanently delete a service deployment and remove all associated resources from the cluster.
+
+**Warning: This operation is irreversible.**
+
+**Behavior:**
+- The service deployment will be marked for deletion immediately
+- All associated Pods, Services, and other Kubernetes resources will be terminated
+- The deletion process may take a few minutes to complete
+- Once deleted, the service deployment cannot be recovered
 
 
 ### Example
@@ -185,6 +198,9 @@ Get details of a single service deployment
 
 **Retrieve the details of a single service deployment**
 
+Fetch comprehensive metadata for a specific service deployment, including its configuration, template details,
+cluster association, owner information, and creation timestamp.
+
 
 ### Example
 
@@ -213,7 +229,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ServicesApi(api_client)
-    service_deployment_id = 'service_deployment_id_example' # str | ID of the workspace to describe
+    service_deployment_id = 'service_deployment_id_example' # str | ID of the service deployment to describe
 
     try:
         # Get details of a single service deployment
@@ -231,7 +247,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **service_deployment_id** | **str**| ID of the workspace to describe | 
+ **service_deployment_id** | **str**| ID of the service deployment to describe | 
 
 ### Return type
 
@@ -263,8 +279,12 @@ List all service deployments
 
 **List all service deployments**
 
-Retrieve all service deployments, with optional filters:
-- `cluster_id`: filter by cluster ID
+Retrieve all service deployments associated with your account. Service deployments are infrastructure
+services (such as Ray clusters, monitoring services, etc.) that are deployed on your clusters.
+You can optionally filter service deployments by cluster ID to see only services deployed on a specific cluster.
+
+**Filtering:**
+- `cluster_id`: Filter service deployments by the cluster they are deployed on (UUID format)
 
 
 ### Example
@@ -331,7 +351,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of services |  * X-Total-Count - Total number of existing service deployments <br>  |
+**200** | List of services |  * X-Total-Count - Total number of existing service templates <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -65,7 +65,7 @@ class WorkspacesApi:
     ) -> WorkspaceCreateResponse:
         """Create a workspace
 
-        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check  the workspace status using `GET /workspace/{workspace_id}`.
 
         :param workspace_create_request: (required)
         :type workspace_create_request: WorkspaceCreateRequest
@@ -132,7 +132,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspaceCreateResponse]:
         """Create a workspace
 
-        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check  the workspace status using `GET /workspace/{workspace_id}`.
 
         :param workspace_create_request: (required)
         :type workspace_create_request: WorkspaceCreateRequest
@@ -199,7 +199,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """Create a workspace
 
-        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+        **Create a workspace**  Create a new workspace.  **Parameters**  - `name`: The name of the workspace - `cluster_id`: The ID of the cluster to deploy the workspace to - `template`: The template to use for the workspace - `resources`: The resources to use for the workspace  **Behavior**  Creating a new workspace will result in a new workspace resource being created. The workspace will be in  the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check  the workspace status using `GET /workspace/{workspace_id}`.
 
         :param workspace_create_request: (required)
         :type workspace_create_request: WorkspaceCreateRequest
@@ -328,7 +328,7 @@ class WorkspacesApi:
     ) -> WorkspaceDeleteResponse:
         """Delete a workspace
 
-        **Delete a workspace**  Delete a workspace.   **Note**  This operation is irreversible.  **Behavior**  The workspace will be deleted as soon as possible. However, it may take a few minutes for the workspace to be fully deleted.
+        **Delete a workspace**  Permanently delete a workspace and all its associated resources.  **Warning: This operation is irreversible.**  **Behavior:** - The workspace will be marked for deletion immediately - All associated Pods and resources will be terminated - Persistent volumes may be retained depending on the storage policy - The deletion process may take a few minutes to complete - Once deleted, the workspace cannot be recovered
 
         :param workspace_id: ID of the workspace to delete (required)
         :type workspace_id: str
@@ -396,7 +396,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspaceDeleteResponse]:
         """Delete a workspace
 
-        **Delete a workspace**  Delete a workspace.   **Note**  This operation is irreversible.  **Behavior**  The workspace will be deleted as soon as possible. However, it may take a few minutes for the workspace to be fully deleted.
+        **Delete a workspace**  Permanently delete a workspace and all its associated resources.  **Warning: This operation is irreversible.**  **Behavior:** - The workspace will be marked for deletion immediately - All associated Pods and resources will be terminated - Persistent volumes may be retained depending on the storage policy - The deletion process may take a few minutes to complete - Once deleted, the workspace cannot be recovered
 
         :param workspace_id: ID of the workspace to delete (required)
         :type workspace_id: str
@@ -464,7 +464,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """Delete a workspace
 
-        **Delete a workspace**  Delete a workspace.   **Note**  This operation is irreversible.  **Behavior**  The workspace will be deleted as soon as possible. However, it may take a few minutes for the workspace to be fully deleted.
+        **Delete a workspace**  Permanently delete a workspace and all its associated resources.  **Warning: This operation is irreversible.**  **Behavior:** - The workspace will be marked for deletion immediately - All associated Pods and resources will be terminated - Persistent volumes may be retained depending on the storage policy - The deletion process may take a few minutes to complete - Once deleted, the workspace cannot be recovered
 
         :param workspace_id: ID of the workspace to delete (required)
         :type workspace_id: str
@@ -582,7 +582,7 @@ class WorkspacesApi:
     ) -> WorkspaceResponse:
         """Get details of a single workspace
 
-        **Retrieve the details of a single workspace**  Fetch all metadata for one workspace.
+        **Retrieve the details of a single workspace**  Fetch comprehensive metadata for a specific workspace, including its status, configuration, resource allocation, access information, and deployment details.
 
         :param workspace_id: ID of the workspace to describe (required)
         :type workspace_id: str
@@ -650,7 +650,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspaceResponse]:
         """Get details of a single workspace
 
-        **Retrieve the details of a single workspace**  Fetch all metadata for one workspace.
+        **Retrieve the details of a single workspace**  Fetch comprehensive metadata for a specific workspace, including its status, configuration, resource allocation, access information, and deployment details.
 
         :param workspace_id: ID of the workspace to describe (required)
         :type workspace_id: str
@@ -718,7 +718,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """Get details of a single workspace
 
-        **Retrieve the details of a single workspace**  Fetch all metadata for one workspace.
+        **Retrieve the details of a single workspace**  Fetch comprehensive metadata for a specific workspace, including its status, configuration, resource allocation, access information, and deployment details.
 
         :param workspace_id: ID of the workspace to describe (required)
         :type workspace_id: str
@@ -839,7 +839,7 @@ class WorkspacesApi:
     ) -> WorkspacesListResponse:
         """List all workspaces
 
-        **List all workspaces**  Retrieve all workspaces, with optional filters: - `cluster_id`: filter by cluster ID  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123 ```
+        **List all workspaces**  Retrieve all workspaces associated with your account. You can optionally filter workspaces by cluster ID to see only workspaces deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter workspaces by the cluster they are deployed on (UUID format)  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123e4567-e89b-12d3-a456-426614174000 ```
 
         :param cluster_id: Only return workspaces that are associated with this cluster.
         :type cluster_id: str
@@ -910,7 +910,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspacesListResponse]:
         """List all workspaces
 
-        **List all workspaces**  Retrieve all workspaces, with optional filters: - `cluster_id`: filter by cluster ID  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123 ```
+        **List all workspaces**  Retrieve all workspaces associated with your account. You can optionally filter workspaces by cluster ID to see only workspaces deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter workspaces by the cluster they are deployed on (UUID format)  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123e4567-e89b-12d3-a456-426614174000 ```
 
         :param cluster_id: Only return workspaces that are associated with this cluster.
         :type cluster_id: str
@@ -981,7 +981,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """List all workspaces
 
-        **List all workspaces**  Retrieve all workspaces, with optional filters: - `cluster_id`: filter by cluster ID  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123 ```
+        **List all workspaces**  Retrieve all workspaces associated with your account. You can optionally filter workspaces by cluster ID to see only workspaces deployed on a specific cluster.  **Filtering:** - `cluster_id`: Filter workspaces by the cluster they are deployed on (UUID format)  **Examples**  Here's an example of how to filter by cluster ID: ``` /workspaces?cluster_id=123e4567-e89b-12d3-a456-426614174000 ```
 
         :param cluster_id: Only return workspaces that are associated with this cluster.
         :type cluster_id: str
@@ -1101,7 +1101,7 @@ class WorkspacesApi:
     ) -> WorkspaceStartResponse:
         """Start a workspace
 
-        **Start a workspace**  Start a workspace. This will start all associated Pods, in case they were stopped previously.
+        **Start a workspace**  Start a workspace by bringing up all associated Pods and services. This can also mean that the workspace was previously stopped to save costs.  **Behavior:** - All Pods associated with the workspace will be started - The workspace status will transition to `RUNNING` - Access information (ports, IPs) will be published (or restored if the workspace was previously stopped) - Persistent volumes remain intact and data is preserved
 
         :param workspace_id: ID of the workspace to start (required)
         :type workspace_id: str
@@ -1169,7 +1169,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspaceStartResponse]:
         """Start a workspace
 
-        **Start a workspace**  Start a workspace. This will start all associated Pods, in case they were stopped previously.
+        **Start a workspace**  Start a workspace by bringing up all associated Pods and services. This can also mean that the workspace was previously stopped to save costs.  **Behavior:** - All Pods associated with the workspace will be started - The workspace status will transition to `RUNNING` - Access information (ports, IPs) will be published (or restored if the workspace was previously stopped) - Persistent volumes remain intact and data is preserved
 
         :param workspace_id: ID of the workspace to start (required)
         :type workspace_id: str
@@ -1237,7 +1237,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """Start a workspace
 
-        **Start a workspace**  Start a workspace. This will start all associated Pods, in case they were stopped previously.
+        **Start a workspace**  Start a workspace by bringing up all associated Pods and services. This can also mean that the workspace was previously stopped to save costs.  **Behavior:** - All Pods associated with the workspace will be started - The workspace status will transition to `RUNNING` - Access information (ports, IPs) will be published (or restored if the workspace was previously stopped) - Persistent volumes remain intact and data is preserved
 
         :param workspace_id: ID of the workspace to start (required)
         :type workspace_id: str
@@ -1355,7 +1355,7 @@ class WorkspacesApi:
     ) -> WorkspaceStopResponse:
         """Stop a workspace
 
-        **Stop a workspace**  Stop a workspace. This will stop or delete all associated Pods but keep the attached persistent volume.
+        **Stop a workspace**  Stop a running workspace by halting all associated Pods and services. This operation helps reduce costs by stopping compute resources while preserving data. Note that this is only possible for selected workspace types.  **Behavior:** - All Pods associated with the workspace will be stopped or terminated - The workspace status will transition from `RUNNING` to `STOPPED` - Persistent volumes remain attached and data is preserved - Access information (ports, IPs) will be unavailable until the workspace is restarted - The workspace can be restarted later using the `POST /workspace/{workspace_id}/start` endpoint
 
         :param workspace_id: ID of the workspace to stop (required)
         :type workspace_id: str
@@ -1423,7 +1423,7 @@ class WorkspacesApi:
     ) -> ApiResponse[WorkspaceStopResponse]:
         """Stop a workspace
 
-        **Stop a workspace**  Stop a workspace. This will stop or delete all associated Pods but keep the attached persistent volume.
+        **Stop a workspace**  Stop a running workspace by halting all associated Pods and services. This operation helps reduce costs by stopping compute resources while preserving data. Note that this is only possible for selected workspace types.  **Behavior:** - All Pods associated with the workspace will be stopped or terminated - The workspace status will transition from `RUNNING` to `STOPPED` - Persistent volumes remain attached and data is preserved - Access information (ports, IPs) will be unavailable until the workspace is restarted - The workspace can be restarted later using the `POST /workspace/{workspace_id}/start` endpoint
 
         :param workspace_id: ID of the workspace to stop (required)
         :type workspace_id: str
@@ -1491,7 +1491,7 @@ class WorkspacesApi:
     ) -> RESTResponseType:
         """Stop a workspace
 
-        **Stop a workspace**  Stop a workspace. This will stop or delete all associated Pods but keep the attached persistent volume.
+        **Stop a workspace**  Stop a running workspace by halting all associated Pods and services. This operation helps reduce costs by stopping compute resources while preserving data. Note that this is only possible for selected workspace types.  **Behavior:** - All Pods associated with the workspace will be stopped or terminated - The workspace status will transition from `RUNNING` to `STOPPED` - Persistent volumes remain attached and data is preserved - Access information (ports, IPs) will be unavailable until the workspace is restarted - The workspace can be restarted later using the `POST /workspace/{workspace_id}/start` endpoint
 
         :param workspace_id: ID of the workspace to stop (required)
         :type workspace_id: str

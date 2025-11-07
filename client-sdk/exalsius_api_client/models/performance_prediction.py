@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -31,8 +31,12 @@ class PerformancePrediction(BaseModel):
     """  # noqa: E501
 
     model_name: StrictStr = Field(description="Model name")
-    vram: Dict[str, Union[StrictFloat, StrictInt]]
-    runtime: Dict[str, Union[StrictFloat, StrictInt]]
+    vram: Dict[str, Union[StrictFloat, StrictInt]] = Field(
+        description='Predicted VRAM (Video RAM) usage in GB for different GPU types. Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000"). Values represent the estimated memory consumption in gigabytes. '
+    )
+    runtime: Dict[str, Union[StrictFloat, StrictInt]] = Field(
+        description='Predicted runtime per training step in seconds for different GPU types. Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000"). Values represent the estimated time per step in seconds. '
+    )
     __properties: ClassVar[List[str]] = ["model_name", "vram", "runtime"]
 
     @field_validator("model_name")

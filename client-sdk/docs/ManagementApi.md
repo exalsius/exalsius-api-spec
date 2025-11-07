@@ -20,16 +20,21 @@ Add an SSH key
 
 **Add an SSH key**
 
-Add an SSH key to the management cluster.
+Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH. 
+The private key must be provided in base64-encoded format.
 
-**Request Body**
+**Request Body:**
+- `name`: A descriptive name for the SSH key (e.g., "my-server-key")
+- `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds 
+  to a public key installed on the target node(s)
 
-- `name`: The name of the SSH key.
-- `private_key`: The private key of the SSH key.
+**Result:**
+Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed 
+nodes via the `POST /node/import/ssh` endpoint.
 
-**Result**
-
-Returns the SSH key object.
+**Security Note:**
+The private key is stored securely and is never returned in subsequent API calls. Only the key ID and 
+name are accessible after creation.
 
 
 ### Example
@@ -60,7 +65,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ManagementApi(api_client)
-    ssh_key_create_request = exalsius_api_client.SshKeyCreateRequest() # SshKeyCreateRequest | 
+    ssh_key_create_request = {"name":"my-ssh-key","private_key_b64":"LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."} # SshKeyCreateRequest | 
 
     try:
         # Add an SSH key
@@ -110,11 +115,15 @@ Delete an SSH key
 
 **Delete an SSH key**
 
-Delete an SSH key from the management cluster.
+Permanently delete an SSH key from your account. This operation is irreversible.
 
-**Parameters**
+**Warning: This operation is irreversible.**
 
-- `ssh_key_id`: The ID of the SSH key to delete.
+**Behavior:**
+- The SSH key will be permanently removed from your account
+- Any nodes that were imported using this SSH key will continue to function, but you won't be able to 
+  use this key for future node imports
+- If you need to import new nodes, you'll need to create a new SSH key
 
 
 ### Example
@@ -191,13 +200,16 @@ List all cluster templates
 
 **List all available cluster templates**
 
-List all cluster templates that are available in the management cluster for the current user.
+Retrieve all cluster templates available in the management cluster. Cluster templates define the 
+configuration and Kubernetes version for new cluster deployments.
 
-Cluster templates are used to create new clusters on public cloud providers or remote nodes.
+**Usage:**
+Cluster templates are used when creating new clusters via the `POST /clusters` endpoint. Each template 
+specifies the Kubernetes version and deployment configuration that will be applied to new clusters.
 
-**Result**
-
-Returns an array of cluster templates objects.
+**Result:**
+Returns an array of cluster template objects, each containing the template name, description, and 
+Kubernetes version.
 
 
 ### Example
@@ -273,11 +285,12 @@ List all cloud provider credentials
 
 **List all available credentials**
 
-List all cloud provider credentials that are available to the management cluster for the current user.
+Retrieve all cloud provider credentials associated with your account. Credentials are used to authenticate 
+with cloud providers when importing nodes or deploying clusters.
 
-**Result**
-
-Returns an array of credentials objects (without exposing the credentials).
+**Result:**
+Returns an array of credential objects containing metadata (name, description, provider type) but never 
+the actual credential values for security reasons.
 
 
 ### Example
@@ -351,17 +364,21 @@ This endpoint does not need any parameter.
 
 List all available service templates
 
-**List all available services**
+**List all available service templates**
 
-List all services templates that can be deployed.
+Retrieve all service templates available in the management cluster. Service templates define infrastructure 
+services (such as Ray clusters, monitoring systems, etc.) that can be deployed on clusters.
 
-**Note**
+**Usage:**
+Service templates are used when creating new service deployments via the `POST /services` endpoint. 
+Each template specifies the service type and configuration variables that can be customized.
 
-Services can be added to the exalsius management cluster using the `exalsius-operator`.
+**Note:**
+Service templates can be added to the exalsius management cluster using the `exalsius-operator`.
 
-**Result**
-
-Returns an array of service objects.
+**Result:**
+Returns an array of service template objects, each containing the template name, description, and 
+available configuration variables.
 
 
 ### Example
@@ -424,7 +441,7 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of service templates |  * X-Total-Count - Total number of existing service deployments <br>  |
+**200** | List of service templates |  * X-Total-Count - Total number of existing service templates <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
@@ -437,11 +454,12 @@ List all SSH keys
 
 **List all SSH keys**
 
-List all SSH keys that are available to the management cluster for the current user.
+Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed 
+nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.
 
-**Result**
-
-Returns an array of SSH key objects.
+**Result:**
+Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never 
+returned for security reasons.
 
 
 ### Example
@@ -517,15 +535,17 @@ List all workspace templates
 
 **List all workspace templates**
 
-Retrieve all workspace templates.
+Retrieve all workspace templates available in the management cluster. Workspace templates define the 
+application configuration and environment setup for new workspace deployments.
 
-**Note**
+**Usage:**
+Workspace templates are used when creating new workspaces via the `POST /workspaces` endpoint. Each 
+template specifies the application type (e.g., Jupyter Notebook, VS Code Server) and configuration 
+variables that can be customized.
 
-Workspace templates are used to create workspaces.
-
-**Result**
-
-Returns an array of workspace template objects.
+**Result:**
+Returns an array of workspace template objects, each containing the template name, description, and 
+available configuration variables.
 
 
 ### Example
@@ -588,7 +608,7 @@ This endpoint does not need any parameter.
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of workspace templates |  * X-Total-Count - Total number of existing service deployments <br>  |
+**200** | List of workspace templates |  * X-Total-Count - Total number of existing service templates <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

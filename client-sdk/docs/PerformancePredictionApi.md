@@ -4,15 +4,29 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_performance_prediction**](PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get performance predictions for a configuration
+[**get_performance_prediction**](PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get runtime performance predictions for a GPU-accelerated workload configuration
 
 
 # **get_performance_prediction**
 > PerformancePredictionResponse get_performance_prediction(performance_prediction_request)
 
-Get performance predictions for a configuration
+Get runtime performance predictions for a GPU-accelerated workload configuration
 
-This endpoint returns predicted runtime and memory usage for a given configuration of model, optimizer, batch size, and sequence length.
+**Get performance predictions for GPU-accelerated training workloads**
+
+This endpoint returns predicted runtime and memory usage (VRAM) for a given training configuration.
+The predictions are provided per GPU type, allowing you to compare performance across different GPU models.
+
+**Request Parameters:**
+- `model_name`: The machine learning model to train
+- `optimizer`: The optimization algorithm (adam or adamw)
+- `batch_size`: Number of samples processed per training step
+- `sequence_length`: Length of input sequences (tokens)
+- `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation)
+
+**Response:**
+- `vram`: Predicted VRAM usage in GB, keyed by GPU type (e.g., "A100", "H100", "RTX4090")
+- `runtime`: Predicted runtime per training step in seconds, keyed by GPU type
 
 
 ### Example
@@ -43,10 +57,10 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.PerformancePredictionApi(api_client)
-    performance_prediction_request = exalsius_api_client.PerformancePredictionRequest() # PerformancePredictionRequest | 
+    performance_prediction_request = {"model_name":"LLAMA3_2_3B","optimizer":"adamw","batch_size":4,"sequence_length":2048,"accumulation_steps":4} # PerformancePredictionRequest | 
 
     try:
-        # Get performance predictions for a configuration
+        # Get runtime performance predictions for a GPU-accelerated workload configuration
         api_response = api_instance.get_performance_prediction(performance_prediction_request)
         print("The response of PerformancePredictionApi->get_performance_prediction:\n")
         pprint(api_response)

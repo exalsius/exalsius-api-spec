@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -60,7 +60,7 @@ class NodesApi:
     ) -> NodeDeleteResponse:
         """Delete a node from the pool
 
-        **Delete a node from the pool**  Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments.  If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+        **Delete a node from the pool**  Permanently delete a node from your node pool. This operation is only allowed when the node is in the  `AVAILABLE` state.  **Warning: This operation is irreversible.**  **Prerequisites:** - The node must be in the `AVAILABLE` state - If the node is currently in use (i.e., not available), you must first detach it from its cluster  **Behavior:** - The node will be permanently removed from your node pool - Once deleted, the node cannot be used in any cluster deployments - For cloud nodes, this does not terminate the instance; it only removes it from the pool - For self-managed nodes, the node is simply removed from management
 
         :param node_id: ID of the node to delete (required)
         :type node_id: str
@@ -127,7 +127,7 @@ class NodesApi:
     ) -> ApiResponse[NodeDeleteResponse]:
         """Delete a node from the pool
 
-        **Delete a node from the pool**  Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments.  If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+        **Delete a node from the pool**  Permanently delete a node from your node pool. This operation is only allowed when the node is in the  `AVAILABLE` state.  **Warning: This operation is irreversible.**  **Prerequisites:** - The node must be in the `AVAILABLE` state - If the node is currently in use (i.e., not available), you must first detach it from its cluster  **Behavior:** - The node will be permanently removed from your node pool - Once deleted, the node cannot be used in any cluster deployments - For cloud nodes, this does not terminate the instance; it only removes it from the pool - For self-managed nodes, the node is simply removed from management
 
         :param node_id: ID of the node to delete (required)
         :type node_id: str
@@ -194,7 +194,7 @@ class NodesApi:
     ) -> RESTResponseType:
         """Delete a node from the pool
 
-        **Delete a node from the pool**  Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments.  If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+        **Delete a node from the pool**  Permanently delete a node from your node pool. This operation is only allowed when the node is in the  `AVAILABLE` state.  **Warning: This operation is irreversible.**  **Prerequisites:** - The node must be in the `AVAILABLE` state - If the node is currently in use (i.e., not available), you must first detach it from its cluster  **Behavior:** - The node will be permanently removed from your node pool - Once deleted, the node cannot be used in any cluster deployments - For cloud nodes, this does not terminate the instance; it only removes it from the pool - For self-managed nodes, the node is simply removed from management
 
         :param node_id: ID of the node to delete (required)
         :type node_id: str
@@ -311,7 +311,7 @@ class NodesApi:
     ) -> NodeResponse:
         """Get details of a single node in the node pool (self-managed or cloud)
 
-        **Retrieve the details of single node in the node pool**  Fetch all metadata for one node in your pool. The returned object includes a nodeType  property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+        **Retrieve the details of a single node in the node pool**  Fetch comprehensive metadata for a specific node in your pool. The response includes a `node_type`  property to distinguish between self-managed (SSH) nodes and cloud-imported instances. The response  structure varies based on the node type, with cloud nodes including pricing and instance information,  while self-managed nodes include SSH connection details and heartbeat information.
 
         :param node_id: ID of the node to describe (required)
         :type node_id: str
@@ -377,7 +377,7 @@ class NodesApi:
     ) -> ApiResponse[NodeResponse]:
         """Get details of a single node in the node pool (self-managed or cloud)
 
-        **Retrieve the details of single node in the node pool**  Fetch all metadata for one node in your pool. The returned object includes a nodeType  property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+        **Retrieve the details of a single node in the node pool**  Fetch comprehensive metadata for a specific node in your pool. The response includes a `node_type`  property to distinguish between self-managed (SSH) nodes and cloud-imported instances. The response  structure varies based on the node type, with cloud nodes including pricing and instance information,  while self-managed nodes include SSH connection details and heartbeat information.
 
         :param node_id: ID of the node to describe (required)
         :type node_id: str
@@ -443,7 +443,7 @@ class NodesApi:
     ) -> RESTResponseType:
         """Get details of a single node in the node pool (self-managed or cloud)
 
-        **Retrieve the details of single node in the node pool**  Fetch all metadata for one node in your pool. The returned object includes a nodeType  property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+        **Retrieve the details of a single node in the node pool**  Fetch comprehensive metadata for a specific node in your pool. The response includes a `node_type`  property to distinguish between self-managed (SSH) nodes and cloud-imported instances. The response  structure varies based on the node type, with cloud nodes including pricing and instance information,  while self-managed nodes include SSH connection details and heartbeat information.
 
         :param node_id: ID of the node to describe (required)
         :type node_id: str
@@ -561,7 +561,7 @@ class NodesApi:
     ) -> NodeImportResponse:
         """Import a node from an offer
 
-        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider's offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `price_per_hour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `price_per_hour` of the offer at that time.  **Result**  On success, you'll receive one or more node IDs. Use these IDs with the `/clusters` endpoint to add nodes to your clusters.
 
         :param offer_id: (required)
         :type offer_id: str
@@ -636,7 +636,7 @@ class NodesApi:
     ) -> ApiResponse[NodeImportResponse]:
         """Import a node from an offer
 
-        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider's offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `price_per_hour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `price_per_hour` of the offer at that time.  **Result**  On success, you'll receive one or more node IDs. Use these IDs with the `/clusters` endpoint to add nodes to your clusters.
 
         :param offer_id: (required)
         :type offer_id: str
@@ -711,7 +711,7 @@ class NodesApi:
     ) -> RESTResponseType:
         """Import a node from an offer
 
-        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `pricePerHour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.  **Result**  On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+        **Import cloud nodes into the pool**  Use this operation to import one or more nodes of a given cloud instance type into the node pool.  **Parameters**   - `offer_id`: The identifier of the cloud provider's offer you wish to import (see GET /offers).   - `amount`: The number of instances of the instance type to import.  **Behavior**  Importing a node from an offer to the node pool does not yet start a virtual machine and therefore does not yet involve any costs. A virtual machine of the given instance type will only be started when you deploy a cluster using the node. The `price_per_hour` of the node will be the price of the offer at the time of import. When deploying a cluster, the actual hourly rate will be the `price_per_hour` of the offer at that time.  **Result**  On success, you'll receive one or more node IDs. Use these IDs with the `/clusters` endpoint to add nodes to your clusters.
 
         :param offer_id: (required)
         :type offer_id: str
@@ -844,7 +844,7 @@ class NodesApi:
     ) -> NodeImportResponse:
         """Import a self-managed node via SSH
 
-        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.  **Monitoring** You can poll its status at any time via GET /nodes/{nodeId}.  **Result**  Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.  **Monitoring** You can poll its status at any time via GET /node/{node_id}.  **Result**  Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
         :param node_import_ssh_request: (required)
         :type node_import_ssh_request: NodeImportSshRequest
@@ -911,7 +911,7 @@ class NodesApi:
     ) -> ApiResponse[NodeImportResponse]:
         """Import a self-managed node via SSH
 
-        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.  **Monitoring** You can poll its status at any time via GET /nodes/{nodeId}.  **Result**  Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.  **Monitoring** You can poll its status at any time via GET /node/{node_id}.  **Result**  Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
         :param node_import_ssh_request: (required)
         :type node_import_ssh_request: NodeImportSshRequest
@@ -978,7 +978,7 @@ class NodesApi:
     ) -> RESTResponseType:
         """Import a self-managed node via SSH
 
-        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.  **Monitoring** You can poll its status at any time via GET /nodes/{nodeId}.  **Result**  Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+        **Import a self-managed node into the pool**  Use this operation to bring an existing server under SSH control into your node pool. The node will be added to the node pool and will be available to select for a cluster deployment.  **Parameters**  In order to import a self-managed node, you need to provide the following information: - The IP or hostname of the node with the SSH port (e.g. `192.168.1.1:22`) - The username to access the node - The ID of the SSH key to use for the node (see the SSH Keys endpoint)  **Behavior**  On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.  **Monitoring** You can poll its status at any time via GET /node/{node_id}.  **Result**  Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
         :param node_import_ssh_request: (required)
         :type node_import_ssh_request: NodeImportSshRequest
@@ -1093,7 +1093,7 @@ class NodesApi:
         node_type: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes "
+                description="Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes "
             ),
         ] = None,
         provider: Annotated[
@@ -1116,9 +1116,9 @@ class NodesApi:
     ) -> NodesListResponse:
         """List all imported nodes in the node pool
 
-        **List nodes in the pool**  Retrieve all imported nodes, with optional filters: - `node_type`: self-managed or cloud-imported - `provider`: AWS, Azure, etc.  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=self-managed   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
+        **List nodes in the pool**  Retrieve all nodes in your node pool, including both self-managed (SSH) nodes and cloud-imported nodes. Nodes can be filtered by type and provider to help you find specific nodes.  **Filtering:** - `node_type`: Filter by node type - `CLOUD` for cloud-imported nodes or `SELF_MANAGED` for SSH-managed nodes - `provider`: Filter by cloud provider (e.g., \"aws\", \"azure\", \"gcp\") - only applies to cloud nodes  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=SELF_MANAGED   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
 
-        :param node_type: Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes
+        :param node_type: Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
@@ -1173,7 +1173,7 @@ class NodesApi:
         node_type: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes "
+                description="Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes "
             ),
         ] = None,
         provider: Annotated[
@@ -1196,9 +1196,9 @@ class NodesApi:
     ) -> ApiResponse[NodesListResponse]:
         """List all imported nodes in the node pool
 
-        **List nodes in the pool**  Retrieve all imported nodes, with optional filters: - `node_type`: self-managed or cloud-imported - `provider`: AWS, Azure, etc.  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=self-managed   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
+        **List nodes in the pool**  Retrieve all nodes in your node pool, including both self-managed (SSH) nodes and cloud-imported nodes. Nodes can be filtered by type and provider to help you find specific nodes.  **Filtering:** - `node_type`: Filter by node type - `CLOUD` for cloud-imported nodes or `SELF_MANAGED` for SSH-managed nodes - `provider`: Filter by cloud provider (e.g., \"aws\", \"azure\", \"gcp\") - only applies to cloud nodes  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=SELF_MANAGED   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
 
-        :param node_type: Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes
+        :param node_type: Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
@@ -1253,7 +1253,7 @@ class NodesApi:
         node_type: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes "
+                description="Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes "
             ),
         ] = None,
         provider: Annotated[
@@ -1276,9 +1276,9 @@ class NodesApi:
     ) -> RESTResponseType:
         """List all imported nodes in the node pool
 
-        **List nodes in the pool**  Retrieve all imported nodes, with optional filters: - `node_type`: self-managed or cloud-imported - `provider`: AWS, Azure, etc.  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=self-managed   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
+        **List nodes in the pool**  Retrieve all nodes in your node pool, including both self-managed (SSH) nodes and cloud-imported nodes. Nodes can be filtered by type and provider to help you find specific nodes.  **Filtering:** - `node_type`: Filter by node type - `CLOUD` for cloud-imported nodes or `SELF_MANAGED` for SSH-managed nodes - `provider`: Filter by cloud provider (e.g., \"aws\", \"azure\", \"gcp\") - only applies to cloud nodes  **Examples**  Here's an example of how to filter by node type:   ```   /nodes?node_type=SELF_MANAGED   ```      Here's an example of how to filter by provider:   ```   /nodes?provider=aws   ```
 
-        :param node_type: Only return nodes of this type.   Possible values: - `self-managed` - only self-managed (SSH) nodes   - `cloud` - only cloud-imported nodes
+        :param node_type: Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
@@ -1403,7 +1403,7 @@ class NodesApi:
     ) -> NodePatchResponse:
         """Patch a node
 
-        **Patch a node**  Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+        **Patch a node**  Update a node's properties or send a heartbeat signal. This endpoint is typically used by node agents  to report status updates and maintain connectivity.  **Behavior:** - If request body is provided, the node's properties (description, hardware specs) will be updated - If no request body is provided, this acts as a heartbeat to indicate the node is still active - For self-managed nodes, this updates the `last_heartbeat_date` - Returns an access token that can be used for subsequent operations
 
         :param node_id: (required)
         :type node_id: str
@@ -1473,7 +1473,7 @@ class NodesApi:
     ) -> ApiResponse[NodePatchResponse]:
         """Patch a node
 
-        **Patch a node**  Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+        **Patch a node**  Update a node's properties or send a heartbeat signal. This endpoint is typically used by node agents  to report status updates and maintain connectivity.  **Behavior:** - If request body is provided, the node's properties (description, hardware specs) will be updated - If no request body is provided, this acts as a heartbeat to indicate the node is still active - For self-managed nodes, this updates the `last_heartbeat_date` - Returns an access token that can be used for subsequent operations
 
         :param node_id: (required)
         :type node_id: str
@@ -1543,7 +1543,7 @@ class NodesApi:
     ) -> RESTResponseType:
         """Patch a node
 
-        **Patch a node**  Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+        **Patch a node**  Update a node's properties or send a heartbeat signal. This endpoint is typically used by node agents  to report status updates and maintain connectivity.  **Behavior:** - If request body is provided, the node's properties (description, hardware specs) will be updated - If no request body is provided, this acts as a heartbeat to indicate the node is still active - For self-managed nodes, this updates the `last_heartbeat_date` - Returns an access token that can be used for subsequent operations
 
         :param node_id: (required)
         :type node_id: str

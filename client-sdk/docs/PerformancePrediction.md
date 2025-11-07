@@ -6,8 +6,8 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **model_name** | **str** | Model name | 
-**vram** | **Dict[str, float]** |  | 
-**runtime** | **Dict[str, float]** |  | 
+**vram** | **Dict[str, float]** | Predicted VRAM (Video RAM) usage in GB for different GPU types. Keys are GPU type identifiers (e.g., \&quot;A100\&quot;, \&quot;H100\&quot;, \&quot;RTX4090\&quot;, \&quot;A6000\&quot;). Values represent the estimated memory consumption in gigabytes.  | 
+**runtime** | **Dict[str, float]** | Predicted runtime per training step in seconds for different GPU types. Keys are GPU type identifiers (e.g., \&quot;A100\&quot;, \&quot;H100\&quot;, \&quot;RTX4090\&quot;, \&quot;A6000\&quot;). Values represent the estimated time per step in seconds.  | 
 
 ## Example
 

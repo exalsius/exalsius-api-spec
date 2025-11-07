@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -54,9 +54,9 @@ class PerformancePredictionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> PerformancePredictionResponse:
-        """Get performance predictions for a configuration
+        """Get runtime performance predictions for a GPU-accelerated workload configuration
 
-        This endpoint returns predicted runtime and memory usage for a given configuration of model, optimizer, batch size, and sequence length.
+        **Get performance predictions for GPU-accelerated training workloads**  This endpoint returns predicted runtime and memory usage (VRAM) for a given training configuration. The predictions are provided per GPU type, allowing you to compare performance across different GPU models.  **Request Parameters:** - `model_name`: The machine learning model to train - `optimizer`: The optimization algorithm (adam or adamw) - `batch_size`: Number of samples processed per training step - `sequence_length`: Length of input sequences (tokens) - `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation)  **Response:** - `vram`: Predicted VRAM usage in GB, keyed by GPU type (e.g., \"A100\", \"H100\", \"RTX4090\") - `runtime`: Predicted runtime per training step in seconds, keyed by GPU type
 
         :param performance_prediction_request: (required)
         :type performance_prediction_request: PerformancePredictionRequest
@@ -121,9 +121,9 @@ class PerformancePredictionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> ApiResponse[PerformancePredictionResponse]:
-        """Get performance predictions for a configuration
+        """Get runtime performance predictions for a GPU-accelerated workload configuration
 
-        This endpoint returns predicted runtime and memory usage for a given configuration of model, optimizer, batch size, and sequence length.
+        **Get performance predictions for GPU-accelerated training workloads**  This endpoint returns predicted runtime and memory usage (VRAM) for a given training configuration. The predictions are provided per GPU type, allowing you to compare performance across different GPU models.  **Request Parameters:** - `model_name`: The machine learning model to train - `optimizer`: The optimization algorithm (adam or adamw) - `batch_size`: Number of samples processed per training step - `sequence_length`: Length of input sequences (tokens) - `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation)  **Response:** - `vram`: Predicted VRAM usage in GB, keyed by GPU type (e.g., \"A100\", \"H100\", \"RTX4090\") - `runtime`: Predicted runtime per training step in seconds, keyed by GPU type
 
         :param performance_prediction_request: (required)
         :type performance_prediction_request: PerformancePredictionRequest
@@ -188,9 +188,9 @@ class PerformancePredictionApi:
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
     ) -> RESTResponseType:
-        """Get performance predictions for a configuration
+        """Get runtime performance predictions for a GPU-accelerated workload configuration
 
-        This endpoint returns predicted runtime and memory usage for a given configuration of model, optimizer, batch size, and sequence length.
+        **Get performance predictions for GPU-accelerated training workloads**  This endpoint returns predicted runtime and memory usage (VRAM) for a given training configuration. The predictions are provided per GPU type, allowing you to compare performance across different GPU models.  **Request Parameters:** - `model_name`: The machine learning model to train - `optimizer`: The optimization algorithm (adam or adamw) - `batch_size`: Number of samples processed per training step - `sequence_length`: Length of input sequences (tokens) - `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation)  **Response:** - `vram`: Predicted VRAM usage in GB, keyed by GPU type (e.g., \"A100\", \"H100\", \"RTX4090\") - `runtime`: Predicted runtime per training step in seconds, keyed by GPU type
 
         :param performance_prediction_request: (required)
         :type performance_prediction_request: PerformancePredictionRequest

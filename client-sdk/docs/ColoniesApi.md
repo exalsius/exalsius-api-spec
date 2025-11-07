@@ -18,16 +18,17 @@ Create a colony
 
 **Create a colony**
 
-Create a new colony.
+Create a new colony to organize and manage multiple clusters together. Colonies enable coordinated 
+management, scheduling, and operations across multiple clusters.
 
-**Parameters**
+**Parameters:**
+- `name`: A descriptive name for the colony (must be unique within your account)
 
-- `name`: The name of the colony
-
-**Behavior**
-
-Creating a new colony will result in a new colony resource being created. 
-Clusters will be added to the colony as they are created.
+**Behavior:**
+- A new colony resource will be created with the specified name
+- The colony starts empty (no clusters)
+- Clusters can be added to the colony when they are created by specifying the colony ID
+- Once created, you can use the colony's kubeconfig to access all clusters in the colony
 
 
 ### Example
@@ -58,7 +59,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ColoniesApi(api_client)
-    colony_create_request = exalsius_api_client.ColonyCreateRequest() # ColonyCreateRequest | 
+    colony_create_request = {"name":"my-colony"} # ColonyCreateRequest | 
 
     try:
         # Create a colony
@@ -109,13 +110,20 @@ Delete (tear-down) a colony
 
 **Delete a colony**
 
-Permanently delete a colony. This also deletes all clusters
-that belong to the colony.
-Once deleted, the colony is no longer part of your account.
+Permanently delete a colony and all clusters that belong to it. This operation will tear down all 
+infrastructure associated with the colony.
 
-**Note**
+**Warning: This operation is irreversible.**
 
-This operation is irreversible.
+**Behavior:**
+- The colony will be permanently deleted from your account
+- All clusters that belong to the colony will also be deleted
+- All resources (nodes, workspaces, services) deployed on those clusters will be terminated
+- The deletion process may take several minutes to complete
+- Once deleted, the colony and its clusters cannot be recovered
+
+**Response:**
+The response includes the colony ID and a list of all cluster IDs that were deleted as part of this operation.
 
 
 ### Example
@@ -195,7 +203,9 @@ Get details of a single colony
 
 **Retrieve the details of a single colony**
 
-Fetch all metadata for one colony.
+Fetch comprehensive metadata for a specific colony, including its name, owner, associated cluster IDs, 
+namespace, and creation timestamp. This information helps you understand the colony's composition and 
+manage its clusters.
 
 
 ### Example
@@ -275,7 +285,15 @@ Get the kubeconfig for a colony
 
 **Get the kubeconfig for a colony**
 
-The kubeconfig file contains the credentials to access all clusters of the colony.
+Retrieve the kubeconfig file that provides access to all clusters within the colony. The kubeconfig 
+contains authentication credentials and cluster connection information, allowing you to manage all 
+clusters in the colony using standard Kubernetes tools (kubectl, etc.).
+
+**Usage:**
+- Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable
+- Use `kubectl` or other Kubernetes tools to interact with clusters in the colony
+- The kubeconfig includes contexts for all clusters in the colony, allowing you to switch between them
+- This is useful for managing multiple clusters as a unified infrastructure group
 
 
 ### Example
@@ -355,7 +373,9 @@ List all colonies
 
 **List all colonies**
 
-Retrieve all colonies
+Retrieve all colonies associated with your account. Colonies are groups of clusters that can be managed 
+together for coordinated operations and scheduling. Each colony can contain multiple clusters, allowing 
+you to organize your infrastructure logically.
 
 
 ### Example

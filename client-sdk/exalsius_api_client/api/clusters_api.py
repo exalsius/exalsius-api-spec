@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -77,7 +77,7 @@ class ClustersApi:
     ) -> ClusterNodesResponse:
         """Add nodes to a cluster
 
-        **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+        **Add nodes to a cluster**  Add one or more nodes to an existing cluster. Nodes can be added as either control plane nodes or  worker nodes, depending on your cluster's needs.  **Request Body:** - `nodes_to_add`: Array of nodes to add, where each node has:   - `node_id`: The ID of the node to add (required)   - `node_role`: The role of the node (required). Possible values:     - `CONTROL_PLANE` - control plane node (manages the cluster)     - `WORKER` - worker node (runs workloads)  **Prerequisites:** - Nodes must be in the `AVAILABLE` state - Nodes must be of the same type (e.g., all self-managed or all from the same cloud region) - For control plane nodes, you typically need an odd number (1, 3, 5) for high availability  **Behavior:** - If the cluster is already deployed (`READY` state), nodes will be added to the running cluster - If the cluster is in `PENDING` state, nodes will be associated but the cluster remains pending until deployment - The node addition process may take several minutes to complete - Once added, nodes become part of the cluster and can run workloads
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -148,7 +148,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterNodesResponse]:
         """Add nodes to a cluster
 
-        **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+        **Add nodes to a cluster**  Add one or more nodes to an existing cluster. Nodes can be added as either control plane nodes or  worker nodes, depending on your cluster's needs.  **Request Body:** - `nodes_to_add`: Array of nodes to add, where each node has:   - `node_id`: The ID of the node to add (required)   - `node_role`: The role of the node (required). Possible values:     - `CONTROL_PLANE` - control plane node (manages the cluster)     - `WORKER` - worker node (runs workloads)  **Prerequisites:** - Nodes must be in the `AVAILABLE` state - Nodes must be of the same type (e.g., all self-managed or all from the same cloud region) - For control plane nodes, you typically need an odd number (1, 3, 5) for high availability  **Behavior:** - If the cluster is already deployed (`READY` state), nodes will be added to the running cluster - If the cluster is in `PENDING` state, nodes will be associated but the cluster remains pending until deployment - The node addition process may take several minutes to complete - Once added, nodes become part of the cluster and can run workloads
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -219,7 +219,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Add nodes to a cluster
 
-        **Add nodes to a cluster**  Add nodes to a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to add nodes to - `node_ids`: The IDs of the nodes to add - `node_role`: The role of the nodes to add (optional). Possible values:   - `control_plane` - only control plane nodes   - `worker` - only worker nodes  If no `nodeRole` is provided, the nodes will be added as workers.  **Examples**  Here's an example of how to add a control plane node to a cluster:   ```   /clusters/123/nodes?node_ids=123&node_role=control_plane   ```  **Note**  In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region) can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.  The nodes will be added to the cluster as soon as possible. However, it may take a few minutes for the nodes to be fully deployed. The cluster will be in the `pending` state until all nodes are fully deployed.  **Behavior**  In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+        **Add nodes to a cluster**  Add one or more nodes to an existing cluster. Nodes can be added as either control plane nodes or  worker nodes, depending on your cluster's needs.  **Request Body:** - `nodes_to_add`: Array of nodes to add, where each node has:   - `node_id`: The ID of the node to add (required)   - `node_role`: The role of the node (required). Possible values:     - `CONTROL_PLANE` - control plane node (manages the cluster)     - `WORKER` - worker node (runs workloads)  **Prerequisites:** - Nodes must be in the `AVAILABLE` state - Nodes must be of the same type (e.g., all self-managed or all from the same cloud region) - For control plane nodes, you typically need an odd number (1, 3, 5) for high availability  **Behavior:** - If the cluster is already deployed (`READY` state), nodes will be added to the running cluster - If the cluster is in `PENDING` state, nodes will be associated but the cluster remains pending until deployment - The node addition process may take several minutes to complete - Once added, nodes become part of the cluster and can run workloads
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -352,7 +352,7 @@ class ClustersApi:
     ) -> ClusterCreateResponse:
         """Adopt a cluster
 
-        **Adopt a cluster** Adopt an already existing Kubernetes cluster to manage it with exalsius.
+        **Adopt a cluster**  Adopt an existing Kubernetes cluster that is already running and managed outside of exalsius. This  allows you to bring your own Kubernetes cluster under exalsius management, enabling you to use  exalsius features like workspace provisioning, service deployment, and resource monitoring.  **Parameters:** - `name`: A descriptive name for the adopted cluster - `kubeconfig_b64`: The base64-encoded kubeconfig file for accessing the cluster - `k8s_version`: The Kubernetes version of the cluster (optional, but recommended) - `colony_id`: The ID of the colony to add the cluster to (optional)  **Behavior:** - The cluster will be registered in exalsius and can be managed through the API - You can deploy workspaces and services to the adopted cluster - The cluster will appear in cluster listings and can be monitored like any other cluster - The original cluster management remains unchanged; exalsius only manages workloads on the cluster
 
         :param cluster_adopt_request: (required)
         :type cluster_adopt_request: ClusterAdoptRequest
@@ -419,7 +419,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterCreateResponse]:
         """Adopt a cluster
 
-        **Adopt a cluster** Adopt an already existing Kubernetes cluster to manage it with exalsius.
+        **Adopt a cluster**  Adopt an existing Kubernetes cluster that is already running and managed outside of exalsius. This  allows you to bring your own Kubernetes cluster under exalsius management, enabling you to use  exalsius features like workspace provisioning, service deployment, and resource monitoring.  **Parameters:** - `name`: A descriptive name for the adopted cluster - `kubeconfig_b64`: The base64-encoded kubeconfig file for accessing the cluster - `k8s_version`: The Kubernetes version of the cluster (optional, but recommended) - `colony_id`: The ID of the colony to add the cluster to (optional)  **Behavior:** - The cluster will be registered in exalsius and can be managed through the API - You can deploy workspaces and services to the adopted cluster - The cluster will appear in cluster listings and can be monitored like any other cluster - The original cluster management remains unchanged; exalsius only manages workloads on the cluster
 
         :param cluster_adopt_request: (required)
         :type cluster_adopt_request: ClusterAdoptRequest
@@ -486,7 +486,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Adopt a cluster
 
-        **Adopt a cluster** Adopt an already existing Kubernetes cluster to manage it with exalsius.
+        **Adopt a cluster**  Adopt an existing Kubernetes cluster that is already running and managed outside of exalsius. This  allows you to bring your own Kubernetes cluster under exalsius management, enabling you to use  exalsius features like workspace provisioning, service deployment, and resource monitoring.  **Parameters:** - `name`: A descriptive name for the adopted cluster - `kubeconfig_b64`: The base64-encoded kubeconfig file for accessing the cluster - `k8s_version`: The Kubernetes version of the cluster (optional, but recommended) - `colony_id`: The ID of the colony to add the cluster to (optional)  **Behavior:** - The cluster will be registered in exalsius and can be managed through the API - You can deploy workspaces and services to the adopted cluster - The cluster will appear in cluster listings and can be monitored like any other cluster - The original cluster management remains unchanged; exalsius only manages workloads on the cluster
 
         :param cluster_adopt_request: (required)
         :type cluster_adopt_request: ClusterAdoptRequest
@@ -613,7 +613,7 @@ class ClustersApi:
     ) -> ClusterCreateResponse:
         """Create a cluster
 
-        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster - `k8s_version`: The Kubernetes version of the cluster - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `services`: The IDs of the services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `services` are provided, the services will be deployed in the cluster.  **Behavior**  Creating a new cluster will result in a new cluster resource being created. The cluster will be in  the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
+        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster (required) - `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER` - `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type) - `colony_id`: The ID of the colony to add the cluster to (optional) - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `service_deployments`: The services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `service_deployments` are provided, the services will be deployed in the cluster.  **Behavior:** - A new cluster resource will be created with the specified configuration - The cluster will be in the `PENDING` state until deployment is initiated - You must call `POST /cluster/{cluster_id}/deploy` to actually deploy the cluster - If nodes are specified, they will be associated with the cluster but not deployed until the deploy operation is called - If `service_deployments` are specified, services will be deployed after the cluster is ready
 
         :param cluster_create_request: (required)
         :type cluster_create_request: ClusterCreateRequest
@@ -680,7 +680,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterCreateResponse]:
         """Create a cluster
 
-        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster - `k8s_version`: The Kubernetes version of the cluster - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `services`: The IDs of the services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `services` are provided, the services will be deployed in the cluster.  **Behavior**  Creating a new cluster will result in a new cluster resource being created. The cluster will be in  the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
+        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster (required) - `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER` - `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type) - `colony_id`: The ID of the colony to add the cluster to (optional) - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `service_deployments`: The services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `service_deployments` are provided, the services will be deployed in the cluster.  **Behavior:** - A new cluster resource will be created with the specified configuration - The cluster will be in the `PENDING` state until deployment is initiated - You must call `POST /cluster/{cluster_id}/deploy` to actually deploy the cluster - If nodes are specified, they will be associated with the cluster but not deployed until the deploy operation is called - If `service_deployments` are specified, services will be deployed after the cluster is ready
 
         :param cluster_create_request: (required)
         :type cluster_create_request: ClusterCreateRequest
@@ -747,7 +747,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Create a cluster
 
-        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster - `k8s_version`: The Kubernetes version of the cluster - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `services`: The IDs of the services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `services` are provided, the services will be deployed in the cluster.  **Behavior**  Creating a new cluster will result in a new cluster resource being created. The cluster will be in  the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
+        **Create a cluster**  Create a new cluster.  **Parameters**  - `name`: The name of the cluster (required) - `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER` - `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type) - `colony_id`: The ID of the colony to add the cluster to (optional) - `to_be_deleted_at`: The date and time the cluster will be deleted (optional) - `control_plane_node_ids`: The IDs of the control plane nodes (optional) - `worker_node_ids`: The IDs of the worker nodes (optional) - `service_deployments`: The services to deploy in the cluster (optional)  If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time. If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster. If `service_deployments` are provided, the services will be deployed in the cluster.  **Behavior:** - A new cluster resource will be created with the specified configuration - The cluster will be in the `PENDING` state until deployment is initiated - You must call `POST /cluster/{cluster_id}/deploy` to actually deploy the cluster - If nodes are specified, they will be associated with the cluster but not deployed until the deploy operation is called - If `service_deployments` are specified, services will be deployed after the cluster is ready
 
         :param cluster_create_request: (required)
         :type cluster_create_request: ClusterCreateRequest
@@ -882,7 +882,7 @@ class ClustersApi:
     ) -> ClusterDeleteResponse:
         """Delete (tear-down) a cluster
 
-        **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
+        **Delete a cluster**  Permanently delete a cluster and tear down all associated infrastructure. This operation will  terminate all resources running on the cluster, including workspaces and services.  **Warning: This operation is irreversible.**  **Behavior:** - The cluster will be deleted as soon as possible - The deletion process may take several minutes to complete - The cluster will transition to the `DELETING` state during the process - Once deleted, nodes are returned to the node pool and can be reused in future deployments - All workspaces and services running on the cluster will be terminated  **Parameters:** - `propagate`: If `true`, the deletion will also remove nodes from the node pool (default: `false`)
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
@@ -959,7 +959,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterDeleteResponse]:
         """Delete (tear-down) a cluster
 
-        **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
+        **Delete a cluster**  Permanently delete a cluster and tear down all associated infrastructure. This operation will  terminate all resources running on the cluster, including workspaces and services.  **Warning: This operation is irreversible.**  **Behavior:** - The cluster will be deleted as soon as possible - The deletion process may take several minutes to complete - The cluster will transition to the `DELETING` state during the process - Once deleted, nodes are returned to the node pool and can be reused in future deployments - All workspaces and services running on the cluster will be terminated  **Parameters:** - `propagate`: If `true`, the deletion will also remove nodes from the node pool (default: `false`)
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
@@ -1036,7 +1036,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Delete (tear-down) a cluster
 
-        **Delete a cluster**  Permanently delete a cluster. Once deleted, the cluster is no longer part of your  account and cannot be used in any further deployments. When a cluster is deleted, the nodes are returned to the node pool and can be used in future deployments.  **Note**  This operation is irreversible.  **Behavior**  The cluster will be deleted as soon as possible. However, it may take a few minutes for the cluster to be fully deleted. The cluster will be in the `deleting` state until it is fully deleted.
+        **Delete a cluster**  Permanently delete a cluster and tear down all associated infrastructure. This operation will  terminate all resources running on the cluster, including workspaces and services.  **Warning: This operation is irreversible.**  **Behavior:** - The cluster will be deleted as soon as possible - The deletion process may take several minutes to complete - The cluster will transition to the `DELETING` state during the process - Once deleted, nodes are returned to the node pool and can be reused in future deployments - All workspaces and services running on the cluster will be terminated  **Parameters:** - `propagate`: If `true`, the deletion will also remove nodes from the node pool (default: `false`)
 
         :param cluster_id: ID of the cluster to delete (required)
         :type cluster_id: str
@@ -1161,7 +1161,7 @@ class ClustersApi:
     ) -> ClusterNodeRemoveResponse:
         """Delete a node from a cluster
 
-        **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
+        **Delete a node from a cluster**  Remove a node from a cluster and return it to the node pool. This operation is useful for scaling  down a cluster or replacing nodes.  **Behavior:** - The node will be gracefully removed from the cluster - Any workloads running on the node will be rescheduled to other nodes (if available) - The node will be returned to the node pool and can be reused in other clusters - The removal process may take several minutes to complete - The cluster will continue operating with the remaining nodes  **Note:** - Removing control plane nodes may affect cluster availability if you remove too many - Ensure you have sufficient remaining nodes to handle your workloads - The operation returns a 202 status code as it is asynchronous
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1232,7 +1232,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterNodeRemoveResponse]:
         """Delete a node from a cluster
 
-        **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
+        **Delete a node from a cluster**  Remove a node from a cluster and return it to the node pool. This operation is useful for scaling  down a cluster or replacing nodes.  **Behavior:** - The node will be gracefully removed from the cluster - Any workloads running on the node will be rescheduled to other nodes (if available) - The node will be returned to the node pool and can be reused in other clusters - The removal process may take several minutes to complete - The cluster will continue operating with the remaining nodes  **Note:** - Removing control plane nodes may affect cluster availability if you remove too many - Ensure you have sufficient remaining nodes to handle your workloads - The operation returns a 202 status code as it is asynchronous
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1303,7 +1303,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Delete a node from a cluster
 
-        **Delete a node from a cluster**  Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster and is returned to the node pool.
+        **Delete a node from a cluster**  Remove a node from a cluster and return it to the node pool. This operation is useful for scaling  down a cluster or replacing nodes.  **Behavior:** - The node will be gracefully removed from the cluster - Any workloads running on the node will be rescheduled to other nodes (if available) - The node will be returned to the node pool and can be reused in other clusters - The removal process may take several minutes to complete - The cluster will continue operating with the remaining nodes  **Note:** - Removing control plane nodes may affect cluster availability if you remove too many - Ensure you have sufficient remaining nodes to handle your workloads - The operation returns a 202 status code as it is asynchronous
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1426,7 +1426,7 @@ class ClustersApi:
     ) -> ClusterDeployResponse:
         """Deploy a new cluster
 
-        **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
+        **Deploy a new cluster**  Initiate the deployment of a cluster that is in the `PENDING` state. This operation will start  the Kubernetes cluster deployment process, configuring all nodes and setting up the cluster  infrastructure.  **Prerequisites:** - The cluster must be in the `PENDING` state - The cluster must have at least one control plane node and one worker node assigned - All assigned nodes must be in the `AVAILABLE` state  **Behavior:** - The cluster deployment will begin as soon as possible - The cluster will transition to the `DEPLOYING` state - The deployment process may take several minutes to complete - Once deployment completes, the cluster will transition to the `READY` state - If deployment fails, the cluster will transition to the `FAILED` state  **Response:** Returns the cluster ID to confirm the deployment has been initiated.
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1494,7 +1494,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterDeployResponse]:
         """Deploy a new cluster
 
-        **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
+        **Deploy a new cluster**  Initiate the deployment of a cluster that is in the `PENDING` state. This operation will start  the Kubernetes cluster deployment process, configuring all nodes and setting up the cluster  infrastructure.  **Prerequisites:** - The cluster must be in the `PENDING` state - The cluster must have at least one control plane node and one worker node assigned - All assigned nodes must be in the `AVAILABLE` state  **Behavior:** - The cluster deployment will begin as soon as possible - The cluster will transition to the `DEPLOYING` state - The deployment process may take several minutes to complete - Once deployment completes, the cluster will transition to the `READY` state - If deployment fails, the cluster will transition to the `FAILED` state  **Response:** Returns the cluster ID to confirm the deployment has been initiated.
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1562,7 +1562,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Deploy a new cluster
 
-        **Deploy a new cluster**  Deploy a cluster that is in the `staging` state.  **Note**  Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds` arrays can be deployed.  **Behavior**  The cluster will be deployed as soon as possible. However, it may take a few minutes for the cluster to be fully deployed. The cluster will be in the `deploying` state until it is fully deployed.  **Result**  Returns the cluster object with the `deploying` state.
+        **Deploy a new cluster**  Initiate the deployment of a cluster that is in the `PENDING` state. This operation will start  the Kubernetes cluster deployment process, configuring all nodes and setting up the cluster  infrastructure.  **Prerequisites:** - The cluster must be in the `PENDING` state - The cluster must have at least one control plane node and one worker node assigned - All assigned nodes must be in the `AVAILABLE` state  **Behavior:** - The cluster deployment will begin as soon as possible - The cluster will transition to the `DEPLOYING` state - The deployment process may take several minutes to complete - Once deployment completes, the cluster will transition to the `READY` state - If deployment fails, the cluster will transition to the `FAILED` state  **Response:** Returns the cluster ID to confirm the deployment has been initiated.
 
         :param cluster_id: (required)
         :type cluster_id: str
@@ -1682,7 +1682,7 @@ class ClustersApi:
     ) -> ClusterResponse:
         """Get details of a single cluster
 
-        **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
+        **Retrieve the details of a single cluster**  Fetch comprehensive metadata for a specific cluster, including its status, node configuration,  Kubernetes version, associated services, cost information, and lifecycle timestamps. This information  helps you understand the cluster's current state and configuration.
 
         :param cluster_id: ID of the cluster to describe (required)
         :type cluster_id: str
@@ -1750,7 +1750,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterResponse]:
         """Get details of a single cluster
 
-        **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
+        **Retrieve the details of a single cluster**  Fetch comprehensive metadata for a specific cluster, including its status, node configuration,  Kubernetes version, associated services, cost information, and lifecycle timestamps. This information  helps you understand the cluster's current state and configuration.
 
         :param cluster_id: ID of the cluster to describe (required)
         :type cluster_id: str
@@ -1818,7 +1818,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Get details of a single cluster
 
-        **Retrieve the details of a single cluster**  Fetch all metadata for one cluster.
+        **Retrieve the details of a single cluster**  Fetch comprehensive metadata for a specific cluster, including its status, node configuration,  Kubernetes version, associated services, cost information, and lifecycle timestamps. This information  helps you understand the cluster's current state and configuration.
 
         :param cluster_id: ID of the cluster to describe (required)
         :type cluster_id: str
@@ -1937,7 +1937,7 @@ class ClustersApi:
     ) -> ClusterKubeconfigResponse:
         """Get the kubeconfig for a cluster
 
-        **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
+        **Get the kubeconfig for a cluster**  Retrieve the kubeconfig file that provides access to the cluster. The kubeconfig contains  authentication credentials and cluster connection information, allowing you to manage the  cluster using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with the cluster directly - This is useful for advanced cluster management and debugging - The kubeconfig is cluster-specific and provides full access to the cluster
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
         :type cluster_id: str
@@ -2006,7 +2006,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterKubeconfigResponse]:
         """Get the kubeconfig for a cluster
 
-        **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
+        **Get the kubeconfig for a cluster**  Retrieve the kubeconfig file that provides access to the cluster. The kubeconfig contains  authentication credentials and cluster connection information, allowing you to manage the  cluster using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with the cluster directly - This is useful for advanced cluster management and debugging - The kubeconfig is cluster-specific and provides full access to the cluster
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
         :type cluster_id: str
@@ -2075,7 +2075,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Get the kubeconfig for a cluster
 
-        **Get the kubeconfig for a cluster**  Get the kubeconfig file for a cluster.
+        **Get the kubeconfig for a cluster**  Retrieve the kubeconfig file that provides access to the cluster. The kubeconfig contains  authentication credentials and cluster connection information, allowing you to manage the  cluster using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with the cluster directly - This is useful for advanced cluster management and debugging - The kubeconfig is cluster-specific and provides full access to the cluster
 
         :param cluster_id: The ID of the cluster to get the kubeconfig for (required)
         :type cluster_id: str
@@ -2193,7 +2193,7 @@ class ClustersApi:
     ) -> ClusterResourcesListResponse:
         """List available / occupied resources in the cluster
 
-        **List available / occupied resources in the cluster**  List the available / occupied resources in the cluster.
+        **List available / occupied resources in the cluster**  Retrieve detailed resource information for all nodes in the cluster, showing both available and  occupied resources (CPU, memory, storage, GPU). This information helps you understand cluster  capacity, utilization, and plan for workload placement.  **Response:** Returns a list of nodes with their resource information, including: - Available resources: CPU cores, memory (GB), storage (GB), GPU count and type - Occupied resources: Currently used resources on each node - Total resource counts across the cluster
 
         :param cluster_id: ID of the cluster to list resources for (required)
         :type cluster_id: str
@@ -2261,7 +2261,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterResourcesListResponse]:
         """List available / occupied resources in the cluster
 
-        **List available / occupied resources in the cluster**  List the available / occupied resources in the cluster.
+        **List available / occupied resources in the cluster**  Retrieve detailed resource information for all nodes in the cluster, showing both available and  occupied resources (CPU, memory, storage, GPU). This information helps you understand cluster  capacity, utilization, and plan for workload placement.  **Response:** Returns a list of nodes with their resource information, including: - Available resources: CPU cores, memory (GB), storage (GB), GPU count and type - Occupied resources: Currently used resources on each node - Total resource counts across the cluster
 
         :param cluster_id: ID of the cluster to list resources for (required)
         :type cluster_id: str
@@ -2329,7 +2329,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """List available / occupied resources in the cluster
 
-        **List available / occupied resources in the cluster**  List the available / occupied resources in the cluster.
+        **List available / occupied resources in the cluster**  Retrieve detailed resource information for all nodes in the cluster, showing both available and  occupied resources (CPU, memory, storage, GPU). This information helps you understand cluster  capacity, utilization, and plan for workload placement.  **Response:** Returns a list of nodes with their resource information, including: - Available resources: CPU cores, memory (GB), storage (GB), GPU count and type - Occupied resources: Currently used resources on each node - Total resource counts across the cluster
 
         :param cluster_id: ID of the cluster to list resources for (required)
         :type cluster_id: str
@@ -2447,7 +2447,7 @@ class ClustersApi:
     ) -> ClusterNodesResponse:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a specific cluster, including both control plane and worker nodes.  This endpoint provides information about the cluster's node composition, which is useful for  understanding cluster capacity and configuration.  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /cluster/123e4567-e89b-12d3-a456-426614174000/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
         :type cluster_id: str
@@ -2515,7 +2515,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterNodesResponse]:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a specific cluster, including both control plane and worker nodes.  This endpoint provides information about the cluster's node composition, which is useful for  understanding cluster capacity and configuration.  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /cluster/123e4567-e89b-12d3-a456-426614174000/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
         :type cluster_id: str
@@ -2583,7 +2583,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Get nodes of a cluster
 
-        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a cluster.  **Parameters**  - `cluster_id`: The ID of the cluster to retrieve nodes from  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /clusters/123/nodes   ```
+        **Retrieve the nodes of a cluster**  Fetch all nodes that are part of a specific cluster, including both control plane and worker nodes.  This endpoint provides information about the cluster's node composition, which is useful for  understanding cluster capacity and configuration.  **Examples**  Here's an example of how to retrieve all nodes of a cluster:   ```   /cluster/123e4567-e89b-12d3-a456-426614174000/nodes   ```
 
         :param cluster_id: ID of the cluster to retrieve nodes from (required)
         :type cluster_id: str
@@ -2687,7 +2687,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2704,9 +2704,9 @@ class ClustersApi:
     ) -> ClustersListResponse:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2758,7 +2758,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2775,9 +2775,9 @@ class ClustersApi:
     ) -> ApiResponse[ClustersListResponse]:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -2829,7 +2829,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2846,9 +2846,9 @@ class ClustersApi:
     ) -> RESTResponseType:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters, with optional filters: - `status`: pending,running, deleting, deleted, failed  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=running   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

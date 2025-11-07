@@ -13,7 +13,31 @@ Method | HTTP request | Description
 List and filter current GPU on-demand and spot market offers
 
 **List GPU offers (on-demand & spot instances)**
-Retrieve current GPU instance offers from both on-demand and spot markets, with optional filters.
+
+Retrieve current GPU instance offers from both on-demand and spot markets across multiple cloud providers.
+This endpoint provides comprehensive filtering, sorting, and pagination capabilities to help you find the best GPU instances for your workload.
+
+**Key Features:**
+- Filter by GPU vendor, type, cloud provider, region, and pricing model
+- Range filters for GPU count, memory, vCPUs, and price
+- Sort by price, GPU count, memory, or other attributes
+- Pagination using cursor-based navigation
+- Support for both on-demand and spot pricing
+- Option to include non-GPU instances
+
+**Filtering:**
+Use query parameters to filter offers by hardware specifications (GPU vendor/type, CPU vendor/arch), 
+cloud provider, location (region/availability zone), pricing (type, min/max price), and resource ranges 
+(GPU count, memory, vCPUs). All filters can be combined.
+
+**Sorting:**
+Sort results by `sort_by` field (price, gpu_count, gpu_memory_mib, total_gpu_memory_mib, main_memory_mib, 
+num_vcpus, hourly_cost) in ascending or descending order using `sort_order`.
+
+**Pagination:**
+Results are paginated using cursor-based navigation. Use `page_size` to control the number of results per page.
+The response includes `next_cursor` and `prev_cursor` for navigating between pages. Pass the cursor from 
+the previous response to get the next or previous page.
 
 
 ### Example

@@ -24,38 +24,26 @@ Add nodes to a cluster
 
 **Add nodes to a cluster**
 
-Add nodes to a cluster.
+Add one or more nodes to an existing cluster. Nodes can be added as either control plane nodes or 
+worker nodes, depending on your cluster's needs.
 
-**Parameters**
+**Request Body:**
+- `nodes_to_add`: Array of nodes to add, where each node has:
+  - `node_id`: The ID of the node to add (required)
+  - `node_role`: The role of the node (required). Possible values:
+    - `CONTROL_PLANE` - control plane node (manages the cluster)
+    - `WORKER` - worker node (runs workloads)
 
-- `cluster_id`: The ID of the cluster to add nodes to
-- `node_ids`: The IDs of the nodes to add
-- `node_role`: The role of the nodes to add (optional). Possible values:
-  - `control_plane` - only control plane nodes
-  - `worker` - only worker nodes
+**Prerequisites:**
+- Nodes must be in the `AVAILABLE` state
+- Nodes must be of the same type (e.g., all self-managed or all from the same cloud region)
+- For control plane nodes, you typically need an odd number (1, 3, 5) for high availability
 
-If no `nodeRole` is provided, the nodes will be added as workers.
-
-**Examples**
-
-Here's an example of how to add a control plane node to a cluster:
-  ```
-  /clusters/123/nodes?node_ids=123&node_role=control_plane
-  ```
-
-**Note**
-
-In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region)
-can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.
-
-The nodes will be added to the cluster as soon as possible. However, it may take a few minutes
-for the nodes to be fully deployed. The cluster will be in the `pending` state
-until all nodes are fully deployed.
-
-**Behavior**
-
-In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the
-cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+**Behavior:**
+- If the cluster is already deployed (`READY` state), nodes will be added to the running cluster
+- If the cluster is in `PENDING` state, nodes will be associated but the cluster remains pending until deployment
+- The node addition process may take several minutes to complete
+- Once added, nodes become part of the cluster and can run workloads
 
 
 ### Example
@@ -87,7 +75,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
     cluster_id = 'cluster_id_example' # str | 
-    cluster_add_node_request = exalsius_api_client.ClusterAddNodeRequest() # ClusterAddNodeRequest | 
+    cluster_add_node_request = {"nodes_to_add":[{"node_id":"123e4567-e89b-12d3-a456-426614174001","node_role":"CONTROL_PLANE"}]} # ClusterAddNodeRequest | 
 
     try:
         # Add nodes to a cluster
@@ -138,7 +126,22 @@ Name | Type | Description  | Notes
 Adopt a cluster
 
 **Adopt a cluster**
-Adopt an already existing Kubernetes cluster to manage it with exalsius.
+
+Adopt an existing Kubernetes cluster that is already running and managed outside of exalsius. This 
+allows you to bring your own Kubernetes cluster under exalsius management, enabling you to use 
+exalsius features like workspace provisioning, service deployment, and resource monitoring.
+
+**Parameters:**
+- `name`: A descriptive name for the adopted cluster
+- `kubeconfig_b64`: The base64-encoded kubeconfig file for accessing the cluster
+- `k8s_version`: The Kubernetes version of the cluster (optional, but recommended)
+- `colony_id`: The ID of the colony to add the cluster to (optional)
+
+**Behavior:**
+- The cluster will be registered in exalsius and can be managed through the API
+- You can deploy workspaces and services to the adopted cluster
+- The cluster will appear in cluster listings and can be monitored like any other cluster
+- The original cluster management remains unchanged; exalsius only manages workloads on the cluster
 
 
 ### Example
@@ -169,7 +172,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_adopt_request = exalsius_api_client.ClusterAdoptRequest() # ClusterAdoptRequest | 
+    cluster_adopt_request = {"name":"my-adopted-cluster","kubeconfig_b64":"YXBpVmVyc2lvbjogdjEKY2x1c3RlcnM6Ci0gY2x1c3RlcjoKICAgIHNlcnZlcjogaHR0cHM6Ly9hcGkuZXhhbHNpdXMuYWkvY2x1c3RlcnMvMTIz...","k8s_version":"1.30"} # ClusterAdoptRequest | 
 
     try:
         # Adopt a cluster
@@ -224,21 +227,25 @@ Create a new cluster.
 
 **Parameters**
 
-- `name`: The name of the cluster
-- `k8s_version`: The Kubernetes version of the cluster
+- `name`: The name of the cluster (required)
+- `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER`
+- `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type)
+- `colony_id`: The ID of the colony to add the cluster to (optional)
 - `to_be_deleted_at`: The date and time the cluster will be deleted (optional)
 - `control_plane_node_ids`: The IDs of the control plane nodes (optional)
 - `worker_node_ids`: The IDs of the worker nodes (optional)
-- `services`: The IDs of the services to deploy in the cluster (optional)
+- `service_deployments`: The services to deploy in the cluster (optional)
 
 If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time.
 If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster.
-If `services` are provided, the services will be deployed in the cluster.
+If `service_deployments` are provided, the services will be deployed in the cluster.
 
-**Behavior**
-
-Creating a new cluster will result in a new cluster resource being created. The cluster will be in 
-the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
+**Behavior:**
+- A new cluster resource will be created with the specified configuration
+- The cluster will be in the `PENDING` state until deployment is initiated
+- You must call `POST /cluster/{cluster_id}/deploy` to actually deploy the cluster
+- If nodes are specified, they will be associated with the cluster but not deployed until the deploy operation is called
+- If `service_deployments` are specified, services will be deployed after the cluster is ready
 
 
 ### Example
@@ -269,7 +276,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_create_request = exalsius_api_client.ClusterCreateRequest() # ClusterCreateRequest | 
+    cluster_create_request = {"name":"my-cloud-cluster","cluster_type":"CLOUD","k8s_version":"1.30","control_plane_node_ids":["123e4567-e89b-12d3-a456-426614174000"],"worker_node_ids":["123e4567-e89b-12d3-a456-426614174001","123e4567-e89b-12d3-a456-426614174002"]} # ClusterCreateRequest | 
 
     try:
         # Create a cluster
@@ -320,19 +327,20 @@ Delete (tear-down) a cluster
 
 **Delete a cluster**
 
-Permanently delete a cluster. Once deleted, the cluster is no longer part of your 
-account and cannot be used in any further deployments. When a cluster is deleted, the
-nodes are returned to the node pool and can be used in future deployments.
+Permanently delete a cluster and tear down all associated infrastructure. This operation will 
+terminate all resources running on the cluster, including workspaces and services.
 
-**Note**
+**Warning: This operation is irreversible.**
 
-This operation is irreversible.
+**Behavior:**
+- The cluster will be deleted as soon as possible
+- The deletion process may take several minutes to complete
+- The cluster will transition to the `DELETING` state during the process
+- Once deleted, nodes are returned to the node pool and can be reused in future deployments
+- All workspaces and services running on the cluster will be terminated
 
-**Behavior**
-
-The cluster will be deleted as soon as possible. However, it may take a few minutes
-for the cluster to be fully deleted. The cluster will be in the `deleting` state
-until it is fully deleted.
+**Parameters:**
+- `propagate`: If `true`, the deletion will also remove nodes from the node pool (default: `false`)
 
 
 ### Example
@@ -414,8 +422,20 @@ Delete a node from a cluster
 
 **Delete a node from a cluster**
 
-Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster
-and is returned to the node pool.
+Remove a node from a cluster and return it to the node pool. This operation is useful for scaling 
+down a cluster or replacing nodes.
+
+**Behavior:**
+- The node will be gracefully removed from the cluster
+- Any workloads running on the node will be rescheduled to other nodes (if available)
+- The node will be returned to the node pool and can be reused in other clusters
+- The removal process may take several minutes to complete
+- The cluster will continue operating with the remaining nodes
+
+**Note:**
+- Removing control plane nodes may affect cluster availability if you remove too many
+- Ensure you have sufficient remaining nodes to handle your workloads
+- The operation returns a 202 status code as it is asynchronous
 
 
 ### Example
@@ -498,22 +518,24 @@ Deploy a new cluster
 
 **Deploy a new cluster**
 
-Deploy a cluster that is in the `staging` state.
+Initiate the deployment of a cluster that is in the `PENDING` state. This operation will start 
+the Kubernetes cluster deployment process, configuring all nodes and setting up the cluster 
+infrastructure.
 
-**Note**
+**Prerequisites:**
+- The cluster must be in the `PENDING` state
+- The cluster must have at least one control plane node and one worker node assigned
+- All assigned nodes must be in the `AVAILABLE` state
 
-Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds`
-arrays can be deployed.
+**Behavior:**
+- The cluster deployment will begin as soon as possible
+- The cluster will transition to the `DEPLOYING` state
+- The deployment process may take several minutes to complete
+- Once deployment completes, the cluster will transition to the `READY` state
+- If deployment fails, the cluster will transition to the `FAILED` state
 
-**Behavior**
-
-The cluster will be deployed as soon as possible. However, it may take a few minutes
-for the cluster to be fully deployed. The cluster will be in the `deploying` state
-until it is fully deployed.
-
-**Result**
-
-Returns the cluster object with the `deploying` state.
+**Response:**
+Returns the cluster ID to confirm the deployment has been initiated.
 
 
 ### Example
@@ -595,7 +617,9 @@ Get details of a single cluster
 
 **Retrieve the details of a single cluster**
 
-Fetch all metadata for one cluster.
+Fetch comprehensive metadata for a specific cluster, including its status, node configuration, 
+Kubernetes version, associated services, cost information, and lifecycle timestamps. This information 
+helps you understand the cluster's current state and configuration.
 
 
 ### Example
@@ -675,7 +699,15 @@ Get the kubeconfig for a cluster
 
 **Get the kubeconfig for a cluster**
 
-Get the kubeconfig file for a cluster.
+Retrieve the kubeconfig file that provides access to the cluster. The kubeconfig contains 
+authentication credentials and cluster connection information, allowing you to manage the 
+cluster using standard Kubernetes tools (kubectl, etc.).
+
+**Usage:**
+- Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable
+- Use `kubectl` or other Kubernetes tools to interact with the cluster directly
+- This is useful for advanced cluster management and debugging
+- The kubeconfig is cluster-specific and provides full access to the cluster
 
 
 ### Example
@@ -755,7 +787,15 @@ List available / occupied resources in the cluster
 
 **List available / occupied resources in the cluster**
 
-List the available / occupied resources in the cluster.
+Retrieve detailed resource information for all nodes in the cluster, showing both available and 
+occupied resources (CPU, memory, storage, GPU). This information helps you understand cluster 
+capacity, utilization, and plan for workload placement.
+
+**Response:**
+Returns a list of nodes with their resource information, including:
+- Available resources: CPU cores, memory (GB), storage (GB), GPU count and type
+- Occupied resources: Currently used resources on each node
+- Total resource counts across the cluster
 
 
 ### Example
@@ -835,17 +875,15 @@ Get nodes of a cluster
 
 **Retrieve the nodes of a cluster**
 
-Fetch all nodes that are part of a cluster.
-
-**Parameters**
-
-- `cluster_id`: The ID of the cluster to retrieve nodes from
+Fetch all nodes that are part of a specific cluster, including both control plane and worker nodes. 
+This endpoint provides information about the cluster's node composition, which is useful for 
+understanding cluster capacity and configuration.
 
 **Examples**
 
 Here's an example of how to retrieve all nodes of a cluster:
   ```
-  /clusters/123/nodes
+  /cluster/123e4567-e89b-12d3-a456-426614174000/nodes
   ```
 
 
@@ -926,14 +964,15 @@ List all clusters
 
 **List all clusters**
 
-Retrieve all clusters, with optional filters:
-- `status`: pending,running, deleting, deleted, failed
+Retrieve all clusters associated with your account. You can filter clusters by their status to find 
+clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for 
+monitoring cluster health and managing your infrastructure.
 
 **Examples**
 
 Here's an example of how to filter by status:
   ```
-  /clusters?cluster_status=running
+  /clusters?cluster_status=READY
   ```
 
 
@@ -964,7 +1003,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `pending` - clusters that are pending (not yet deployed) - `deploying` - clusters that are being deployed - `ready` - clusters that are ready - `failed` - clusters that failed  (optional)
+    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed  (optional)
 
     try:
         # List all clusters
@@ -982,7 +1021,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;pending&#x60; - clusters that are pending (not yet deployed) - &#x60;deploying&#x60; - clusters that are being deployed - &#x60;ready&#x60; - clusters that are ready - &#x60;failed&#x60; - clusters that failed  | [optional] 
+ **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;PENDING&#x60; - clusters that are pending (not yet deployed) - &#x60;DEPLOYING&#x60; - clusters that are being deployed - &#x60;READY&#x60; - clusters that are ready - &#x60;FAILED&#x60; - clusters that failed  | [optional] 
 
 ### Return type
 

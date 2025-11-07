@@ -3,7 +3,7 @@
 """
 exalsius API
 
-The exalsius REST API provides programmatic access to the core functionality of the exalsius ecosystem It is consumed directly by the exls CLI tool and can also be integrated into custom applications or scripts. Key points: * **CLI & Programmatic Access**   All operations are available via the `exls` command-line application or through standard HTTP requests.  * **GPU Market Offers** Retrieve and compare GPU instance pricing across public cloud providers and hyperscalers to identify the most cost-effective options. * **Operator Integration**   Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.  * **Node Management**   Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.  * **Cluster Provisioning**   Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.  * **Service Deployment**   Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the `exls` command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters.
 
 The version of the OpenAPI document: 1.23.0
 Contact: support@exalsius.ai
@@ -63,7 +63,7 @@ class ColoniesApi:
     ) -> ColonyCreateResponse:
         """Create a colony
 
-        **Create a colony**  Create a new colony.  **Parameters**  - `name`: The name of the colony  **Behavior**  Creating a new colony will result in a new colony resource being created.  Clusters will be added to the colony as they are created.
+        **Create a colony**  Create a new colony to organize and manage multiple clusters together. Colonies enable coordinated  management, scheduling, and operations across multiple clusters.  **Parameters:** - `name`: A descriptive name for the colony (must be unique within your account)  **Behavior:** - A new colony resource will be created with the specified name - The colony starts empty (no clusters) - Clusters can be added to the colony when they are created by specifying the colony ID - Once created, you can use the colony's kubeconfig to access all clusters in the colony
 
         :param colony_create_request: (required)
         :type colony_create_request: ColonyCreateRequest
@@ -130,7 +130,7 @@ class ColoniesApi:
     ) -> ApiResponse[ColonyCreateResponse]:
         """Create a colony
 
-        **Create a colony**  Create a new colony.  **Parameters**  - `name`: The name of the colony  **Behavior**  Creating a new colony will result in a new colony resource being created.  Clusters will be added to the colony as they are created.
+        **Create a colony**  Create a new colony to organize and manage multiple clusters together. Colonies enable coordinated  management, scheduling, and operations across multiple clusters.  **Parameters:** - `name`: A descriptive name for the colony (must be unique within your account)  **Behavior:** - A new colony resource will be created with the specified name - The colony starts empty (no clusters) - Clusters can be added to the colony when they are created by specifying the colony ID - Once created, you can use the colony's kubeconfig to access all clusters in the colony
 
         :param colony_create_request: (required)
         :type colony_create_request: ColonyCreateRequest
@@ -197,7 +197,7 @@ class ColoniesApi:
     ) -> RESTResponseType:
         """Create a colony
 
-        **Create a colony**  Create a new colony.  **Parameters**  - `name`: The name of the colony  **Behavior**  Creating a new colony will result in a new colony resource being created.  Clusters will be added to the colony as they are created.
+        **Create a colony**  Create a new colony to organize and manage multiple clusters together. Colonies enable coordinated  management, scheduling, and operations across multiple clusters.  **Parameters:** - `name`: A descriptive name for the colony (must be unique within your account)  **Behavior:** - A new colony resource will be created with the specified name - The colony starts empty (no clusters) - Clusters can be added to the colony when they are created by specifying the colony ID - Once created, you can use the colony's kubeconfig to access all clusters in the colony
 
         :param colony_create_request: (required)
         :type colony_create_request: ColonyCreateRequest
@@ -326,7 +326,7 @@ class ColoniesApi:
     ) -> ColonyDeleteResponse:
         """Delete (tear-down) a colony
 
-        **Delete a colony**  Permanently delete a colony. This also deletes all clusters that belong to the colony. Once deleted, the colony is no longer part of your account.  **Note**  This operation is irreversible.
+        **Delete a colony**  Permanently delete a colony and all clusters that belong to it. This operation will tear down all  infrastructure associated with the colony.  **Warning: This operation is irreversible.**  **Behavior:** - The colony will be permanently deleted from your account - All clusters that belong to the colony will also be deleted - All resources (nodes, workspaces, services) deployed on those clusters will be terminated - The deletion process may take several minutes to complete - Once deleted, the colony and its clusters cannot be recovered  **Response:** The response includes the colony ID and a list of all cluster IDs that were deleted as part of this operation.
 
         :param colony_id: ID of the colony to delete (required)
         :type colony_id: str
@@ -394,7 +394,7 @@ class ColoniesApi:
     ) -> ApiResponse[ColonyDeleteResponse]:
         """Delete (tear-down) a colony
 
-        **Delete a colony**  Permanently delete a colony. This also deletes all clusters that belong to the colony. Once deleted, the colony is no longer part of your account.  **Note**  This operation is irreversible.
+        **Delete a colony**  Permanently delete a colony and all clusters that belong to it. This operation will tear down all  infrastructure associated with the colony.  **Warning: This operation is irreversible.**  **Behavior:** - The colony will be permanently deleted from your account - All clusters that belong to the colony will also be deleted - All resources (nodes, workspaces, services) deployed on those clusters will be terminated - The deletion process may take several minutes to complete - Once deleted, the colony and its clusters cannot be recovered  **Response:** The response includes the colony ID and a list of all cluster IDs that were deleted as part of this operation.
 
         :param colony_id: ID of the colony to delete (required)
         :type colony_id: str
@@ -462,7 +462,7 @@ class ColoniesApi:
     ) -> RESTResponseType:
         """Delete (tear-down) a colony
 
-        **Delete a colony**  Permanently delete a colony. This also deletes all clusters that belong to the colony. Once deleted, the colony is no longer part of your account.  **Note**  This operation is irreversible.
+        **Delete a colony**  Permanently delete a colony and all clusters that belong to it. This operation will tear down all  infrastructure associated with the colony.  **Warning: This operation is irreversible.**  **Behavior:** - The colony will be permanently deleted from your account - All clusters that belong to the colony will also be deleted - All resources (nodes, workspaces, services) deployed on those clusters will be terminated - The deletion process may take several minutes to complete - Once deleted, the colony and its clusters cannot be recovered  **Response:** The response includes the colony ID and a list of all cluster IDs that were deleted as part of this operation.
 
         :param colony_id: ID of the colony to delete (required)
         :type colony_id: str
@@ -580,7 +580,7 @@ class ColoniesApi:
     ) -> ColonyResponse:
         """Get details of a single colony
 
-        **Retrieve the details of a single colony**  Fetch all metadata for one colony.
+        **Retrieve the details of a single colony**  Fetch comprehensive metadata for a specific colony, including its name, owner, associated cluster IDs,  namespace, and creation timestamp. This information helps you understand the colony's composition and  manage its clusters.
 
         :param colony_id: ID of the colony to describe (required)
         :type colony_id: str
@@ -648,7 +648,7 @@ class ColoniesApi:
     ) -> ApiResponse[ColonyResponse]:
         """Get details of a single colony
 
-        **Retrieve the details of a single colony**  Fetch all metadata for one colony.
+        **Retrieve the details of a single colony**  Fetch comprehensive metadata for a specific colony, including its name, owner, associated cluster IDs,  namespace, and creation timestamp. This information helps you understand the colony's composition and  manage its clusters.
 
         :param colony_id: ID of the colony to describe (required)
         :type colony_id: str
@@ -716,7 +716,7 @@ class ColoniesApi:
     ) -> RESTResponseType:
         """Get details of a single colony
 
-        **Retrieve the details of a single colony**  Fetch all metadata for one colony.
+        **Retrieve the details of a single colony**  Fetch comprehensive metadata for a specific colony, including its name, owner, associated cluster IDs,  namespace, and creation timestamp. This information helps you understand the colony's composition and  manage its clusters.
 
         :param colony_id: ID of the colony to describe (required)
         :type colony_id: str
@@ -835,7 +835,7 @@ class ColoniesApi:
     ) -> ColonyKubeconfigResponse:
         """Get the kubeconfig for a colony
 
-        **Get the kubeconfig for a colony**  The kubeconfig file contains the credentials to access all clusters of the colony.
+        **Get the kubeconfig for a colony**  Retrieve the kubeconfig file that provides access to all clusters within the colony. The kubeconfig  contains authentication credentials and cluster connection information, allowing you to manage all  clusters in the colony using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with clusters in the colony - The kubeconfig includes contexts for all clusters in the colony, allowing you to switch between them - This is useful for managing multiple clusters as a unified infrastructure group
 
         :param colony_id: The ID of the colony to get the kubeconfig for (required)
         :type colony_id: str
@@ -904,7 +904,7 @@ class ColoniesApi:
     ) -> ApiResponse[ColonyKubeconfigResponse]:
         """Get the kubeconfig for a colony
 
-        **Get the kubeconfig for a colony**  The kubeconfig file contains the credentials to access all clusters of the colony.
+        **Get the kubeconfig for a colony**  Retrieve the kubeconfig file that provides access to all clusters within the colony. The kubeconfig  contains authentication credentials and cluster connection information, allowing you to manage all  clusters in the colony using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with clusters in the colony - The kubeconfig includes contexts for all clusters in the colony, allowing you to switch between them - This is useful for managing multiple clusters as a unified infrastructure group
 
         :param colony_id: The ID of the colony to get the kubeconfig for (required)
         :type colony_id: str
@@ -973,7 +973,7 @@ class ColoniesApi:
     ) -> RESTResponseType:
         """Get the kubeconfig for a colony
 
-        **Get the kubeconfig for a colony**  The kubeconfig file contains the credentials to access all clusters of the colony.
+        **Get the kubeconfig for a colony**  Retrieve the kubeconfig file that provides access to all clusters within the colony. The kubeconfig  contains authentication credentials and cluster connection information, allowing you to manage all  clusters in the colony using standard Kubernetes tools (kubectl, etc.).  **Usage:** - Save the kubeconfig to a file and set it as your `KUBECONFIG` environment variable - Use `kubectl` or other Kubernetes tools to interact with clusters in the colony - The kubeconfig includes contexts for all clusters in the colony, allowing you to switch between them - This is useful for managing multiple clusters as a unified infrastructure group
 
         :param colony_id: The ID of the colony to get the kubeconfig for (required)
         :type colony_id: str
@@ -1088,7 +1088,7 @@ class ColoniesApi:
     ) -> ColoniesListResponse:
         """List all colonies
 
-        **List all colonies**  Retrieve all colonies
+        **List all colonies**  Retrieve all colonies associated with your account. Colonies are groups of clusters that can be managed  together for coordinated operations and scheduling. Each colony can contain multiple clusters, allowing  you to organize your infrastructure logically.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1150,7 +1150,7 @@ class ColoniesApi:
     ) -> ApiResponse[ColoniesListResponse]:
         """List all colonies
 
-        **List all colonies**  Retrieve all colonies
+        **List all colonies**  Retrieve all colonies associated with your account. Colonies are groups of clusters that can be managed  together for coordinated operations and scheduling. Each colony can contain multiple clusters, allowing  you to organize your infrastructure logically.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1212,7 +1212,7 @@ class ColoniesApi:
     ) -> RESTResponseType:
         """List all colonies
 
-        **List all colonies**  Retrieve all colonies
+        **List all colonies**  Retrieve all colonies associated with your account. Colonies are groups of clusters that can be managed  together for coordinated operations and scheduling. Each colony can contain multiple clusters, allowing  you to organize your infrastructure logically.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

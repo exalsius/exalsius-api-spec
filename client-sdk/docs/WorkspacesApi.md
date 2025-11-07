@@ -31,7 +31,8 @@ Create a new workspace.
 **Behavior**
 
 Creating a new workspace will result in a new workspace resource being created. The workspace will be in 
-the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check 
+the workspace status using `GET /workspace/{workspace_id}`.
 
 
 ### Example
@@ -62,7 +63,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.WorkspacesApi(api_client)
-    workspace_create_request = exalsius_api_client.WorkspaceCreateRequest() # WorkspaceCreateRequest | 
+    workspace_create_request = {"name":"my-jupyter-workspace","cluster_id":"123e4567-e89b-12d3-a456-426614174000","template":{"name":"jupyter-notebook","variables":{"notebook_port":"8888"}},"resources":{"gpu_count":1,"gpu_type":"A100","gpu_vendor":"NVIDIA","cpu_cores":4,"memory_gb":16,"storage_gb":100},"description":"My machine learning workspace"} # WorkspaceCreateRequest | 
 
     try:
         # Create a workspace
@@ -113,16 +114,16 @@ Delete a workspace
 
 **Delete a workspace**
 
-Delete a workspace. 
+Permanently delete a workspace and all its associated resources.
 
-**Note**
+**Warning: This operation is irreversible.**
 
-This operation is irreversible.
-
-**Behavior**
-
-The workspace will be deleted as soon as possible. However, it may take a few minutes
-for the workspace to be fully deleted.
+**Behavior:**
+- The workspace will be marked for deletion immediately
+- All associated Pods and resources will be terminated
+- Persistent volumes may be retained depending on the storage policy
+- The deletion process may take a few minutes to complete
+- Once deleted, the workspace cannot be recovered
 
 
 ### Example
@@ -202,7 +203,8 @@ Get details of a single workspace
 
 **Retrieve the details of a single workspace**
 
-Fetch all metadata for one workspace.
+Fetch comprehensive metadata for a specific workspace, including its status, configuration,
+resource allocation, access information, and deployment details.
 
 
 ### Example
@@ -282,14 +284,17 @@ List all workspaces
 
 **List all workspaces**
 
-Retrieve all workspaces, with optional filters:
-- `cluster_id`: filter by cluster ID
+Retrieve all workspaces associated with your account. You can optionally filter workspaces by cluster ID
+to see only workspaces deployed on a specific cluster.
+
+**Filtering:**
+- `cluster_id`: Filter workspaces by the cluster they are deployed on (UUID format)
 
 **Examples**
 
 Here's an example of how to filter by cluster ID:
 ```
-/workspaces?cluster_id=123
+/workspaces?cluster_id=123e4567-e89b-12d3-a456-426614174000
 ```
 
 
@@ -357,7 +362,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | List of workspaces |  * X-Total-Count - Total number of existing service deployments <br>  |
+**200** | List of workspaces |  * X-Total-Count - Total number of existing service templates <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
@@ -370,7 +375,13 @@ Start a workspace
 
 **Start a workspace**
 
-Start a workspace. This will start all associated Pods, in case they were stopped previously.
+Start a workspace by bringing up all associated Pods and services. This can also mean that the workspace was previously stopped to save costs.
+
+**Behavior:**
+- All Pods associated with the workspace will be started
+- The workspace status will transition to `RUNNING`
+- Access information (ports, IPs) will be published (or restored if the workspace was previously stopped)
+- Persistent volumes remain intact and data is preserved
 
 
 ### Example
@@ -450,7 +461,15 @@ Stop a workspace
 
 **Stop a workspace**
 
-Stop a workspace. This will stop or delete all associated Pods but keep the attached persistent volume.
+Stop a running workspace by halting all associated Pods and services. This operation helps reduce
+costs by stopping compute resources while preserving data. Note that this is only possible for selected workspace types.
+
+**Behavior:**
+- All Pods associated with the workspace will be stopped or terminated
+- The workspace status will transition from `RUNNING` to `STOPPED`
+- Persistent volumes remain attached and data is preserved
+- Access information (ports, IPs) will be unavailable until the workspace is restarted
+- The workspace can be restarted later using the `POST /workspace/{workspace_id}/start` endpoint
 
 
 ### Example
