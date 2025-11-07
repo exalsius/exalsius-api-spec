@@ -4,20 +4,23 @@ get:
   summary: List all workspace templates
   description: |
     **List all workspace templates**
-
-    Retrieve all workspace templates.
-
-    **Note**
-
-    Workspace templates are used to create workspaces.
-
-    **Result**
-
-    Returns an array of workspace template objects.
+    
+    Retrieve all workspace templates available in the management cluster. Workspace templates define the 
+    application configuration and environment setup for new workspace deployments.
+    
+    **Usage:**
+    Workspace templates are used when creating new workspaces via the `POST /workspaces` endpoint. Each 
+    template specifies the application type (e.g., Jupyter Notebook, VS Code Server) and configuration 
+    variables that can be customized.
+    
+    **Result:**
+    Returns an array of workspace template objects, each containing the template name, description, and 
+    available configuration variables.
 
   responses:
     '200':
       $ref: '../../components/responses/workspace-template-list-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: workspace-template-not-found

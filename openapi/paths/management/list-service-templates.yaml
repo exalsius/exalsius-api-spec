@@ -3,21 +3,26 @@ get:
   tags: [management]
   summary: List all available service templates
   description: |
-    **List all available services**
-
-    List all services templates that can be deployed.
-
-    **Note**
-
-    Services can be added to the exalsius management cluster using the `exalsius-operator`.
-
-    **Result**
-
-    Returns an array of service objects.
+    **List all available service templates**
+    
+    Retrieve all service templates available in the management cluster. Service templates define infrastructure 
+    services (such as Ray clusters, monitoring systems, etc.) that can be deployed on clusters.
+    
+    **Usage:**
+    Service templates are used when creating new service deployments via the `POST /services` endpoint. 
+    Each template specifies the service type and configuration variables that can be customized.
+    
+    **Note:**
+    Service templates can be added to the exalsius management cluster using the `exalsius-operator`.
+    
+    **Result:**
+    Returns an array of service template objects, each containing the template name, description, and 
+    available configuration variables.
 
   responses:
     '200':
       $ref: '../../components/responses/service-template-list-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: services-not-found
@@ -29,13 +34,13 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/services"
+        curl -X GET "https://api.exalsius.ai/management/service-templates"
     - lang: python
       label: Python
       source: |
         import requests
         import os
 
-        url = "https://api.exalsius.ai/services"
+        url = "https://api.exalsius.ai/management/service-templates"
         response = requests.get(url)
         print(response.json())

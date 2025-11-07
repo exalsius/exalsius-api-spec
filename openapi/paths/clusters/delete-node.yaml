@@ -4,10 +4,21 @@ delete:
   summary: Delete a node from a cluster
   description: |
     **Delete a node from a cluster**
-
-    Permanently delete a node from a cluster. Once deleted, the node is no longer part of the cluster
-    and is returned to the node pool.
     
+    Remove a node from a cluster and return it to the node pool. This operation is useful for scaling 
+    down a cluster or replacing nodes.
+    
+    **Behavior:**
+    - The node will be gracefully removed from the cluster
+    - Any workloads running on the node will be rescheduled to other nodes (if available)
+    - The node will be returned to the node pool and can be reused in other clusters
+    - The removal process may take several minutes to complete
+    - The cluster will continue operating with the remaining nodes
+    
+    **Note:**
+    - Removing control plane nodes may affect cluster availability if you remove too many
+    - Ensure you have sufficient remaining nodes to handle your workloads
+    - The operation returns a 202 status code as it is asynchronous
   parameters:
     - name: cluster_id
       in: path
@@ -24,6 +35,7 @@ delete:
   responses:
     '202':
       $ref: '../../components/responses/cluster-node-remove-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
@@ -38,11 +50,11 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001"
+        curl -X DELETE "https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001"
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.delete("https://api.exalsius.ai/clusters/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001")
+        response = requests.delete("https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/nodes/123e4567-e89b-12d3-a456-426614174001")
         print(response.json())

@@ -9,3 +9,24 @@ content:
   application/json:
     schema:
       $ref: '../schemas/service-template-list-response.yaml'
+    examples:
+      default:
+        summary: List of service templates
+        value:
+          service_templates:
+            - name: "ray-deployment"
+              description: "Ray cluster deployment template"
+              variables:
+                ray_cluster_name: "my-ray-cluster"
+                config:
+                  replicas: 3
+                  resources:
+                    cpu: "2"
+                    memory: "4Gi"
+                enabled: true
+            - name: "prometheus"
+              description: "Prometheus monitoring service"
+              variables:
+                retention: "30d"
+                scrape_interval: "15s"
+          total: 2

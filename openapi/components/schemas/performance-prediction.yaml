@@ -16,13 +16,23 @@ properties:
       - GPT2
   vram:
     type: object
+    description: |
+      Predicted VRAM (Video RAM) usage in GB for different GPU types.
+      Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000").
+      Values represent the estimated memory consumption in gigabytes.
     additionalProperties:
       type: number
       format: float
+      description: VRAM usage in GB
   runtime:
     type: object
+    description: |
+      Predicted runtime per training step in seconds for different GPU types.
+      Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000").
+      Values represent the estimated time per step in seconds.
     additionalProperties:
       type: number
       format: float
+      description: Runtime per step in seconds
 
 

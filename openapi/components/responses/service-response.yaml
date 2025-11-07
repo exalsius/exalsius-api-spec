@@ -3,3 +3,25 @@ content:
   application/json:
     schema:
       $ref: '../schemas/service-response.yaml'
+    examples:
+      service-details:
+        summary: Service deployment details
+        value:
+          service_deployment:
+            id: "123e4567-e89b-12d3-a456-426614174000"
+            name: "my-ray-cluster"
+            cluster_id: "123e4567-e89b-12d3-a456-426614174001"
+            template:
+              name: "ray-deployment"
+              description: "Ray cluster deployment template"
+              variables:
+                ray_cluster_name: "my-ray-cluster"
+                config:
+                  replicas: 3
+                  resources:
+                    cpu: "2"
+                    memory: "4Gi"
+                enabled: true
+            owner: "john.doe@example.com"
+            description: "Ray cluster for distributed machine learning"
+            created_at: "2025-01-01T00:00:00Z"

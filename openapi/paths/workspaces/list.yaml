@@ -4,15 +4,18 @@ get:
   summary: List all workspaces
   description: |
     **List all workspaces**
-
-    Retrieve all workspaces, with optional filters:
-    - `cluster_id`: filter by cluster ID
+    
+    Retrieve all workspaces associated with your account. You can optionally filter workspaces by cluster ID
+    to see only workspaces deployed on a specific cluster.
+    
+    **Filtering:**
+    - `cluster_id`: Filter workspaces by the cluster they are deployed on (UUID format)
 
     **Examples**
 
     Here's an example of how to filter by cluster ID:
     ```
-    /workspaces?cluster_id=123
+    /workspaces?cluster_id=123e4567-e89b-12d3-a456-426614174000
     ```
 
   parameters:
@@ -28,6 +31,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/workspaces-list-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: workspace-not-found
@@ -66,7 +70,8 @@ post:
     **Behavior**
 
     Creating a new workspace will result in a new workspace resource being created. The workspace will be in 
-    the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+    the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check 
+    the workspace status using `GET /workspace/{workspace_id}`.
 
   requestBody:
     required: true
@@ -74,9 +79,43 @@ post:
       application/json:
         schema:
           $ref: '../../components/requests/workspace-create-request.yaml'
+        examples:
+          jupyter-notebook:
+            summary: Create a Jupyter Notebook workspace
+            value:
+              name: "my-jupyter-workspace"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174000"
+              template:
+                name: "jupyter-notebook"
+                variables:
+                  notebook_port: "8888"
+              resources:
+                gpu_count: 1
+                gpu_type: "A100"
+                gpu_vendor: "NVIDIA"
+                cpu_cores: 4
+                memory_gb: 16
+                storage_gb: 100
+              description: "My machine learning workspace"
+          vscode-server:
+            summary: Create a VS Code Server workspace
+            value:
+              name: "my-vscode-workspace"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174000"
+              template:
+                name: "vscode-server"
+                variables:
+                  server_port: "8080"
+              resources:
+                gpu_count: 0
+                cpu_cores: 2
+                memory_gb: 8
+                storage_gb: 50
+              namespace: "default"
   responses:
     '201':
       $ref: '../../components/responses/workspace-create-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
@@ -91,11 +130,11 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/workspaces" -H "Content-Type: application/json" -d '{"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": "jupyter-notebook", "resources": {"gpu_count": 1, "gpu_type": "a100", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}}'
+        curl -X POST "https://api.exalsius.ai/workspaces" -H "Content-Type: application/json" -d '{"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook", "variables": {"notebook_port": "8888"}}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}}'
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.post("https://api.exalsius.ai/workspaces", json={"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": "jupyter-notebook", "resources": {"gpu_count": 1, "gpu_type": "a100", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}})
+        response = requests.post("https://api.exalsius.ai/workspaces", json={"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook", "variables": {"notebook_port": "8888"}}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}})
         print(response.json())
   

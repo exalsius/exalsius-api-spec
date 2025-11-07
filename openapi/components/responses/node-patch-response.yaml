@@ -3,3 +3,11 @@ content:
   application/json:
     schema:
       $ref: '../schemas/node-patch-response.yaml'
+    examples:
+      success:
+        summary: Node patched
+        value:
+          node_id: "123e4567-e89b-12d3-a456-426614174000"
+          next_access_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          next_access_token_expires_in: 3600
+          next_access_token_type: "Bearer"

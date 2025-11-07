@@ -4,15 +4,16 @@ get:
   summary: List all clusters
   description: |
     **List all clusters**
-
-    Retrieve all clusters, with optional filters:
-    - `status`: pending,running, deleting, deleted, failed
+    
+    Retrieve all clusters associated with your account. You can filter clusters by their status to find 
+    clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for 
+    monitoring cluster health and managing your infrastructure.
 
     **Examples**
 
     Here's an example of how to filter by status:
       ```
-      /clusters?cluster_status=running
+      /clusters?cluster_status=READY
       ```
 
   parameters: 
@@ -21,10 +22,10 @@ get:
       description: |
         Only return clusters of this status.
         Possible values:
-        - `pending` - clusters that are pending (not yet deployed)
-        - `deploying` - clusters that are being deployed
-        - `ready` - clusters that are ready
-        - `failed` - clusters that failed
+        - `PENDING` - clusters that are pending (not yet deployed)
+        - `DEPLOYING` - clusters that are being deployed
+        - `READY` - clusters that are ready
+        - `FAILED` - clusters that failed
       required: false
       schema:
         type: string
@@ -40,6 +41,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/clusters-list-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
@@ -69,21 +71,25 @@ post:
 
     **Parameters**
 
-    - `name`: The name of the cluster
-    - `k8s_version`: The Kubernetes version of the cluster
+    - `name`: The name of the cluster (required)
+    - `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER`
+    - `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type)
+    - `colony_id`: The ID of the colony to add the cluster to (optional)
     - `to_be_deleted_at`: The date and time the cluster will be deleted (optional)
     - `control_plane_node_ids`: The IDs of the control plane nodes (optional)
     - `worker_node_ids`: The IDs of the worker nodes (optional)
-    - `services`: The IDs of the services to deploy in the cluster (optional)
+    - `service_deployments`: The services to deploy in the cluster (optional)
 
     If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time.
     If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster.
-    If `services` are provided, the services will be deployed in the cluster.
+    If `service_deployments` are provided, the services will be deployed in the cluster.
 
-    **Behavior**
-
-    Creating a new cluster will result in a new cluster resource being created. The cluster will be in 
-    the `pending` state until the `POST /clusters/{cluster_id}/deploy` operation is called.
+    **Behavior:**
+    - A new cluster resource will be created with the specified configuration
+    - The cluster will be in the `PENDING` state until deployment is initiated
+    - You must call `POST /cluster/{cluster_id}/deploy` to actually deploy the cluster
+    - If nodes are specified, they will be associated with the cluster but not deployed until the deploy operation is called
+    - If `service_deployments` are specified, services will be deployed after the cluster is ready
 
   requestBody: 
     required: true
@@ -91,9 +97,32 @@ post:
       application/json: 
         schema:
           $ref: '../../components/requests/cluster-create-request.yaml'
+        examples:
+          cloud-cluster:
+            summary: Create a cloud cluster
+            value:
+              name: "my-cloud-cluster"
+              cluster_type: "CLOUD"
+              k8s_version: "1.30"
+              control_plane_node_ids:
+                - "123e4567-e89b-12d3-a456-426614174000"
+              worker_node_ids:
+                - "123e4567-e89b-12d3-a456-426614174001"
+                - "123e4567-e89b-12d3-a456-426614174002"
+          remote-cluster:
+            summary: Create a remote cluster with self-managed nodes
+            value:
+              name: "my-remote-cluster"
+              cluster_type: "REMOTE"
+              k8s_version: "1.30"
+              control_plane_node_ids:
+                - "123e4567-e89b-12d3-a456-426614174003"
+              worker_node_ids:
+                - "123e4567-e89b-12d3-a456-426614174004"
   responses:
     '201':
       $ref: '../../components/responses/cluster-create-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
@@ -108,10 +137,10 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/clusters" -H "Content-Type: application/json" -d '{"name": "my-cluster", "k8sVersion": "1.30"}'
+        curl -X POST "https://api.exalsius.ai/clusters" -H "Content-Type: application/json" -d '{"name": "my-cluster", "cluster_type": "CLOUD", "k8s_version": "1.30"}'
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.post("https://api.exalsius.ai/clusters", json={"name": "my-cluster", "k8sVersion": "1.30"})
+        response = requests.post("https://api.exalsius.ai/clusters", json={"name": "my-cluster", "cluster_type": "CLOUD", "k8s_version": "1.30"})
         print(response.json())

@@ -4,18 +4,16 @@ get:
   summary: Get nodes of a cluster
   description: |
     **Retrieve the nodes of a cluster**
-
-    Fetch all nodes that are part of a cluster.
-
-    **Parameters**
-
-    - `cluster_id`: The ID of the cluster to retrieve nodes from
+    
+    Fetch all nodes that are part of a specific cluster, including both control plane and worker nodes. 
+    This endpoint provides information about the cluster's node composition, which is useful for 
+    understanding cluster capacity and configuration.
 
     **Examples**
 
     Here's an example of how to retrieve all nodes of a cluster:
       ```
-      /clusters/123/nodes
+      /cluster/123e4567-e89b-12d3-a456-426614174000/nodes
       ```
   parameters:
     - name: cluster_id
@@ -28,6 +26,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
+      useExample: default
     '404':
       description: Cluster not found
       content:
@@ -40,7 +39,7 @@ get:
               title: "Not Found"
               status: 404
               detail: "The cluster with ID 123 was not found."
-              instance: "/clusters/123"
+              instance: "/cluster/123e4567-e89b-12d3-a456-426614174000"
     '500':
       description: Internal Server Error
       content:
@@ -53,19 +52,19 @@ get:
               title: "Internal Server Error"
               status: 500
               detail: "An internal server error occurred while processing the request."
-              instance: "/clusters/123/nodes"
+              instance: "/cluster/123e4567-e89b-12d3-a456-426614174000/nodes"
   
   x-codeSamples:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/clusters/123/nodes"
+        curl -X GET "https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/nodes"
 
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.get("https://api.exalsius.ai/clusters/123/nodes")
+        response = requests.get("https://api.exalsius.ai/cluster/123e4567-e89b-12d3-a456-426614174000/nodes")
         print(response.json())
 
         
@@ -75,39 +74,27 @@ post:
   summary: Add nodes to a cluster
   description: |
     **Add nodes to a cluster**
-
-    Add nodes to a cluster.
     
-    **Parameters**
-
-    - `cluster_id`: The ID of the cluster to add nodes to
-    - `node_ids`: The IDs of the nodes to add
-    - `node_role`: The role of the nodes to add (optional). Possible values:
-      - `control_plane` - only control plane nodes
-      - `worker` - only worker nodes
-
-    If no `nodeRole` is provided, the nodes will be added as workers.
-
-    **Examples**
-
-    Here's an example of how to add a control plane node to a cluster:
-      ```
-      /clusters/123/nodes?node_ids=123&node_role=control_plane
-      ```
-
-    **Note**
+    Add one or more nodes to an existing cluster. Nodes can be added as either control plane nodes or 
+    worker nodes, depending on your cluster's needs.
     
-    In the current version, only nodes of the same type (e.g. self-managed or from the same cloud region)
-    can be added to a cluster. Also, only nodes that are in the `available` state can be added to a cluster.
-
-    The nodes will be added to the cluster as soon as possible. However, it may take a few minutes
-    for the nodes to be fully deployed. The cluster will be in the `pending` state
-    until all nodes are fully deployed.
-
-    **Behavior**
-
-    In case the cluster is already deployed, the nodes will be added to the running cluster, otherwise the
-    cluster stays in the `pending` state until all the `/cluster/{clusterId}/deploy` operation is called.
+    **Request Body:**
+    - `nodes_to_add`: Array of nodes to add, where each node has:
+      - `node_id`: The ID of the node to add (required)
+      - `node_role`: The role of the node (required). Possible values:
+        - `CONTROL_PLANE` - control plane node (manages the cluster)
+        - `WORKER` - worker node (runs workloads)
+    
+    **Prerequisites:**
+    - Nodes must be in the `AVAILABLE` state
+    - Nodes must be of the same type (e.g., all self-managed or all from the same cloud region)
+    - For control plane nodes, you typically need an odd number (1, 3, 5) for high availability
+    
+    **Behavior:**
+    - If the cluster is already deployed (`READY` state), nodes will be added to the running cluster
+    - If the cluster is in `PENDING` state, nodes will be associated but the cluster remains pending until deployment
+    - The node addition process may take several minutes to complete
+    - Once added, nodes become part of the cluster and can run workloads
 
   parameters:
     - name: cluster_id
@@ -122,9 +109,25 @@ post:
       application/json:
         schema:
           $ref: '../../components/requests/cluster-add-node-request.yaml'
+        examples:
+          add-control-plane-node:
+            summary: Add a control plane node
+            value:
+              nodes_to_add:
+                - node_id: "123e4567-e89b-12d3-a456-426614174001"
+                  node_role: "CONTROL_PLANE"
+          add-worker-nodes:
+            summary: Add multiple worker nodes
+            value:
+              nodes_to_add:
+                - node_id: "123e4567-e89b-12d3-a456-426614174002"
+                  node_role: "WORKER"
+                - node_id: "123e4567-e89b-12d3-a456-426614174003"
+                  node_role: "WORKER"
   responses:
     '201':
       $ref: '../../components/responses/cluster-nodes-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found

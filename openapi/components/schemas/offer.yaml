@@ -11,7 +11,6 @@ required:
   - gpu_type
   - gpu_memory_mib
   - total_gpu_memory_mib
-  - gpu_vendor
   - main_memory_mib
   - cpu_vendor
   - cpu_arch

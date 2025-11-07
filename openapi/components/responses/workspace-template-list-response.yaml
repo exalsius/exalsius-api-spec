@@ -9,3 +9,17 @@ content:
   application/json:
     schema:
       $ref: '../schemas/workspace-template-list-response.yaml'
+    examples:
+      default:
+        summary: List of workspace templates
+        value:
+          workspace_templates:
+            - name: "jupyter-notebook"
+              description: "Jupyter Notebook server template"
+              variables:
+                notebook_port: "8888"
+            - name: "vscode-server"
+              description: "VS Code Server template"
+              variables:
+                server_port: "8080"
+          total: 2

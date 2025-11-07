@@ -4,12 +4,15 @@ get:
   summary: List all colonies
   description: |
     **List all colonies**
-
-    Retrieve all colonies
+    
+    Retrieve all colonies associated with your account. Colonies are groups of clusters that can be managed 
+    together for coordinated operations and scheduling. Each colony can contain multiple clusters, allowing 
+    you to organize your infrastructure logically.
 
   responses:
     '200':
       $ref: '../../components/responses/colonies-list-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: colony-not-found
@@ -23,17 +26,18 @@ post:
   summary: Create a colony
   description: |
     **Create a colony**
-
-    Create a new colony.
-
-    **Parameters**
-
-    - `name`: The name of the colony
-
-    **Behavior**
-
-    Creating a new colony will result in a new colony resource being created. 
-    Clusters will be added to the colony as they are created.
+    
+    Create a new colony to organize and manage multiple clusters together. Colonies enable coordinated 
+    management, scheduling, and operations across multiple clusters.
+    
+    **Parameters:**
+    - `name`: A descriptive name for the colony (must be unique within your account)
+    
+    **Behavior:**
+    - A new colony resource will be created with the specified name
+    - The colony starts empty (no clusters)
+    - Clusters can be added to the colony when they are created by specifying the colony ID
+    - Once created, you can use the colony's kubeconfig to access all clusters in the colony
 
   requestBody: 
     required: true
@@ -41,9 +45,15 @@ post:
       application/json: 
         schema:
           $ref: '../../components/requests/colony-create-request.yaml'
+        examples:
+          basic-colony:
+            summary: Create a new colony
+            value:
+              name: "my-colony"
   responses:
     '201':
       $ref: '../../components/responses/colony-create-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request

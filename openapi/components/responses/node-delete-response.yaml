@@ -3,3 +3,8 @@ content:
   application/json:
     schema:
       $ref: '../schemas/node-delete-response.yaml'
+    examples:
+      success:
+        summary: Node deleted
+        value:
+          node_id: "123e4567-e89b-12d3-a456-426614174000"

@@ -4,23 +4,25 @@ post:
   summary: Deploy a new cluster
   description: |
     **Deploy a new cluster**
-
-    Deploy a cluster that is in the `staging` state.
-
-    **Note**
-
-    Only clusters with at least one node in the `controlPlaneNodeIds` and `workerNodeIds`
-    arrays can be deployed.
     
-    **Behavior**
-
-    The cluster will be deployed as soon as possible. However, it may take a few minutes
-    for the cluster to be fully deployed. The cluster will be in the `deploying` state
-    until it is fully deployed.
-
-    **Result**
-
-    Returns the cluster object with the `deploying` state.
+    Initiate the deployment of a cluster that is in the `PENDING` state. This operation will start 
+    the Kubernetes cluster deployment process, configuring all nodes and setting up the cluster 
+    infrastructure.
+    
+    **Prerequisites:**
+    - The cluster must be in the `PENDING` state
+    - The cluster must have at least one control plane node and one worker node assigned
+    - All assigned nodes must be in the `AVAILABLE` state
+    
+    **Behavior:**
+    - The cluster deployment will begin as soon as possible
+    - The cluster will transition to the `DEPLOYING` state
+    - The deployment process may take several minutes to complete
+    - Once deployment completes, the cluster will transition to the `READY` state
+    - If deployment fails, the cluster will transition to the `FAILED` state
+    
+    **Response:**
+    Returns the cluster ID to confirm the deployment has been initiated.
 
   parameters:
     - name: cluster_id
@@ -34,15 +36,16 @@ post:
   responses:
     '202':
       $ref: '../../components/responses/cluster-deploy-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-not-in-staging-state
+      useExample: cluster-not-in-pending-state
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
     '409':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-no-nodes-in-staging
+      useExample: cluster-no-nodes-assigned
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error

@@ -4,8 +4,10 @@ get:
   summary: Get details of a single colony
   description: |
     **Retrieve the details of a single colony**
-
-    Fetch all metadata for one colony.
+    
+    Fetch comprehensive metadata for a specific colony, including its name, owner, associated cluster IDs, 
+    namespace, and creation timestamp. This information helps you understand the colony's composition and 
+    manage its clusters.
 
   parameters:
     - name: colony_id
@@ -18,9 +20,10 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/colony-response.yaml'
+      useExample: colony-details
     '404':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-not-found
+      useExample: colony-not-found
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
@@ -31,14 +34,21 @@ delete:
   summary: Delete (tear-down) a colony
   description: |
     **Delete a colony**
-
-    Permanently delete a colony. This also deletes all clusters
-    that belong to the colony.
-    Once deleted, the colony is no longer part of your account.
-
-    **Note**
-
-    This operation is irreversible.
+    
+    Permanently delete a colony and all clusters that belong to it. This operation will tear down all 
+    infrastructure associated with the colony.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Behavior:**
+    - The colony will be permanently deleted from your account
+    - All clusters that belong to the colony will also be deleted
+    - All resources (nodes, workspaces, services) deployed on those clusters will be terminated
+    - The deletion process may take several minutes to complete
+    - Once deleted, the colony and its clusters cannot be recovered
+    
+    **Response:**
+    The response includes the colony ID and a list of all cluster IDs that were deleted as part of this operation.
 
 
   parameters:
@@ -52,6 +62,7 @@ delete:
   responses:
     '200':
       $ref: '../../components/responses/colony-delete-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: colony-not-found

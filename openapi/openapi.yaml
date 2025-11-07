@@ -17,50 +17,55 @@ info:
     url: logo.png
     altText: exalsius logo
   description: >
-    The exalsius REST API provides programmatic access to the core functionality
-    of the exalsius ecosystem
+    The exalsius REST API enables programmatic access to GPU infrastructure
+    management and orchestration capabilities.
 
-    It is consumed directly by the exls CLI tool and can also be integrated into
-    custom applications or scripts.
+    Access the API through the `exls` command-line tool or integrate it directly
+    into your applications using standard HTTP requests.
 
-    Key points:
+    The API covers several areas:
 
-    * **CLI & Programmatic Access**
-      All operations are available via the `exls` command-line application or through standard HTTP requests.
+    * **GPU Market Offers** Browse and compare GPU instance pricing across
+    public cloud providers and hyperscalers.
 
-    * **GPU Market Offers** Retrieve and compare GPU instance pricing across
-    public cloud providers and hyperscalers to identify the most cost-effective
-    options.
+    * **Operator Integration** Coordinates with the
+    [exalsius-operator](https://github.com/exalsius/exalsius-operator) running
+    in a management Kubernetes cluster to handle infrastructure provisioning
+    and node lifecycle management.
 
-    * **Operator Integration**
-      Works in conjunction with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) deployed in a management Kubernetes cluster, to manage infrastructure and node lifecycles.
+    * **Node Management** Import cloud-provider instances or self-managed
+    nodes (via SSH) into your node pool. Hardware characteristics of
+    self-managed nodes are discovered automatically.
 
-    * **Node Management**
-      Import self-managed (SSH) and cloud-provider instances into your node pool with dedicated endpoints.
+    * **Cluster Provisioning** Create and manage Kubernetes clusters on
+    supported cloud providers or self-managed bare-metal infrastructure.
 
-    * **Cluster Provisioning**
-      Create and manage Kubernetes clusters across supported cloud providers and self-managed (bare-metal) nodes.
+    * **Service Deployment** Deploy infrastructure services such as the NVIDIA
+    GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters.
 
-    * **Service Deployment**
-      Deploy additional services—such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow—using the API’s service-deployment endpoints.
+    * **Workspace Deployment** Provision application workloads including
+    Jupyter Notebook servers, LLM inference services, and other compute
+    workloads on your clusters.
 servers:
   - url: https://api.exalsius.ai/v1
     description: exalsius API
 tags:
   - name: offers
-    description: GPU supply and prices overview
+    description: Browse available GPU instances and their pricing across cloud providers
+  - name: performance-prediction
+    description: Estimate runtime performance for GPU-accelerated workloads
   - name: nodes
-    description: Node pool management
+    description: Manage your node pool, including importing and configuring compute nodes
   - name: clusters
-    description: Cluster deployment, management and monitoring
+    description: Deploy, configure, and monitor Kubernetes clusters
+  - name: colonies
+    description: Organize clusters into groups for coordinated management and scheduling
   - name: services
-    description: Services to be deployed on the clusters
-  - name: management
-    description: Management of SSH keys, templates, etc.
+    description: Deploy infrastructure services onto clusters
   - name: workspaces
-    description: >-
-      Applications to be deployed on the clusters (e.g. Jupyter Notebook Server,
-      SSH Pod, etc.)
+    description: Provision and manage application workloads on clusters
+  - name: management
+    description: Configure SSH keys, templates, and other system settings
 paths:
   /offers:
     $ref: ./paths/offers.yaml
@@ -74,12 +79,6 @@ paths:
     $ref: ./paths/nodes/import-ssh.yaml
   /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
-  /colonies:
-    $ref: ./paths/colonies/list.yaml
-  /colony/{colony_id}:
-    $ref: ./paths/colonies/colony.yaml
-  /colony/{colony_id}/kubeconfig:
-    $ref: ./paths/colonies/kubeconfig.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /clusters/adopt:
@@ -96,6 +95,24 @@ paths:
     $ref: ./paths/clusters/deploy.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
+  /colonies:
+    $ref: ./paths/colonies/list.yaml
+  /colony/{colony_id}:
+    $ref: ./paths/colonies/colony.yaml
+  /colony/{colony_id}/kubeconfig:
+    $ref: ./paths/colonies/kubeconfig.yaml
+  /services:
+    $ref: ./paths/services/list.yaml
+  /service/{service_deployment_id}:
+    $ref: ./paths/services/service.yaml
+  /workspaces:
+    $ref: ./paths/workspaces/list.yaml
+  /workspace/{workspace_id}:
+    $ref: ./paths/workspaces/workspace.yaml
+  /workspace/{workspace_id}/stop:
+    $ref: ./paths/workspaces/stop-workspace.yaml
+  /workspace/{workspace_id}/start:
+    $ref: ./paths/workspaces/start-workspace.yaml
   /management/credentials:
     $ref: ./paths/management/list-credentials.yaml
   /management/cluster-templates:
@@ -108,18 +125,6 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
-  /workspaces:
-    $ref: ./paths/workspaces/list.yaml
-  /workspace/{workspace_id}:
-    $ref: ./paths/workspaces/workspace.yaml
-  /workspace/{workspace_id}/stop:
-    $ref: ./paths/workspaces/stop-workspace.yaml
-  /workspace/{workspace_id}/start:
-    $ref: ./paths/workspaces/start-workspace.yaml
-  /services:
-    $ref: ./paths/services/list.yaml
-  /service/{service_deployment_id}:
-    $ref: ./paths/services/service.yaml
 components:
   schemas:
     Offer:
@@ -140,16 +145,6 @@ components:
       $ref: ./components/schemas/node-import-response.yaml
     NodePatchResponse:
       $ref: ./components/schemas/node-patch-response.yaml
-    Colony:
-      $ref: ./components/schemas/colony.yaml
-    ColoniesListResponse:
-      $ref: ./components/schemas/colonies-list-response.yaml
-    ColonyCreateResponse:
-      $ref: ./components/schemas/colony-create-response.yaml
-    ColonyDeleteResponse:
-      $ref: ./components/schemas/colony-delete-response.yaml
-    ColonyResponse:
-      $ref: ./components/schemas/colony-response.yaml
     Cluster:
       $ref: ./components/schemas/cluster.yaml
     ClustersListResponse:
@@ -166,14 +161,20 @@ components:
       $ref: ./components/schemas/cluster-deploy-response.yaml
     ClusterNodeRemoveResponse:
       $ref: ./components/schemas/cluster-node-remove-response.yaml
+    Colony:
+      $ref: ./components/schemas/colony.yaml
+    ColoniesListResponse:
+      $ref: ./components/schemas/colonies-list-response.yaml
+    ColonyCreateResponse:
+      $ref: ./components/schemas/colony-create-response.yaml
+    ColonyDeleteResponse:
+      $ref: ./components/schemas/colony-delete-response.yaml
+    ColonyResponse:
+      $ref: ./components/schemas/colony-response.yaml
     Service:
       $ref: ./components/schemas/service-deployment.yaml
     ServiceDeployment:
       $ref: ./components/schemas/service-deployment.yaml
-    SshKey:
-      $ref: ./components/schemas/ssh-key.yaml
-    Kubeconfig:
-      $ref: ./components/schemas/kubeconfig.yaml
     WorkspaceCreateResponse:
       $ref: ./components/schemas/workspace-create-response.yaml
     WorkspaceDeleteResponse:
@@ -188,13 +189,21 @@ components:
       $ref: ./components/schemas/workspace-template.yaml
     WorkspaceListResponse:
       $ref: ./components/schemas/workspaces-list-response.yaml
+    SshKey:
+      $ref: ./components/schemas/ssh-key.yaml
+    Kubeconfig:
+      $ref: ./components/schemas/kubeconfig.yaml
   responses:
-    ColonyCreateResponse:
-      $ref: ./components/responses/colony-create-response.yaml
-    ColonyDeleteResponse:
-      $ref: ./components/responses/colony-delete-response.yaml
-    ColonyResponse:
-      $ref: ./components/responses/colony-response.yaml
+    NodeDeleteResponse:
+      $ref: ./components/responses/node-delete-response.yaml
+    NodeResponse:
+      $ref: ./components/responses/node-response.yaml
+    NodesListResponse:
+      $ref: ./components/responses/nodes-list-response.yaml
+    NodeImportResponse:
+      $ref: ./components/responses/node-import-response.yaml
+    NodePatchResponse:
+      $ref: ./components/responses/node-patch-response.yaml
     ClusterCreateResponse:
       $ref: ./components/responses/cluster-create-response.yaml
     ClusterDeployResponse:
@@ -213,22 +222,14 @@ components:
       $ref: ./components/responses/cluster-services-response.yaml
     ClusterResponse:
       $ref: ./components/responses/cluster-response.yaml
-    NodeDeleteResponse:
-      $ref: ./components/responses/node-delete-response.yaml
-    NodeResponse:
-      $ref: ./components/responses/node-response.yaml
-    NodesListResponse:
-      $ref: ./components/responses/nodes-list-response.yaml
-    NodeImportResponse:
-      $ref: ./components/responses/node-import-response.yaml
-    NodePatchResponse:
-      $ref: ./components/responses/node-patch-response.yaml
+    ColonyCreateResponse:
+      $ref: ./components/responses/colony-create-response.yaml
+    ColonyDeleteResponse:
+      $ref: ./components/responses/colony-delete-response.yaml
+    ColonyResponse:
+      $ref: ./components/responses/colony-response.yaml
     ServiceListResponse:
       $ref: ./components/responses/services-list-response.yaml
-    SshKeyListResponse:
-      $ref: ./components/responses/ssh-keys-list-response.yaml
-    SshKeyCreateResponse:
-      $ref: ./components/responses/ssh-key-create-response.yaml
     WorkspaceCreateResponse:
       $ref: ./components/responses/workspace-create-response.yaml
     WorkspaceDeleteResponse:
@@ -243,6 +244,10 @@ components:
       $ref: ./components/responses/workspace-template-list-response.yaml
     WorkspaceListResponse:
       $ref: ./components/responses/workspaces-list-response.yaml
+    SshKeyListResponse:
+      $ref: ./components/responses/ssh-keys-list-response.yaml
+    SshKeyCreateResponse:
+      $ref: ./components/responses/ssh-key-create-response.yaml
   securitySchemes:
     OAuth2:
       type: oauth2

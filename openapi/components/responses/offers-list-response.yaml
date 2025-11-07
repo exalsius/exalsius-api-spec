@@ -5,7 +5,7 @@ content:
       $ref: '../schemas/offers-list-response.yaml'
     examples:
       default:
-        summary: List of offers
+        summary: List of offers with pagination
         value:
           offers:
             # This is an on-demand offer
@@ -50,8 +50,10 @@ content:
               cpu_arch: "X86_64"
               num_vcpus: 1
               currency: "USD"
-              price_type: "ON_DEMAND"
+              price_type: "SPOT"
               hourly_cost: 1.0
               scrape_time: "2025-01-01T00:00:00Z"
               effective_time: "2025-01-01T00:00:00Z"
           total: 2
+          next_cursor: "eyJpZCI6IjEyM2U0NTY3LWU4OWItMTJkMy1hNDU2LTQyNjYxNDE3NDAwMSJ8"
+          prev_cursor: "eyJpZCI6IjEyM2U0NTY3LWU4OWItMTJkMy1hNDU2LTQyNjYxNDE3NDAwMSJ9"

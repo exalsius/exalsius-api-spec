@@ -4,16 +4,19 @@ get:
   summary: List all imported nodes in the node pool
   description: |
     **List nodes in the pool**
-
-    Retrieve all imported nodes, with optional filters:
-    - `node_type`: self-managed or cloud-imported
-    - `provider`: AWS, Azure, etc.
+    
+    Retrieve all nodes in your node pool, including both self-managed (SSH) nodes and cloud-imported nodes.
+    Nodes can be filtered by type and provider to help you find specific nodes.
+    
+    **Filtering:**
+    - `node_type`: Filter by node type - `CLOUD` for cloud-imported nodes or `SELF_MANAGED` for SSH-managed nodes
+    - `provider`: Filter by cloud provider (e.g., "aws", "azure", "gcp") - only applies to cloud nodes
 
     **Examples**
 
     Here's an example of how to filter by node type:
       ```
-      /nodes?node_type=self-managed
+      /nodes?node_type=SELF_MANAGED
       ```
       
       Here's an example of how to filter by provider:
@@ -27,8 +30,8 @@ get:
       description: |
         Only return nodes of this type.  
         Possible values:
-        - `self-managed` - only self-managed (SSH) nodes  
-        - `cloud` - only cloud-imported nodes
+        - `SELF_MANAGED` - only self-managed (SSH) nodes  
+        - `CLOUD` - only cloud-imported nodes
       required: false
       schema:
         type: string
@@ -51,6 +54,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/nodes-list-response.yaml'
+      useExample: default
     '422':
       $ref: '../../components/responses/error-response.yaml'
       useExample: node-invalid-type
@@ -61,7 +65,7 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/nodes?nodeType=cloud&provider=aws"
+        curl -X GET "https://api.exalsius.ai/nodes?node_type=CLOUD&provider=aws"
     - lang: python
       label: Python
       source: |
@@ -85,12 +89,12 @@ get:
             url = "https://api.exalsius.ai/nodes"
             params = {}
             if node_type:
-                params['nodeType'] = node_type
+                params['node_type'] = node_type
             if provider:
                 params['provider'] = provider
             response = requests.get(url, params=params)
             return response.json()
         
-        nodes = get_nodes(nodeType="cloud", provider="aws")
+        nodes = get_nodes(node_type="CLOUD", provider="aws")
         print(nodes)
         

@@ -17,14 +17,14 @@ post:
     
     **Behavior**
 
-    On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.
+    On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.
 
     **Monitoring**
-    You can poll its status at any time via GET /nodes/{nodeId}.
+    You can poll its status at any time via GET /node/{node_id}.
 
     **Result**
 
-    Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+    Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
   requestBody:
     required: true
@@ -32,9 +32,19 @@ post:
       application/json:
         schema:
           $ref: '../../components/requests/node-import-ssh-request.yaml'
+        examples:
+          basic-import:
+            summary: Import a self-managed node via SSH
+            value:
+              hostname: "my-server-001"
+              endpoint: "192.168.1.100:22"
+              username: "ubuntu"
+              ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
+              description: "On-premises GPU server"
   responses:
     '201':
       $ref: '../../components/responses/node-import-response.yaml'
+      useExample: default
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
@@ -48,7 +58,7 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/nodes/import-ssh" -H "Content-Type: application/json" -d '{"endpoint": "192.168.1.1:22", "username": "ubuntu", "sshKeyId": "123e4567-e89b-12d3-a456-426614174000"}'
+        curl -X POST "https://api.exalsius.ai/node/import/ssh" -H "Content-Type: application/json" -d '{"hostname": "my-server-001", "endpoint": "192.168.1.1:22", "username": "ubuntu", "ssh_key_id": "123e4567-e89b-12d3-a456-426614174000"}'
     - lang: python
       label: Python
       source: |
@@ -67,19 +77,20 @@ post:
             Returns:
                 dict: The JSON response containing the node
             """
-            url = "https://api.exalsius.ai/nodes/import-ssh"
+            url = "https://api.exalsius.ai/node/import/ssh"
             headers = {
                 "Content-Type": "application/json"
             }
             data = {
+                "hostname": "my-server-001",
                 "endpoint": endpoint,
                 "username": username,
-                "sshKeyId": ssh_key_id
+                "ssh_key_id": ssh_key_id
             }
             response = requests.post(url, headers=headers, json=data)
             return response.json()
 
         # Example usage
-        node_id = import_ssh_node("192.168.1.1:22", "ubuntu", "123e4567-e89b-12d3-a456-426614174000")
-        print(node_id)
+        result = import_ssh_node("192.168.1.1:22", "ubuntu", "123e4567-e89b-12d3-a456-426614174000")
+        print(result)  # Returns: {"node_ids": ["..."], "total": 1}
             

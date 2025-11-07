@@ -9,3 +9,48 @@ content:
   application/json:
     schema:
       $ref: '../schemas/workspaces-list-response.yaml'
+    examples:
+      default:
+        summary: List of workspaces
+        value:
+          workspaces:
+            - id: "123e4567-e89b-12d3-a456-426614174000"
+              name: "my-workspace"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174001"
+              workspace_status: "RUNNING"
+              template:
+                name: "jupyter-notebook"
+                description: "Jupyter Notebook server template"
+                variables:
+                  notebook_port: "8888"
+              owner: "john.doe@example.com"
+              description: "My machine learning workspace"
+              resources:
+                gpu_count: 1
+                gpu_type: "A100"
+                gpu_vendor: "NVIDIA"
+                gpu_memory: 80
+                cpu_cores: 4
+                memory_gb: 16
+                storage_gb: 100
+              created_at: "2025-01-01T00:00:00Z"
+              to_be_deleted_at: "2025-02-01T00:00:00Z"
+            - id: "123e4567-e89b-12d3-a456-426614174002"
+              name: "my-other-workspace"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174001"
+              workspace_status: "STOPPED"
+              template:
+                name: "vscode-server"
+                description: "VS Code Server template"
+                variables:
+                  server_port: "8080"
+              owner: "jane.doe@example.com"
+              description: "Development workspace"
+              resources:
+                gpu_count: 0
+                cpu_cores: 2
+                memory_gb: 8
+                storage_gb: 50
+              created_at: "2025-01-02T00:00:00Z"
+              to_be_deleted_at: "2025-01-20T00:00:00Z"
+          total: 2
