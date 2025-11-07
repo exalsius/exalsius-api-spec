@@ -4,8 +4,9 @@ get:
   summary: Get details of a single workspace
   description: |
     **Retrieve the details of a single workspace**
-
-    Fetch all metadata for one workspace.
+    
+    Fetch comprehensive metadata for a specific workspace, including its status, configuration,
+    resource allocation, access information, and deployment details.
 
   parameters:
     - name: workspace_id
@@ -18,6 +19,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/workspace-response.yaml'
+      useExample: workspace-details
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: workspace-not-found
@@ -43,17 +45,17 @@ delete:
   summary: Delete a workspace
   description: |
     **Delete a workspace**
-
-    Delete a workspace. 
-
-    **Note**
-
-    This operation is irreversible.
-
-    **Behavior**
     
-    The workspace will be deleted as soon as possible. However, it may take a few minutes
-    for the workspace to be fully deleted.
+    Permanently delete a workspace and all its associated resources.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Behavior:**
+    - The workspace will be marked for deletion immediately
+    - All associated Pods and resources will be terminated
+    - Persistent volumes may be retained depending on the storage policy
+    - The deletion process may take a few minutes to complete
+    - Once deleted, the workspace cannot be recovered
 
   parameters:
     - name: workspace_id
@@ -66,6 +68,7 @@ delete:
   responses:
     '200':
       $ref: '../../components/responses/workspace-delete-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: workspace-not-found

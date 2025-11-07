@@ -3,3 +3,36 @@ content:
   application/json:
     schema:
       $ref: '../schemas/workspace-response.yaml'
+    examples:
+      workspace-details:
+        summary: Workspace details
+        value:
+          workspace:
+            id: "123e4567-e89b-12d3-a456-426614174000"
+            name: "my-workspace"
+            cluster_id: "123e4567-e89b-12d3-a456-426614174001"
+            workspace_status: "RUNNING"
+            template:
+              name: "jupyter-notebook"
+              description: "Jupyter Notebook server template"
+              variables:
+                notebook_port: "8888"
+            owner: "john.doe@example.com"
+            description: "My machine learning workspace"
+            access_information:
+              - access_type: "NODE_PORT"
+                access_protocol: "HTTP"
+                port_name: "jupyter"
+                port_number: 30080
+                external_ip: "123.456.789.012"
+                access_description: "Access the Jupyter Notebook UI"
+            resources:
+              gpu_count: 1
+              gpu_type: "A100"
+              gpu_vendor: "NVIDIA"
+              gpu_memory: 80
+              cpu_cores: 4
+              memory_gb: 16
+              storage_gb: 100
+            created_at: "2025-01-01T00:00:00Z"
+            to_be_deleted_at: "2025-02-01T00:00:00Z"
