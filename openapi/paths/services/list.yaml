@@ -4,9 +4,13 @@ get:
   summary: List all service deployments
   description: |
     **List all service deployments**
-
-    Retrieve all service deployments, with optional filters:
-    - `cluster_id`: filter by cluster ID
+    
+    Retrieve all service deployments associated with your account. Service deployments are infrastructure
+    services (such as Ray clusters, monitoring services, etc.) that are deployed on your clusters.
+    You can optionally filter service deployments by cluster ID to see only services deployed on a specific cluster.
+    
+    **Filtering:**
+    - `cluster_id`: Filter service deployments by the cluster they are deployed on (UUID format)
 
   parameters:
     - name: cluster_id
@@ -21,6 +25,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/services-list-response.yaml'
+      useExample: default
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: services-not-found
@@ -34,14 +39,19 @@ post:
   summary: Create a service deployment
   description: |
     **Create a service deployment**
-
-    Create a new service deployment.
-
-    **Parameters**
-
-    - `name`: The name of the service deployment
+    
+    Create a new infrastructure service deployment on a cluster. Service deployments are reusable infrastructure
+    components such as distributed computing frameworks (Ray), monitoring systems (Prometheus), or other
+    cluster-level services.
+    
+    **Parameters:**
+    - `name`: The name of the service deployment (must be unique within the cluster)
     - `cluster_id`: The ID of the cluster to deploy the service to
-    - `template`: The service template to use for the service deployment
+    - `template`: The service template to use, including template name and configuration variables
+    
+    **Behavior:**
+    Creating a new service deployment will result in a new service resource being created on the specified cluster.
+    The service will be deployed according to the template configuration and variables provided.
 
   requestBody:
     required: true
@@ -49,9 +59,39 @@ post:
       application/json:
         schema:
           $ref: '../../components/requests/service-deployment-create-request.yaml'
+        examples:
+          ray-cluster:
+            summary: Create a Ray cluster service deployment
+            value:
+              name: "my-ray-cluster"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174000"
+              template:
+                name: "ray-deployment"
+                variables:
+                  ray_cluster_name: "my-ray-cluster"
+                  config:
+                    replicas: 3
+                    resources:
+                      cpu: "2"
+                      memory: "4Gi"
+                  enabled: true
+              description: "Ray cluster for distributed machine learning"
+              namespace: "default"
+          prometheus:
+            summary: Create a Prometheus monitoring service
+            value:
+              name: "my-monitoring-service"
+              cluster_id: "123e4567-e89b-12d3-a456-426614174000"
+              template:
+                name: "prometheus"
+                variables:
+                  retention: "30d"
+                  scrape_interval: "15s"
+              description: "Monitoring service for cluster metrics"
   responses:
     '201':
       $ref: '../../components/responses/service-create-response.yaml'
+      useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request

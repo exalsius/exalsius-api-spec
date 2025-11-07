@@ -6,8 +6,8 @@ required:
 properties:
   name:
     type: string
-    description: The name of the workspace
-    example: "my-workspace"
+    description: The name of the service deployment
+    example: "my-service"
   cluster_id:
     type: string
     format: uuid
@@ -21,10 +21,10 @@ properties:
     example: "default"
   description:
     type: string
-    description: The description of the workspace
-    example: "This is a workspace for my project"
+    description: The description of the service deployment
+    example: "This is a Ray cluster service for distributed computing"
   to_be_deleted_at:
     type: string
     format: date-time
-    description: The date and time the workspace will be deleted
+    description: The date and time the service deployment will be deleted
     example: "2025-02-01T00:00:00Z"

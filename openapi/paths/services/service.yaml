@@ -4,6 +4,9 @@ get:
   summary: Get details of a single service deployment
   description: |
     **Retrieve the details of a single service deployment**
+    
+    Fetch comprehensive metadata for a specific service deployment, including its configuration, template details,
+    cluster association, owner information, and creation timestamp.
 
   parameters:
     - name: service_deployment_id
@@ -12,10 +15,11 @@ get:
       schema:
         type: string
         format: uuid
-      description: ID of the workspace to describe
+      description: ID of the service deployment to describe
   responses:
     '200':
       $ref: '../../components/responses/service-response.yaml'
+      useExample: service-details
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: service-deployment-not-found
@@ -29,8 +33,16 @@ delete:
   summary: Delete a service deployment
   description: |
     **Delete a service deployment**
-
-    Delete a service deployment.
+    
+    Permanently delete a service deployment and remove all associated resources from the cluster.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Behavior:**
+    - The service deployment will be marked for deletion immediately
+    - All associated Pods, Services, and other Kubernetes resources will be terminated
+    - The deletion process may take a few minutes to complete
+    - Once deleted, the service deployment cannot be recovered
 
   parameters:
     - name: service_deployment_id
@@ -43,9 +55,10 @@ delete:
   responses:
     '200':
       $ref: '../../components/responses/service-delete-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: workspace-not-found
+      useExample: service-deployment-not-found
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
