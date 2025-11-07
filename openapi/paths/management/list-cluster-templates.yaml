@@ -4,18 +4,22 @@ get:
   summary: List all cluster templates
   description: |
     **List all available cluster templates**
-
-    List all cluster templates that are available in the management cluster for the current user.
     
-    Cluster templates are used to create new clusters on public cloud providers or remote nodes.
-
-    **Result**
-
-    Returns an array of cluster templates objects.
+    Retrieve all cluster templates available in the management cluster. Cluster templates define the 
+    configuration and Kubernetes version for new cluster deployments.
+    
+    **Usage:**
+    Cluster templates are used when creating new clusters via the `POST /clusters` endpoint. Each template 
+    specifies the Kubernetes version and deployment configuration that will be applied to new clusters.
+    
+    **Result:**
+    Returns an array of cluster template objects, each containing the template name, description, and 
+    Kubernetes version.
 
   responses:
     "200":
       $ref: "../../components/responses/cluster-templates-list-response.yaml"
+      useExample: success
     "404":
       $ref: "../../components/responses/error-response.yaml"
       useExample: cluster-templates-not-found

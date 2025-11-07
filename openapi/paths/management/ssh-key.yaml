@@ -4,12 +4,16 @@ delete:
   summary: Delete an SSH key
   description: |
     **Delete an SSH key**
-
-    Delete an SSH key from the management cluster.
-
-    **Parameters**
-
-    - `ssh_key_id`: The ID of the SSH key to delete.
+    
+    Permanently delete an SSH key from your account. This operation is irreversible.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Behavior:**
+    - The SSH key will be permanently removed from your account
+    - Any nodes that were imported using this SSH key will continue to function, but you won't be able to 
+      use this key for future node imports
+    - If you need to import new nodes, you'll need to create a new SSH key
 
   parameters:
     - name: ssh_key_id
@@ -33,9 +37,9 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/management/ssh-keys/123"
+        curl -X DELETE "https://api.exalsius.ai/management/ssh-key/123e4567-e89b-12d3-a456-426614174000"
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.delete("https://api.exalsius.ai/management/ssh-keys/123")
+        response = requests.delete("https://api.exalsius.ai/management/ssh-key/123e4567-e89b-12d3-a456-426614174000")

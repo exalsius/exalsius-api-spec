@@ -4,16 +4,18 @@ get:
   summary: List all SSH keys
   description: |
     **List all SSH keys**
-
-    List all SSH keys that are available to the management cluster for the current user.
-
-    **Result**
-
-    Returns an array of SSH key objects.
+    
+    Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed 
+    nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.
+    
+    **Result:**
+    Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never 
+    returned for security reasons.
 
   responses:
     "200":
       $ref: "../../components/responses/ssh-keys-list-response.yaml"
+      useExample: default
     "404":
       $ref: "../../components/responses/error-response.yaml"
       useExample: ssh-keys-not-found
@@ -39,17 +41,22 @@ post:
   summary: Add an SSH key
   description: |
     **Add an SSH key**
-
-    Add an SSH key to the management cluster.
-
-    **Request Body**
-
-    - `name`: The name of the SSH key.
-    - `private_key`: The private key of the SSH key.
-
-    **Result**
-
-    Returns the SSH key object.
+    
+    Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH. 
+    The private key must be provided in base64-encoded format.
+    
+    **Request Body:**
+    - `name`: A descriptive name for the SSH key (e.g., "my-server-key")
+    - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds 
+      to a public key installed on the target node(s)
+    
+    **Result:**
+    Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed 
+    nodes via the `POST /node/import/ssh` endpoint.
+    
+    **Security Note:**
+    The private key is stored securely and is never returned in subsequent API calls. Only the key ID and 
+    name are accessible after creation.
 
   requestBody: 
     required: true
@@ -57,9 +64,16 @@ post:
       application/json: 
         schema:
           $ref: '../../components/requests/ssh-key-create-request.yaml'
+        examples:
+          basic-ssh-key:
+            summary: Add an SSH key
+            value:
+              name: "my-ssh-key"
+              private_key_b64: "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."
   responses:
     "201":
       $ref: "../../components/responses/ssh-key-create-response.yaml"
+      useExample: default
     "422":
       $ref: "../../components/responses/error-response.yaml"
       useExample: bad-request
@@ -71,12 +85,12 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/management/ssh-keys"
-        -H "Content-Type: application/json"
-        -d '{"name": "my-ssh-key", "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"}'
+        curl -X POST "https://api.exalsius.ai/management/ssh-keys" \
+        -H "Content-Type: application/json" \
+        -d '{"name": "my-ssh-key", "private_key_b64": "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."}'
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.post("https://api.exalsius.ai/management/ssh-keys", json={"name": "my-ssh-key", "privateKey": "-----BEGIN RSA PRIVATE KEY-----\nMIIEpAIBAAKCAQEA6b7QgYJnV...\n-----END RSA PRIVATE KEY-----\n"})
+        response = requests.post("https://api.exalsius.ai/management/ssh-keys", json={"name": "my-ssh-key", "private_key_b64": "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."})
         print(response.json())
