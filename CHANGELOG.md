@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.24.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.23.0...v1.24.0) (2025-11-07)
+
+
+### Features
+
+* change for trigger ([#131](https://github.com/exalsius/exalsius-api-spec/issues/131)) ([d03415e](https://github.com/exalsius/exalsius-api-spec/commit/d03415e94f8f51a1f56572bb4b48a3bab54e3f43))
+
 ## [1.23.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.22.1...v1.23.0) (2025-11-05)
 
 

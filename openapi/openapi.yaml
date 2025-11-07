@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  version: 1.23.0
+  version: 1.24.0
   x-api-id: a9defed7-6536-46e7-a38c-bf2675252ce3
   x-audience:
     - exalsius-cli
@@ -30,12 +30,12 @@ info:
 
     * **Operator Integration** Coordinates with the
     [exalsius-operator](https://github.com/exalsius/exalsius-operator) running
-    in a management Kubernetes cluster to handle infrastructure provisioning
-    and node lifecycle management.
+    in a management Kubernetes cluster to handle infrastructure provisioning and
+    node lifecycle management.
 
-    * **Node Management** Import cloud-provider instances or self-managed
-    nodes (via SSH) into your node pool. Hardware characteristics of
-    self-managed nodes are discovered automatically.
+    * **Node Management** Import cloud-provider instances or self-managed nodes
+    (via SSH) into your node pool. Hardware characteristics of self-managed
+    nodes are discovered automatically.
 
     * **Cluster Provisioning** Create and manage Kubernetes clusters on
     supported cloud providers or self-managed bare-metal infrastructure.
@@ -43,9 +43,9 @@ info:
     * **Service Deployment** Deploy infrastructure services such as the NVIDIA
     GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters.
 
-    * **Workspace Deployment** Provision application workloads including
-    Jupyter Notebook servers, LLM inference services, and other compute
-    workloads on your clusters.
+    * **Workspace Deployment** Provision application workloads including Jupyter
+    Notebook servers, LLM inference services, and other compute workloads on
+    your clusters.
 servers:
   - url: https://api.exalsius.ai/v1
     description: exalsius API
