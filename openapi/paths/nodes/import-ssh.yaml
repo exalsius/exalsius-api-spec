@@ -32,9 +32,19 @@ post:
       application/json:
         schema:
           $ref: '../../components/requests/node-import-ssh-request.yaml'
+        examples:
+          basic-import:
+            summary: Import a self-managed node via SSH
+            value:
+              hostname: "my-server-001"
+              endpoint: "192.168.1.100:22"
+              username: "ubuntu"
+              ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
+              description: "On-premises GPU server"
   responses:
     '201':
       $ref: '../../components/responses/node-import-response.yaml'
+      useExample: default
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request

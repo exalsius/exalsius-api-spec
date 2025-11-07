@@ -3,10 +3,12 @@ get:
   tags: [nodes]
   summary: Get details of a single node in the node pool (self-managed or cloud)
   description: |
-    **Retrieve the details of single node in the node pool**
-
-    Fetch all metadata for one node in your pool. The returned object includes a nodeType 
-    property to distinguish between self-managed (SSH) nodes and cloud-imported instances.
+    **Retrieve the details of a single node in the node pool**
+    
+    Fetch comprehensive metadata for a specific node in your pool. The response includes a `node_type` 
+    property to distinguish between self-managed (SSH) nodes and cloud-imported instances. The response 
+    structure varies based on the node type, with cloud nodes including pricing and instance information, 
+    while self-managed nodes include SSH connection details and heartbeat information.
   parameters:
     - name: node_id
       in: path
@@ -18,6 +20,7 @@ get:
   responses:
     '200':
       $ref: '../../components/responses/node-response.yaml'
+      useExample: cloud-node
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: node-not-found
@@ -45,7 +48,7 @@ get:
             Returns:
                 dict: The JSON response containing the node details
             """
-            url = "https://api.exalsius.ai/nodes/{node_id}"
+            url = f"https://api.exalsius.ai/node/{node_id}"
             response = requests.get(url)
             return response.json()
 
@@ -58,9 +61,21 @@ delete:
   summary: Delete a node from the pool
   description: |
     **Delete a node from the pool**
-
-    Permanently delete a node that is in the `available` state. Once removed, the node is no longer part of your pool and cannot be used in any cluster deployments. 
-    If the node is currently in use (i.e. not available), detach it from its cluster before calling this operation.
+    
+    Permanently delete a node from your node pool. This operation is only allowed when the node is in the 
+    `AVAILABLE` state.
+    
+    **Warning: This operation is irreversible.**
+    
+    **Prerequisites:**
+    - The node must be in the `AVAILABLE` state
+    - If the node is currently in use (i.e., not available), you must first detach it from its cluster
+    
+    **Behavior:**
+    - The node will be permanently removed from your node pool
+    - Once deleted, the node cannot be used in any cluster deployments
+    - For cloud nodes, this does not terminate the instance; it only removes it from the pool
+    - For self-managed nodes, the node is simply removed from management
 
   parameters:
     - name: node_id
@@ -73,6 +88,7 @@ delete:
   responses:
     '200':
       $ref: '../../components/responses/node-delete-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: node-not-found
@@ -87,7 +103,7 @@ delete:
     - lang: curl
       label: cURL
       source: |
-        curl -X DELETE "https://api.exalsius.ai/nodes/123"
+        curl -X DELETE "https://api.exalsius.ai/node/123e4567-e89b-12d3-a456-426614174000"
     - lang: python
       label: Python
       source: |
@@ -103,12 +119,12 @@ delete:
             Returns:
                 dict: The JSON response
             """
-            url = "https://api.exalsius.ai/nodes/{node_id}"
+            url = f"https://api.exalsius.ai/node/{node_id}"
             response = requests.delete(url)
             return response.json()
 
-        delete_node(123)
-        print(response)
+        result = delete_node("123e4567-e89b-12d3-a456-426614174000")
+        print(result)
 
 patch:
   operationId: patchNode
@@ -121,8 +137,15 @@ patch:
       - nodeagent
   description: |
     **Patch a node**
-
-    Patch a node by updating some of its properties. If no data is provided, the action is comparable to a heartbeat.
+    
+    Update a node's properties or send a heartbeat signal. This endpoint is typically used by node agents 
+    to report status updates and maintain connectivity.
+    
+    **Behavior:**
+    - If request body is provided, the node's properties (description, hardware specs) will be updated
+    - If no request body is provided, this acts as a heartbeat to indicate the node is still active
+    - For self-managed nodes, this updates the `last_heartbeat_date`
+    - Returns an access token that can be used for subsequent operations
 
   parameters:
     - name: node_id
@@ -141,6 +164,7 @@ patch:
   responses:
     '200':
       $ref: '../../components/responses/node-patch-response.yaml'
+      useExample: success
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: node-not-found

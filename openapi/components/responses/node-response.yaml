@@ -3,3 +3,47 @@ content:
   application/json:
     schema:
       $ref: '../schemas/node-response.yaml'
+    examples:
+      cloud-node:
+        summary: Cloud node details
+        value:
+          id: "123e4567-e89b-12d3-a456-426614174000"
+          node_type: "CLOUD"
+          node_status: "AVAILABLE"
+          hostname: "aws-g4dn-xlarge-001"
+          description: "AWS GPU node"
+          location: "us-east-1"
+          import_time: "2025-01-01T00:00:00Z"
+          provider: "aws"
+          region: "us-east-1"
+          availability_zone: "us-east-1a"
+          instance_type: "g4dn.xlarge"
+          price_per_hour: 0.526
+          gpu_count: 1
+          gpu_type: "T4"
+          gpu_vendor: "NVIDIA"
+          gpu_memory: 16
+          cpu_cores: 4
+          memory_gb: 16
+          storage_gb: 225
+      self-managed-node:
+        summary: Self-managed node details
+        value:
+          id: "123e4567-e89b-12d3-a456-426614174001"
+          node_type: "SELF_MANAGED"
+          node_status: "AVAILABLE"
+          hostname: "my-server-001"
+          description: "On-premises GPU server"
+          location: "Data Center A"
+          import_time: "2025-01-01T00:00:00Z"
+          endpoint: "192.168.1.100:22"
+          username: "ubuntu"
+          ssh_key_id: "123e4567-e89b-12d3-a456-426614174002"
+          last_heartbeat_date: "2025-01-15T10:30:00Z"
+          gpu_count: 2
+          gpu_type: "RTX4090"
+          gpu_vendor: "NVIDIA"
+          gpu_memory: 24
+          cpu_cores: 16
+          memory_gb: 64
+          storage_gb: 1000

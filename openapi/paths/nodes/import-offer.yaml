@@ -50,6 +50,7 @@ post:
   responses:
     '201':
       $ref: '../../components/responses/node-import-response.yaml'
+      useExample: default
     '400':
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
@@ -64,7 +65,7 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/nodes/import-offer" -H "Content-Type: application/json" -d '{"offerId": "123e4567-e89b-12d3-a456-426614174000", "amount": 1}'
+        curl -X POST "https://api.exalsius.ai/node/import/offer/123e4567-e89b-12d3-a456-426614174000?amount=1"
     - lang: python
       label: Python
       source: |
@@ -82,15 +83,9 @@ post:
           Returns:
             A list of node IDs
           """
-          url = "https://api.exalsius.ai/nodes/import-offer"
-          headers = {
-            "Content-Type": "application/json"
-          }
-          data = {
-            "offerId": offer_id,
-            "amount": amount
-          }
-          response = requests.post(url, headers=headers, json=data)
+          url = f"https://api.exalsius.ai/node/import/offer/{offer_id}"
+          params = {"amount": amount}
+          response = requests.post(url, params=params)
           return response.json()
 
         # Example usage
