@@ -3,3 +3,19 @@ content:
   application/json:
     schema:
       $ref: '../schemas/performance-prediction-response.yaml'
+    examples:
+      performance-prediction-success:
+        summary: Performance prediction results
+        value:
+          performance_prediction:
+            model_name: LLAMA3_2_3B
+            vram:
+              A100: 24.5
+              H100: 18.2
+              RTX4090: 22.8
+              A6000: 26.1
+            runtime:
+              A100: 0.125
+              H100: 0.089
+              RTX4090: 0.156
+              A6000: 0.142
