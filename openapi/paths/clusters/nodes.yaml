@@ -86,7 +86,7 @@ post:
         - `WORKER` - worker node (runs workloads)
     
     **Prerequisites:**
-    - Nodes must be in the `available` state
+    - Nodes must be in the `AVAILABLE` state
     - Nodes must be of the same type (e.g., all self-managed or all from the same cloud region)
     - For control plane nodes, you typically need an odd number (1, 3, 5) for high availability
     

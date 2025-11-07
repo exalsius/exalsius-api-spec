@@ -17,14 +17,14 @@ post:
     
     **Behavior**
 
-    On success, the new node enters a pending state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn’t ready by then, the import will fail.
+    On success, the new node enters a `PENDING` state while we verify SSH connectivity and inspect its resources. This process may take up to 10 minutes; if it isn't ready by then, the import will fail. The node will transition to `AVAILABLE` once discovery is complete.
 
     **Monitoring**
-    You can poll its status at any time via GET /nodes/{nodeId}.
+    You can poll its status at any time via GET /node/{node_id}.
 
     **Result**
 
-    Returns the generated nodeId. Use that ID with the /clusters endpoints to include this node in your cluster deployments.
+    Returns the generated node ID. Use that ID with the `/clusters` endpoint to include this node in your cluster deployments.
 
   requestBody:
     required: true
@@ -91,6 +91,6 @@ post:
             return response.json()
 
         # Example usage
-        node_id = import_ssh_node("192.168.1.1:22", "ubuntu", "123e4567-e89b-12d3-a456-426614174000")
-        print(node_id)
+        result = import_ssh_node("192.168.1.1:22", "ubuntu", "123e4567-e89b-12d3-a456-426614174000")
+        print(result)  # Returns: {"node_ids": ["..."], "total": 1}
             

@@ -12,7 +12,7 @@ post:
     **Prerequisites:**
     - The cluster must be in the `PENDING` state
     - The cluster must have at least one control plane node and one worker node assigned
-    - All assigned nodes must be in the `available` state
+    - All assigned nodes must be in the `AVAILABLE` state
     
     **Behavior:**
     - The cluster deployment will begin as soon as possible
@@ -39,13 +39,13 @@ post:
       useExample: success
     '400':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-not-in-staging-state
+      useExample: cluster-not-in-pending-state
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
     '409':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-no-nodes-in-staging
+      useExample: cluster-no-nodes-assigned
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error

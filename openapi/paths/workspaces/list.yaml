@@ -70,7 +70,8 @@ post:
     **Behavior**
 
     Creating a new workspace will result in a new workspace resource being created. The workspace will be in 
-    the `pending` state until the `GET /workspace/{workspace_id}` operation is returning another state.
+    the `PENDING` state initially and will transition to `RUNNING` once deployment completes. You can check 
+    the workspace status using `GET /workspace/{workspace_id}`.
 
   requestBody:
     required: true
@@ -129,11 +130,11 @@ post:
     - lang: curl
       label: cURL
       source: |
-        curl -X POST "https://api.exalsius.ai/workspaces" -H "Content-Type: application/json" -d '{"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook"}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}}'
+        curl -X POST "https://api.exalsius.ai/workspaces" -H "Content-Type: application/json" -d '{"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook", "variables": {"notebook_port": "8888"}}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}}'
     - lang: python
       label: Python
       source: |
         import requests
-        response = requests.post("https://api.exalsius.ai/workspaces", json={"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook"}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}})
+        response = requests.post("https://api.exalsius.ai/workspaces", json={"name": "my-workspace", "cluster_id": "123e4567-e89b-12d3-a456-426614174000", "template": {"name": "jupyter-notebook", "variables": {"notebook_port": "8888"}}, "resources": {"gpu_count": 1, "gpu_type": "A100", "gpu_vendor": "NVIDIA", "cpu_cores": 4, "memory_gb": 16, "storage_gb": 100}})
         print(response.json())
   

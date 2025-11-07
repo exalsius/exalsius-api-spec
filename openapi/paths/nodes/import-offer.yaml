@@ -9,7 +9,7 @@ post:
     Use this operation to import one or more nodes of a given cloud instance type into the node pool.
     
     **Parameters**
-      - `offer_id`: The identifier of the cloud provider`s offer you wish to import (see GET /offers).
+      - `offer_id`: The identifier of the cloud provider's offer you wish to import (see GET /offers).
       - `amount`: The number of instances of the instance type to import.
 
     **Behavior**
@@ -17,12 +17,12 @@ post:
     Importing a node from an offer to the node pool does not yet start a virtual machine and
     therefore does not yet involve any costs. A virtual machine of the given instance type
     will only be started when you deploy a cluster using the node.
-    The `pricePerHour` of the node will be the price of the offer at the time of import.
-    When deploying a cluster, the actual hourly rate will be the `pricePerHour` of the offer at that time.
+    The `price_per_hour` of the node will be the price of the offer at the time of import.
+    When deploying a cluster, the actual hourly rate will be the `price_per_hour` of the offer at that time.
 
     **Result**
 
-    On success, you'll receive one or more `nodeId` values. Use these IDs with the `/clusters` endpoints to deploy your clusters.
+    On success, you'll receive one or more node IDs. Use these IDs with the `/clusters` endpoint to add nodes to your clusters.
     
   parameters:
     - name: offer_id
@@ -81,7 +81,7 @@ post:
             amount: The number of instances of the instance type to import
 
           Returns:
-            A list of node IDs
+            The JSON response containing node_ids array and total count
           """
           url = f"https://api.exalsius.ai/node/import/offer/{offer_id}"
           params = {"amount": amount}
@@ -89,6 +89,6 @@ post:
           return response.json()
 
         # Example usage
-        node_ids = import_node_from_offer("123e4567-e89b-12d3-a456-426614174000", 1)
-        print(node_ids)
+        result = import_node_from_offer("123e4567-e89b-12d3-a456-426614174000", 1)
+        print(result)  # Returns: {"node_ids": ["..."], "total": 1}
         

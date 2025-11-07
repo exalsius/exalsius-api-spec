@@ -6,7 +6,7 @@ get:
     **List all clusters**
     
     Retrieve all clusters associated with your account. You can filter clusters by their status to find 
-    clusters in specific states (pending, deploying, ready, or failed). This endpoint is useful for 
+    clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for 
     monitoring cluster health and managing your infrastructure.
 
     **Examples**
@@ -22,10 +22,10 @@ get:
       description: |
         Only return clusters of this status.
         Possible values:
-        - `pending` - clusters that are pending (not yet deployed)
-        - `deploying` - clusters that are being deployed
-        - `ready` - clusters that are ready
-        - `failed` - clusters that failed
+        - `PENDING` - clusters that are pending (not yet deployed)
+        - `DEPLOYING` - clusters that are being deployed
+        - `READY` - clusters that are ready
+        - `FAILED` - clusters that failed
       required: false
       schema:
         type: string
