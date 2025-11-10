@@ -109,6 +109,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**delete_node_from_cluster**](docs/ClustersApi.md#delete_node_from_cluster) | **DELETE** /cluster/{cluster_id}/nodes/{node_id} | Delete a node from a cluster
 *ClustersApi* | [**deploy_cluster**](docs/ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
 *ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
+*ClustersApi* | [**get_cluster_dashboards**](docs/ClustersApi.md#get_cluster_dashboards) | **GET** /cluster/{cluster_id}/dashboards | Get dashboards for a cluster
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
