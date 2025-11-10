@@ -1,0 +1,48 @@
+get:
+  operationId: getClusterDashboards
+  tags: [clusters]
+  summary: Get dashboards for a cluster
+  description: |
+    **Retrieve the dashboards for a cluster**
+    
+    Enables access to observability dashboards for a specific cluster. Each dashboard provides a visual representation 
+    of cluster performance metrics, resource utilization, and operational insights.
+  
+  parameters:
+    - name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the cluster to get dashboards for
+  responses:
+    '200':
+      description: Redirect to the dashboards
+      headers:
+        X-WEBAUTH-USER:
+          description: User ID of the user
+          schema:
+            type: string
+        X-WEBAUTH-TEAM:
+          description: Team ID of the user
+          schema:
+            type: string
+        X-WEBAUTH-ROLE:
+          description: Role of the user
+          schema:
+            type: string
+        X-WEBAUTH-EMAIL:
+          description: Email of the user
+          schema:
+            type: string
+        X-WEBAUTH-CLUSTER:
+          description: Target cluster ID
+          schema:
+            type: string
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
