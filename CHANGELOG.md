@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.24.0...v1.25.0) (2025-11-10)
+
+
+### Features
+
+* endpoint for authenticating cluster-scoped dashboards ([#133](https://github.com/exalsius/exalsius-api-spec/issues/133)) ([25a99da](https://github.com/exalsius/exalsius-api-spec/commit/25a99da8d01b61d559dd45ec05738051a5a49600))
+
 ## [1.24.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.23.0...v1.24.0) (2025-11-07)
 
 
