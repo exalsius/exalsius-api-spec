@@ -89,8 +89,6 @@ paths:
     $ref: ./paths/clusters/nodes.yaml
   /cluster/{cluster_id}/resources:
     $ref: ./paths/clusters/resources.yaml
-  /cluster/{cluster_id}/dashboards:
-    $ref: ./paths/clusters/dashboards.yaml
   /cluster/{cluster_id}/nodes/{node_id}:
     $ref: ./paths/clusters/delete-node.yaml
   /cluster/{cluster_id}/deploy:
@@ -127,6 +125,8 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
+  /management/dashboard-auth:
+    $ref: ./paths/management/dashboard-auth.yaml
 components:
   schemas:
     Offer:

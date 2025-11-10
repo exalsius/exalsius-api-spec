@@ -1,24 +1,15 @@
 get:
-  operationId: getClusterDashboards
-  tags: [clusters]
-  summary: Get dashboards for a cluster
+  operationId: getDashboardAuth
+  tags: [management]
+  summary: Get dashboard authentication
   description: |
-    **Retrieve the dashboards for a cluster**
+    **Retrieve the dashboard authentication**
     
-    Enables access to observability dashboards for a specific cluster. Each dashboard provides a visual representation 
+    Enables access to observability dashboards for all clusters associated with the user. Each dashboard provides a visual representation 
     of cluster performance metrics, resource utilization, and operational insights.
-  
-  parameters:
-    - name: cluster_id
-      in: path
-      required: true
-      schema:
-        type: string
-        format: uuid
-      description: ID of the cluster to get dashboards for
   responses:
     '200':
-      description: Redirect to the dashboards
+      description: Dashboard authentication
       headers:
         X-WEBAUTH-USER:
           description: User ID of the user
@@ -36,13 +27,13 @@ get:
           description: Email of the user
           schema:
             type: string
-        X-WEBAUTH-CLUSTER:
-          description: Target cluster ID
+        X-WEBAUTH-CLUSTER-FILTER:
+          description: A filter that regulates the clusters that the user has access to
           schema:
             type: string
     '404':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: cluster-not-found
+      useExample: clusters-not-found
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
