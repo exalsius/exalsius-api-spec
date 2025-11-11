@@ -262,7 +262,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Dashboard authentication |  * X-WEBAUTH-USER - User ID of the user <br>  * X-WEBAUTH-TEAM - Team ID of the user <br>  * X-WEBAUTH-ROLE - Role of the user <br>  * X-WEBAUTH-EMAIL - Email of the user <br>  * X-WEBAUTH-CLUSTER-FILTER - A filter that regulates the clusters that the user has access to <br>  |
+**200** | Dashboard authentication |  * X-WEBAUTH-USER - User ID of the user <br>  * X-WEBAUTH-TEAM - Team ID of the user <br>  * X-WEBAUTH-ROLE - Role of the user <br>  * X-WEBAUTH-EMAIL - Email of the user <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
