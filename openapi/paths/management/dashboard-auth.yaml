@@ -23,10 +23,6 @@ get:
           description: Role of the user
           schema:
             type: string
-        X-WEBAUTH-EMAIL:
-          description: Email of the user
-          schema:
-            type: string
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: clusters-not-found
