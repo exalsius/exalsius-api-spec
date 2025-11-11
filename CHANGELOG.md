@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.25.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.25.1...v1.25.2) (2025-11-11)
+
+
+### Bug Fixes
+
+* add new scope for dashboard-auth ([#140](https://github.com/exalsius/exalsius-api-spec/issues/140)) ([9466c82](https://github.com/exalsius/exalsius-api-spec/commit/9466c825790e61ce022530c6dc41a98caa01f9e4))
+* remove legacy response header in dashboard-auth ([#138](https://github.com/exalsius/exalsius-api-spec/issues/138)) ([e050653](https://github.com/exalsius/exalsius-api-spec/commit/e0506536569abb8bd43c7f6d9bf2b31f4b55ce94))
+
 ## [1.25.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.25.0...v1.25.1) (2025-11-11)
 
 
