@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.24.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.24.0...openapi-v1.24.1) (2025-11-11)
+
+
+### Bug Fixes
+
+* refine scoped dashboard-auth ([#135](https://github.com/exalsius/exalsius-api-spec/issues/135)) ([ebbd98a](https://github.com/exalsius/exalsius-api-spec/commit/ebbd98a663668a79a42491b35a16e742ca987263))
+* scoped dashboards ([#137](https://github.com/exalsius/exalsius-api-spec/issues/137)) ([42af331](https://github.com/exalsius/exalsius-api-spec/commit/42af3311cb85e7635ad051c6392996aefab4b06e))
+
 ## [1.24.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.23.0...openapi-v1.24.0) (2025-11-10)
 
 
