@@ -27,10 +27,6 @@ get:
           description: Email of the user
           schema:
             type: string
-        X-WEBAUTH-CLUSTER-FILTER:
-          description: A filter that regulates the clusters that the user has access to
-          schema:
-            type: string
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: clusters-not-found
