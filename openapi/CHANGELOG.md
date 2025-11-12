@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.24.3...openapi-v1.25.0) (2025-11-12)
+
+
+### Features
+
+* add cluster-scoped dashboard-url endpoint ([#143](https://github.com/exalsius/exalsius-api-spec/issues/143)) ([9a9765b](https://github.com/exalsius/exalsius-api-spec/commit/9a9765b76af21ce318751b41216ab46de0723a57))
+
 ## [1.24.3](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.24.2...openapi-v1.24.3) (2025-11-12)
 
 
