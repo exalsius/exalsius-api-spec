@@ -111,6 +111,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
+*ClustersApi* | [**get_dashboard_auth**](docs/ClustersApi.md#get_dashboard_auth) | **GET** /cluster/{cluster_id}/dashboard-auth | Get dashboard authentication
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 *ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
@@ -120,7 +121,6 @@ Class | Method | HTTP request | Description
 *ColoniesApi* | [**list_colonies**](docs/ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
-*ManagementApi* | [**get_dashboard_auth**](docs/ManagementApi.md#get_dashboard_auth) | **GET** /management/dashboard-auth | Get dashboard authentication
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 *ManagementApi* | [**list_credentials**](docs/ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 *ManagementApi* | [**list_service_templates**](docs/ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
