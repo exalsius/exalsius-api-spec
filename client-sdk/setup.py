@@ -42,7 +42,7 @@ setup(
     install_requires=REQUIRES,
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
-    license="Apache 2.0",
+    license="Apache-2.0",
     long_description_content_type="text/markdown",
     long_description="""\
     The exalsius REST API enables programmatic access to GPU infrastructure management and orchestration capabilities. Access the API through the &#x60;exls&#x60; command-line tool or integrate it directly into your applications using standard HTTP requests. The API covers several areas: * **GPU Market Offers** Browse and compare GPU instance pricing across public cloud providers and hyperscalers. * **Operator Integration** Coordinates with the [exalsius-operator](https://github.com/exalsius/exalsius-operator) running in a management Kubernetes cluster to handle infrastructure provisioning and node lifecycle management. * **Node Management** Import cloud-provider instances or self-managed nodes (via SSH) into your node pool. Hardware characteristics of self-managed nodes are discovered automatically. * **Cluster Provisioning** Create and manage Kubernetes clusters on supported cloud providers or self-managed bare-metal infrastructure. * **Service Deployment** Deploy infrastructure services such as the NVIDIA GPU Operator, KubeRay, Flyte, or Kubeflow onto your clusters. * **Workspace Deployment** Provision application workloads including Jupyter Notebook servers, LLM inference services, and other compute workloads on your clusters. 

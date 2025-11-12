@@ -5,7 +5,7 @@ description = "exalsius API"
 authors = [
   {name = "Contact our support",email = "support@exalsius.ai"},
 ]
-license = "Apache 2.0"
+license = "Apache-2.0"
 readme = "README.md"
 keywords = ["OpenAPI", "OpenAPI-Generator", "exalsius API"]
 requires-python = ">=3.9"
