@@ -95,6 +95,8 @@ paths:
     $ref: ./paths/clusters/deploy.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
+  /cluster/{cluster_id}/dashboard-auth:
+    $ref: ./paths/clusters/dashboard-auth.yaml
   /colonies:
     $ref: ./paths/colonies/list.yaml
   /colony/{colony_id}:
@@ -125,8 +127,6 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
-  /management/dashboard-auth:
-    $ref: ./paths/management/dashboard-auth.yaml
 components:
   schemas:
     Offer:

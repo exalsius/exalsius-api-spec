@@ -1,6 +1,6 @@
 get:
   operationId: getDashboardAuth
-  tags: [management]
+  tags: [clusters]
   summary: Get dashboard authentication
   security:
     - OAuth2:
@@ -10,8 +10,16 @@ get:
   description: |
     **Retrieve the dashboard authentication**
     
-    Enables access to observability dashboards for all clusters associated with the user. Each dashboard provides a visual representation 
+    Enables access to observability dashboards for a specific cluster. Each dashboard provides a visual representation 
     of cluster performance metrics, resource utilization, and operational insights.
+  parameters:
+    - name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The ID of the cluster to get the dashboard authentication for
   responses:
     '200':
       description: Dashboard authentication
@@ -24,13 +32,17 @@ get:
           description: Team ID of the user
           schema:
             type: string
+        X-WEBAUTH-CLUSTER:
+          description: Cluster ID of the cluster
+          schema:
+            type: string
         X-WEBAUTH-ROLE:
-          description: Role of the user
+          description: Grafana role of the user
           schema:
             type: string
     '404':
       $ref: '../../components/responses/error-response.yaml'
-      useExample: clusters-not-found
+      useExample: cluster-not-found
     '500':
       $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
