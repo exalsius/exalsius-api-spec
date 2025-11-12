@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.26.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.26.0...v1.26.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* add correct Apache-2.0 SPDX id ([#145](https://github.com/exalsius/exalsius-api-spec/issues/145)) ([90b5a9d](https://github.com/exalsius/exalsius-api-spec/commit/90b5a9dc71273fe84cfb6ee34204374d87dabfe1))
+
 ## [1.26.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.25.3...v1.26.0) (2025-11-12)
 
 
