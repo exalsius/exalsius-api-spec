@@ -97,6 +97,8 @@ paths:
     $ref: ./paths/clusters/kubeconfig.yaml
   /cluster/{cluster_id}/dashboard-auth:
     $ref: ./paths/clusters/dashboard-auth.yaml
+  /cluster/{cluster_id}/dashboard-url:
+    $ref: ./paths/clusters/dashboard-url.yaml
   /colonies:
     $ref: ./paths/colonies/list.yaml
   /colony/{colony_id}:
@@ -210,6 +212,8 @@ components:
       $ref: ./components/responses/cluster-create-response.yaml
     ClusterDeployResponse:
       $ref: ./components/responses/cluster-deploy-response.yaml
+    ClusterDashboardUrlResponse:
+      $ref: ./components/responses/cluster-dashboard-url-response.yaml
     ClusterKubeconfigResponse:
       $ref: ./components/responses/cluster-kubeconfig-response.yaml
     ClusterNodeRemoveResponse:
