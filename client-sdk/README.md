@@ -112,6 +112,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 *ClustersApi* | [**get_dashboard_auth**](docs/ClustersApi.md#get_dashboard_auth) | **GET** /cluster/{cluster_id}/dashboard-auth | Get dashboard authentication
+*ClustersApi* | [**get_dashboard_url**](docs/ClustersApi.md#get_dashboard_url) | **GET** /cluster/{cluster_id}/dashboard-url | Get dashboard URL
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 *ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
@@ -156,6 +157,7 @@ Class | Method | HTTP request | Description
  - [ClusterCreateRequest](docs/ClusterCreateRequest.md)
  - [ClusterCreateRequestLocalStorage](docs/ClusterCreateRequestLocalStorage.md)
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
+ - [ClusterDashboardUrlResponse](docs/ClusterDashboardUrlResponse.md)
  - [ClusterDeleteResponse](docs/ClusterDeleteResponse.md)
  - [ClusterDeployResponse](docs/ClusterDeployResponse.md)
  - [ClusterKubeconfigResponse](docs/ClusterKubeconfigResponse.md)

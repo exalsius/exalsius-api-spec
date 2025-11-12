@@ -11,6 +11,7 @@ docs/ClusterAdoptRequest.md
 docs/ClusterCreateRequest.md
 docs/ClusterCreateRequestLocalStorage.md
 docs/ClusterCreateResponse.md
+docs/ClusterDashboardUrlResponse.md
 docs/ClusterDeleteResponse.md
 docs/ClusterDeployResponse.md
 docs/ClusterKubeconfigResponse.md
@@ -108,6 +109,7 @@ exalsius_api_client/models/cluster_adopt_request.py
 exalsius_api_client/models/cluster_create_request.py
 exalsius_api_client/models/cluster_create_request_local_storage.py
 exalsius_api_client/models/cluster_create_response.py
+exalsius_api_client/models/cluster_dashboard_url_response.py
 exalsius_api_client/models/cluster_delete_response.py
 exalsius_api_client/models/cluster_deploy_response.py
 exalsius_api_client/models/cluster_kubeconfig_response.py
@@ -183,4 +185,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_cluster_dashboard_url_response.py
 tox.ini

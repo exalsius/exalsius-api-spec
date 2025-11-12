@@ -28,6 +28,8 @@ from exalsius_api_client.models.cluster_create_request_local_storage import \
     ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse
+from exalsius_api_client.models.cluster_dashboard_url_response import \
+    ClusterDashboardUrlResponse
 from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \

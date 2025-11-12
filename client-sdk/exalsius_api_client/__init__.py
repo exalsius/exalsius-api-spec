@@ -44,6 +44,7 @@ __all__ = [
     "ClusterCreateRequest",
     "ClusterCreateRequestLocalStorage",
     "ClusterCreateResponse",
+    "ClusterDashboardUrlResponse",
     "ClusterDeleteResponse",
     "ClusterDeployResponse",
     "ClusterKubeconfigResponse",
@@ -149,6 +150,8 @@ from exalsius_api_client.models.cluster_create_request_local_storage import \
     ClusterCreateRequestLocalStorage as ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse as ClusterCreateResponse
+from exalsius_api_client.models.cluster_dashboard_url_response import \
+    ClusterDashboardUrlResponse as ClusterDashboardUrlResponse
 from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse as ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
