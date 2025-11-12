@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.25.2...v1.25.3) (2025-11-12)
+
+
+### Bug Fixes
+
+* move dashboard-auth from management to cluster for proper scoping ([#141](https://github.com/exalsius/exalsius-api-spec/issues/141)) ([2121284](https://github.com/exalsius/exalsius-api-spec/commit/21212843eaedb4974dcddf366a9af70a582bd58f))
+
 ## [1.25.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.25.1...v1.25.2) (2025-11-11)
 
 
