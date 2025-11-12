@@ -1,0 +1,28 @@
+get:
+  operationId: getDashboardUrl
+  tags: [clusters]
+  summary: Get dashboard URL
+  description: |
+    **Retrieve the URL to cluster-scoped Grafana dashboards**
+    
+    Returns the URL to cluster-scoped Grafana dashboards for a specific cluster.
+  
+  parameters:
+    - name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: ID of the cluster to get the dashboard URL for
+  
+  responses:
+    '200':
+      $ref: '../../components/responses/cluster-dashboard-url-response.yaml'
+      useExample: success
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
