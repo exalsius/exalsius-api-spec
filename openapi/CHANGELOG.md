@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.25.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.25.0...openapi-v1.25.1) (2025-11-12)
+
+
+### Bug Fixes
+
+* add correct Apache-2.0 SPDX id ([#145](https://github.com/exalsius/exalsius-api-spec/issues/145)) ([90b5a9d](https://github.com/exalsius/exalsius-api-spec/commit/90b5a9dc71273fe84cfb6ee34204374d87dabfe1))
+
 ## [1.25.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.24.3...openapi-v1.25.0) (2025-11-12)
 
 
