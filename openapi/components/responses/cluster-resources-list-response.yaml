@@ -9,6 +9,7 @@ content:
         value:
           resources:
             - node_id: "123e4567-e89b-12d3-a456-426614174000"
+              node_name: "node1"
               available:
                 gpu_count: 1
                 gpu_type: "A100"
@@ -23,6 +24,7 @@ content:
                 memory_gb: 0
                 storage_gb: 0
             - node_id: "123e4567-e89b-12d3-a456-426614174001"
+              node_name: "node2"
               available:
                 gpu_count: 2
                 gpu_type: "RTX4090"

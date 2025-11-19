@@ -14,6 +14,10 @@ properties:
           format: uuid
           description: The unique identifier for the node
           example: "123e4567-e89b-12d3-a456-426614174000"
+        node_name:
+          type: string
+          description: The name of the node
+          example: "node1"
         available:
           description: The available resources on the node
           $ref: './hardware.yaml'
