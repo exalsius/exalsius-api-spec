@@ -34,13 +34,21 @@ class ClusterResourcesListResponseResourcesInner(BaseModel):
     node_id: Optional[StrictStr] = Field(
         default=None, description="The unique identifier for the node"
     )
+    node_name: Optional[StrictStr] = Field(
+        default=None, description="The name of the node"
+    )
     available: Optional[Hardware] = Field(
         default=None, description="The available resources on the node"
     )
     occupied: Optional[Hardware] = Field(
         default=None, description="The occupied resources on the node"
     )
-    __properties: ClassVar[List[str]] = ["node_id", "available", "occupied"]
+    __properties: ClassVar[List[str]] = [
+        "node_id",
+        "node_name",
+        "available",
+        "occupied",
+    ]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -99,6 +107,7 @@ class ClusterResourcesListResponseResourcesInner(BaseModel):
         _obj = cls.model_validate(
             {
                 "node_id": obj.get("node_id"),
+                "node_name": obj.get("node_name"),
                 "available": (
                     Hardware.from_dict(obj["available"])
                     if obj.get("available") is not None
