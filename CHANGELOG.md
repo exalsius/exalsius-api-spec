@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.27.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.26.1...v1.27.0) (2025-11-19)
+
+
+### Features
+
+* also add node-name to cluster-resources-list response ([#147](https://github.com/exalsius/exalsius-api-spec/issues/147)) ([c9f26b1](https://github.com/exalsius/exalsius-api-spec/commit/c9f26b1a27473e3e5fe4005bbbda12aefbb1e771))
+
 ## [1.26.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.26.0...v1.26.1) (2025-11-12)
 
 
