@@ -189,6 +189,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_cluster_event_payload.py
-test/test_cluster_event_payload_involved_object.py
 tox.ini
