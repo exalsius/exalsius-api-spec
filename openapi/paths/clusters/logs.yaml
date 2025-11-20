@@ -1,0 +1,27 @@
+get:
+  operationId: getClusterLogs
+  tags: [clusters]
+  summary: Get cluster logs
+  x-streaming: true
+  description: |
+    **Retrieve the cluster logs**
+    
+    Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+  parameters:
+    - name: cluster_id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+      description: The ID of the cluster to get the logs for
+  responses:
+    '200':
+      $ref: '../../components/responses/cluster-logs-response.yaml'
+      useExample: success
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: cluster-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

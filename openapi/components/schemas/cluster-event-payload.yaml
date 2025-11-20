@@ -1,0 +1,30 @@
+type: object
+required:
+  - watch_event_type
+  - namespace
+  - involved_object
+properties:
+  watch_event_type:
+    type: string
+    description: "ADDED, MODIFIED, DELETED"
+  namespace:
+    type: string
+  type:
+    type: string
+    description: "Normal, Warning, etc."
+  reason:
+    type: string
+  message:
+    type: string
+  last_timestamp:
+    type: string
+    format: date-time
+  involved_object:
+    type: object
+    properties:
+      kind:
+        type: string
+      name:
+        type: string
+      namespace:
+        type: string

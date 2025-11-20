@@ -1,0 +1,15 @@
+description: Cluster logs response
+content:
+  application/x-ndjson:
+    schema:
+      $ref: '../schemas/cluster-event-payload.yaml'
+    examples:
+      success:
+        summary: Cluster logs
+        value:
+          watch_event_type: "ADDED"
+          namespace: "my-namespace"
+          involved_object:
+            kind: "Pod"
+            name: "my-pod"
+            namespace: "my-namespace"

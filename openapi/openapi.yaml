@@ -93,6 +93,8 @@ paths:
     $ref: ./paths/clusters/delete-node.yaml
   /cluster/{cluster_id}/deploy:
     $ref: ./paths/clusters/deploy.yaml
+  /cluster/{cluster_id}/logs:
+    $ref: ./paths/clusters/logs.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
   /cluster/{cluster_id}/dashboard-auth:
@@ -197,6 +199,8 @@ components:
       $ref: ./components/schemas/ssh-key.yaml
     Kubeconfig:
       $ref: ./components/schemas/kubeconfig.yaml
+    ClusterEventPayload:
+      $ref: ./components/schemas/cluster-event-payload.yaml
   responses:
     NodeDeleteResponse:
       $ref: ./components/responses/node-delete-response.yaml
@@ -220,6 +224,8 @@ components:
       $ref: ./components/responses/cluster-node-remove-response.yaml
     ClusterNodesResponse:
       $ref: ./components/responses/cluster-nodes-response.yaml
+    ClusterLogsResponse:
+      $ref: ./components/responses/cluster-logs-response.yaml
     ClusterResourcesListResponse:
       $ref: ./components/responses/cluster-resources-list-response.yaml
     ClusterListResponse:
