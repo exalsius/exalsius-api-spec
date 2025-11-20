@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.27.0...v1.28.0) (2025-11-20)
+
+
+### Features
+
+* add specs for streaming cluster-logs endpoint ([#149](https://github.com/exalsius/exalsius-api-spec/issues/149)) ([067e7c5](https://github.com/exalsius/exalsius-api-spec/commit/067e7c518423e7de30aacab79ac03fd444e22246))
+
 ## [1.27.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.26.1...v1.27.0) (2025-11-19)
 
 
