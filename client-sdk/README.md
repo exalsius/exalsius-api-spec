@@ -110,6 +110,7 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**deploy_cluster**](docs/ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
 *ClustersApi* | [**describe_cluster**](docs/ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+*ClustersApi* | [**get_cluster_logs**](docs/ClustersApi.md#get_cluster_logs) | **GET** /cluster/{cluster_id}/logs | Get cluster logs
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 *ClustersApi* | [**get_dashboard_auth**](docs/ClustersApi.md#get_dashboard_auth) | **GET** /cluster/{cluster_id}/dashboard-auth | Get dashboard authentication
 *ClustersApi* | [**get_dashboard_url**](docs/ClustersApi.md#get_dashboard_url) | **GET** /cluster/{cluster_id}/dashboard-url | Get dashboard URL
@@ -160,6 +161,8 @@ Class | Method | HTTP request | Description
  - [ClusterDashboardUrlResponse](docs/ClusterDashboardUrlResponse.md)
  - [ClusterDeleteResponse](docs/ClusterDeleteResponse.md)
  - [ClusterDeployResponse](docs/ClusterDeployResponse.md)
+ - [ClusterEventPayload](docs/ClusterEventPayload.md)
+ - [ClusterEventPayloadInvolvedObject](docs/ClusterEventPayloadInvolvedObject.md)
  - [ClusterKubeconfigResponse](docs/ClusterKubeconfigResponse.md)
  - [ClusterLocalStorage](docs/ClusterLocalStorage.md)
  - [ClusterNodeRemoveResponse](docs/ClusterNodeRemoveResponse.md)

@@ -34,6 +34,10 @@ from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse
+from exalsius_api_client.models.cluster_event_payload import \
+    ClusterEventPayload
+from exalsius_api_client.models.cluster_event_payload_involved_object import \
+    ClusterEventPayloadInvolvedObject
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse
 from exalsius_api_client.models.cluster_local_storage import \

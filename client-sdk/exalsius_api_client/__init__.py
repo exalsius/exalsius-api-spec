@@ -47,6 +47,8 @@ __all__ = [
     "ClusterDashboardUrlResponse",
     "ClusterDeleteResponse",
     "ClusterDeployResponse",
+    "ClusterEventPayload",
+    "ClusterEventPayloadInvolvedObject",
     "ClusterKubeconfigResponse",
     "ClusterLocalStorage",
     "ClusterNodeRemoveResponse",
@@ -156,6 +158,10 @@ from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse as ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
     ClusterDeployResponse as ClusterDeployResponse
+from exalsius_api_client.models.cluster_event_payload import \
+    ClusterEventPayload as ClusterEventPayload
+from exalsius_api_client.models.cluster_event_payload_involved_object import \
+    ClusterEventPayloadInvolvedObject as ClusterEventPayloadInvolvedObject
 from exalsius_api_client.models.cluster_kubeconfig_response import \
     ClusterKubeconfigResponse as ClusterKubeconfigResponse
 from exalsius_api_client.models.cluster_local_storage import \

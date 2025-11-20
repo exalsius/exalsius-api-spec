@@ -12,6 +12,7 @@ Method | HTTP request | Description
 [**deploy_cluster**](ClustersApi.md#deploy_cluster) | **POST** /cluster/{cluster_id}/deploy | Deploy a new cluster
 [**describe_cluster**](ClustersApi.md#describe_cluster) | **GET** /cluster/{cluster_id} | Get details of a single cluster
 [**get_cluster_kubeconfig**](ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
+[**get_cluster_logs**](ClustersApi.md#get_cluster_logs) | **GET** /cluster/{cluster_id}/logs | Get cluster logs
 [**get_cluster_resources**](ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
 [**get_dashboard_auth**](ClustersApi.md#get_dashboard_auth) | **GET** /cluster/{cluster_id}/dashboard-auth | Get dashboard authentication
 [**get_dashboard_url**](ClustersApi.md#get_dashboard_url) | **GET** /cluster/{cluster_id}/dashboard-url | Get dashboard URL
@@ -777,6 +778,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | The kubeconfig file for a cluster |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_cluster_logs**
+> ClusterEventPayload get_cluster_logs(cluster_id)
+
+Get cluster logs
+
+**Retrieve the cluster logs**
+
+Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.cluster_event_payload import ClusterEventPayload
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ClustersApi(api_client)
+    cluster_id = 'cluster_id_example' # str | The ID of the cluster to get the logs for
+
+    try:
+        # Get cluster logs
+        api_response = api_instance.get_cluster_logs(cluster_id)
+        print("The response of ClustersApi->get_cluster_logs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ClustersApi->get_cluster_logs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **cluster_id** | **str**| The ID of the cluster to get the logs for | 
+
+### Return type
+
+[**ClusterEventPayload**](ClusterEventPayload.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/x-ndjson, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Cluster logs response |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
