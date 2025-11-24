@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.27.0...openapi-v1.28.0) (2025-11-24)
+
+
+### Features
+
+* add specs for workspace-logs endpoint; refine cluster-logs endpoint description ([#151](https://github.com/exalsius/exalsius-api-spec/issues/151)) ([9508bbc](https://github.com/exalsius/exalsius-api-spec/commit/9508bbc5a6fa67088e2e46b83f10ce030f5e566b))
+
 ## [1.27.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.26.0...openapi-v1.27.0) (2025-11-20)
 
 
