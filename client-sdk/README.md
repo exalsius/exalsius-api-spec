@@ -143,6 +143,7 @@ Class | Method | HTTP request | Description
 *WorkspacesApi* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /workspaces | Create a workspace
 *WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 *WorkspacesApi* | [**describe_workspace**](docs/WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
+*WorkspacesApi* | [**get_workspace_logs**](docs/WorkspacesApi.md#get_workspace_logs) | **GET** /workspace/{workspace_id}/logs | Get workspace logs
 *WorkspacesApi* | [**list_workspaces**](docs/WorkspacesApi.md#list_workspaces) | **GET** /workspaces | List all workspaces
 *WorkspacesApi* | [**start_workspace**](docs/WorkspacesApi.md#start_workspace) | **POST** /workspace/{workspace_id}/start | Start a workspace
 *WorkspacesApi* | [**stop_workspace**](docs/WorkspacesApi.md#stop_workspace) | **POST** /workspace/{workspace_id}/stop | Stop a workspace
@@ -221,6 +222,7 @@ Class | Method | HTTP request | Description
  - [WorkspaceCreateResponse](docs/WorkspaceCreateResponse.md)
  - [WorkspaceDeleteResponse](docs/WorkspaceDeleteResponse.md)
  - [WorkspaceDeployment](docs/WorkspaceDeployment.md)
+ - [WorkspaceLogPayload](docs/WorkspaceLogPayload.md)
  - [WorkspaceResponse](docs/WorkspaceResponse.md)
  - [WorkspaceStartResponse](docs/WorkspaceStartResponse.md)
  - [WorkspaceStopResponse](docs/WorkspaceStopResponse.md)

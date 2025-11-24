@@ -24,30 +24,23 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.cluster_event_payload_involved_object import \
-    ClusterEventPayloadInvolvedObject
 
-
-class ClusterEventPayload(BaseModel):
+class WorkspaceLogPayload(BaseModel):
     """
-    ClusterEventPayload
+    WorkspaceLogPayload
     """  # noqa: E501
 
-    watch_event_type: StrictStr = Field(description="ADDED, MODIFIED, DELETED")
-    namespace: StrictStr
-    type: Optional[StrictStr] = Field(default=None, description="Normal, Warning, etc.")
-    reason: Optional[StrictStr] = None
-    message: Optional[StrictStr] = None
-    timestamp: Optional[datetime] = None
-    involved_object: ClusterEventPayloadInvolvedObject
+    pod_name: StrictStr = Field(description="The name of the pod")
+    pod_namespace: Optional[StrictStr] = Field(
+        default=None, description="The namespace of the pod"
+    )
+    timestamp: datetime = Field(description="The timestamp of the log")
+    log_message: StrictStr = Field(description="The message of the log")
     __properties: ClassVar[List[str]] = [
-        "watch_event_type",
-        "namespace",
-        "type",
-        "reason",
-        "message",
+        "pod_name",
+        "pod_namespace",
         "timestamp",
-        "involved_object",
+        "log_message",
     ]
 
     model_config = ConfigDict(
@@ -67,7 +60,7 @@ class ClusterEventPayload(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of ClusterEventPayload from a JSON string"""
+        """Create an instance of WorkspaceLogPayload from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -87,14 +80,11 @@ class ClusterEventPayload(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of involved_object
-        if self.involved_object:
-            _dict["involved_object"] = self.involved_object.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of ClusterEventPayload from a dict"""
+        """Create an instance of WorkspaceLogPayload from a dict"""
         if obj is None:
             return None
 
@@ -103,17 +93,10 @@ class ClusterEventPayload(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "watch_event_type": obj.get("watch_event_type"),
-                "namespace": obj.get("namespace"),
-                "type": obj.get("type"),
-                "reason": obj.get("reason"),
-                "message": obj.get("message"),
+                "pod_name": obj.get("pod_name"),
+                "pod_namespace": obj.get("pod_namespace"),
                 "timestamp": obj.get("timestamp"),
-                "involved_object": (
-                    ClusterEventPayloadInvolvedObject.from_dict(obj["involved_object"])
-                    if obj.get("involved_object") is not None
-                    else None
-                ),
+                "log_message": obj.get("log_message"),
             }
         )
         return _obj

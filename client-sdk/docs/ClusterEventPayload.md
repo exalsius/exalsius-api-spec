@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **type** | **str** | Normal, Warning, etc. | [optional] 
 **reason** | **str** |  | [optional] 
 **message** | **str** |  | [optional] 
-**last_timestamp** | **datetime** |  | [optional] 
+**timestamp** | **datetime** |  | [optional] 
 **involved_object** | [**ClusterEventPayloadInvolvedObject**](ClusterEventPayloadInvolvedObject.md) |  | 
 
 ## Example

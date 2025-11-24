@@ -2197,7 +2197,7 @@ class ClustersApi:
     ) -> ClusterEventPayload:
         """Get cluster logs
 
-        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated. This endpoint returns a NDJSON stream, so individual log objects are separated by a newline character.
 
         :param cluster_id: The ID of the cluster to get the logs for (required)
         :type cluster_id: str
@@ -2265,7 +2265,7 @@ class ClustersApi:
     ) -> ApiResponse[ClusterEventPayload]:
         """Get cluster logs
 
-        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated. This endpoint returns a NDJSON stream, so individual log objects are separated by a newline character.
 
         :param cluster_id: The ID of the cluster to get the logs for (required)
         :type cluster_id: str
@@ -2333,7 +2333,7 @@ class ClustersApi:
     ) -> RESTResponseType:
         """Get cluster logs
 
-        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+        **Retrieve the cluster logs**  Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated. This endpoint returns a NDJSON stream, so individual log objects are separated by a newline character.
 
         :param cluster_id: The ID of the cluster to get the logs for (required)
         :type cluster_id: str

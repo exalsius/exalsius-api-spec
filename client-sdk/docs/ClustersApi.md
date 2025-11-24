@@ -790,7 +790,7 @@ Get cluster logs
 
 **Retrieve the cluster logs**
 
-Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated.
+Retrieve the logs for a specific cluster. The logs are returned in real-time as they are generated. This endpoint returns a NDJSON stream, so individual log objects are separated by a newline character.
 
 
 ### Example

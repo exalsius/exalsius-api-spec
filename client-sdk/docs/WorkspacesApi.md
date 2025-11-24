@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**create_workspace**](WorkspacesApi.md#create_workspace) | **POST** /workspaces | Create a workspace
 [**delete_workspace**](WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 [**describe_workspace**](WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
+[**get_workspace_logs**](WorkspacesApi.md#get_workspace_logs) | **GET** /workspace/{workspace_id}/logs | Get workspace logs
 [**list_workspaces**](WorkspacesApi.md#list_workspaces) | **GET** /workspaces | List all workspaces
 [**start_workspace**](WorkspacesApi.md#start_workspace) | **POST** /workspace/{workspace_id}/start | Start a workspace
 [**stop_workspace**](WorkspacesApi.md#stop_workspace) | **POST** /workspace/{workspace_id}/stop | Stop a workspace
@@ -272,6 +273,86 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | A single workspace |  -  |
+**404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_workspace_logs**
+> WorkspaceLogPayload get_workspace_logs(workspace_id)
+
+Get workspace logs
+
+**Retrieve the workspace logs**
+
+Retrieve the logs for a specific workspace. The logs are returned in real-time as they are generated. This endpoint returns a NDJSON stream, so individual log objects are separated by a newline character.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.workspace_log_payload import WorkspaceLogPayload
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.WorkspacesApi(api_client)
+    workspace_id = 'workspace_id_example' # str | The ID of the workspace to get the logs for
+
+    try:
+        # Get workspace logs
+        api_response = api_instance.get_workspace_logs(workspace_id)
+        print("The response of WorkspacesApi->get_workspace_logs:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling WorkspacesApi->get_workspace_logs: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **workspace_id** | **str**| The ID of the workspace to get the logs for | 
+
+### Return type
+
+[**WorkspaceLogPayload**](WorkspaceLogPayload.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/x-ndjson, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Workspace logs response |  -  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 

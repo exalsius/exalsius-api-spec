@@ -128,6 +128,8 @@ from exalsius_api_client.models.workspace_create_response import \
 from exalsius_api_client.models.workspace_delete_response import \
     WorkspaceDeleteResponse
 from exalsius_api_client.models.workspace_deployment import WorkspaceDeployment
+from exalsius_api_client.models.workspace_log_payload import \
+    WorkspaceLogPayload
 from exalsius_api_client.models.workspace_response import WorkspaceResponse
 from exalsius_api_client.models.workspace_start_response import \
     WorkspaceStartResponse

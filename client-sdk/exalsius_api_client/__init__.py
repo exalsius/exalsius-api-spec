@@ -107,6 +107,7 @@ __all__ = [
     "WorkspaceCreateResponse",
     "WorkspaceDeleteResponse",
     "WorkspaceDeployment",
+    "WorkspaceLogPayload",
     "WorkspaceResponse",
     "WorkspaceStartResponse",
     "WorkspaceStopResponse",
@@ -269,6 +270,8 @@ from exalsius_api_client.models.workspace_delete_response import \
     WorkspaceDeleteResponse as WorkspaceDeleteResponse
 from exalsius_api_client.models.workspace_deployment import \
     WorkspaceDeployment as WorkspaceDeployment
+from exalsius_api_client.models.workspace_log_payload import \
+    WorkspaceLogPayload as WorkspaceLogPayload
 from exalsius_api_client.models.workspace_response import \
     WorkspaceResponse as WorkspaceResponse
 from exalsius_api_client.models.workspace_start_response import \
