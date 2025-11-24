@@ -119,6 +119,8 @@ paths:
     $ref: ./paths/workspaces/stop-workspace.yaml
   /workspace/{workspace_id}/start:
     $ref: ./paths/workspaces/start-workspace.yaml
+  /workspace/{workspace_id}/logs:
+    $ref: ./paths/workspaces/logs.yaml
   /management/credentials:
     $ref: ./paths/management/list-credentials.yaml
   /management/cluster-templates:
@@ -191,6 +193,8 @@ components:
       $ref: ./components/schemas/workspace-stop-response.yaml
     WorkspaceStartResponse:
       $ref: ./components/schemas/workspace-start-response.yaml
+    WorkspaceLogsResponse:
+      $ref: ./components/schemas/workspace-log-payload.yaml
     WorkspaceTemplate:
       $ref: ./components/schemas/workspace-template.yaml
     WorkspaceListResponse:
@@ -252,6 +256,8 @@ components:
       $ref: ./components/responses/workspace-stop-response.yaml
     WorkspaceStartResponse:
       $ref: ./components/responses/workspace-start-response.yaml
+    WorkspaceLogsResponse:
+      $ref: ./components/responses/workspace-logs-response.yaml
     WorkspaceTemplateListResponse:
       $ref: ./components/responses/workspace-template-list-response.yaml
     WorkspaceListResponse:

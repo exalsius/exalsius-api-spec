@@ -1,0 +1,13 @@
+description: Workspace logs response
+content:
+  application/x-ndjson:
+    schema:
+      $ref: '../schemas/workspace-log-payload.yaml'
+    examples:
+      success:
+        summary: Workspace logs
+        value:
+          pod_name: "my-pod"
+          pod_namespace: "my-namespace"
+          timestamp: "2021-01-01T00:00:00Z"
+          log_message: "This is a test log message"
