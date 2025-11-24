@@ -1,0 +1,19 @@
+type: object
+required:
+  - pod_name
+  - timestamp
+  - log_message
+properties:
+  pod_name:
+    type: string
+    description: "The name of the pod"
+  pod_namespace:
+    type: string
+    description: "The namespace of the pod"
+  timestamp:
+    type: string
+    format: date-time
+    description: "The timestamp of the log"
+  log_message:
+    type: string
+    description: "The message of the log"

@@ -16,7 +16,7 @@ properties:
     type: string
   message:
     type: string
-  last_timestamp:
+  timestamp:
     type: string
     format: date-time
   involved_object:
