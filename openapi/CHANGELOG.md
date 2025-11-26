@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.28.0...openapi-v1.28.1) (2025-11-26)
+
+
+### Bug Fixes
+
+* update docs on cluster-labels ([#154](https://github.com/exalsius/exalsius-api-spec/issues/154)) ([3b27dab](https://github.com/exalsius/exalsius-api-spec/commit/3b27dabdaf79bc339ec21dae0d9921a20a9e1499))
+
 ## [1.28.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.27.0...openapi-v1.28.0) (2025-11-24)
 
 
