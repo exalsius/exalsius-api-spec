@@ -2,9 +2,11 @@ title: NodePatchRequest
 type: object
 properties:
   hardware:
-    $ref: '../schemas/hardware.yaml'
+    $ref: '../schemas/node-hardware.yaml'
   software:
-    $ref: '../schemas/software.yaml'
+    $ref: '../schemas/node-software.yaml'
+  system:
+    $ref: '../schemas/node-system.yaml'
   description:
     type: string
     description: Description of the node
@@ -12,3 +14,4 @@ properties:
 required:
   - hardware
   - software
+  - system

@@ -20,10 +20,10 @@ properties:
           example: "node1"
         available:
           description: The available resources on the node
-          $ref: './hardware.yaml'
+          $ref: './node-hardware.yaml'
         occupied:
           description: The occupied resources on the node
-          $ref: './hardware.yaml'
+          $ref: './node-hardware.yaml'
   total:
     type: integer
     format: int32
