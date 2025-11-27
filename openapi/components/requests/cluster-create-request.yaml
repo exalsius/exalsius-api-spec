@@ -17,6 +17,11 @@ properties:
       - `REMOTE`: Remote cluster, consisting of self-managed nodes
       - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster
       - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development)
+  vpn_cluster:
+    type: boolean
+    description: Whether the cluster is a VPN cluster (optional). If not provided, the cluster will not be a VPN cluster.
+    example: false
+    default: false
   colony_id:
     type: string
     description: The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony.
