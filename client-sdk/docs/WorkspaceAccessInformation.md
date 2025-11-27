@@ -7,7 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **access_type** | **str** | The type of access information. - &#x60;NODE_PORT&#x60;: Node port access information  | 
 **access_description** | **str** | A description for the access type | [optional] 
-**access_protocol** | **str** | The protocol of the access type - &#x60;HTTP&#x60;: HTTP protocol - &#x60;HTTPS&#x60;: HTTPS protocol  | 
+**access_protocol** | **str** | The protocol of the access type - &#x60;TCP&#x60;: TCP protocol, e.g. for SSH access - &#x60;HTTP&#x60;: HTTP protocol, e.g. for Jupyter Notebook UI access - &#x60;HTTPS&#x60;: HTTPS protocol, e.g. for Jupyter Notebook UI access  | 
 **port_name** | **str** | The port name | [optional] 
 **port_number** | **int** | The port number | 
 **external_ip** | **str** | The external IP address associated with the port | [optional] 

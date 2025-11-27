@@ -37,7 +37,7 @@ class WorkspaceAccessInformation(BaseModel):
         default=None, description="A description for the access type"
     )
     access_protocol: StrictStr = Field(
-        description="The protocol of the access type - `HTTP`: HTTP protocol - `HTTPS`: HTTPS protocol "
+        description="The protocol of the access type - `TCP`: TCP protocol, e.g. for SSH access - `HTTP`: HTTP protocol, e.g. for Jupyter Notebook UI access - `HTTPS`: HTTPS protocol, e.g. for Jupyter Notebook UI access "
     )
     port_name: Optional[StrictStr] = Field(default=None, description="The port name")
     port_number: StrictInt = Field(description="The port number")
@@ -63,8 +63,8 @@ class WorkspaceAccessInformation(BaseModel):
     @field_validator("access_protocol")
     def access_protocol_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["HTTP", "HTTPS"]):
-            raise ValueError("must be one of enum values ('HTTP', 'HTTPS')")
+        if value not in set(["TCP", "HTTP", "HTTPS"]):
+            raise ValueError("must be one of enum values ('TCP', 'HTTP', 'HTTPS')")
         return value
 
     model_config = ConfigDict(
