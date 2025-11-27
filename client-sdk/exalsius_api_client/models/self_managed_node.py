@@ -49,13 +49,6 @@ class SelfManagedNode(BaseNode):
         default=None, description="The last time a heartbeat was received from the node"
     )
     __properties: ClassVar[List[str]] = [
-        "gpu_count",
-        "gpu_vendor",
-        "gpu_type",
-        "gpu_memory",
-        "cpu_cores",
-        "memory_gb",
-        "storage_gb",
         "id",
         "node_type",
         "namespace",
@@ -142,13 +135,6 @@ class SelfManagedNode(BaseNode):
 
         _obj = cls.model_validate(
             {
-                "gpu_count": obj.get("gpu_count"),
-                "gpu_vendor": obj.get("gpu_vendor"),
-                "gpu_type": obj.get("gpu_type"),
-                "gpu_memory": obj.get("gpu_memory"),
-                "cpu_cores": obj.get("cpu_cores"),
-                "memory_gb": obj.get("memory_gb"),
-                "storage_gb": obj.get("storage_gb"),
                 "id": obj.get("id"),
                 "node_type": obj.get("node_type"),
                 "namespace": obj.get("namespace"),

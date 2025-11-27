@@ -23,8 +23,7 @@ from importlib import import_module
 from typing import (TYPE_CHECKING, Any, ClassVar, Dict, List, Optional, Set,
                     Union)
 
-from pydantic import (BaseModel, ConfigDict, Field, StrictInt, StrictStr,
-                      field_validator)
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 
 from exalsius_api_client.models.node_hardware import NodeHardware
 from exalsius_api_client.models.node_software import NodeSoftware
@@ -40,27 +39,6 @@ class BaseNode(BaseModel):
     BaseNode
     """  # noqa: E501
 
-    gpu_count: Optional[StrictInt] = Field(
-        default=None, description="The number of GPUs"
-    )
-    gpu_vendor: Optional[StrictStr] = Field(
-        default=None, description="The vendor of the GPU"
-    )
-    gpu_type: Optional[StrictStr] = Field(
-        default=None, description="The type of the GPU"
-    )
-    gpu_memory: Optional[StrictInt] = Field(
-        default=None, description="The memory of the GPU in GB"
-    )
-    cpu_cores: Optional[StrictInt] = Field(
-        default=None, description="The number of CPU cores"
-    )
-    memory_gb: Optional[StrictInt] = Field(
-        default=None, description="The memory of the node in GB"
-    )
-    storage_gb: Optional[StrictInt] = Field(
-        default=None, description="The storage of the node in GB"
-    )
     id: StrictStr = Field(description="The unique identifier for the node")
     node_type: StrictStr = Field(
         description="The type of the node. - `CLOUD`: Cloud node - `SELF_MANAGED`: Self-managed node "
@@ -89,13 +67,6 @@ class BaseNode(BaseModel):
     software: Optional[NodeSoftware] = None
     system: Optional[NodeSystem] = None
     __properties: ClassVar[List[str]] = [
-        "gpu_count",
-        "gpu_vendor",
-        "gpu_type",
-        "gpu_memory",
-        "cpu_cores",
-        "memory_gb",
-        "storage_gb",
         "id",
         "node_type",
         "namespace",
