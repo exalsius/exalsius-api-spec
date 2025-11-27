@@ -1,5 +1,6 @@
 title: BaseNode
 allOf:
+  - $ref: './node-hardware.yaml'
   - type: object
     required:
       - id
@@ -59,8 +60,8 @@ allOf:
           - `FAILED`: The discovering process of the node failed
         example: "AVAILABLE"
       hardware:
-        $ref: '../schemas/node-hardware.yaml'
+        $ref: './node-hardware.yaml'
       software:
-        $ref: '../schemas/node-software.yaml'
+        $ref: './node-software.yaml'
       system:
-        $ref: '../schemas/node-system.yaml'
+        $ref: './node-system.yaml'

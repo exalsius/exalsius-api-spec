@@ -19,13 +19,21 @@ content:
           availability_zone: "us-east-1a"
           instance_type: "g4dn.xlarge"
           price_per_hour: 0.526
-          gpu_count: 1
-          gpu_type: "T4"
-          gpu_vendor: "NVIDIA"
-          gpu_memory: 16
-          cpu_cores: 4
-          memory_gb: 16
-          storage_gb: 225
+          hardware:
+            gpu_count: 1
+            gpu_type: "T4"
+            gpu_vendor: "NVIDIA"
+            gpu_memory: 16
+            cpu_cores: 4
+            memory_gb: 16
+            storage_gb: 225
+          software:
+            docker: "Docker version 26.1.2, build 211e74b"
+            nvidia: "NVIDIA-SMI version: 575.57.08\nNVML version: 575.57\nDRIVER version: 575.57.08\nCUDA Version: 12.9"
+            amd: "rocm 7.1"
+          system:
+            os: "Ubuntu 22.04"
+            kernel: "Linux 6.14.0-36-generic"
       self-managed-node:
         summary: Self-managed node details
         value:
@@ -40,10 +48,18 @@ content:
           username: "ubuntu"
           ssh_key_id: "123e4567-e89b-12d3-a456-426614174002"
           last_heartbeat_date: "2025-01-15T10:30:00Z"
-          gpu_count: 2
-          gpu_type: "RTX4090"
-          gpu_vendor: "NVIDIA"
-          gpu_memory: 24
-          cpu_cores: 16
-          memory_gb: 64
-          storage_gb: 1000
+          hardware:
+            gpu_count: 2
+            gpu_type: "RTX4090"
+            gpu_vendor: "NVIDIA"
+            gpu_memory: 24
+            cpu_cores: 16
+            memory_gb: 64
+            storage_gb: 1000
+          software:
+            docker: "Docker version 26.1.2, build 211e74b"
+            nvidia: "NVIDIA-SMI version: 575.57.08\nNVML version: 575.57\nDRIVER version: 575.57.08\nCUDA Version: 12.9"
+            amd: "rocm 7.1"
+          system:
+            os: "Ubuntu 22.04"
+            kernel: "Linux 6.14.0-36-generic"
