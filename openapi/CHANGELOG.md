@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.28.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.28.1...openapi-v1.28.2) (2025-11-27)
+
+
+### Bug Fixes
+
+* extend enum to also allow generic  protocol type ([#156](https://github.com/exalsius/exalsius-api-spec/issues/156)) ([ab6fafe](https://github.com/exalsius/exalsius-api-spec/commit/ab6fafe2b2be968119670cb2222ae1ad6033cba0))
+
 ## [1.28.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.28.0...openapi-v1.28.1) (2025-11-26)
 
 
