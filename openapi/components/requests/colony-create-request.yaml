@@ -6,3 +6,8 @@ properties:
     type: string
     description: The name of the colony
     example: "my-colony"
+  netbird_colony:
+    type: boolean
+    description: Whether the colony is a Netbird (VPN) colony (optional). If not provided, the colony will not be a Netbird colony.
+    example: false
+    default: false
