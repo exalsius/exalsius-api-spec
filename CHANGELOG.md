@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.30.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.30.0...v1.30.1) (2025-11-27)
+
+
+### Bug Fixes
+
+* remove legacy top-level hardware-infos ([#159](https://github.com/exalsius/exalsius-api-spec/issues/159)) ([ba317ea](https://github.com/exalsius/exalsius-api-spec/commit/ba317ea441790b04f087fed76775816855454540))
+
 ## [1.30.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.29.2...v1.30.0) (2025-11-27)
 
 
