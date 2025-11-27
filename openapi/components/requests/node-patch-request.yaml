@@ -1,9 +1,17 @@
 title: NodePatchRequest
-allOf:
-  - $ref: '../schemas/hardware.yaml'
-  - type: object
-    properties:
-      description:
-        type: string
-        description: Description of the node
-        example: "My self-managed node"
+type: object
+properties:
+  hardware:
+    $ref: '../schemas/node-hardware.yaml'
+  software:
+    $ref: '../schemas/node-software.yaml'
+  system:
+    $ref: '../schemas/node-system.yaml'
+  description:
+    type: string
+    description: Description of the node
+    example: "My self-managed node"
+required:
+  - hardware
+  - software
+  - system

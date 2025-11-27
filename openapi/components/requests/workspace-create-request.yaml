@@ -18,7 +18,7 @@ properties:
     $ref: '../schemas/workspace-template.yaml'
   resources:
     description: The resources allocated to the workspace
-    $ref: '../schemas/hardware.yaml'
+    $ref: '../schemas/node-hardware.yaml'
   namespace:
     type: string
     description: The namespace in which the workspace should be deployed in the target cluster

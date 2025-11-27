@@ -47,7 +47,7 @@ properties:
     description: The access information for the workspace
   resources:
     description: The resources allocated to the workspace
-    $ref: './hardware.yaml'
+    $ref: './node-hardware.yaml'
   created_at:
     type: string
     format: date-time

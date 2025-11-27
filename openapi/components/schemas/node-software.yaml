@@ -1,0 +1,15 @@
+title: Software
+type: object
+properties:
+  docker:
+    type: string
+    description: The version of Docker installed on the node
+    example: "Docker version 26.1.2, build 211e74b"
+  nvidia:
+    type: string
+    description: The version of NVIDIA GPU Manager installed on the node
+    example: "NVIDIA-SMI version: 575.57.08\nNVML version: 575.57\nDRIVER version: 575.57.08\nCUDA Version: 12.9"
+  amd:
+    type: string
+    description: The version of AMD GPU Manager installed on the node
+    example: "rocm 7.1"

@@ -1,6 +1,6 @@
 title: BaseNode
 allOf:
-  - $ref: './hardware.yaml'
+  - $ref: './node-hardware.yaml'
   - type: object
     required:
       - id
@@ -59,3 +59,9 @@ allOf:
           - `DEPLOYED`: Node is deployed in a cluster
           - `FAILED`: The discovering process of the node failed
         example: "AVAILABLE"
+      hardware:
+        $ref: './node-hardware.yaml'
+      software:
+        $ref: './node-software.yaml'
+      system:
+        $ref: './node-system.yaml'
