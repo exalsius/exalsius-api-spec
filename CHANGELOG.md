@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.31.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.30.1...v1.31.0) (2025-11-27)
+
+
+### Features
+
+* add vpn cluster creation functionality ([#161](https://github.com/exalsius/exalsius-api-spec/issues/161)) ([212ba88](https://github.com/exalsius/exalsius-api-spec/commit/212ba88e65227e506464ceee566571b7d7b915ad))
+
 ## [1.30.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.30.0...v1.30.1) (2025-11-27)
 
 

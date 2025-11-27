@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.30.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.29.1...openapi-v1.30.0) (2025-11-27)
+
+
+### Features
+
+* add vpn cluster creation functionality ([#161](https://github.com/exalsius/exalsius-api-spec/issues/161)) ([212ba88](https://github.com/exalsius/exalsius-api-spec/commit/212ba88e65227e506464ceee566571b7d7b915ad))
+
 ## [1.29.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.29.0...openapi-v1.29.1) (2025-11-27)
 
 
