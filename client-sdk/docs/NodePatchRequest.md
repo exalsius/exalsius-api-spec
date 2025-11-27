@@ -5,13 +5,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**gpu_count** | **int** | The number of GPUs | [optional] 
-**gpu_vendor** | **str** | The vendor of the GPU | [optional] 
-**gpu_type** | **str** | The type of the GPU | [optional] 
-**gpu_memory** | **int** | The memory of the GPU in GB | [optional] 
-**cpu_cores** | **int** | The number of CPU cores | [optional] 
-**memory_gb** | **int** | The memory of the node in GB | [optional] 
-**storage_gb** | **int** | The storage of the node in GB | [optional] 
+**hardware** | [**NodeHardware**](NodeHardware.md) |  | 
+**software** | [**NodeSoftware**](NodeSoftware.md) |  | 
+**system** | [**NodeSystem**](NodeSystem.md) |  | 
 **description** | **str** | Description of the node | [optional] 
 
 ## Example

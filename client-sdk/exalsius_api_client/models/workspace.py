@@ -24,7 +24,7 @@ from typing import Any, ClassVar, Dict, List, Optional, Set
 from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
-from exalsius_api_client.models.hardware import Hardware
+from exalsius_api_client.models.node_hardware import NodeHardware
 from exalsius_api_client.models.workspace_access_information import \
     WorkspaceAccessInformation
 from exalsius_api_client.models.workspace_template import WorkspaceTemplate
@@ -56,7 +56,9 @@ class Workspace(BaseModel):
     access_information: Optional[List[WorkspaceAccessInformation]] = Field(
         default=None, description="The access information for the workspace"
     )
-    resources: Hardware = Field(description="The resources allocated to the workspace")
+    resources: NodeHardware = Field(
+        description="The resources allocated to the workspace"
+    )
     created_at: Optional[datetime] = Field(
         default=None, description="The date and time the workspace was created"
     )
@@ -172,7 +174,7 @@ class Workspace(BaseModel):
                     else None
                 ),
                 "resources": (
-                    Hardware.from_dict(obj["resources"])
+                    NodeHardware.from_dict(obj["resources"])
                     if obj.get("resources") is not None
                     else None
                 ),

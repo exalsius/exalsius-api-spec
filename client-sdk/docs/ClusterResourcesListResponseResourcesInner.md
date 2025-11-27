@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **node_id** | **str** | The unique identifier for the node | [optional] 
 **node_name** | **str** | The name of the node | [optional] 
-**available** | [**Hardware**](Hardware.md) | The available resources on the node | [optional] 
-**occupied** | [**Hardware**](Hardware.md) | The occupied resources on the node | [optional] 
+**available** | [**NodeHardware**](NodeHardware.md) | The available resources on the node | [optional] 
+**occupied** | [**NodeHardware**](NodeHardware.md) | The occupied resources on the node | [optional] 
 
 ## Example
 

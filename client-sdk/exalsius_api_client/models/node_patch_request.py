@@ -20,8 +20,12 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
+
+from exalsius_api_client.models.node_hardware import NodeHardware
+from exalsius_api_client.models.node_software import NodeSoftware
+from exalsius_api_client.models.node_system import NodeSystem
 
 
 class NodePatchRequest(BaseModel):
@@ -29,38 +33,16 @@ class NodePatchRequest(BaseModel):
     NodePatchRequest
     """  # noqa: E501
 
-    gpu_count: Optional[StrictInt] = Field(
-        default=None, description="The number of GPUs"
-    )
-    gpu_vendor: Optional[StrictStr] = Field(
-        default=None, description="The vendor of the GPU"
-    )
-    gpu_type: Optional[StrictStr] = Field(
-        default=None, description="The type of the GPU"
-    )
-    gpu_memory: Optional[StrictInt] = Field(
-        default=None, description="The memory of the GPU in GB"
-    )
-    cpu_cores: Optional[StrictInt] = Field(
-        default=None, description="The number of CPU cores"
-    )
-    memory_gb: Optional[StrictInt] = Field(
-        default=None, description="The memory of the node in GB"
-    )
-    storage_gb: Optional[StrictInt] = Field(
-        default=None, description="The storage of the node in GB"
-    )
+    hardware: NodeHardware
+    software: NodeSoftware
+    system: NodeSystem
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
     __properties: ClassVar[List[str]] = [
-        "gpu_count",
-        "gpu_vendor",
-        "gpu_type",
-        "gpu_memory",
-        "cpu_cores",
-        "memory_gb",
-        "storage_gb",
+        "hardware",
+        "software",
+        "system",
         "description",
     ]
 
@@ -101,6 +83,15 @@ class NodePatchRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of hardware
+        if self.hardware:
+            _dict["hardware"] = self.hardware.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of software
+        if self.software:
+            _dict["software"] = self.software.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of system
+        if self.system:
+            _dict["system"] = self.system.to_dict()
         return _dict
 
     @classmethod
@@ -114,13 +105,21 @@ class NodePatchRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "gpu_count": obj.get("gpu_count"),
-                "gpu_vendor": obj.get("gpu_vendor"),
-                "gpu_type": obj.get("gpu_type"),
-                "gpu_memory": obj.get("gpu_memory"),
-                "cpu_cores": obj.get("cpu_cores"),
-                "memory_gb": obj.get("memory_gb"),
-                "storage_gb": obj.get("storage_gb"),
+                "hardware": (
+                    NodeHardware.from_dict(obj["hardware"])
+                    if obj.get("hardware") is not None
+                    else None
+                ),
+                "software": (
+                    NodeSoftware.from_dict(obj["software"])
+                    if obj.get("software") is not None
+                    else None
+                ),
+                "system": (
+                    NodeSystem.from_dict(obj["system"])
+                    if obj.get("system") is not None
+                    else None
+                ),
                 "description": obj.get("description"),
             }
         )

@@ -18,48 +18,28 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
 from pydantic import BaseModel, ConfigDict, Field, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.node_hardware import NodeHardware
-from exalsius_api_client.models.workspace_template import WorkspaceTemplate
 
-
-class WorkspaceCreateRequest(BaseModel):
+class NodeSoftware(BaseModel):
     """
-    WorkspaceCreateRequest
+    NodeSoftware
     """  # noqa: E501
 
-    name: StrictStr = Field(description="The name of the workspace")
-    cluster_id: StrictStr = Field(
-        description="The unique identifier of the associated cluster"
+    docker: Optional[StrictStr] = Field(
+        default=None, description="The version of Docker installed on the node"
     )
-    template: WorkspaceTemplate
-    resources: NodeHardware = Field(
-        description="The resources allocated to the workspace"
-    )
-    namespace: Optional[StrictStr] = Field(
+    nvidia: Optional[StrictStr] = Field(
         default=None,
-        description="The namespace in which the workspace should be deployed in the target cluster",
+        description="The version of NVIDIA GPU Manager installed on the node",
     )
-    description: Optional[StrictStr] = Field(
-        default=None, description="The description of the workspace"
+    amd: Optional[StrictStr] = Field(
+        default=None, description="The version of AMD GPU Manager installed on the node"
     )
-    to_be_deleted_at: Optional[datetime] = Field(
-        default=None, description="The date and time the workspace will be deleted"
-    )
-    __properties: ClassVar[List[str]] = [
-        "name",
-        "cluster_id",
-        "template",
-        "resources",
-        "namespace",
-        "description",
-        "to_be_deleted_at",
-    ]
+    __properties: ClassVar[List[str]] = ["docker", "nvidia", "amd"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -78,7 +58,7 @@ class WorkspaceCreateRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WorkspaceCreateRequest from a JSON string"""
+        """Create an instance of NodeSoftware from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,17 +78,11 @@ class WorkspaceCreateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of template
-        if self.template:
-            _dict["template"] = self.template.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of resources
-        if self.resources:
-            _dict["resources"] = self.resources.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WorkspaceCreateRequest from a dict"""
+        """Create an instance of NodeSoftware from a dict"""
         if obj is None:
             return None
 
@@ -117,21 +91,9 @@ class WorkspaceCreateRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "name": obj.get("name"),
-                "cluster_id": obj.get("cluster_id"),
-                "template": (
-                    WorkspaceTemplate.from_dict(obj["template"])
-                    if obj.get("template") is not None
-                    else None
-                ),
-                "resources": (
-                    NodeHardware.from_dict(obj["resources"])
-                    if obj.get("resources") is not None
-                    else None
-                ),
-                "namespace": obj.get("namespace"),
-                "description": obj.get("description"),
-                "to_be_deleted_at": obj.get("to_be_deleted_at"),
+                "docker": obj.get("docker"),
+                "nvidia": obj.get("nvidia"),
+                "amd": obj.get("amd"),
             }
         )
         return _obj

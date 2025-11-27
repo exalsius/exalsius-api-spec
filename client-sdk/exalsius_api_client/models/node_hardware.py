@@ -18,47 +18,46 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictInt, StrictStr
 from typing_extensions import Self
 
-from exalsius_api_client.models.node_hardware import NodeHardware
-from exalsius_api_client.models.workspace_template import WorkspaceTemplate
 
-
-class WorkspaceCreateRequest(BaseModel):
+class NodeHardware(BaseModel):
     """
-    WorkspaceCreateRequest
+    NodeHardware
     """  # noqa: E501
 
-    name: StrictStr = Field(description="The name of the workspace")
-    cluster_id: StrictStr = Field(
-        description="The unique identifier of the associated cluster"
+    gpu_count: Optional[StrictInt] = Field(
+        default=None, description="The number of GPUs"
     )
-    template: WorkspaceTemplate
-    resources: NodeHardware = Field(
-        description="The resources allocated to the workspace"
+    gpu_vendor: Optional[StrictStr] = Field(
+        default=None, description="The vendor of the GPU"
     )
-    namespace: Optional[StrictStr] = Field(
-        default=None,
-        description="The namespace in which the workspace should be deployed in the target cluster",
+    gpu_type: Optional[StrictStr] = Field(
+        default=None, description="The type of the GPU"
     )
-    description: Optional[StrictStr] = Field(
-        default=None, description="The description of the workspace"
+    gpu_memory: Optional[StrictInt] = Field(
+        default=None, description="The memory of the GPU in GB"
     )
-    to_be_deleted_at: Optional[datetime] = Field(
-        default=None, description="The date and time the workspace will be deleted"
+    cpu_cores: Optional[StrictInt] = Field(
+        default=None, description="The number of CPU cores"
+    )
+    memory_gb: Optional[StrictInt] = Field(
+        default=None, description="The memory of the node in GB"
+    )
+    storage_gb: Optional[StrictInt] = Field(
+        default=None, description="The storage of the node in GB"
     )
     __properties: ClassVar[List[str]] = [
-        "name",
-        "cluster_id",
-        "template",
-        "resources",
-        "namespace",
-        "description",
-        "to_be_deleted_at",
+        "gpu_count",
+        "gpu_vendor",
+        "gpu_type",
+        "gpu_memory",
+        "cpu_cores",
+        "memory_gb",
+        "storage_gb",
     ]
 
     model_config = ConfigDict(
@@ -78,7 +77,7 @@ class WorkspaceCreateRequest(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Optional[Self]:
-        """Create an instance of WorkspaceCreateRequest from a JSON string"""
+        """Create an instance of NodeHardware from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,17 +97,11 @@ class WorkspaceCreateRequest(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of template
-        if self.template:
-            _dict["template"] = self.template.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of resources
-        if self.resources:
-            _dict["resources"] = self.resources.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Optional[Dict[str, Any]]) -> Optional[Self]:
-        """Create an instance of WorkspaceCreateRequest from a dict"""
+        """Create an instance of NodeHardware from a dict"""
         if obj is None:
             return None
 
@@ -117,21 +110,13 @@ class WorkspaceCreateRequest(BaseModel):
 
         _obj = cls.model_validate(
             {
-                "name": obj.get("name"),
-                "cluster_id": obj.get("cluster_id"),
-                "template": (
-                    WorkspaceTemplate.from_dict(obj["template"])
-                    if obj.get("template") is not None
-                    else None
-                ),
-                "resources": (
-                    NodeHardware.from_dict(obj["resources"])
-                    if obj.get("resources") is not None
-                    else None
-                ),
-                "namespace": obj.get("namespace"),
-                "description": obj.get("description"),
-                "to_be_deleted_at": obj.get("to_be_deleted_at"),
+                "gpu_count": obj.get("gpu_count"),
+                "gpu_vendor": obj.get("gpu_vendor"),
+                "gpu_type": obj.get("gpu_type"),
+                "gpu_memory": obj.get("gpu_memory"),
+                "cpu_cores": obj.get("cpu_cores"),
+                "memory_gb": obj.get("memory_gb"),
+                "storage_gb": obj.get("storage_gb"),
             }
         )
         return _obj

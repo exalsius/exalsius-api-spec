@@ -25,6 +25,9 @@ from pydantic import ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 from exalsius_api_client.models.base_node import BaseNode
+from exalsius_api_client.models.node_hardware import NodeHardware
+from exalsius_api_client.models.node_software import NodeSoftware
+from exalsius_api_client.models.node_system import NodeSystem
 
 
 class SelfManagedNode(BaseNode):
@@ -61,6 +64,9 @@ class SelfManagedNode(BaseNode):
         "location",
         "import_time",
         "node_status",
+        "hardware",
+        "software",
+        "system",
         "endpoint",
         "username",
         "ssh_key_id",
@@ -114,6 +120,15 @@ class SelfManagedNode(BaseNode):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of hardware
+        if self.hardware:
+            _dict["hardware"] = self.hardware.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of software
+        if self.software:
+            _dict["software"] = self.software.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of system
+        if self.system:
+            _dict["system"] = self.system.to_dict()
         return _dict
 
     @classmethod
@@ -142,6 +157,21 @@ class SelfManagedNode(BaseNode):
                 "location": obj.get("location"),
                 "import_time": obj.get("import_time"),
                 "node_status": obj.get("node_status"),
+                "hardware": (
+                    NodeHardware.from_dict(obj["hardware"])
+                    if obj.get("hardware") is not None
+                    else None
+                ),
+                "software": (
+                    NodeSoftware.from_dict(obj["software"])
+                    if obj.get("software") is not None
+                    else None
+                ),
+                "system": (
+                    NodeSystem.from_dict(obj["system"])
+                    if obj.get("system") is not None
+                    else None
+                ),
                 "endpoint": obj.get("endpoint"),
                 "username": obj.get("username"),
                 "ssh_key_id": obj.get("ssh_key_id"),

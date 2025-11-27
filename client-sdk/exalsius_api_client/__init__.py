@@ -72,14 +72,16 @@ __all__ = [
     "CredentialsListResponse",
     "Error",
     "ErrorDetail",
-    "Hardware",
     "Kubeconfig",
     "NodeDeleteResponse",
+    "NodeHardware",
     "NodeImportResponse",
     "NodeImportSshRequest",
     "NodePatchRequest",
     "NodePatchResponse",
     "NodeResponse",
+    "NodeSoftware",
+    "NodeSystem",
     "NodesListResponse",
     "Offer",
     "OffersListResponse",
@@ -206,10 +208,11 @@ from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse as CredentialsListResponse
 from exalsius_api_client.models.error import Error as Error
 from exalsius_api_client.models.error_detail import ErrorDetail as ErrorDetail
-from exalsius_api_client.models.hardware import Hardware as Hardware
 from exalsius_api_client.models.kubeconfig import Kubeconfig as Kubeconfig
 from exalsius_api_client.models.node_delete_response import \
     NodeDeleteResponse as NodeDeleteResponse
+from exalsius_api_client.models.node_hardware import \
+    NodeHardware as NodeHardware
 from exalsius_api_client.models.node_import_response import \
     NodeImportResponse as NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
@@ -220,6 +223,9 @@ from exalsius_api_client.models.node_patch_response import \
     NodePatchResponse as NodePatchResponse
 from exalsius_api_client.models.node_response import \
     NodeResponse as NodeResponse
+from exalsius_api_client.models.node_software import \
+    NodeSoftware as NodeSoftware
+from exalsius_api_client.models.node_system import NodeSystem as NodeSystem
 from exalsius_api_client.models.nodes_list_response import \
     NodesListResponse as NodesListResponse
 from exalsius_api_client.models.offer import Offer as Offer

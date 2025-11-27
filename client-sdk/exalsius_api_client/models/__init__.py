@@ -76,15 +76,17 @@ from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse
 from exalsius_api_client.models.error import Error
 from exalsius_api_client.models.error_detail import ErrorDetail
-from exalsius_api_client.models.hardware import Hardware
 from exalsius_api_client.models.kubeconfig import Kubeconfig
 from exalsius_api_client.models.node_delete_response import NodeDeleteResponse
+from exalsius_api_client.models.node_hardware import NodeHardware
 from exalsius_api_client.models.node_import_response import NodeImportResponse
 from exalsius_api_client.models.node_import_ssh_request import \
     NodeImportSshRequest
 from exalsius_api_client.models.node_patch_request import NodePatchRequest
 from exalsius_api_client.models.node_patch_response import NodePatchResponse
 from exalsius_api_client.models.node_response import NodeResponse
+from exalsius_api_client.models.node_software import NodeSoftware
+from exalsius_api_client.models.node_system import NodeSystem
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
 from exalsius_api_client.models.offer import Offer
 from exalsius_api_client.models.offers_list_response import OffersListResponse

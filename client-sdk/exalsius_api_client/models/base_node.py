@@ -26,6 +26,10 @@ from typing import (TYPE_CHECKING, Any, ClassVar, Dict, List, Optional, Set,
 from pydantic import (BaseModel, ConfigDict, Field, StrictInt, StrictStr,
                       field_validator)
 
+from exalsius_api_client.models.node_hardware import NodeHardware
+from exalsius_api_client.models.node_software import NodeSoftware
+from exalsius_api_client.models.node_system import NodeSystem
+
 if TYPE_CHECKING:
     from exalsius_api_client.models.cloud_node import CloudNode
     from exalsius_api_client.models.self_managed_node import SelfManagedNode
@@ -81,6 +85,9 @@ class BaseNode(BaseModel):
     node_status: StrictStr = Field(
         description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed "
     )
+    hardware: Optional[NodeHardware] = None
+    software: Optional[NodeSoftware] = None
+    system: Optional[NodeSystem] = None
     __properties: ClassVar[List[str]] = [
         "gpu_count",
         "gpu_vendor",
@@ -97,6 +104,9 @@ class BaseNode(BaseModel):
         "location",
         "import_time",
         "node_status",
+        "hardware",
+        "software",
+        "system",
     ]
 
     @field_validator("node_type")
@@ -172,6 +182,15 @@ class BaseNode(BaseModel):
             exclude=excluded_fields,
             exclude_none=True,
         )
+        # override the default output from pydantic by calling `to_dict()` of hardware
+        if self.hardware:
+            _dict["hardware"] = self.hardware.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of software
+        if self.software:
+            _dict["software"] = self.software.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of system
+        if self.system:
+            _dict["system"] = self.system.to_dict()
         return _dict
 
     @classmethod
