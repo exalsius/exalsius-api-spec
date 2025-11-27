@@ -1,6 +1,5 @@
 title: BaseNode
 allOf:
-  - $ref: './node-hardware.yaml'
   - type: object
     required:
       - id
