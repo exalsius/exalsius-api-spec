@@ -17,12 +17,13 @@ properties:
     example: "Connects with the jupyter notebook UI."
   access_protocol:
     type: string
-    enum: [HTTP, HTTPS]
-    x-enum-varnames: [HTTP, HTTPS]
+    enum: [TCP, HTTP, HTTPS]
+    x-enum-varnames: [TCP, HTTP, HTTPS]
     description: >
       The protocol of the access type
-      - `HTTP`: HTTP protocol
-      - `HTTPS`: HTTPS protocol
+      - `TCP`: TCP protocol, e.g. for SSH access
+      - `HTTP`: HTTP protocol, e.g. for Jupyter Notebook UI access
+      - `HTTPS`: HTTPS protocol, e.g. for Jupyter Notebook UI access
   port_name:
     type: string
     description: The port name
