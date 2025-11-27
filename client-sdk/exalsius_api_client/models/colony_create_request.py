@@ -20,7 +20,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
 
@@ -30,7 +30,11 @@ class ColonyCreateRequest(BaseModel):
     """  # noqa: E501
 
     name: StrictStr = Field(description="The name of the colony")
-    __properties: ClassVar[List[str]] = ["name"]
+    netbird_colony: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether the colony is a Netbird (VPN) colony (optional). If not provided, the colony will not be a Netbird colony.",
+    )
+    __properties: ClassVar[List[str]] = ["name", "netbird_colony"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,5 +84,14 @@ class ColonyCreateRequest(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"name": obj.get("name")})
+        _obj = cls.model_validate(
+            {
+                "name": obj.get("name"),
+                "netbird_colony": (
+                    obj.get("netbird_colony")
+                    if obj.get("netbird_colony") is not None
+                    else False
+                ),
+            }
+        )
         return _obj

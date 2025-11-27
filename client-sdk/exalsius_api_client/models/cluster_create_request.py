@@ -21,7 +21,8 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (BaseModel, ConfigDict, Field, StrictBool, StrictStr,
+                      field_validator)
 from typing_extensions import Self
 
 from exalsius_api_client.models.cluster_create_request_local_storage import \
@@ -37,6 +38,10 @@ class ClusterCreateRequest(BaseModel):
     name: StrictStr = Field(description="The name of the cluster")
     cluster_type: StrictStr = Field(
         description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) "
+    )
+    vpn_cluster: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether the cluster is a VPN cluster (optional). If not provided, the cluster will not be a VPN cluster.",
     )
     colony_id: Optional[StrictStr] = Field(
         default=None,
@@ -69,6 +74,7 @@ class ClusterCreateRequest(BaseModel):
     __properties: ClassVar[List[str]] = [
         "name",
         "cluster_type",
+        "vpn_cluster",
         "colony_id",
         "cluster_labels",
         "machine_pre_start_commands",
@@ -151,6 +157,11 @@ class ClusterCreateRequest(BaseModel):
             {
                 "name": obj.get("name"),
                 "cluster_type": obj.get("cluster_type"),
+                "vpn_cluster": (
+                    obj.get("vpn_cluster")
+                    if obj.get("vpn_cluster") is not None
+                    else False
+                ),
                 "colony_id": obj.get("colony_id"),
                 "cluster_labels": obj.get("cluster_labels"),
                 "machine_pre_start_commands": obj.get("machine_pre_start_commands"),

@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the colony | 
+**netbird_colony** | **bool** | Whether the colony is a Netbird (VPN) colony (optional). If not provided, the colony will not be a Netbird colony. | [optional] [default to False]
 
 ## Example
 

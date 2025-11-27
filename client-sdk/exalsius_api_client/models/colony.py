@@ -21,7 +21,7 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictBool, StrictStr
 from typing_extensions import Self
 
 
@@ -34,6 +34,9 @@ class Colony(BaseModel):
         default=None, description="The unique identifier for the colony"
     )
     name: StrictStr = Field(description="The name of the colony")
+    netbird_colony: Optional[StrictBool] = Field(
+        default=False, description="Whether the colony is a Netbird (VPN) colony"
+    )
     owner: Optional[StrictStr] = Field(
         default=None, description="The owner of the colony (user id)"
     )
@@ -50,6 +53,7 @@ class Colony(BaseModel):
     __properties: ClassVar[List[str]] = [
         "id",
         "name",
+        "netbird_colony",
         "owner",
         "namespace",
         "cluster_ids",
@@ -108,6 +112,11 @@ class Colony(BaseModel):
             {
                 "id": obj.get("id"),
                 "name": obj.get("name"),
+                "netbird_colony": (
+                    obj.get("netbird_colony")
+                    if obj.get("netbird_colony") is not None
+                    else False
+                ),
                 "owner": obj.get("owner"),
                 "namespace": obj.get("namespace"),
                 "cluster_ids": obj.get("cluster_ids"),

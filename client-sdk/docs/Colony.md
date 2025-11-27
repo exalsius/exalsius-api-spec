@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | The unique identifier for the colony | [optional] 
 **name** | **str** | The name of the colony | 
+**netbird_colony** | **bool** | Whether the colony is a Netbird (VPN) colony | [optional] [default to False]
 **owner** | **str** | The owner of the colony (user id) | [optional] 
 **namespace** | **str** | The namespace of the colony | [optional] 
 **cluster_ids** | **List[str]** | The unique identifiers for the clusters in the colony | [optional] 

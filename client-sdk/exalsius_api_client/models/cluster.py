@@ -21,8 +21,8 @@ import re  # noqa: F401
 from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
-                      StrictStr, field_validator)
+from pydantic import (BaseModel, ConfigDict, Field, StrictBool, StrictFloat,
+                      StrictInt, StrictStr, field_validator)
 from typing_extensions import Self
 
 from exalsius_api_client.models.cluster_local_storage import \
@@ -53,6 +53,9 @@ class Cluster(BaseModel):
     cluster_type: Optional[StrictStr] = Field(
         default=None,
         description="The type of the cluster. - `CLOUD`: Cloud cluster, consisting of cloud instances - `REMOTE`: Remote cluster, consisting of self-managed nodes - `ADOPTED`: Adopted cluster, consisting of an already existing kubernetes cluster - `DOCKER`: Docker cluster, consisting of docker containers (for local testing and development) ",
+    )
+    vpn_cluster: Optional[StrictBool] = Field(
+        default=False, description="Whether the cluster is a VPN cluster"
     )
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
@@ -103,6 +106,7 @@ class Cluster(BaseModel):
         "namespace",
         "owner",
         "cluster_type",
+        "vpn_cluster",
         "cluster_status",
         "cluster_labels",
         "machine_pre_start_commands",
@@ -213,6 +217,11 @@ class Cluster(BaseModel):
                 "namespace": obj.get("namespace"),
                 "owner": obj.get("owner"),
                 "cluster_type": obj.get("cluster_type"),
+                "vpn_cluster": (
+                    obj.get("vpn_cluster")
+                    if obj.get("vpn_cluster") is not None
+                    else False
+                ),
                 "cluster_status": obj.get("cluster_status"),
                 "cluster_labels": obj.get("cluster_labels"),
                 "machine_pre_start_commands": obj.get("machine_pre_start_commands"),
