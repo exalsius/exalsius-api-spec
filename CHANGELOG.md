@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.30.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.29.2...v1.30.0) (2025-11-27)
+
+
+### Features
+
+* add specs for additional node information ([#153](https://github.com/exalsius/exalsius-api-spec/issues/153)) ([3e95d25](https://github.com/exalsius/exalsius-api-spec/commit/3e95d2579170e030dbd14477b8559c7faee612e3))
+
 ## [1.29.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.29.1...v1.29.2) (2025-11-27)
 
 

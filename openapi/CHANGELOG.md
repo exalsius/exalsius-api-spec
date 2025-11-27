@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.29.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.28.2...openapi-v1.29.0) (2025-11-27)
+
+
+### Features
+
+* add specs for additional node information ([#153](https://github.com/exalsius/exalsius-api-spec/issues/153)) ([3e95d25](https://github.com/exalsius/exalsius-api-spec/commit/3e95d2579170e030dbd14477b8559c7faee612e3))
+
 ## [1.28.2](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.28.1...openapi-v1.28.2) (2025-11-27)
 
 
