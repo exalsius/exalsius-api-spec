@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.32.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.31.0...v1.32.0) (2025-11-28)
+
+
+### Features
+
+* add telemetry-enabled property to cluster (creation) ([#163](https://github.com/exalsius/exalsius-api-spec/issues/163)) ([d004407](https://github.com/exalsius/exalsius-api-spec/commit/d004407e97d499c7cfad9e261994b095d01fac8e))
+
 ## [1.31.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.30.1...v1.31.0) (2025-11-27)
 
 
