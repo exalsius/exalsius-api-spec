@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.31.0](https://github.com/exalsius/exalsius-api-spec/compare/client-sdk-v1.30.0...client-sdk-v1.31.0) (2025-11-28)
+
+
+### Miscellaneous Chores
+
+* **client-sdk:** Synchronize all versions
+
 ## [1.30.0](https://github.com/exalsius/exalsius-api-spec/compare/client-sdk-v1.29.1...client-sdk-v1.30.0) (2025-11-27)
 
 
