@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.32.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.31.0...openapi-v1.32.0) (2025-11-28)
+
+
+### Features
+
+* add search query-param for offers endpoint ([#165](https://github.com/exalsius/exalsius-api-spec/issues/165)) ([03a4c98](https://github.com/exalsius/exalsius-api-spec/commit/03a4c982f6e5b3b53fce23a953fac054e68ae841))
+* offers metadata endpoint ([#167](https://github.com/exalsius/exalsius-api-spec/issues/167)) ([575aa5e](https://github.com/exalsius/exalsius-api-spec/commit/575aa5e4bce26aac4f646506eeb9acf86b835365))
+
 ## [1.31.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.30.0...openapi-v1.31.0) (2025-11-28)
 
 
