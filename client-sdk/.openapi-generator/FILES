@@ -199,6 +199,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_gpu_type_info.py
-test/test_offer_metadata_response.py
 tox.ini

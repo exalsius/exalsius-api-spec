@@ -1,6 +1,6 @@
 [project]
 name = "exalsius_api_client"
-version = "1.32.0"
+version = "1.33.0"
 description = "exalsius API"
 authors = [
   {name = "Contact our support",email = "support@exalsius.ai"},
