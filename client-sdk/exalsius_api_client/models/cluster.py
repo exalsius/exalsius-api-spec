@@ -57,6 +57,10 @@ class Cluster(BaseModel):
     vpn_cluster: Optional[StrictBool] = Field(
         default=False, description="Whether the cluster is a VPN cluster"
     )
+    telemetry_enabled: Optional[StrictBool] = Field(
+        default=False,
+        description="Whether telemetry data collection is enabled for the cluster",
+    )
     cluster_status: StrictStr = Field(
         description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
     )
@@ -107,6 +111,7 @@ class Cluster(BaseModel):
         "owner",
         "cluster_type",
         "vpn_cluster",
+        "telemetry_enabled",
         "cluster_status",
         "cluster_labels",
         "machine_pre_start_commands",
@@ -220,6 +225,11 @@ class Cluster(BaseModel):
                 "vpn_cluster": (
                     obj.get("vpn_cluster")
                     if obj.get("vpn_cluster") is not None
+                    else False
+                ),
+                "telemetry_enabled": (
+                    obj.get("telemetry_enabled")
+                    if obj.get("telemetry_enabled") is not None
                     else False
                 ),
                 "cluster_status": obj.get("cluster_status"),

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **name** | **str** | The name of the cluster | 
 **cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;ADOPTED&#x60;: Adopted cluster, consisting of an already existing kubernetes cluster - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | 
 **vpn_cluster** | **bool** | Whether the cluster is a VPN cluster (optional). If not provided, the cluster will not be a VPN cluster. | [optional] [default to False]
+**telemetry_enabled** | **bool** | Whether telemetry data collection, e.g., monitoring and observability, is enabled for the cluster (optional). If not provided, it will be disabled by default. | [optional] [default to False]
 **colony_id** | **str** | The ID of the colony to add the cluster to (optional). If not provided, the cluster will be added to the default colony. | [optional] 
 **cluster_labels** | **Dict[str, str]** | The labels of the cluster (optional). | [optional] 
 **machine_pre_start_commands** | **List[str]** | The commands to run on the machine before the cluster is started (optional). | [optional] 

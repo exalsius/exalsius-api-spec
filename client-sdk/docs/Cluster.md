@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **owner** | **str** | The owner of the cluster (user id) | [optional] 
 **cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;ADOPTED&#x60;: Adopted cluster, consisting of an already existing kubernetes cluster - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | [optional] 
 **vpn_cluster** | **bool** | Whether the cluster is a VPN cluster | [optional] [default to False]
+**telemetry_enabled** | **bool** | Whether telemetry data collection is enabled for the cluster | [optional] [default to False]
 **cluster_status** | **str** | The status of the cluster. - &#x60;PENDING&#x60;: Cluster is pending (not yet deployed) - &#x60;DEPLOYING&#x60;: Cluster is being deployed - &#x60;READY&#x60;: Cluster is ready - &#x60;FAILED&#x60;: Cluster is failed  | 
 **cluster_labels** | **Dict[str, str]** | The labels of the cluster (optional). | [optional] 
 **machine_pre_start_commands** | **List[str]** | The commands to run on the machine before the cluster is started | [optional] 

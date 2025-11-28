@@ -232,8 +232,13 @@ Create a new cluster.
 
 - `name`: The name of the cluster (required)
 - `cluster_type`: The type of cluster (required). Possible values: `CLOUD`, `REMOTE`, `ADOPTED`, `DOCKER`
-- `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type)
+- `vpn_cluster`: Whether the cluster should be provisioned with VPN connectivity (optional, defaults to `false`)
+- `telemetry_enabled`: Enables observability/monitoring integrations for the cluster (optional, defaults to `false`)
 - `colony_id`: The ID of the colony to add the cluster to (optional)
+- `cluster_labels`: Arbitrary key/value labels applied to the cluster (optional)
+- `machine_pre_start_commands`: Commands to run on each machine before the cluster starts (optional)
+- `local_storage`: Local storage provisioner config. Supports `enabled` (bool, default `true`) and `basePath` (string) (optional)
+- `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type)
 - `to_be_deleted_at`: The date and time the cluster will be deleted (optional)
 - `control_plane_node_ids`: The IDs of the control plane nodes (optional)
 - `worker_node_ids`: The IDs of the worker nodes (optional)
@@ -242,6 +247,7 @@ Create a new cluster.
 If `to_be_deleted_at` is provided, the cluster will automatically be deleted at the specified date and time.
 If `control_plane_node_ids` or `worker_node_ids` are provided, the nodes will be added to the cluster.
 If `service_deployments` are provided, the services will be deployed in the cluster.
+If `local_storage` is configured, the storage provisioner will adopt the supplied settings when the cluster becomes ready.
 
 **Behavior:**
 - A new cluster resource will be created with the specified configuration
