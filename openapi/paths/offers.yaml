@@ -98,6 +98,12 @@ get:
         type: string
       description: The location of the offer
       required: false
+    - name: search
+      in: query
+      schema:
+        type: string
+      description: Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)
+      required: false
     - name: cpu_vendor
       in: query
       schema:
