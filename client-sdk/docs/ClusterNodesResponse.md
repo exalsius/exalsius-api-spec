@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **control_plane_node_ids** | **List[str]** |  | 
 **worker_node_ids** | **List[str]** |  | 
 **total_nodes** | **int** | The total number of nodes in the cluster | [optional] 
+**warning_message** | **str** | Warns if software such as Docker, cuda, or rocm is pre-installed on the node | [optional] 
 
 ## Example
 

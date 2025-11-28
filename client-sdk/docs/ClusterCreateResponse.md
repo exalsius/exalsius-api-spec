@@ -6,6 +6,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **cluster_id** | **str** | The ID of the created cluster | 
+**warning_message** | **str** | Warns if software such as Docker, cuda, or rocm is pre-installed on the node | [optional] 
 
 ## Example
 
