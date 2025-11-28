@@ -58,6 +58,12 @@ class OffersApi:
         location: Annotated[
             Optional[StrictStr], Field(description="The location of the offer")
         ] = None,
+        search: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)"
+            ),
+        ] = None,
         cpu_vendor: Annotated[
             Optional[StrictStr], Field(description="The vendor of the CPU")
         ] = None,
@@ -158,6 +164,8 @@ class OffersApi:
         :type availability_zone: str
         :param location: The location of the offer
         :type location: str
+        :param search: Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)
+        :type search: str
         :param cpu_vendor: The vendor of the CPU
         :type cpu_vendor: str
         :param cpu_arch: The architecture of the CPU
@@ -229,6 +237,7 @@ class OffersApi:
             region=region,
             availability_zone=availability_zone,
             location=location,
+            search=search,
             cpu_vendor=cpu_vendor,
             cpu_arch=cpu_arch,
             pricing_unit=pricing_unit,
@@ -291,6 +300,12 @@ class OffersApi:
         ] = None,
         location: Annotated[
             Optional[StrictStr], Field(description="The location of the offer")
+        ] = None,
+        search: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)"
+            ),
         ] = None,
         cpu_vendor: Annotated[
             Optional[StrictStr], Field(description="The vendor of the CPU")
@@ -392,6 +407,8 @@ class OffersApi:
         :type availability_zone: str
         :param location: The location of the offer
         :type location: str
+        :param search: Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)
+        :type search: str
         :param cpu_vendor: The vendor of the CPU
         :type cpu_vendor: str
         :param cpu_arch: The architecture of the CPU
@@ -463,6 +480,7 @@ class OffersApi:
             region=region,
             availability_zone=availability_zone,
             location=location,
+            search=search,
             cpu_vendor=cpu_vendor,
             cpu_arch=cpu_arch,
             pricing_unit=pricing_unit,
@@ -525,6 +543,12 @@ class OffersApi:
         ] = None,
         location: Annotated[
             Optional[StrictStr], Field(description="The location of the offer")
+        ] = None,
+        search: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)"
+            ),
         ] = None,
         cpu_vendor: Annotated[
             Optional[StrictStr], Field(description="The vendor of the CPU")
@@ -626,6 +650,8 @@ class OffersApi:
         :type availability_zone: str
         :param location: The location of the offer
         :type location: str
+        :param search: Free text search across common offer attributes (instance type, GPU model, provider, region, etc.)
+        :type search: str
         :param cpu_vendor: The vendor of the CPU
         :type cpu_vendor: str
         :param cpu_arch: The architecture of the CPU
@@ -697,6 +723,7 @@ class OffersApi:
             region=region,
             availability_zone=availability_zone,
             location=location,
+            search=search,
             cpu_vendor=cpu_vendor,
             cpu_arch=cpu_arch,
             pricing_unit=pricing_unit,
@@ -742,6 +769,7 @@ class OffersApi:
         region,
         availability_zone,
         location,
+        search,
         cpu_vendor,
         cpu_arch,
         pricing_unit,
@@ -807,6 +835,10 @@ class OffersApi:
         if location is not None:
 
             _query_params.append(("location", location))
+
+        if search is not None:
+
+            _query_params.append(("search", search))
 
         if cpu_vendor is not None:
 

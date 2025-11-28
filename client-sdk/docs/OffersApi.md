@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **get_offers**
-> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
+> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
 
 List and filter current GPU on-demand and spot market offers
 
@@ -73,6 +73,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     region = 'region_example' # str | The region of the offer, e.g. us-east-1 (optional)
     availability_zone = 'availability_zone_example' # str | The availability zone of the offer (optional)
     location = 'location_example' # str | The location of the offer (optional)
+    search = 'search_example' # str | Free text search across common offer attributes (instance type, GPU model, provider, region, etc.) (optional)
     cpu_vendor = 'cpu_vendor_example' # str | The vendor of the CPU (optional)
     cpu_arch = 'cpu_arch_example' # str | The architecture of the CPU (optional)
     pricing_unit = 'pricing_unit_example' # str | The pricing unit (optional)
@@ -97,7 +98,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
     try:
         # List and filter current GPU on-demand and spot market offers
-        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
+        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
         print("The response of OffersApi->get_offers:\n")
         pprint(api_response)
     except Exception as e:
@@ -117,6 +118,7 @@ Name | Type | Description  | Notes
  **region** | **str**| The region of the offer, e.g. us-east-1 | [optional] 
  **availability_zone** | **str**| The availability zone of the offer | [optional] 
  **location** | **str**| The location of the offer | [optional] 
+ **search** | **str**| Free text search across common offer attributes (instance type, GPU model, provider, region, etc.) | [optional] 
  **cpu_vendor** | **str**| The vendor of the CPU | [optional] 
  **cpu_arch** | **str**| The architecture of the CPU | [optional] 
  **pricing_unit** | **str**| The pricing unit | [optional] 
