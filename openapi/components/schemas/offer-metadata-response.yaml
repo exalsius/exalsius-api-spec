@@ -1,0 +1,177 @@
+type: object
+required:
+  - gpu_types
+  - gpu_vendors
+  - cloud_providers
+  - regions
+  - availability_zones
+  - locations
+  - cpu_vendors
+  - cpu_architectures
+  - pricing_units
+  - price_types
+  - currencies
+  - gpu_count_min
+  - gpu_count_max
+  - gpu_memory_mib_min
+  - gpu_memory_mib_max
+  - total_gpu_memory_mib_min
+  - total_gpu_memory_mib_max
+  - main_memory_mib_min
+  - main_memory_mib_max
+  - num_vcpus_min
+  - num_vcpus_max
+  - price_min
+  - price_max
+  - hourly_cost_min
+  - hourly_cost_max
+properties:
+  gpu_types:
+    type: array
+    description: Distinct GPU types currently available in offers.
+    items:
+      $ref: './gpu-type-info.yaml'
+  gpu_vendors:
+    type: array
+    items:
+      type: string
+      enum:
+        - NVIDIA
+        - AMD
+        - INTEL
+        - HUAWEI
+        - GOOGLE
+        - AWS
+        - UNKNOWN
+  cloud_providers:
+    type: array
+    items:
+      type: string
+      enum:
+        - AWS
+        - AZURE
+        - GCP
+        - OCI
+        - LAMBDA
+        - PAPERSPACE
+        - VAST
+        - FLUIDSTACK
+        - CUDO
+        - NEBIUS
+        - HYPERBOLIC
+        - SCP
+        - DO
+        - OVHCLOUD
+        - SCALEWAY
+        - PRIMEINTELLECT
+        - IBM
+        - UNKNOWN
+  regions:
+    type: array
+    items:
+      type: string
+  availability_zones:
+    type: array
+    items:
+      type: string
+  locations:
+    type: array
+    items:
+      type: string
+  cpu_vendors:
+    type: array
+    items:
+      type: string
+      enum:
+        - INTEL
+        - AMD
+        - UNKNOWN
+  cpu_architectures:
+    type: array
+    items:
+      type: string
+      enum:
+        - X86_64
+        - AARCH64
+        - ARM64
+        - UNKNOWN
+  pricing_units:
+    type: array
+    items:
+      type: string
+      enum:
+        - HOURLY
+        - MONTHLY
+        - YEARLY
+        - UNKNOWN
+  price_types:
+    type: array
+    items:
+      type: string
+      enum:
+        - ON_DEMAND
+        - SPOT
+  currencies:
+    type: array
+    items:
+      type: string
+      enum:
+        - USD
+        - EUR
+        - UNKNOWN
+  gpu_count_min:
+    type: integer
+    format: int32
+    description: Minimum GPU count observed across offers.
+  gpu_count_max:
+    type: integer
+    format: int32
+    description: Maximum GPU count observed across offers.
+  gpu_memory_mib_min:
+    type: integer
+    format: int32
+    description: Minimum per-GPU memory (MiB) observed across offers.
+  gpu_memory_mib_max:
+    type: integer
+    format: int32
+    description: Maximum per-GPU memory (MiB) observed across offers.
+  total_gpu_memory_mib_min:
+    type: integer
+    format: int32
+    description: Minimum total GPU memory (MiB) observed across offers.
+  total_gpu_memory_mib_max:
+    type: integer
+    format: int32
+    description: Maximum total GPU memory (MiB) observed across offers.
+  main_memory_mib_min:
+    type: integer
+    format: int32
+    description: Minimum system memory (MiB) observed across offers.
+  main_memory_mib_max:
+    type: integer
+    format: int32
+    description: Maximum system memory (MiB) observed across offers.
+  num_vcpus_min:
+    type: integer
+    format: int32
+    description: Minimum vCPU count observed across offers.
+  num_vcpus_max:
+    type: integer
+    format: int32
+    description: Maximum vCPU count observed across offers.
+  price_min:
+    type: number
+    format: float
+    description: Minimum raw price observed across offers.
+  price_max:
+    type: number
+    format: float
+    description: Maximum raw price observed across offers.
+  hourly_cost_min:
+    type: number
+    format: float
+    description: Minimum normalized hourly cost observed across offers.
+  hourly_cost_max:
+    type: number
+    format: float
+    description: Maximum normalized hourly cost observed across offers.

@@ -1,0 +1,56 @@
+description: Offer filter metadata
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/offer-metadata-response.yaml'
+    examples:
+      default:
+        summary: Offer filter values
+        value:
+          gpu_types:
+            - gpu_vendor: NVIDIA
+              gpu_type: H100
+            - gpu_vendor: UNKNOWN
+              gpu_type: CPU-ONLY
+          gpu_vendors:
+            - NVIDIA
+            - UNKNOWN
+          cloud_providers:
+            - AWS
+            - GCP
+          regions:
+            - us-east-1
+            - us-west-2
+          availability_zones:
+            - us-east-1a
+            - us-west-2a
+          locations:
+            - US East (N. Virginia)
+            - US West (Oregon)
+          cpu_vendors:
+            - INTEL
+            - AMD
+          cpu_architectures:
+            - X86_64
+            - ARM64
+          pricing_units:
+            - HOURLY
+          price_types:
+            - ON_DEMAND
+            - SPOT
+          currencies:
+            - USD
+          gpu_count_min: 0
+          gpu_count_max: 8
+          gpu_memory_mib_min: 0
+          gpu_memory_mib_max: 81920
+          total_gpu_memory_mib_min: 0
+          total_gpu_memory_mib_max: 327680
+          main_memory_mib_min: 16384
+          main_memory_mib_max: 262144
+          num_vcpus_min: 4
+          num_vcpus_max: 128
+          price_min: 0.1
+          price_max: 25.5
+          hourly_cost_min: 0.05
+          hourly_cost_max: 30
