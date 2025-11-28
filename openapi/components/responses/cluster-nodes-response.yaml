@@ -15,3 +15,4 @@ content:
             - "123e4567-e89b-12d3-a456-426614174003"
             - "123e4567-e89b-12d3-a456-426614174004"
           total_nodes: 4
+          warning_message: "Node abcde-1234567890 has Docker pre-installed"
