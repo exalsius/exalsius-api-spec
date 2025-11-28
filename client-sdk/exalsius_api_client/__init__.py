@@ -72,6 +72,7 @@ __all__ = [
     "CredentialsListResponse",
     "Error",
     "ErrorDetail",
+    "GpuTypeInfo",
     "Kubeconfig",
     "NodeDeleteResponse",
     "NodeHardware",
@@ -84,6 +85,7 @@ __all__ = [
     "NodeSystem",
     "NodesListResponse",
     "Offer",
+    "OfferMetadataResponse",
     "OffersListResponse",
     "PerformancePrediction",
     "PerformancePredictionRequest",
@@ -208,6 +210,7 @@ from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse as CredentialsListResponse
 from exalsius_api_client.models.error import Error as Error
 from exalsius_api_client.models.error_detail import ErrorDetail as ErrorDetail
+from exalsius_api_client.models.gpu_type_info import GpuTypeInfo as GpuTypeInfo
 from exalsius_api_client.models.kubeconfig import Kubeconfig as Kubeconfig
 from exalsius_api_client.models.node_delete_response import \
     NodeDeleteResponse as NodeDeleteResponse
@@ -229,6 +232,8 @@ from exalsius_api_client.models.node_system import NodeSystem as NodeSystem
 from exalsius_api_client.models.nodes_list_response import \
     NodesListResponse as NodesListResponse
 from exalsius_api_client.models.offer import Offer as Offer
+from exalsius_api_client.models.offer_metadata_response import \
+    OfferMetadataResponse as OfferMetadataResponse
 from exalsius_api_client.models.offers_list_response import \
     OffersListResponse as OffersListResponse
 from exalsius_api_client.models.performance_prediction import \

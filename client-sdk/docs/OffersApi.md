@@ -5,10 +5,11 @@ All URIs are relative to *https://api.exalsius.ai/v1*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get_offers**](OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
+[**get_offers_filter_metadata**](OffersApi.md#get_offers_filter_metadata) | **GET** /offers/metadata | List available offer filters and metric ranges
 
 
 # **get_offers**
-> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
+> OffersListResponse get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, gpu_types=gpu_types, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
 
 List and filter current GPU on-demand and spot market offers
 
@@ -69,6 +70,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     api_instance = exalsius_api_client.OffersApi(api_client)
     gpu_vendor = 'gpu_vendor_example' # str | The vendor of the GPU (optional)
     gpu_type = 'gpu_type_example' # str | The type of the GPU (optional)
+    gpu_types = ['gpu_types_example'] # List[str] | Filter by multiple GPU types. Provide the parameter multiple times to include more than one type. (optional)
     cloud_provider = 'cloud_provider_example' # str | The cloud provider of the offer (optional)
     region = 'region_example' # str | The region of the offer, e.g. us-east-1 (optional)
     availability_zone = 'availability_zone_example' # str | The availability zone of the offer (optional)
@@ -98,7 +100,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
     try:
         # List and filter current GPU on-demand and spot market offers
-        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
+        api_response = api_instance.get_offers(gpu_vendor=gpu_vendor, gpu_type=gpu_type, gpu_types=gpu_types, cloud_provider=cloud_provider, region=region, availability_zone=availability_zone, location=location, search=search, cpu_vendor=cpu_vendor, cpu_arch=cpu_arch, pricing_unit=pricing_unit, price_type=price_type, gpu_count_min=gpu_count_min, gpu_count_max=gpu_count_max, gpu_memory_min=gpu_memory_min, gpu_memory_max=gpu_memory_max, total_gpu_memory_min=total_gpu_memory_min, total_gpu_memory_max=total_gpu_memory_max, main_memory_min=main_memory_min, main_memory_max=main_memory_max, vcpus_min=vcpus_min, vcpus_max=vcpus_max, price_min=price_min, price_max=price_max, page_size=page_size, cursor=cursor, sort_by=sort_by, sort_order=sort_order, non_gpu_instances=non_gpu_instances)
         print("The response of OffersApi->get_offers:\n")
         pprint(api_response)
     except Exception as e:
@@ -114,6 +116,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **gpu_vendor** | **str**| The vendor of the GPU | [optional] 
  **gpu_type** | **str**| The type of the GPU | [optional] 
+ **gpu_types** | [**List[str]**](str.md)| Filter by multiple GPU types. Provide the parameter multiple times to include more than one type. | [optional] 
  **cloud_provider** | **str**| The cloud provider of the offer | [optional] 
  **region** | **str**| The region of the offer, e.g. us-east-1 | [optional] 
  **availability_zone** | **str**| The availability zone of the offer | [optional] 
@@ -159,6 +162,81 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | List of offers |  -  |
+**400** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_offers_filter_metadata**
+> OfferMetadataResponse get_offers_filter_metadata()
+
+List available offer filters and metric ranges
+
+Retrieve the distinct values and numeric ranges available within the offers catalog.
+This endpoint is designed for building dynamic filters/sliders in UIs without scanning the full dataset.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.offer_metadata_response import OfferMetadataResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.OffersApi(api_client)
+
+    try:
+        # List available offer filters and metric ranges
+        api_response = api_instance.get_offers_filter_metadata()
+        print("The response of OffersApi->get_offers_filter_metadata:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling OffersApi->get_offers_filter_metadata: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**OfferMetadataResponse**](OfferMetadataResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Offer filter metadata |  -  |
 **400** | Error response |  -  |
 **500** | Error response |  -  |
 

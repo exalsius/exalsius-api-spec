@@ -41,6 +41,7 @@ docs/Credentials.md
 docs/CredentialsListResponse.md
 docs/Error.md
 docs/ErrorDetail.md
+docs/GpuTypeInfo.md
 docs/Kubeconfig.md
 docs/ManagementApi.md
 docs/NodeDeleteResponse.md
@@ -55,6 +56,7 @@ docs/NodeSystem.md
 docs/NodesApi.md
 docs/NodesListResponse.md
 docs/Offer.md
+docs/OfferMetadataResponse.md
 docs/OffersApi.md
 docs/OffersListResponse.md
 docs/PerformancePrediction.md
@@ -142,6 +144,7 @@ exalsius_api_client/models/credentials.py
 exalsius_api_client/models/credentials_list_response.py
 exalsius_api_client/models/error.py
 exalsius_api_client/models/error_detail.py
+exalsius_api_client/models/gpu_type_info.py
 exalsius_api_client/models/kubeconfig.py
 exalsius_api_client/models/node_delete_response.py
 exalsius_api_client/models/node_hardware.py
@@ -154,6 +157,7 @@ exalsius_api_client/models/node_software.py
 exalsius_api_client/models/node_system.py
 exalsius_api_client/models/nodes_list_response.py
 exalsius_api_client/models/offer.py
+exalsius_api_client/models/offer_metadata_response.py
 exalsius_api_client/models/offers_list_response.py
 exalsius_api_client/models/performance_prediction.py
 exalsius_api_client/models/performance_prediction_request.py
@@ -195,4 +199,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_gpu_type_info.py
+test/test_offer_metadata_response.py
 tox.ini

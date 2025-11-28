@@ -135,6 +135,7 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *NodesApi* | [**patch_node**](docs/NodesApi.md#patch_node) | **PATCH** /node/{node_id} | Patch a node
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
+*OffersApi* | [**get_offers_filter_metadata**](docs/OffersApi.md#get_offers_filter_metadata) | **GET** /offers/metadata | List available offer filters and metric ranges
 *PerformancePredictionApi* | [**get_performance_prediction**](docs/PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get runtime performance predictions for a GPU-accelerated workload configuration
 *ServicesApi* | [**create_service_deployment**](docs/ServicesApi.md#create_service_deployment) | **POST** /services | Create a service deployment
 *ServicesApi* | [**delete_service_deployment**](docs/ServicesApi.md#delete_service_deployment) | **DELETE** /service/{service_deployment_id} | Delete a service deployment
@@ -187,6 +188,7 @@ Class | Method | HTTP request | Description
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
  - [Error](docs/Error.md)
  - [ErrorDetail](docs/ErrorDetail.md)
+ - [GpuTypeInfo](docs/GpuTypeInfo.md)
  - [Kubeconfig](docs/Kubeconfig.md)
  - [NodeDeleteResponse](docs/NodeDeleteResponse.md)
  - [NodeHardware](docs/NodeHardware.md)
@@ -199,6 +201,7 @@ Class | Method | HTTP request | Description
  - [NodeSystem](docs/NodeSystem.md)
  - [NodesListResponse](docs/NodesListResponse.md)
  - [Offer](docs/Offer.md)
+ - [OfferMetadataResponse](docs/OfferMetadataResponse.md)
  - [OffersListResponse](docs/OffersListResponse.md)
  - [PerformancePrediction](docs/PerformancePrediction.md)
  - [PerformancePredictionRequest](docs/PerformancePredictionRequest.md)

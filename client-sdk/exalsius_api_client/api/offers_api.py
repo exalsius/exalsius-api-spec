@@ -20,6 +20,8 @@ from typing_extensions import Annotated
 
 from exalsius_api_client.api_client import ApiClient, RequestSerialized
 from exalsius_api_client.api_response import ApiResponse
+from exalsius_api_client.models.offer_metadata_response import \
+    OfferMetadataResponse
 from exalsius_api_client.models.offers_list_response import OffersListResponse
 from exalsius_api_client.rest import RESTResponseType
 
@@ -44,6 +46,12 @@ class OffersApi:
         ] = None,
         gpu_type: Annotated[
             Optional[StrictStr], Field(description="The type of the GPU")
+        ] = None,
+        gpu_types: Annotated[
+            Optional[List[StrictStr]],
+            Field(
+                description="Filter by multiple GPU types. Provide the parameter multiple times to include more than one type."
+            ),
         ] = None,
         cloud_provider: Annotated[
             Optional[StrictStr], Field(description="The cloud provider of the offer")
@@ -156,6 +164,8 @@ class OffersApi:
         :type gpu_vendor: str
         :param gpu_type: The type of the GPU
         :type gpu_type: str
+        :param gpu_types: Filter by multiple GPU types. Provide the parameter multiple times to include more than one type.
+        :type gpu_types: List[str]
         :param cloud_provider: The cloud provider of the offer
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
@@ -233,6 +243,7 @@ class OffersApi:
         _param = self._get_offers_serialize(
             gpu_vendor=gpu_vendor,
             gpu_type=gpu_type,
+            gpu_types=gpu_types,
             cloud_provider=cloud_provider,
             region=region,
             availability_zone=availability_zone,
@@ -287,6 +298,12 @@ class OffersApi:
         ] = None,
         gpu_type: Annotated[
             Optional[StrictStr], Field(description="The type of the GPU")
+        ] = None,
+        gpu_types: Annotated[
+            Optional[List[StrictStr]],
+            Field(
+                description="Filter by multiple GPU types. Provide the parameter multiple times to include more than one type."
+            ),
         ] = None,
         cloud_provider: Annotated[
             Optional[StrictStr], Field(description="The cloud provider of the offer")
@@ -399,6 +416,8 @@ class OffersApi:
         :type gpu_vendor: str
         :param gpu_type: The type of the GPU
         :type gpu_type: str
+        :param gpu_types: Filter by multiple GPU types. Provide the parameter multiple times to include more than one type.
+        :type gpu_types: List[str]
         :param cloud_provider: The cloud provider of the offer
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
@@ -476,6 +495,7 @@ class OffersApi:
         _param = self._get_offers_serialize(
             gpu_vendor=gpu_vendor,
             gpu_type=gpu_type,
+            gpu_types=gpu_types,
             cloud_provider=cloud_provider,
             region=region,
             availability_zone=availability_zone,
@@ -530,6 +550,12 @@ class OffersApi:
         ] = None,
         gpu_type: Annotated[
             Optional[StrictStr], Field(description="The type of the GPU")
+        ] = None,
+        gpu_types: Annotated[
+            Optional[List[StrictStr]],
+            Field(
+                description="Filter by multiple GPU types. Provide the parameter multiple times to include more than one type."
+            ),
         ] = None,
         cloud_provider: Annotated[
             Optional[StrictStr], Field(description="The cloud provider of the offer")
@@ -642,6 +668,8 @@ class OffersApi:
         :type gpu_vendor: str
         :param gpu_type: The type of the GPU
         :type gpu_type: str
+        :param gpu_types: Filter by multiple GPU types. Provide the parameter multiple times to include more than one type.
+        :type gpu_types: List[str]
         :param cloud_provider: The cloud provider of the offer
         :type cloud_provider: str
         :param region: The region of the offer, e.g. us-east-1
@@ -719,6 +747,7 @@ class OffersApi:
         _param = self._get_offers_serialize(
             gpu_vendor=gpu_vendor,
             gpu_type=gpu_type,
+            gpu_types=gpu_types,
             cloud_provider=cloud_provider,
             region=region,
             availability_zone=availability_zone,
@@ -765,6 +794,7 @@ class OffersApi:
         self,
         gpu_vendor,
         gpu_type,
+        gpu_types,
         cloud_provider,
         region,
         availability_zone,
@@ -799,7 +829,9 @@ class OffersApi:
 
         _host = None
 
-        _collection_formats: Dict[str, str] = {}
+        _collection_formats: Dict[str, str] = {
+            "gpu_types": "multi",
+        }
 
         _path_params: Dict[str, str] = {}
         _query_params: List[Tuple[str, str]] = []
@@ -819,6 +851,10 @@ class OffersApi:
         if gpu_type is not None:
 
             _query_params.append(("gpu_type", gpu_type))
+
+        if gpu_types is not None:
+
+            _query_params.append(("gpu_types", gpu_types))
 
         if cloud_provider is not None:
 
@@ -940,6 +976,239 @@ class OffersApi:
         return self.api_client.param_serialize(
             method="GET",
             resource_path="/offers",
+            path_params=_path_params,
+            query_params=_query_params,
+            header_params=_header_params,
+            body=_body_params,
+            post_params=_form_params,
+            files=_files,
+            auth_settings=_auth_settings,
+            collection_formats=_collection_formats,
+            _host=_host,
+            _request_auth=_request_auth,
+        )
+
+    @validate_call
+    def get_offers_filter_metadata(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> OfferMetadataResponse:
+        """List available offer filters and metric ranges
+
+        Retrieve the distinct values and numeric ranges available within the offers catalog. This endpoint is designed for building dynamic filters/sliders in UIs without scanning the full dataset.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_offers_filter_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OfferMetadataResponse",
+            "400": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        ).data
+
+    @validate_call
+    def get_offers_filter_metadata_with_http_info(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> ApiResponse[OfferMetadataResponse]:
+        """List available offer filters and metric ranges
+
+        Retrieve the distinct values and numeric ranges available within the offers catalog. This endpoint is designed for building dynamic filters/sliders in UIs without scanning the full dataset.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_offers_filter_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OfferMetadataResponse",
+            "400": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        response_data.read()
+        return self.api_client.response_deserialize(
+            response_data=response_data,
+            response_types_map=_response_types_map,
+        )
+
+    @validate_call
+    def get_offers_filter_metadata_without_preload_content(
+        self,
+        _request_timeout: Union[
+            None,
+            Annotated[StrictFloat, Field(gt=0)],
+            Tuple[
+                Annotated[StrictFloat, Field(gt=0)], Annotated[StrictFloat, Field(gt=0)]
+            ],
+        ] = None,
+        _request_auth: Optional[Dict[StrictStr, Any]] = None,
+        _content_type: Optional[StrictStr] = None,
+        _headers: Optional[Dict[StrictStr, Any]] = None,
+        _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
+    ) -> RESTResponseType:
+        """List available offer filters and metric ranges
+
+        Retrieve the distinct values and numeric ranges available within the offers catalog. This endpoint is designed for building dynamic filters/sliders in UIs without scanning the full dataset.
+
+        :param _request_timeout: timeout setting for this request. If one
+                                 number provided, it will be total request
+                                 timeout. It can also be a pair (tuple) of
+                                 (connection, read) timeouts.
+        :type _request_timeout: int, tuple(int, int), optional
+        :param _request_auth: set to override the auth_settings for an a single
+                              request; this effectively ignores the
+                              authentication in the spec for a single request.
+        :type _request_auth: dict, optional
+        :param _content_type: force content-type for the request.
+        :type _content_type: str, Optional
+        :param _headers: set to override the headers for a single
+                         request; this effectively ignores the headers
+                         in the spec for a single request.
+        :type _headers: dict, optional
+        :param _host_index: set to override the host_index for a single
+                            request; this effectively ignores the host_index
+                            in the spec for a single request.
+        :type _host_index: int, optional
+        :return: Returns the result object.
+        """  # noqa: E501
+
+        _param = self._get_offers_filter_metadata_serialize(
+            _request_auth=_request_auth,
+            _content_type=_content_type,
+            _headers=_headers,
+            _host_index=_host_index,
+        )
+
+        _response_types_map: Dict[str, Optional[str]] = {
+            "200": "OfferMetadataResponse",
+            "400": "Error",
+            "500": "Error",
+        }
+        response_data = self.api_client.call_api(
+            *_param, _request_timeout=_request_timeout
+        )
+        return response_data.response
+
+    def _get_offers_filter_metadata_serialize(
+        self,
+        _request_auth,
+        _content_type,
+        _headers,
+        _host_index,
+    ) -> RequestSerialized:
+
+        _host = None
+
+        _collection_formats: Dict[str, str] = {}
+
+        _path_params: Dict[str, str] = {}
+        _query_params: List[Tuple[str, str]] = []
+        _header_params: Dict[str, Optional[str]] = _headers or {}
+        _form_params: List[Tuple[str, str]] = []
+        _files: Dict[
+            str, Union[str, bytes, List[str], List[bytes], List[Tuple[str, bytes]]]
+        ] = {}
+        _body_params: Optional[bytes] = None
+
+        # process the path parameters
+        # process the query parameters
+        # process the header parameters
+        # process the form parameters
+        # process the body parameter
+
+        # set the HTTP header `Accept`
+        if "Accept" not in _header_params:
+            _header_params["Accept"] = self.api_client.select_header_accept(
+                ["application/json", "application/problem+json"]
+            )
+
+        # authentication setting
+        _auth_settings: List[str] = ["OAuth2"]
+
+        return self.api_client.param_serialize(
+            method="GET",
+            resource_path="/offers/metadata",
             path_params=_path_params,
             query_params=_query_params,
             header_params=_header_params,
