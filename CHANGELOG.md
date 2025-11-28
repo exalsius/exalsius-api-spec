@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.33.0...v1.34.0) (2025-11-28)
+
+
+### Features
+
+* add warning message in case node has pre-installed software ([#168](https://github.com/exalsius/exalsius-api-spec/issues/168)) ([5c0b0f8](https://github.com/exalsius/exalsius-api-spec/commit/5c0b0f8e4e6a73ed54e1406a71cd86cb26544af2))
+
 ## [1.33.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.32.0...v1.33.0) (2025-11-28)
 
 
