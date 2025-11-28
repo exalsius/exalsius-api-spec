@@ -55,6 +55,16 @@ get:
         type: string
       description: The type of the GPU
       required: false
+    - name: gpu_types
+      in: query
+      schema:
+        type: array
+        items:
+          type: string
+      style: form
+      explode: true
+      description: Filter by multiple GPU types. Provide the parameter multiple times to include more than one type.
+      required: false
     - name: cloud_provider
       in: query
       schema:
@@ -257,13 +267,13 @@ get:
       
   responses:
     '200':
-      $ref: '../components/responses/offers-list-response.yaml'
+      $ref: '../../components/responses/offers-list-response.yaml'
       useExample: default
     '400':
-      $ref: '../components/responses/error-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
     '500':
-      $ref: '../components/responses/error-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: server-error
   
   x-codeSamples:

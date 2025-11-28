@@ -1,0 +1,36 @@
+get:
+  operationId: getOffersFilterMetadata
+  tags: [offers]
+  summary: List available offer filters and metric ranges
+  security:
+    - OAuth2:
+      # This operation is accessible by users (openid) and m2m applications with scope gpuradar
+      - openid
+      - gpuradar
+  description: |
+    Retrieve the distinct values and numeric ranges available within the offers catalog.
+    This endpoint is designed for building dynamic filters/sliders in UIs without scanning the full dataset.
+  
+  responses:
+    '200':
+      $ref: '../../components/responses/offer-metadata-response.yaml'
+      useExample: default
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/offers/metadata"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/offers/metadata")
+        response.raise_for_status()
+        print(response.json())

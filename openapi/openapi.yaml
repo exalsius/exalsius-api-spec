@@ -68,7 +68,9 @@ tags:
     description: Configure SSH keys, templates, and other system settings
 paths:
   /offers:
-    $ref: ./paths/offers.yaml
+    $ref: ./paths/offers/list.yaml
+  /offers/metadata:
+    $ref: ./paths/offers/metadata.yaml
   /performance-prediction:
     $ref: ./paths/performance-prediction.yaml
   /nodes:
@@ -139,6 +141,10 @@ components:
       $ref: ./components/schemas/offer.yaml
     OffersListResponse:
       $ref: ./components/schemas/offers-list-response.yaml
+    GpuTypeInfo:
+      $ref: ./components/schemas/gpu-type-info.yaml
+    OfferMetadataResponse:
+      $ref: ./components/schemas/offer-metadata-response.yaml
     BaseNode:
       $ref: ./components/schemas/base-node.yaml
     CloudNode:
@@ -206,6 +212,10 @@ components:
     ClusterEventPayload:
       $ref: ./components/schemas/cluster-event-payload.yaml
   responses:
+    OfferMetadataResponse:
+      $ref: ./components/responses/offer-metadata-response.yaml
+    OffersListResponse:
+      $ref: ./components/responses/offers-list-response.yaml
     NodeDeleteResponse:
       $ref: ./components/responses/node-delete-response.yaml
     NodeResponse:

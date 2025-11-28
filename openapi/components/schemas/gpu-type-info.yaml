@@ -1,0 +1,21 @@
+type: object
+required:
+  - gpu_type
+  - gpu_vendor
+properties:
+  gpu_type:
+    type: string
+    description: Normalized GPU type identifier.
+    example: H100
+  gpu_vendor:
+    type: string
+    description: The vendor/manufacturer for the GPU type.
+    enum:
+      - NVIDIA
+      - AMD
+      - INTEL
+      - HUAWEI
+      - GOOGLE
+      - AWS
+      - UNKNOWN
+    example: NVIDIA
