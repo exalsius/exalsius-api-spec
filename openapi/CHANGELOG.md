@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.33.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.33.0...openapi-v1.33.1) (2025-11-29)
+
+
+### Bug Fixes
+
+* move dashboard endpoints to management ([#170](https://github.com/exalsius/exalsius-api-spec/issues/170)) ([73011f5](https://github.com/exalsius/exalsius-api-spec/commit/73011f5827b1ed5d175f23746345f749d88cff03))
+
 ## [1.33.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.32.0...openapi-v1.33.0) (2025-11-28)
 
 
