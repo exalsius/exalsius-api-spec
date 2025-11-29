@@ -15,7 +15,7 @@ Do not edit the class manually.
 """  # noqa: E501
 
 
-__version__ = "1.34.1"
+__version__ = "1.33.2"
 
 # Define package exports
 __all__ = [
