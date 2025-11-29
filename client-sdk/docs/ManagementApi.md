@@ -6,6 +6,8 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**add_ssh_key**](ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 [**delete_ssh_key**](ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
+[**get_dashboard_auth**](ManagementApi.md#get_dashboard_auth) | **GET** /management/dashboard-auth | Get dashboard authentication
+[**get_dashboard_url**](ManagementApi.md#get_dashboard_url) | **GET** /management/dashboard-url | Get dashboard URL
 [**list_cluster_templates**](ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 [**list_credentials**](ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 [**list_service_templates**](ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
@@ -189,6 +191,156 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | SSH key deleted |  -  |
 **404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_dashboard_auth**
+> get_dashboard_auth()
+
+Get dashboard authentication
+
+**Retrieve the dashboard authentication**
+
+Enables access to observability dashboards for all clusters the user has access to. Each dashboard provides a visual representation 
+of cluster performance metrics, resource utilization, and operational insights.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # Get dashboard authentication
+        api_instance.get_dashboard_auth()
+    except Exception as e:
+        print("Exception when calling ManagementApi->get_dashboard_auth: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Dashboard authentication |  * X-WEBAUTH-USER - User ID of the user <br>  * X-WEBAUTH-TEAM - Team ID of the user <br>  * X-WEBAUTH-ROLE - Grafana role of the user <br>  |
+**400** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_dashboard_url**
+> DashboardUrlResponse get_dashboard_url()
+
+Get dashboard URL
+
+**Retrieve the URL to Grafana dashboards for all clusters the user has access to**
+
+Returns the URL to Grafana dashboards for all clusters the user has access to.
+
+
+### Example
+
+* OAuth Authentication (OAuth2):
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.dashboard_url_response import DashboardUrlResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+configuration.access_token = os.environ["ACCESS_TOKEN"]
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.ManagementApi(api_client)
+
+    try:
+        # Get dashboard URL
+        api_response = api_instance.get_dashboard_url()
+        print("The response of ManagementApi->get_dashboard_url:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling ManagementApi->get_dashboard_url: %s\n" % e)
+```
+
+
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**DashboardUrlResponse**](DashboardUrlResponse.md)
+
+### Authorization
+
+[OAuth2](../README.md#OAuth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Dashboard URL response |  -  |
+**400** | Error response |  -  |
 **500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

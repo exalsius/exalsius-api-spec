@@ -28,8 +28,6 @@ from exalsius_api_client.models.cluster_create_request_local_storage import \
     ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse
-from exalsius_api_client.models.cluster_dashboard_url_response import \
-    ClusterDashboardUrlResponse
 from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
@@ -74,6 +72,8 @@ from exalsius_api_client.models.colony_response import ColonyResponse
 from exalsius_api_client.models.credentials import Credentials
 from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse
+from exalsius_api_client.models.dashboard_url_response import \
+    DashboardUrlResponse
 from exalsius_api_client.models.error import Error
 from exalsius_api_client.models.error_detail import ErrorDetail
 from exalsius_api_client.models.gpu_type_info import GpuTypeInfo

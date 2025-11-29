@@ -112,8 +112,6 @@ Class | Method | HTTP request | Description
 *ClustersApi* | [**get_cluster_kubeconfig**](docs/ClustersApi.md#get_cluster_kubeconfig) | **GET** /cluster/{cluster_id}/kubeconfig | Get the kubeconfig for a cluster
 *ClustersApi* | [**get_cluster_logs**](docs/ClustersApi.md#get_cluster_logs) | **GET** /cluster/{cluster_id}/logs | Get cluster logs
 *ClustersApi* | [**get_cluster_resources**](docs/ClustersApi.md#get_cluster_resources) | **GET** /cluster/{cluster_id}/resources | List available / occupied resources in the cluster
-*ClustersApi* | [**get_dashboard_auth**](docs/ClustersApi.md#get_dashboard_auth) | **GET** /cluster/{cluster_id}/dashboard-auth | Get dashboard authentication
-*ClustersApi* | [**get_dashboard_url**](docs/ClustersApi.md#get_dashboard_url) | **GET** /cluster/{cluster_id}/dashboard-url | Get dashboard URL
 *ClustersApi* | [**get_nodes**](docs/ClustersApi.md#get_nodes) | **GET** /cluster/{cluster_id}/nodes | Get nodes of a cluster
 *ClustersApi* | [**list_clusters**](docs/ClustersApi.md#list_clusters) | **GET** /clusters | List all clusters
 *ColoniesApi* | [**create_colony**](docs/ColoniesApi.md#create_colony) | **POST** /colonies | Create a colony
@@ -123,6 +121,8 @@ Class | Method | HTTP request | Description
 *ColoniesApi* | [**list_colonies**](docs/ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
+*ManagementApi* | [**get_dashboard_auth**](docs/ManagementApi.md#get_dashboard_auth) | **GET** /management/dashboard-auth | Get dashboard authentication
+*ManagementApi* | [**get_dashboard_url**](docs/ManagementApi.md#get_dashboard_url) | **GET** /management/dashboard-url | Get dashboard URL
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 *ManagementApi* | [**list_credentials**](docs/ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 *ManagementApi* | [**list_service_templates**](docs/ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
@@ -160,7 +160,6 @@ Class | Method | HTTP request | Description
  - [ClusterCreateRequest](docs/ClusterCreateRequest.md)
  - [ClusterCreateRequestLocalStorage](docs/ClusterCreateRequestLocalStorage.md)
  - [ClusterCreateResponse](docs/ClusterCreateResponse.md)
- - [ClusterDashboardUrlResponse](docs/ClusterDashboardUrlResponse.md)
  - [ClusterDeleteResponse](docs/ClusterDeleteResponse.md)
  - [ClusterDeployResponse](docs/ClusterDeployResponse.md)
  - [ClusterEventPayload](docs/ClusterEventPayload.md)
@@ -186,6 +185,7 @@ Class | Method | HTTP request | Description
  - [ColonyResponse](docs/ColonyResponse.md)
  - [Credentials](docs/Credentials.md)
  - [CredentialsListResponse](docs/CredentialsListResponse.md)
+ - [DashboardUrlResponse](docs/DashboardUrlResponse.md)
  - [Error](docs/Error.md)
  - [ErrorDetail](docs/ErrorDetail.md)
  - [GpuTypeInfo](docs/GpuTypeInfo.md)

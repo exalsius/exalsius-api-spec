@@ -44,7 +44,6 @@ __all__ = [
     "ClusterCreateRequest",
     "ClusterCreateRequestLocalStorage",
     "ClusterCreateResponse",
-    "ClusterDashboardUrlResponse",
     "ClusterDeleteResponse",
     "ClusterDeployResponse",
     "ClusterEventPayload",
@@ -70,6 +69,7 @@ __all__ = [
     "ColonyResponse",
     "Credentials",
     "CredentialsListResponse",
+    "DashboardUrlResponse",
     "Error",
     "ErrorDetail",
     "GpuTypeInfo",
@@ -157,8 +157,6 @@ from exalsius_api_client.models.cluster_create_request_local_storage import \
     ClusterCreateRequestLocalStorage as ClusterCreateRequestLocalStorage
 from exalsius_api_client.models.cluster_create_response import \
     ClusterCreateResponse as ClusterCreateResponse
-from exalsius_api_client.models.cluster_dashboard_url_response import \
-    ClusterDashboardUrlResponse as ClusterDashboardUrlResponse
 from exalsius_api_client.models.cluster_delete_response import \
     ClusterDeleteResponse as ClusterDeleteResponse
 from exalsius_api_client.models.cluster_deploy_response import \
@@ -208,6 +206,8 @@ from exalsius_api_client.models.colony_response import \
 from exalsius_api_client.models.credentials import Credentials as Credentials
 from exalsius_api_client.models.credentials_list_response import \
     CredentialsListResponse as CredentialsListResponse
+from exalsius_api_client.models.dashboard_url_response import \
+    DashboardUrlResponse as DashboardUrlResponse
 from exalsius_api_client.models.error import Error as Error
 from exalsius_api_client.models.error_detail import ErrorDetail as ErrorDetail
 from exalsius_api_client.models.gpu_type_info import GpuTypeInfo as GpuTypeInfo

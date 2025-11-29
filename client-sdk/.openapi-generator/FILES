@@ -11,7 +11,6 @@ docs/ClusterAdoptRequest.md
 docs/ClusterCreateRequest.md
 docs/ClusterCreateRequestLocalStorage.md
 docs/ClusterCreateResponse.md
-docs/ClusterDashboardUrlResponse.md
 docs/ClusterDeleteResponse.md
 docs/ClusterDeployResponse.md
 docs/ClusterEventPayload.md
@@ -39,6 +38,7 @@ docs/ColonyKubeconfigResponse.md
 docs/ColonyResponse.md
 docs/Credentials.md
 docs/CredentialsListResponse.md
+docs/DashboardUrlResponse.md
 docs/Error.md
 docs/ErrorDetail.md
 docs/GpuTypeInfo.md
@@ -116,7 +116,6 @@ exalsius_api_client/models/cluster_adopt_request.py
 exalsius_api_client/models/cluster_create_request.py
 exalsius_api_client/models/cluster_create_request_local_storage.py
 exalsius_api_client/models/cluster_create_response.py
-exalsius_api_client/models/cluster_dashboard_url_response.py
 exalsius_api_client/models/cluster_delete_response.py
 exalsius_api_client/models/cluster_deploy_response.py
 exalsius_api_client/models/cluster_event_payload.py
@@ -142,6 +141,7 @@ exalsius_api_client/models/colony_kubeconfig_response.py
 exalsius_api_client/models/colony_response.py
 exalsius_api_client/models/credentials.py
 exalsius_api_client/models/credentials_list_response.py
+exalsius_api_client/models/dashboard_url_response.py
 exalsius_api_client/models/error.py
 exalsius_api_client/models/error_detail.py
 exalsius_api_client/models/gpu_type_info.py
@@ -199,4 +199,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_dashboard_url_response.py
 tox.ini
