@@ -1,0 +1,10 @@
+description: Cluster dashboard URL response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/cluster-dashboard-url-response.yaml'
+    examples:
+      success:
+        summary: Cluster dashboard URL
+        value:
+          url: "https://grafana.exalsius.ai/c/my-cluster/t/my-token/login"
