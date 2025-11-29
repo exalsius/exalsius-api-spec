@@ -1,0 +1,19 @@
+get:
+  operationId: getDashboardUrl
+  tags: [management]
+  summary: Get dashboard URL
+  description: |
+    **Retrieve the URL to Grafana dashboards for all clusters the user has access to**
+    
+    Returns the URL to Grafana dashboards for all clusters the user has access to.
+  
+  responses:
+    '200':
+      $ref: '../../components/responses/dashboard-url-response.yaml'
+      useExample: success
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
