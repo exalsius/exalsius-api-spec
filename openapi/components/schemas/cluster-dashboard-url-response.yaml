@@ -4,5 +4,5 @@ required:
 properties:
   url:
     type: string
-    example: "https://grafana.exalsius.ai/c/my-cluster/t/my-token/dashboards"
+    example: "https://grafana.exalsius.ai/c/my-cluster/t/my-token/login"
     description: The URL to cluster-scoped Grafana dashboards
