@@ -40,6 +40,10 @@ get:
           description: Grafana role of the user
           schema:
             type: string
+        X-WEBAUTH-BEARER:
+          description: Bearer token of the user
+          schema:
+            type: string
     '404':
       $ref: '../../components/responses/error-response.yaml'
       useExample: cluster-not-found
