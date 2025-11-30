@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.34.2...v1.34.3) (2025-11-30)
+
+
+### Bug Fixes
+
+* add new response header to dashboard-auth ([#174](https://github.com/exalsius/exalsius-api-spec/issues/174)) ([f6e1c85](https://github.com/exalsius/exalsius-api-spec/commit/f6e1c8549f29a252e9a4b791bc1a531c8b3d7b3f))
+
 ## [1.34.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.34.1...v1.34.2) (2025-11-29)
 
 
