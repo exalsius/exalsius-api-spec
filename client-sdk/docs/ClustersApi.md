@@ -1029,7 +1029,7 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Dashboard authentication |  * X-WEBAUTH-USER - User ID of the user <br>  * X-WEBAUTH-TEAM - Team ID of the user <br>  * X-WEBAUTH-CLUSTER - Cluster ID of the cluster <br>  * X-WEBAUTH-ROLE - Grafana role of the user <br>  |
+**200** | Dashboard authentication |  * X-WEBAUTH-USER - User ID of the user <br>  * X-WEBAUTH-TEAM - Team ID of the user <br>  * X-WEBAUTH-CLUSTER - Cluster ID of the cluster <br>  * X-WEBAUTH-ROLE - Grafana role of the user <br>  * X-WEBAUTH-BEARER - Bearer token of the user <br>  |
 **404** | Error response |  -  |
 **500** | Error response |  -  |
 
