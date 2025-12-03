@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.34.4](https://github.com/exalsius/exalsius-api-spec/compare/v1.34.3...v1.34.4) (2025-12-03)
+
+
+### Bug Fixes
+
+* **access-infos:** return list of external ips and allow SSH as protocol ([#176](https://github.com/exalsius/exalsius-api-spec/issues/176)) ([6b643a0](https://github.com/exalsius/exalsius-api-spec/commit/6b643a0873060a3c73d76ecf21956d7c83dc5883))
+
 ## [1.34.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.34.2...v1.34.3) (2025-11-30)
 
 
