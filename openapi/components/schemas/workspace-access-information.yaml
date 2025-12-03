@@ -17,11 +17,12 @@ properties:
     example: "Connects with the jupyter notebook UI."
   access_protocol:
     type: string
-    enum: [TCP, HTTP, HTTPS]
-    x-enum-varnames: [TCP, HTTP, HTTPS]
+    enum: [TCP, SSH,HTTP, HTTPS]
+    x-enum-varnames: [TCP, SSH, HTTP, HTTPS]
     description: >
       The protocol of the access type
-      - `TCP`: TCP protocol, e.g. for SSH access
+      - `TCP`: TCP protocol
+      - `SSH`: SSH protocol
       - `HTTP`: HTTP protocol, e.g. for Jupyter Notebook UI access
       - `HTTPS`: HTTPS protocol, e.g. for Jupyter Notebook UI access
   port_name:
@@ -32,8 +33,10 @@ properties:
     type: integer
     description: The port number
     example: 8000
-  external_ip:
-    type: string
-    description: The external IP address associated with the port
-    example: "123.456.789.012"
+  external_ips:
+    type: array
+    items:
+      type: string
+    description: The external IP addresses associated with the port. Relates to all IP Adresses that are associated with the port.
+    example: ["123.456.789.12", "123.456.789.13"]
 
