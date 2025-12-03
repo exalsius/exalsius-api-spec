@@ -37,12 +37,13 @@ class WorkspaceAccessInformation(BaseModel):
         default=None, description="A description for the access type"
     )
     access_protocol: StrictStr = Field(
-        description="The protocol of the access type - `TCP`: TCP protocol, e.g. for SSH access - `HTTP`: HTTP protocol, e.g. for Jupyter Notebook UI access - `HTTPS`: HTTPS protocol, e.g. for Jupyter Notebook UI access "
+        description="The protocol of the access type - `TCP`: TCP protocol - `SSH`: SSH protocol - `HTTP`: HTTP protocol, e.g. for Jupyter Notebook UI access - `HTTPS`: HTTPS protocol, e.g. for Jupyter Notebook UI access "
     )
     port_name: Optional[StrictStr] = Field(default=None, description="The port name")
     port_number: StrictInt = Field(description="The port number")
-    external_ip: Optional[StrictStr] = Field(
-        default=None, description="The external IP address associated with the port"
+    external_ips: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The external IP addresses associated with the port. Relates to all IP Adresses that are associated with the port.",
     )
     __properties: ClassVar[List[str]] = [
         "access_type",
@@ -50,7 +51,7 @@ class WorkspaceAccessInformation(BaseModel):
         "access_protocol",
         "port_name",
         "port_number",
-        "external_ip",
+        "external_ips",
     ]
 
     @field_validator("access_type")
@@ -63,8 +64,10 @@ class WorkspaceAccessInformation(BaseModel):
     @field_validator("access_protocol")
     def access_protocol_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["TCP", "HTTP", "HTTPS"]):
-            raise ValueError("must be one of enum values ('TCP', 'HTTP', 'HTTPS')")
+        if value not in set(["TCP", "SSH", "HTTP", "HTTPS"]):
+            raise ValueError(
+                "must be one of enum values ('TCP', 'SSH', 'HTTP', 'HTTPS')"
+            )
         return value
 
     model_config = ConfigDict(
@@ -122,7 +125,7 @@ class WorkspaceAccessInformation(BaseModel):
                 "access_protocol": obj.get("access_protocol"),
                 "port_name": obj.get("port_name"),
                 "port_number": obj.get("port_number"),
-                "external_ip": obj.get("external_ip"),
+                "external_ips": obj.get("external_ips"),
             }
         )
         return _obj
