@@ -5,6 +5,7 @@ required:
   - batch_size
   - sequence_length
   - accumulation_steps
+  - dataset_size
 properties:
   model_name:
     type: string
@@ -41,3 +42,9 @@ properties:
     format: int32
     minimum: 1
     description: The number of gradient accumulation steps. Select 1 for no gradient accumulation.
+
+  dataset_size:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The size of the dataset in tokens.
