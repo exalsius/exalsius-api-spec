@@ -3,6 +3,7 @@ required:
   - model_name
   - vram
   - runtime
+  - step_time
 properties:
   model_name:
     type: string
@@ -24,12 +25,24 @@ properties:
       type: number
       format: float
       description: VRAM usage in GB
-  runtime:
+
+  step_time:
     type: object
     description: |
       Predicted runtime per training step in seconds for different GPU types.
       Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000").
       Values represent the estimated time per step in seconds.
+    additionalProperties:
+      type: number
+      format: float
+      description: Runtime per step in seconds
+
+  runtime:
+    type: object
+    description: |
+      Predicted total runtime per epoch in seconds for different GPU types.
+      Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000").
+      Values represent the estimated total training time per epoch in seconds.
     additionalProperties:
       type: number
       format: float
