@@ -34,10 +34,13 @@ class PerformancePrediction(BaseModel):
     vram: Dict[str, Union[StrictFloat, StrictInt]] = Field(
         description='Predicted VRAM (Video RAM) usage in GB for different GPU types. Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000"). Values represent the estimated memory consumption in gigabytes. '
     )
-    runtime: Dict[str, Union[StrictFloat, StrictInt]] = Field(
+    step_time: Dict[str, Union[StrictFloat, StrictInt]] = Field(
         description='Predicted runtime per training step in seconds for different GPU types. Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000"). Values represent the estimated time per step in seconds. '
     )
-    __properties: ClassVar[List[str]] = ["model_name", "vram", "runtime"]
+    runtime: Dict[str, Union[StrictFloat, StrictInt]] = Field(
+        description='Predicted total runtime per epoch in seconds for different GPU types. Keys are GPU type identifiers (e.g., "A100", "H100", "RTX4090", "A6000"). Values represent the estimated total training time per epoch in seconds. '
+    )
+    __properties: ClassVar[List[str]] = ["model_name", "vram", "step_time", "runtime"]
 
     @field_validator("model_name")
     def model_name_validate_enum(cls, value):
@@ -109,6 +112,7 @@ class PerformancePrediction(BaseModel):
             {
                 "model_name": obj.get("model_name"),
                 "vram": obj.get("vram"),
+                "step_time": obj.get("step_time"),
                 "runtime": obj.get("runtime"),
             }
         )

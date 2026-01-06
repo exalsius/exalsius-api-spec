@@ -42,12 +42,16 @@ class PerformancePredictionRequest(BaseModel):
     accumulation_steps: Annotated[int, Field(strict=True, ge=1)] = Field(
         description="The number of gradient accumulation steps. Select 1 for no gradient accumulation."
     )
+    dataset_size: Annotated[int, Field(strict=True, ge=1)] = Field(
+        description="The size of the dataset in tokens."
+    )
     __properties: ClassVar[List[str]] = [
         "model_name",
         "optimizer",
         "batch_size",
         "sequence_length",
         "accumulation_steps",
+        "dataset_size",
     ]
 
     @field_validator("model_name")
@@ -130,6 +134,7 @@ class PerformancePredictionRequest(BaseModel):
                 "batch_size": obj.get("batch_size"),
                 "sequence_length": obj.get("sequence_length"),
                 "accumulation_steps": obj.get("accumulation_steps"),
+                "dataset_size": obj.get("dataset_size"),
             }
         )
         return _obj

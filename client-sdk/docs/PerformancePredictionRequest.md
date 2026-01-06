@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **batch_size** | **int** | The batch size. | 
 **sequence_length** | **int** | The sequence length. | 
 **accumulation_steps** | **int** | The number of gradient accumulation steps. Select 1 for no gradient accumulation. | 
+**dataset_size** | **int** | The size of the dataset in tokens. | 
 
 ## Example
 
