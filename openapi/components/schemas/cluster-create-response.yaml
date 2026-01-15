@@ -7,7 +7,3 @@ properties:
     format: uuid
     example: "123e4567-e89b-12d3-a456-426614174000"
     description: The ID of the created cluster
-  warning_message:
-    type: string
-    description: Warns if software such as Docker, cuda, or rocm is pre-installed on the node
-    example: "Node abcde-1234567890 has Docker pre-installed"
