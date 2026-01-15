@@ -30,11 +30,7 @@ class ClusterCreateResponse(BaseModel):
     """  # noqa: E501
 
     cluster_id: StrictStr = Field(description="The ID of the created cluster")
-    warning_message: Optional[StrictStr] = Field(
-        default=None,
-        description="Warns if software such as Docker, cuda, or rocm is pre-installed on the node",
-    )
-    __properties: ClassVar[List[str]] = ["cluster_id", "warning_message"]
+    __properties: ClassVar[List[str]] = ["cluster_id"]
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -84,10 +80,5 @@ class ClusterCreateResponse(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate(
-            {
-                "cluster_id": obj.get("cluster_id"),
-                "warning_message": obj.get("warning_message"),
-            }
-        )
+        _obj = cls.model_validate({"cluster_id": obj.get("cluster_id")})
         return _obj

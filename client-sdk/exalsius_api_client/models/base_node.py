@@ -61,7 +61,11 @@ class BaseNode(BaseModel):
         default=None, description="The time the node was imported"
     )
     node_status: StrictStr = Field(
-        description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed "
+        description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed - `WARNING`: Node is in a warning state, e.g., pre-installed software hinders the deployment of the node "
+    )
+    warning_message: Optional[StrictStr] = Field(
+        default=None,
+        description="Provides additional information on the warning status, e.g., if software such as Docker, cuda, or rocm is pre-installed on the node",
     )
     hardware: Optional[NodeHardware] = None
     software: Optional[NodeSoftware] = None
@@ -75,6 +79,7 @@ class BaseNode(BaseModel):
         "location",
         "import_time",
         "node_status",
+        "warning_message",
         "hardware",
         "software",
         "system",
@@ -91,10 +96,18 @@ class BaseNode(BaseModel):
     def node_status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in set(
-            ["PENDING", "DISCOVERING", "AVAILABLE", "ADDED", "DEPLOYED", "FAILED"]
+            [
+                "PENDING",
+                "DISCOVERING",
+                "AVAILABLE",
+                "ADDED",
+                "DEPLOYED",
+                "FAILED",
+                "WARNING",
+            ]
         ):
             raise ValueError(
-                "must be one of enum values ('PENDING', 'DISCOVERING', 'AVAILABLE', 'ADDED', 'DEPLOYED', 'FAILED')"
+                "must be one of enum values ('PENDING', 'DISCOVERING', 'AVAILABLE', 'ADDED', 'DEPLOYED', 'FAILED', 'WARNING')"
             )
         return value
 

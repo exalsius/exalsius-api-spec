@@ -56,6 +56,7 @@ class CloudNode(BaseNode):
         "location",
         "import_time",
         "node_status",
+        "warning_message",
         "hardware",
         "software",
         "system",
@@ -143,6 +144,7 @@ class CloudNode(BaseNode):
                 "location": obj.get("location"),
                 "import_time": obj.get("import_time"),
                 "node_status": obj.get("node_status"),
+                "warning_message": obj.get("warning_message"),
                 "hardware": (
                     NodeHardware.from_dict(obj["hardware"])
                     if obj.get("hardware") is not None

@@ -35,16 +35,11 @@ class ClusterNodesResponse(BaseModel):
     total_nodes: Optional[StrictInt] = Field(
         default=None, description="The total number of nodes in the cluster"
     )
-    warning_message: Optional[StrictStr] = Field(
-        default=None,
-        description="Warns if software such as Docker, cuda, or rocm is pre-installed on the node",
-    )
     __properties: ClassVar[List[str]] = [
         "cluster_id",
         "control_plane_node_ids",
         "worker_node_ids",
         "total_nodes",
-        "warning_message",
     ]
 
     model_config = ConfigDict(
@@ -101,7 +96,6 @@ class ClusterNodesResponse(BaseModel):
                 "control_plane_node_ids": obj.get("control_plane_node_ids"),
                 "worker_node_ids": obj.get("worker_node_ids"),
                 "total_nodes": obj.get("total_nodes"),
-                "warning_message": obj.get("warning_message"),
             }
         )
         return _obj
