@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.34.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.33.4...openapi-v1.34.0) (2026-01-15)
+
+
+### Features
+
+* add runtime estimate to performance prediction and added dataset_size property as input ([#179](https://github.com/exalsius/exalsius-api-spec/issues/179)) ([a9a1959](https://github.com/exalsius/exalsius-api-spec/commit/a9a1959403dda564d7622b120e336530cc1a1c07))
+* add warning message to node and remove from cluster create ([#178](https://github.com/exalsius/exalsius-api-spec/issues/178)) ([4e2372e](https://github.com/exalsius/exalsius-api-spec/commit/4e2372e791597ab29cfd7d6d7697589025b55325))
+
 ## [1.33.4](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.33.3...openapi-v1.33.4) (2025-12-03)
 
 
