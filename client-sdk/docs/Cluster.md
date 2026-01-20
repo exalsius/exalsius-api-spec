@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **telemetry_enabled** | **bool** | Whether telemetry data collection is enabled for the cluster | [optional] [default to False]
 **cluster_status** | **str** | The status of the cluster. - &#x60;PENDING&#x60;: Cluster is pending (not yet deployed) - &#x60;DEPLOYING&#x60;: Cluster is being deployed - &#x60;READY&#x60;: Cluster is ready - &#x60;FAILED&#x60;: Cluster is failed  | 
 **cluster_labels** | **Dict[str, str]** | The labels of the cluster (optional). | [optional] 
+**cluster_annotations** | **Dict[str, str]** | The annotations of the cluster (optional). | [optional] 
 **machine_pre_start_commands** | **List[str]** | The commands to run on the machine before the cluster is started | [optional] 
 **local_storage** | [**ClusterLocalStorage**](ClusterLocalStorage.md) |  | [optional] 
 **created_at** | **datetime** | The date and time the cluster was created | 

@@ -236,6 +236,7 @@ Create a new cluster.
 - `telemetry_enabled`: Enables observability/monitoring integrations for the cluster (optional, defaults to `false`)
 - `colony_id`: The ID of the colony to add the cluster to (optional)
 - `cluster_labels`: Arbitrary key/value labels applied to the cluster (optional)
+- `cluster_annotations`: Arbitrary key/value annotations applied to the cluster (optional)
 - `machine_pre_start_commands`: Commands to run on each machine before the cluster starts (optional)
 - `local_storage`: Local storage provisioner config. Supports `enabled` (bool, default `true`) and `basePath` (string) (optional)
 - `k8s_version`: The Kubernetes version of the cluster (optional, defaults based on cluster type)
