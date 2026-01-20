@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.36.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.35.0...v1.36.0) (2026-01-20)
+
+
+### Features
+
+* add optional cluster-annotations ([#181](https://github.com/exalsius/exalsius-api-spec/issues/181)) ([263414c](https://github.com/exalsius/exalsius-api-spec/commit/263414c1ec38727e58fb97c1e4ec7c3fc52efb02))
+
 ## [1.35.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.34.4...v1.35.0) (2026-01-15)
 
 
