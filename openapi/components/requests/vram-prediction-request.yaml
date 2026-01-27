@@ -1,0 +1,21 @@
+type: object
+required:
+  - model_name
+  - batch_size
+  - sequence_length
+properties:
+  model_name:
+    type: string
+    description: Define the model for which you want a performance prediction.
+
+  batch_size:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The batch size.
+
+  sequence_length:
+    type: integer
+    format: int32
+    minimum: 1
+    description: The sequence length.

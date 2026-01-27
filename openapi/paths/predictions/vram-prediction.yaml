@@ -1,0 +1,49 @@
+post:
+  summary: Get the VRAM prediction for LLM fine-tuning
+  security:
+    - OAuth2:
+      # This operation is accessible by users (openid) and m2m applications with scope gpuradar
+      - openid
+      - gpuradar
+  description: |
+    **Get the VRAM prediction for LLM-finetuning**
+    
+    This endpoint returns predicted memory usage (VRAM) for a given LLM fine-tuning configuration.
+    
+    **Request Parameters:**
+    - `model_name`: The machine learning model to train
+    - `batch_size`: Number of samples processed per training step
+    - `sequence_length`: Length of input sequences (tokens)
+    - (Optional) `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation). Default: 1
+    
+    **Response:**
+    - `vram`: Predicted VRAM usage in GB
+  operationId: get-vram-prediction
+  tags: [vram-prediction]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/vram-prediction-request.yaml'
+        examples:
+          llama-finetuning:
+            summary: Llama 3.2 3B finetuning
+            value:
+              model_name: LLAMA3_2_3B
+              batch_size: 4
+              sequence_length: 2048
+
+  responses:
+    '200':
+      $ref: '../../components/responses/vram-prediction-response.yaml'
+      useExample: performance-prediction-success
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '422':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: performance-prediction-unknown-parameter
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

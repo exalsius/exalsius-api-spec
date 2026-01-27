@@ -1,0 +1,10 @@
+description: VRAM Prediction
+content:
+  application/json:
+    schema:
+      type: number
+      format: float
+    examples:
+      vram:
+        summary: VRAM in GB
+        value: 24.5
