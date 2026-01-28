@@ -28,7 +28,7 @@ post:
     content:
       application/json:
         schema:
-          $ref: '../components/requests/performance-prediction-request.yaml'
+          $ref: '../../components/requests/performance-prediction-request.yaml'
         examples:
           llama-training:
             summary: Llama 3.2 3B training configuration
@@ -49,14 +49,14 @@ post:
 
   responses:
     '200':
-      $ref: '../components/responses/performance-prediction-response.yaml'
+      $ref: '../../components/responses/performance-prediction-response.yaml'
       useExample: performance-prediction-success
     '400':
-      $ref: '../components/responses/error-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
     '422':
-      $ref: '../components/responses/error-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: performance-prediction-unknown-parameter
     '500':
-      $ref: '../components/responses/error-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: server-error

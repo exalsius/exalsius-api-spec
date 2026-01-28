@@ -72,7 +72,9 @@ paths:
   /offers/metadata:
     $ref: ./paths/offers/metadata.yaml
   /performance-prediction:
-    $ref: ./paths/performance-prediction.yaml
+    $ref: ./paths/predictions/performance-prediction.yaml
+  /vram-prediction:
+    $ref: ./paths/predictions/vram-prediction.yaml
   /nodes:
     $ref: ./paths/nodes/list.yaml
   /node/{node_id}:
