@@ -11,7 +11,7 @@ post:
     This endpoint returns predicted memory usage (VRAM) for a given LLM fine-tuning configuration.
     
     **Request Parameters:**
-    - `model_name`: The machine learning model to train
+    - `model`: The machine learning model to train
     - `batch_size`: Number of samples processed per training step
     - `sequence_length`: Length of input sequences (tokens)
     - (Optional) `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation). Default: 1
@@ -28,9 +28,9 @@ post:
           $ref: '../../components/requests/vram-prediction-request.yaml'
         examples:
           llama-finetuning:
-            summary: Llama 3.2 3B finetuning
+            summary: Llama 3.2 1B finetuning
             value:
-              model_name: LLAMA3_2_3B
+              model: meta-llama/Llama-3.2-1B
               batch_size: 4
               sequence_length: 2048
 
