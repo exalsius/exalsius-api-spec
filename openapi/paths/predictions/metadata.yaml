@@ -1,0 +1,34 @@
+get:
+  operationId: getVRAMPredictionMetadata
+  tags: [vram-prediction]
+  summary: List available models and the range of parameters for VRAM prediction endpoint
+  security:
+    - OAuth2:
+      # This operation is accessible by users (openid) and m2m applications with scope gpuradar
+      - openid
+      - gpuradar
+  description: |
+    Retrieve the distinct values and numeric ranges available within the VRAMPrediction endpoint.
+  responses:
+    '200':
+      $ref: '../../components/responses/vram-prediction-metadata-response.yaml'
+      useExample: default
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+  
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/vram-prediction/metadata"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+        response = requests.get("https://api.exalsius.ai/vram-prediction/metadata")
+        response.raise_for_status()
+        print(response.json())

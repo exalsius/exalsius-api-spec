@@ -75,6 +75,8 @@ paths:
     $ref: ./paths/predictions/performance-prediction.yaml
   /vram-prediction:
     $ref: ./paths/predictions/vram-prediction.yaml
+  /vram-prediction/metadata:
+   $ref: ./paths/predictions/metadata.yaml
   /nodes:
     $ref: ./paths/nodes/list.yaml
   /node/{node_id}:
