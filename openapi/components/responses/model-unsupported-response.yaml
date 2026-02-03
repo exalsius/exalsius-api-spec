@@ -1,0 +1,12 @@
+description: The requested model is not supported by this endpoint.
+content:
+  application/json:
+    schema:
+      $ref: ./error-response.yaml
+    examples:
+      model-unsupported:
+        summary: Unsupported model
+        value:
+          detail:
+            code: UNSUPPORTED_MODEL
+            message: Unsupported model. Use /vram-prediction/metadata to list supported models.
