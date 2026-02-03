@@ -170,8 +170,16 @@ content:
         summary: Parameter not known
         value:
           detail:
-            type: https://api.exalsius.ai/errors/bad-request
+            type: "https://api.exalsius.ai/errors/bad-request"
             title: "Unsupported value for parameter"
             status: 422
             detail: "Unsupported value. Supported model values: ['LLAMA3_2_1B', 'LLAMA3_2_3B', 'LLAMA3_2_3B_INSTRUCT', 'GEMMA3_1B_IT', 'QWEN2_5_3B_INSTRUCT', 'GPT2'], Supported optimizers: ['adam', 'adamw']"
             instance: "/performance-prediction"
+      model-unsupported:
+        summary: Model for VRAM prediction not supported
+        value:
+          type: "https://api.exalsius.ai/errors/bad-request"
+          title: "Unsupported value for parameter model"
+          status: 422
+          detail: "The model provided for VRAM prediction is not supported. Check /vram-prediction/metadata for a list of supported models."
+          instance: "/vram-prediction"

@@ -42,7 +42,7 @@ post:
       $ref: '../../components/responses/error-response.yaml'
       useExample: bad-request
     '422':
-      $ref: '../../components/responses/model-unsupported-response.yaml'
+      $ref: '../../components/responses/error-response.yaml'
       useExample: model-unsupported
     '500':
       $ref: '../../components/responses/error-response.yaml'
