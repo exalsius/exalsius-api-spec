@@ -1,0 +1,30 @@
+type: object
+required:
+  - models
+  - batch_size_min
+  - batch_size_max
+  - sequence_length_min
+  - sequence_length_max
+
+properties:
+  models:
+    type: array
+    description: Distinct LLM models which are available for prediction.
+    items:
+      type: string
+  batch_size_min:
+    type: integer
+    format: int32
+    description: Minimum batch size.
+  batch_size_max:
+    type: integer
+    format: int32
+    description: Maximum batch size.
+  sequence_length_min:
+    type: integer
+    format: int32
+    description: Minimum sequence length.
+  sequence_length_max:
+    type: integer
+    format: int32
+    description: Maximum sequence length.

@@ -1,0 +1,16 @@
+description: VRAM Prediction  metadata
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/vram-prediction-metadata-response.yaml'
+    examples:
+      default:
+        summary: VRAM prediction parameter values
+        value:
+          models:
+            - meta-llama/Llama-3.1-8B
+            - openai-community/gpt2
+          batch_size_min: 1
+          batch_size_max: 1024
+          sequence_length_min: 512
+          sequence_length_max: 32768
