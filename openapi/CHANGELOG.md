@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.36.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.35.0...openapi-v1.36.0) (2026-02-04)
+
+
+### Features
+
+* vram prediction endpoint ([#183](https://github.com/exalsius/exalsius-api-spec/issues/183)) ([5f422b2](https://github.com/exalsius/exalsius-api-spec/commit/5f422b21e0f79c324cf713c397beaae1771782b9))
+
 ## [1.35.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.34.0...openapi-v1.35.0) (2026-01-20)
 
 
