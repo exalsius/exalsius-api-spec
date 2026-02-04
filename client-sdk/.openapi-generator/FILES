@@ -205,7 +205,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_vram_prediction_api.py
-test/test_vram_prediction_metadata_response.py
-test/test_vram_prediction_request.py
 tox.ini
