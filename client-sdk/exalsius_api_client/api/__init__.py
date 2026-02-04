@@ -9,4 +9,5 @@ from exalsius_api_client.api.offers_api import OffersApi
 from exalsius_api_client.api.performance_prediction_api import \
     PerformancePredictionApi
 from exalsius_api_client.api.services_api import ServicesApi
+from exalsius_api_client.api.vram_prediction_api import VramPredictionApi
 from exalsius_api_client.api.workspaces_api import WorkspacesApi

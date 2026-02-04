@@ -141,6 +141,8 @@ Class | Method | HTTP request | Description
 *ServicesApi* | [**delete_service_deployment**](docs/ServicesApi.md#delete_service_deployment) | **DELETE** /service/{service_deployment_id} | Delete a service deployment
 *ServicesApi* | [**describe_service_deployment**](docs/ServicesApi.md#describe_service_deployment) | **GET** /service/{service_deployment_id} | Get details of a single service deployment
 *ServicesApi* | [**list_services_deployments**](docs/ServicesApi.md#list_services_deployments) | **GET** /services | List all service deployments
+*VramPredictionApi* | [**get_vram_prediction**](docs/VramPredictionApi.md#get_vram_prediction) | **POST** /vram-prediction | Get the VRAM prediction for LLM fine-tuning
+*VramPredictionApi* | [**get_vram_prediction_metadata**](docs/VramPredictionApi.md#get_vram_prediction_metadata) | **GET** /vram-prediction/metadata | List available models and the range of parameters for VRAM prediction endpoint
 *WorkspacesApi* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /workspaces | Create a workspace
 *WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /workspace/{workspace_id} | Delete a workspace
 *WorkspacesApi* | [**describe_workspace**](docs/WorkspacesApi.md#describe_workspace) | **GET** /workspace/{workspace_id} | Get details of a single workspace
@@ -221,6 +223,8 @@ Class | Method | HTTP request | Description
  - [SshKeyCreateResponse](docs/SshKeyCreateResponse.md)
  - [SshKeysListResponse](docs/SshKeysListResponse.md)
  - [SshKeysListResponseSshKeysInner](docs/SshKeysListResponseSshKeysInner.md)
+ - [VramPredictionMetadataResponse](docs/VramPredictionMetadataResponse.md)
+ - [VramPredictionRequest](docs/VramPredictionRequest.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceAccessInformation](docs/WorkspaceAccessInformation.md)
  - [WorkspaceCreateRequest](docs/WorkspaceCreateRequest.md)
