@@ -62,7 +62,7 @@ properties:
     additionalProperties:
       type: string
     description: The labels of the cluster (optional).
-    example: {"cluster.exalsius.ai/gpu-type": "nvidia", "cluster.exalsius.ai/workload-type": "volcano"}
+    example: {"cluster.exalsius.ai/gpu-type": "nvidia", "cluster.exalsius.ai/volcano-workload": "true"}
   cluster_annotations:
     type: object
     additionalProperties:
