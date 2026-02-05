@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.37.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.36.0...openapi-v1.37.0) (2026-02-05)
+
+
+### Features
+
+* rework workload type annotations ([#185](https://github.com/exalsius/exalsius-api-spec/issues/185)) ([89dfb01](https://github.com/exalsius/exalsius-api-spec/commit/89dfb015cfb86230498c7b2e2756c496c700410e))
+
 ## [1.36.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.35.0...openapi-v1.36.0) (2026-02-04)
 
 
