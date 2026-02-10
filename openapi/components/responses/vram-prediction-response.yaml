@@ -1,4 +1,4 @@
-description: VRAM Prediction  metadata
+description: VRAM Prediction response
 content:
   application/json:
     schema:
