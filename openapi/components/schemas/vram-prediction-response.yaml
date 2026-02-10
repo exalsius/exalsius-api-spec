@@ -1,0 +1,39 @@
+type: object
+required:
+  - total_vram
+  - model_vram
+  - optimizer_vram
+  - optimizer_intermediate_vram
+  - gradients_vram
+  - activations_vram
+properties:
+  total_vram:
+    type: number
+    format: float
+    description: The total predicted vram
+    example: 24.5
+  model_vram:
+    type: number
+    format: float
+    description: The vram used by the model
+    example: 2.5
+  optimizer_vram:
+    type: number
+    format: float
+    description: The vram used by the optimizer
+    example: 14.0
+  optimizer_intermediate_vram:
+    type: number
+    format: float
+    description: The vram used by the optimizer intermediate
+    example: 14.0
+  gradients_vram:
+    type: number
+    format: float
+    description: The vram used by the optimizer
+    example: 2.0
+  activations_vram:
+    type: number
+    format: float
+    description: The vram used by the activations
+    example: 2.0

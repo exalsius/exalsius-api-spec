@@ -1,10 +1,14 @@
-description: VRAM Prediction
+description: VRAM Prediction response
 content:
   application/json:
     schema:
-      type: number
-      format: float
+      $ref: '../schemas/vram-prediction-response.yaml'
     examples:
-      vram:
-        summary: VRAM in GB
-        value: 24.5
+      default:
+        summary: VRAM prediction parameter values
+        value:
+          total_vram: 24.0
+          model_vram: 2.0
+          optimizer_vram: 4.0
+          gradient_vram: 2.0
+          activations_vram: 10.0
