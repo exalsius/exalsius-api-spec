@@ -225,6 +225,7 @@ Class | Method | HTTP request | Description
  - [SshKeysListResponseSshKeysInner](docs/SshKeysListResponseSshKeysInner.md)
  - [VramPredictionMetadataResponse](docs/VramPredictionMetadataResponse.md)
  - [VramPredictionRequest](docs/VramPredictionRequest.md)
+ - [VramPredictionResponse](docs/VramPredictionResponse.md)
  - [Workspace](docs/Workspace.md)
  - [WorkspaceAccessInformation](docs/WorkspaceAccessInformation.md)
  - [WorkspaceCreateRequest](docs/WorkspaceCreateRequest.md)

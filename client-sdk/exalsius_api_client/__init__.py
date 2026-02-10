@@ -107,6 +107,7 @@ __all__ = [
     "SshKeysListResponseSshKeysInner",
     "VramPredictionMetadataResponse",
     "VramPredictionRequest",
+    "VramPredictionResponse",
     "Workspace",
     "WorkspaceAccessInformation",
     "WorkspaceCreateRequest",
@@ -278,6 +279,8 @@ from exalsius_api_client.models.vram_prediction_metadata_response import \
     VramPredictionMetadataResponse as VramPredictionMetadataResponse
 from exalsius_api_client.models.vram_prediction_request import \
     VramPredictionRequest as VramPredictionRequest
+from exalsius_api_client.models.vram_prediction_response import \
+    VramPredictionResponse as VramPredictionResponse
 from exalsius_api_client.models.workspace import Workspace as Workspace
 from exalsius_api_client.models.workspace_access_information import \
     WorkspaceAccessInformation as WorkspaceAccessInformation

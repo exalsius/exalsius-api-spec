@@ -82,6 +82,7 @@ docs/SshKeysListResponseSshKeysInner.md
 docs/VramPredictionApi.md
 docs/VramPredictionMetadataResponse.md
 docs/VramPredictionRequest.md
+docs/VramPredictionResponse.md
 docs/Workspace.md
 docs/WorkspaceAccessInformation.md
 docs/WorkspaceCreateRequest.md
@@ -183,6 +184,7 @@ exalsius_api_client/models/ssh_keys_list_response.py
 exalsius_api_client/models/ssh_keys_list_response_ssh_keys_inner.py
 exalsius_api_client/models/vram_prediction_metadata_response.py
 exalsius_api_client/models/vram_prediction_request.py
+exalsius_api_client/models/vram_prediction_response.py
 exalsius_api_client/models/workspace.py
 exalsius_api_client/models/workspace_access_information.py
 exalsius_api_client/models/workspace_create_request.py
@@ -205,4 +207,5 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_vram_prediction_response.py
 tox.ini

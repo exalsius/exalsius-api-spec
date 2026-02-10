@@ -9,7 +9,7 @@ Method | HTTP request | Description
 
 
 # **get_vram_prediction**
-> float get_vram_prediction(vram_prediction_request)
+> VramPredictionResponse get_vram_prediction(vram_prediction_request)
 
 Get the VRAM prediction for LLM fine-tuning
 
@@ -34,6 +34,7 @@ This endpoint returns predicted memory usage (VRAM) for a given LLM fine-tuning 
 ```python
 import exalsius_api_client
 from exalsius_api_client.models.vram_prediction_request import VramPredictionRequest
+from exalsius_api_client.models.vram_prediction_response import VramPredictionResponse
 from exalsius_api_client.rest import ApiException
 from pprint import pprint
 
@@ -76,7 +77,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**float**
+[**VramPredictionResponse**](VramPredictionResponse.md)
 
 ### Authorization
 
@@ -91,7 +92,7 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | VRAM Prediction |  -  |
+**200** | VRAM Prediction response |  -  |
 **400** | Error response |  -  |
 **422** | Error response |  -  |
 **500** | Error response |  -  |

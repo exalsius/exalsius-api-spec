@@ -126,6 +126,8 @@ from exalsius_api_client.models.vram_prediction_metadata_response import \
     VramPredictionMetadataResponse
 from exalsius_api_client.models.vram_prediction_request import \
     VramPredictionRequest
+from exalsius_api_client.models.vram_prediction_response import \
+    VramPredictionResponse
 from exalsius_api_client.models.workspace import Workspace
 from exalsius_api_client.models.workspace_access_information import \
     WorkspaceAccessInformation

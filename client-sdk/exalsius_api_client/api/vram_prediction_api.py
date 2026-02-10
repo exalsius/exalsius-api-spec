@@ -23,6 +23,8 @@ from exalsius_api_client.models.vram_prediction_metadata_response import \
     VramPredictionMetadataResponse
 from exalsius_api_client.models.vram_prediction_request import \
     VramPredictionRequest
+from exalsius_api_client.models.vram_prediction_response import \
+    VramPredictionResponse
 from exalsius_api_client.rest import RESTResponseType
 
 
@@ -53,7 +55,7 @@ class VramPredictionApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> float:
+    ) -> VramPredictionResponse:
         """Get the VRAM prediction for LLM fine-tuning
 
         **Get the VRAM prediction for LLM-finetuning**  This endpoint returns predicted memory usage (VRAM) for a given LLM fine-tuning configuration.  **Request Parameters:** - `model`: The machine learning model to train - `batch_size`: Number of samples processed per training step - `sequence_length`: Length of input sequences (tokens) - (Optional) `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation). Default: 1  **Response:** - `vram`: Predicted VRAM usage in GB
@@ -91,7 +93,7 @@ class VramPredictionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "float",
+            "200": "VramPredictionResponse",
             "400": "Error",
             "422": "Error",
             "500": "Error",
@@ -120,7 +122,7 @@ class VramPredictionApi:
         _content_type: Optional[StrictStr] = None,
         _headers: Optional[Dict[StrictStr, Any]] = None,
         _host_index: Annotated[StrictInt, Field(ge=0, le=0)] = 0,
-    ) -> ApiResponse[float]:
+    ) -> ApiResponse[VramPredictionResponse]:
         """Get the VRAM prediction for LLM fine-tuning
 
         **Get the VRAM prediction for LLM-finetuning**  This endpoint returns predicted memory usage (VRAM) for a given LLM fine-tuning configuration.  **Request Parameters:** - `model`: The machine learning model to train - `batch_size`: Number of samples processed per training step - `sequence_length`: Length of input sequences (tokens) - (Optional) `accumulation_steps`: Number of gradient accumulation steps (use 1 for no accumulation). Default: 1  **Response:** - `vram`: Predicted VRAM usage in GB
@@ -158,7 +160,7 @@ class VramPredictionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "float",
+            "200": "VramPredictionResponse",
             "400": "Error",
             "422": "Error",
             "500": "Error",
@@ -225,7 +227,7 @@ class VramPredictionApi:
         )
 
         _response_types_map: Dict[str, Optional[str]] = {
-            "200": "float",
+            "200": "VramPredictionResponse",
             "400": "Error",
             "422": "Error",
             "500": "Error",
