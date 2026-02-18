@@ -27,9 +27,3 @@ allOf:
         type: string
         description: The instance type of the node
         example: "g4dn.xlarge"
-      price_per_hour:
-        type: number
-        format: float
-        description: The price per hour for the node
-        example: 0.526
-      
