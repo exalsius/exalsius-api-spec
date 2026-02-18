@@ -55,6 +55,7 @@ class SelfManagedNode(BaseNode):
         "description",
         "location",
         "import_time",
+        "price_per_hour",
         "node_status",
         "warning_message",
         "hardware",
@@ -142,6 +143,7 @@ class SelfManagedNode(BaseNode):
                 "description": obj.get("description"),
                 "location": obj.get("location"),
                 "import_time": obj.get("import_time"),
+                "price_per_hour": obj.get("price_per_hour"),
                 "node_status": obj.get("node_status"),
                 "warning_message": obj.get("warning_message"),
                 "hardware": (

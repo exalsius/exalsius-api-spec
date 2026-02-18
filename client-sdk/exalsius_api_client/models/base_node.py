@@ -22,7 +22,8 @@ from importlib import import_module
 from typing import (TYPE_CHECKING, Any, ClassVar, Dict, List, Optional, Set,
                     Union)
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
+from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
+                      StrictStr, field_validator)
 
 from exalsius_api_client.models.node_hardware import NodeHardware
 from exalsius_api_client.models.node_software import NodeSoftware
@@ -59,6 +60,9 @@ class BaseNode(BaseModel):
     import_time: Optional[datetime] = Field(
         default=None, description="The time the node was imported"
     )
+    price_per_hour: Union[StrictFloat, StrictInt] = Field(
+        description="The price per hour for the node"
+    )
     node_status: StrictStr = Field(
         description="The status of the node. - `PENDING`: Node is pending, e.g. because it wasn't launched yet (CloudNode) or because it wasn't discovered yet (SelfManagedNode) - `DISCOVERING`: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - `AVAILABLE`: Node is available to be added to a cluster - `ADDED`: Node is added to a cluster - `DEPLOYED`: Node is deployed in a cluster - `FAILED`: The discovering process of the node failed - `WARNING`: Node is in a warning state, e.g., pre-installed software hinders the deployment of the node "
     )
@@ -77,6 +81,7 @@ class BaseNode(BaseModel):
         "description",
         "location",
         "import_time",
+        "price_per_hour",
         "node_status",
         "warning_message",
         "hardware",

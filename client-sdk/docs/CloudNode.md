@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **region** | **str** | The region of the node | 
 **availability_zone** | **str** | The availability zone of the node | [optional] 
 **instance_type** | **str** | The instance type of the node | 
-**price_per_hour** | **float** | The price per hour for the node | 
 
 ## Example
 

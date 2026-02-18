@@ -17,9 +17,10 @@ from __future__ import annotations
 import json
 import pprint
 import re  # noqa: F401
-from typing import Any, ClassVar, Dict, List, Optional, Set
+from typing import Any, ClassVar, Dict, List, Optional, Set, Union
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import (BaseModel, ConfigDict, Field, StrictFloat, StrictInt,
+                      StrictStr)
 from typing_extensions import Self
 
 
@@ -37,12 +38,16 @@ class NodeImportSshRequest(BaseModel):
     description: Optional[StrictStr] = Field(
         default=None, description="Description of the node"
     )
+    price_per_hour: Optional[Union[StrictFloat, StrictInt]] = Field(
+        default=0, description="Price per hour for the node, in USD"
+    )
     __properties: ClassVar[List[str]] = [
         "hostname",
         "endpoint",
         "username",
         "ssh_key_id",
         "description",
+        "price_per_hour",
     ]
 
     model_config = ConfigDict(
@@ -100,6 +105,11 @@ class NodeImportSshRequest(BaseModel):
                 "username": obj.get("username"),
                 "ssh_key_id": obj.get("ssh_key_id"),
                 "description": obj.get("description"),
+                "price_per_hour": (
+                    obj.get("price_per_hour")
+                    if obj.get("price_per_hour") is not None
+                    else 0
+                ),
             }
         )
         return _obj

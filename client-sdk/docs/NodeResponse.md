@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **description** | **str** | Description of the node | [optional] 
 **location** | **str** | The location of the node (e.g. city, data center, server rack, etc.) | [optional] 
 **import_time** | **datetime** | The time the node was imported | [optional] 
+**price_per_hour** | **float** | The price per hour for the node | 
 **node_status** | **str** | The status of the node. - &#x60;PENDING&#x60;: Node is pending, e.g. because it wasn&#39;t launched yet (CloudNode) or because it wasn&#39;t discovered yet (SelfManagedNode) - &#x60;DISCOVERING&#x60;: Node is being discovered (SSH is checked for SelfManagedNode, Availability for CloudNodes) - &#x60;AVAILABLE&#x60;: Node is available to be added to a cluster - &#x60;ADDED&#x60;: Node is added to a cluster - &#x60;DEPLOYED&#x60;: Node is deployed in a cluster - &#x60;FAILED&#x60;: The discovering process of the node failed - &#x60;WARNING&#x60;: Node is in a warning state, e.g., pre-installed software hinders the deployment of the node  | 
 **warning_message** | **str** | Provides additional information on the warning status, e.g., if software such as Docker, cuda, or rocm is pre-installed on the node | [optional] 
 **hardware** | [**NodeHardware**](NodeHardware.md) |  | [optional] 

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **username** | **str** | Username to access the node | 
 **ssh_key_id** | **str** | The ID of the SSH key to use for the node | 
 **description** | **str** | Description of the node | [optional] 
+**price_per_hour** | **float** | Price per hour for the node, in USD | [optional] [default to 0]
 
 ## Example
 
