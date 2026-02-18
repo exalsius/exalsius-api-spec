@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.38.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.37.0...openapi-v1.38.0) (2026-02-18)
+
+
+### Features
+
+* add cost to base node and ssh-import-request ([#189](https://github.com/exalsius/exalsius-api-spec/issues/189)) ([f074bb3](https://github.com/exalsius/exalsius-api-spec/commit/f074bb35247c47ea2c85ef90483cdcae6024441a))
+* details for vram prediction response ([#187](https://github.com/exalsius/exalsius-api-spec/issues/187)) ([7e05cc3](https://github.com/exalsius/exalsius-api-spec/commit/7e05cc3d70231afa13b118966eb10d328821fd33))
+
 ## [1.37.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.36.0...openapi-v1.37.0) (2026-02-05)
 
 
