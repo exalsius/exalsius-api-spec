@@ -25,4 +25,10 @@ properties:
     type: string
     description: Description of the node
     example: "My self-managed node"
+  price_per_hour:
+    type: number
+    format: float
+    default: 0.0
+    example: 0.10
+    description: Price per hour for the node, in USD
 

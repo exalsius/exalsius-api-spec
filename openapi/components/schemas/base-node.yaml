@@ -5,6 +5,7 @@ allOf:
       - id
       - node_type
       - node_status
+      - price_per_hour
     discriminator:
       propertyName: node_type
       mapping:
@@ -46,6 +47,11 @@ allOf:
         description: The time the node was imported
         format: date-time
         example: "2021-01-01T00:00:00Z"
+      price_per_hour:
+        type: number
+        format: float
+        description: The price per hour for the node
+        example: 0.526
       node_status:
         type: string
         enum: [PENDING, DISCOVERING, AVAILABLE, ADDED, DEPLOYED, FAILED, WARNING]
