@@ -9,7 +9,11 @@ Name | Type | Description | Notes
 **colony_id** | **str** | The unique identifier for the colony that the cluster belongs to | [optional] 
 **name** | **str** | The name of the cluster | 
 **namespace** | **str** | The namespace the cluster resides in | [optional] 
-**owner** | **str** | The owner of the cluster (user id) | [optional] 
+**owner** | **str** | The owner of the cluster (user ID) | [optional] 
+**owner_username** | **str** | The username of the user who created the cluster | [optional] 
+**owner_org_id** | **str** | The organization ID of the user who created the cluster | [optional] 
+**owner_org_name** | **str** | The organization name of the user who created the cluster | [optional] 
+**owner_teams** | **List[str]** | The teams (groups) of the user who created the cluster | [optional] 
 **cluster_type** | **str** | The type of the cluster. - &#x60;CLOUD&#x60;: Cloud cluster, consisting of cloud instances - &#x60;REMOTE&#x60;: Remote cluster, consisting of self-managed nodes - &#x60;ADOPTED&#x60;: Adopted cluster, consisting of an already existing kubernetes cluster - &#x60;DOCKER&#x60;: Docker cluster, consisting of docker containers (for local testing and development)  | [optional] 
 **vpn_cluster** | **bool** | Whether the cluster is a VPN cluster | [optional] [default to False]
 **telemetry_enabled** | **bool** | Whether telemetry data collection is enabled for the cluster | [optional] [default to False]

@@ -47,7 +47,22 @@ class Cluster(BaseModel):
         default=None, description="The namespace the cluster resides in"
     )
     owner: Optional[StrictStr] = Field(
-        default=None, description="The owner of the cluster (user id)"
+        default=None, description="The owner of the cluster (user ID)"
+    )
+    owner_username: Optional[StrictStr] = Field(
+        default=None, description="The username of the user who created the cluster"
+    )
+    owner_org_id: Optional[StrictStr] = Field(
+        default=None,
+        description="The organization ID of the user who created the cluster",
+    )
+    owner_org_name: Optional[StrictStr] = Field(
+        default=None,
+        description="The organization name of the user who created the cluster",
+    )
+    owner_teams: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The teams (groups) of the user who created the cluster",
     )
     cluster_type: Optional[StrictStr] = Field(
         default=None,
@@ -111,6 +126,10 @@ class Cluster(BaseModel):
         "name",
         "namespace",
         "owner",
+        "owner_username",
+        "owner_org_id",
+        "owner_org_name",
+        "owner_teams",
         "cluster_type",
         "vpn_cluster",
         "telemetry_enabled",
@@ -224,6 +243,10 @@ class Cluster(BaseModel):
                 "name": obj.get("name"),
                 "namespace": obj.get("namespace"),
                 "owner": obj.get("owner"),
+                "owner_username": obj.get("owner_username"),
+                "owner_org_id": obj.get("owner_org_id"),
+                "owner_org_name": obj.get("owner_org_name"),
+                "owner_teams": obj.get("owner_teams"),
                 "cluster_type": obj.get("cluster_type"),
                 "vpn_cluster": (
                     obj.get("vpn_cluster")

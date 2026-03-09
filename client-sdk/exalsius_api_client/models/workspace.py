@@ -47,7 +47,22 @@ class Workspace(BaseModel):
     )
     template: WorkspaceTemplate
     owner: Optional[StrictStr] = Field(
-        default=None, description="The owner of the workspace"
+        default=None, description="The owner of the workspace (user ID)"
+    )
+    owner_username: Optional[StrictStr] = Field(
+        default=None, description="The username of the user who created the workspace"
+    )
+    owner_org_id: Optional[StrictStr] = Field(
+        default=None,
+        description="The organization ID of the user who created the workspace",
+    )
+    owner_org_name: Optional[StrictStr] = Field(
+        default=None,
+        description="The organization name of the user who created the workspace",
+    )
+    owner_teams: Optional[List[StrictStr]] = Field(
+        default=None,
+        description="The teams (groups) of the user who created the workspace",
     )
     description: Optional[StrictStr] = Field(
         default=None, description="The description of the workspace"
@@ -71,6 +86,10 @@ class Workspace(BaseModel):
         "workspace_status",
         "template",
         "owner",
+        "owner_username",
+        "owner_org_id",
+        "owner_org_name",
+        "owner_teams",
         "description",
         "access_information",
         "resources",
@@ -163,6 +182,10 @@ class Workspace(BaseModel):
                     else None
                 ),
                 "owner": obj.get("owner"),
+                "owner_username": obj.get("owner_username"),
+                "owner_org_id": obj.get("owner_org_id"),
+                "owner_org_name": obj.get("owner_org_name"),
+                "owner_teams": obj.get("owner_teams"),
                 "description": obj.get("description"),
                 "access_information": (
                     [

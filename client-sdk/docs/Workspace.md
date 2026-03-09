@@ -10,7 +10,11 @@ Name | Type | Description | Notes
 **cluster_id** | **str** | The unique identifier of the associated cluster | 
 **workspace_status** | **str** | The status of the workspace. - &#x60;PENDING&#x60;: Workspace is pending - &#x60;RUNNING&#x60;: Workspace is running - &#x60;STOPPED&#x60;: Workspace is stopped - &#x60;DELETED&#x60;: Workspace is deleted - &#x60;FAILED&#x60;: Workspace is failed  | [optional] 
 **template** | [**WorkspaceTemplate**](WorkspaceTemplate.md) |  | 
-**owner** | **str** | The owner of the workspace | [optional] 
+**owner** | **str** | The owner of the workspace (user ID) | [optional] 
+**owner_username** | **str** | The username of the user who created the workspace | [optional] 
+**owner_org_id** | **str** | The organization ID of the user who created the workspace | [optional] 
+**owner_org_name** | **str** | The organization name of the user who created the workspace | [optional] 
+**owner_teams** | **List[str]** | The teams (groups) of the user who created the workspace | [optional] 
 **description** | **str** | The description of the workspace | [optional] 
 **access_information** | [**List[WorkspaceAccessInformation]**](WorkspaceAccessInformation.md) | The access information for the workspace | [optional] 
 **resources** | [**NodeHardware**](NodeHardware.md) | The resources allocated to the workspace | 
