@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.39.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.38.0...openapi-v1.39.0) (2026-03-09)
+
+
+### Features
+
+* add extended ownership metadata to cluster and workspace models ([#190](https://github.com/exalsius/exalsius-api-spec/issues/190)) ([60f3e60](https://github.com/exalsius/exalsius-api-spec/commit/60f3e602c605aac46fdad72ebb401e9aab41cec1))
+
 ## [1.38.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.37.0...openapi-v1.38.0) (2026-02-18)
 
 
