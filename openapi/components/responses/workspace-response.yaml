@@ -17,7 +17,11 @@ content:
               description: "Jupyter Notebook server template"
               variables:
                 notebook_port: "8888"
-            owner: "john.doe@example.com"
+            owner: "auth0|user123"
+            owner_username: "john.doe@example.com"
+            owner_org_id: "org_abc123"
+            owner_org_name: "Acme Inc"
+            owner_teams: ["platform", "ml-team"]
             description: "My machine learning workspace"
             access_information:
               - access_type: "NODE_PORT"
