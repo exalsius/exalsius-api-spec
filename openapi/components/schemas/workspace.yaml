@@ -34,8 +34,26 @@ properties:
     $ref: './workspace-template.yaml'
   owner:
     type: string
-    description: The owner of the workspace
-    example: "John Doe"
+    description: The owner of the workspace (user ID)
+    example: "auth0|user123"
+  owner_username:
+    type: string
+    description: The username of the user who created the workspace
+    example: "john.doe@example.com"
+  owner_org_id:
+    type: string
+    description: The organization ID of the user who created the workspace
+    example: "org_abc123"
+  owner_org_name:
+    type: string
+    description: The organization name of the user who created the workspace
+    example: "Acme Inc"
+  owner_teams:
+    type: array
+    items:
+      type: string
+    description: The teams (groups) of the user who created the workspace
+    example: ["platform", "ml-team"]
   description:
     type: string
     description: The description of the workspace

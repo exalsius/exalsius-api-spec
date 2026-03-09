@@ -23,7 +23,11 @@ content:
                 description: "Jupyter Notebook server template"
                 variables:
                   notebook_port: "8888"
-              owner: "john.doe@example.com"
+              owner: "auth0|user123"
+              owner_username: "john.doe@example.com"
+              owner_org_id: "org_abc123"
+              owner_org_name: "Acme Inc"
+              owner_teams: ["platform", "ml-team"]
               description: "My machine learning workspace"
               resources:
                 gpu_count: 1
@@ -44,7 +48,11 @@ content:
                 description: "VS Code Server template"
                 variables:
                   server_port: "8080"
-              owner: "jane.doe@example.com"
+              owner: "auth0|user456"
+              owner_username: "jane.doe@example.com"
+              owner_org_id: "org_xyz789"
+              owner_org_name: "Tech Corp"
+              owner_teams: ["data-science"]
               description: "Development workspace"
               resources:
                 gpu_count: 0
