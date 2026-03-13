@@ -50,6 +50,30 @@ get:
       required: false
       schema:
         type: string
+    - name: sort_field
+      in: query
+      required: false
+      description: |
+        Sort the nodes by this field.
+        Example:
+        - `created_at` - sort by creation date
+        - `hostname` - sort by node name
+      schema:
+        type: string
+        enum: [created_at, hostname]
+        x-enum-varnames: [created_at, hostname]
+    - name: order_by
+      in: query
+      required: false
+      description: |
+        Sort the nodes in ascending or descending order.
+        Example:
+        - `asc` - sort in ascending order
+        - `desc` - sort in descending order
+      schema:
+        type: string
+        enum: [asc, desc]
+        x-enum-varnames: [asc, desc]
 
   responses:
     '200':
@@ -65,7 +89,7 @@ get:
     - lang: curl
       label: cURL
       source: |
-        curl -X GET "https://api.exalsius.ai/nodes?node_type=CLOUD&provider=aws"
+        curl -X GET "https://api.exalsius.ai/nodes?node_type=CLOUD&provider=aws&sort_field=created_at&order_by=desc"
     - lang: python
       label: Python
       source: |
@@ -74,27 +98,42 @@ get:
 
         def get_nodes(
             node_type: Optional[str] = None,
-            provider: Optional[str] = None
+            provider: Optional[str] = None,
+            sort_field: Optional[str] = None,
+            order_by: Optional[str] = None
         ) -> dict:
             """
-            Fetch nodes with optional filtering parameters.
+            Fetch nodes with optional filtering and sorting parameters.
 
             Args:
                 node_type: The type of nodes to return
                 provider: The provider of the nodes to return
-                
+                sort_field: The field to sort by
+                order_by: The sort direction
+            
             Returns:
                 dict: The JSON response containing the nodes
             """
             url = "https://api.exalsius.ai/nodes"
             params = {}
+
             if node_type:
-                params['node_type'] = node_type
+                params["node_type"] = node_type
             if provider:
-                params['provider'] = provider
+                params["provider"] = provider
+            if sort_field:
+                params["sort_field"] = sort_field
+            if order_by:
+                params["order_by"] = order_by
+
             response = requests.get(url, params=params)
+            response.raise_for_status()
             return response.json()
-        
-        nodes = get_nodes(node_type="CLOUD", provider="aws")
+
+        nodes = get_nodes(
+            node_type="CLOUD",
+            provider="aws",
+            sort_field="created_at",
+            order_by="desc"
+        )
         print(nodes)
-        
