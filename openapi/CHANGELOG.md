@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.40.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.39.0...openapi-v1.40.0) (2026-03-13)
+
+
+### Features
+
+* sort nodes by hostname and creation date ([#192](https://github.com/exalsius/exalsius-api-spec/issues/192)) ([0b34ae5](https://github.com/exalsius/exalsius-api-spec/commit/0b34ae55b5cb95799c90c21938c84bbc759bf9e6))
+
 ## [1.39.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.38.0...openapi-v1.39.0) (2026-03-09)
 
 
