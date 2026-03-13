@@ -1102,6 +1102,18 @@ class NodesApi:
                 description="Only return nodes of this provider. Example: - `aws` - only AWS node instances "
             ),
         ] = None,
+        sort_field: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+            ),
+        ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1122,6 +1134,10 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
+        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :type sort_field: str
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1147,6 +1163,8 @@ class NodesApi:
         _param = self._list_nodes_serialize(
             node_type=node_type,
             provider=provider,
+            sort_field=sort_field,
+            order_by=order_by,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1182,6 +1200,18 @@ class NodesApi:
                 description="Only return nodes of this provider. Example: - `aws` - only AWS node instances "
             ),
         ] = None,
+        sort_field: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+            ),
+        ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1202,6 +1232,10 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
+        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :type sort_field: str
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1227,6 +1261,8 @@ class NodesApi:
         _param = self._list_nodes_serialize(
             node_type=node_type,
             provider=provider,
+            sort_field=sort_field,
+            order_by=order_by,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1262,6 +1298,18 @@ class NodesApi:
                 description="Only return nodes of this provider. Example: - `aws` - only AWS node instances "
             ),
         ] = None,
+        sort_field: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+            ),
+        ] = None,
+        order_by: Annotated[
+            Optional[StrictStr],
+            Field(
+                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+            ),
+        ] = None,
         _request_timeout: Union[
             None,
             Annotated[StrictFloat, Field(gt=0)],
@@ -1282,6 +1330,10 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
+        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :type sort_field: str
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
                                  timeout. It can also be a pair (tuple) of
@@ -1307,6 +1359,8 @@ class NodesApi:
         _param = self._list_nodes_serialize(
             node_type=node_type,
             provider=provider,
+            sort_field=sort_field,
+            order_by=order_by,
             _request_auth=_request_auth,
             _content_type=_content_type,
             _headers=_headers,
@@ -1327,6 +1381,8 @@ class NodesApi:
         self,
         node_type,
         provider,
+        sort_field,
+        order_by,
         _request_auth,
         _content_type,
         _headers,
@@ -1355,6 +1411,14 @@ class NodesApi:
         if provider is not None:
 
             _query_params.append(("provider", provider))
+
+        if sort_field is not None:
+
+            _query_params.append(("sort_field", sort_field))
+
+        if order_by is not None:
+
+            _query_params.append(("order_by", order_by))
 
         # process the header parameters
         # process the form parameters

@@ -392,7 +392,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list_nodes**
-> NodesListResponse list_nodes(node_type=node_type, provider=provider)
+> NodesListResponse list_nodes(node_type=node_type, provider=provider, sort_field=sort_field, order_by=order_by)
 
 List all imported nodes in the node pool
 
@@ -447,10 +447,12 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
     api_instance = exalsius_api_client.NodesApi(api_client)
     node_type = 'node_type_example' # str | Only return nodes of this type.   Possible values: - `SELF_MANAGED` - only self-managed (SSH) nodes   - `CLOUD` - only cloud-imported nodes  (optional)
     provider = 'provider_example' # str | Only return nodes of this provider. Example: - `aws` - only AWS node instances  (optional)
+    sort_field = 'sort_field_example' # str | Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name  (optional)
+    order_by = 'order_by_example' # str | Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order  (optional)
 
     try:
         # List all imported nodes in the node pool
-        api_response = api_instance.list_nodes(node_type=node_type, provider=provider)
+        api_response = api_instance.list_nodes(node_type=node_type, provider=provider, sort_field=sort_field, order_by=order_by)
         print("The response of NodesApi->list_nodes:\n")
         pprint(api_response)
     except Exception as e:
@@ -466,6 +468,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **node_type** | **str**| Only return nodes of this type.   Possible values: - &#x60;SELF_MANAGED&#x60; - only self-managed (SSH) nodes   - &#x60;CLOUD&#x60; - only cloud-imported nodes  | [optional] 
  **provider** | **str**| Only return nodes of this provider. Example: - &#x60;aws&#x60; - only AWS node instances  | [optional] 
+ **sort_field** | **str**| Sort the nodes by this field. Example: - &#x60;created_at&#x60; - sort by creation date - &#x60;hostname&#x60; - sort by node name  | [optional] 
+ **order_by** | **str**| Sort the nodes in ascending or descending order. Example: - &#x60;asc&#x60; - sort in ascending order - &#x60;desc&#x60; - sort in descending order  | [optional] 
 
 ### Return type
 
