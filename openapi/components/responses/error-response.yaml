@@ -178,8 +178,9 @@ content:
       model-unsupported:
         summary: Model for VRAM prediction not supported
         value:
-          type: "https://api.exalsius.ai/errors/bad-request"
-          title: "Unsupported value for parameter model"
-          status: 422
-          detail: "The model provided for VRAM prediction is not supported. Check /vram-prediction/metadata for a list of supported models."
-          instance: "/vram-prediction"
+          detail:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Unsupported value for parameter model"
+            status: 422
+            detail: "The model provided for VRAM prediction is not supported. Check /vram-prediction/metadata for a list of supported models."
+            instance: "/vram-prediction"

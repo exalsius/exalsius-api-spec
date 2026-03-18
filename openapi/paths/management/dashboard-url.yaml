@@ -1,0 +1,19 @@
+get:
+  operationId: getDashboardUrl
+  tags: [management]
+  summary: Get dashboard URL
+  description: |
+    **Retrieve the URL to the tenant-scoped Grafana instance with various dashboards**
+    
+    Returns the URL to the tenant-scoped Grafana instance with various dashboards.
+  
+  responses:
+    '200':
+      $ref: '../../components/responses/dashboard-url-response.yaml'
+      useExample: success
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error

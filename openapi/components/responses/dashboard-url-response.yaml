@@ -1,0 +1,11 @@
+description: Dashboard URL response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/dashboard-url-response.yaml'
+    examples:
+      success:
+        summary: Dashboard URL
+        value:
+          url: "https://tenant-a.grafana.exalsius.ai"
+

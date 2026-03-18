@@ -10,5 +10,6 @@ content:
           total_vram: 24.0
           model_vram: 2.0
           optimizer_vram: 4.0
-          gradient_vram: 2.0
+          optimizer_intermediate_vram: 14.0
+          gradients_vram: 2.0
           activations_vram: 10.0

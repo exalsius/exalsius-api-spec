@@ -103,10 +103,6 @@ paths:
     $ref: ./paths/clusters/logs.yaml
   /cluster/{cluster_id}/kubeconfig:
     $ref: ./paths/clusters/kubeconfig.yaml
-  /cluster/{cluster_id}/dashboard-auth:
-    $ref: ./paths/clusters/dashboard-auth.yaml
-  /cluster/{cluster_id}/dashboard-url:
-    $ref: ./paths/clusters/dashboard-url.yaml
   /colonies:
     $ref: ./paths/colonies/list.yaml
   /colony/{colony_id}:
@@ -139,6 +135,8 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
+  /management/dashboard-url:
+    $ref: ./paths/management/dashboard-url.yaml
 components:
   schemas:
     Offer:
@@ -234,8 +232,6 @@ components:
       $ref: ./components/responses/cluster-create-response.yaml
     ClusterDeployResponse:
       $ref: ./components/responses/cluster-deploy-response.yaml
-    ClusterDashboardUrlResponse:
-      $ref: ./components/responses/cluster-dashboard-url-response.yaml
     ClusterKubeconfigResponse:
       $ref: ./components/responses/cluster-kubeconfig-response.yaml
     ClusterNodeRemoveResponse:
@@ -280,6 +276,8 @@ components:
       $ref: ./components/responses/ssh-keys-list-response.yaml
     SshKeyCreateResponse:
       $ref: ./components/responses/ssh-key-create-response.yaml
+    DashboardUrlResponse:
+      $ref: ./components/responses/dashboard-url-response.yaml
   securitySchemes:
     OAuth2:
       type: oauth2
@@ -292,7 +290,6 @@ components:
             openid: Request an ID token (mandatory for OIDC)
             gpuradar: Scope used for GPU radar operations
             nodeagent: Scope used for node agent operations
-            viewdashboard: Scope used for viewing dashboard
 security:
   - OAuth2:
       - openid
