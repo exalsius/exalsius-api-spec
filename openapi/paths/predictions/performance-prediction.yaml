@@ -38,6 +38,7 @@ post:
               batch_size: 4
               sequence_length: 2048
               accumulation_steps: 4
+              dataset_size: 1000000
           gemma-training:
             summary: Gemma 3 1B training with gradient accumulation
             value:
@@ -46,6 +47,7 @@ post:
               batch_size: 8
               sequence_length: 1024
               accumulation_steps: 2
+              dataset_size: 500000
 
   responses:
     '200':

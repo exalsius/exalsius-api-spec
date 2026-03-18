@@ -28,7 +28,7 @@ content:
                 access_protocol: "HTTP"
                 port_name: "jupyter"
                 port_number: 30080
-                external_ip: "123.456.789.012"
+                external_ips: ["123.456.789.12"]
                 access_description: "Access the Jupyter Notebook UI"
             resources:
               gpu_count: 1
