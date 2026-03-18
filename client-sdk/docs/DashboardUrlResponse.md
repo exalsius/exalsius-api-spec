@@ -5,7 +5,7 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**url** | **str** | The URL to Grafana dashboards | 
+**url** | **str** | The URL to the tenant-scoped Grafana instance with various dashboards | 
 
 ## Example
 

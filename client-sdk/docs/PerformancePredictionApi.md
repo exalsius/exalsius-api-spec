@@ -57,7 +57,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.PerformancePredictionApi(api_client)
-    performance_prediction_request = {"model_name":"LLAMA3_2_3B","optimizer":"adamw","batch_size":4,"sequence_length":2048,"accumulation_steps":4} # PerformancePredictionRequest | 
+    performance_prediction_request = {"model_name":"LLAMA3_2_3B","optimizer":"adamw","batch_size":4,"sequence_length":2048,"accumulation_steps":4,"dataset_size":1000000} # PerformancePredictionRequest | 
 
     try:
         # Get runtime performance predictions for a GPU-accelerated workload configuration
