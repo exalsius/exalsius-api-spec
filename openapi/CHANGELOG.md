@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.41.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.40.0...openapi-v1.41.0) (2026-03-18)
+
+
+### Features
+
+* regional changes ([#194](https://github.com/exalsius/exalsius-api-spec/issues/194)) ([bbf8e75](https://github.com/exalsius/exalsius-api-spec/commit/bbf8e7568e9806250bb7e6fbc81c67418c6546dc))
+
 ## [1.40.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.39.0...openapi-v1.40.0) (2026-03-13)
 
 
