@@ -1105,13 +1105,13 @@ class NodesApi:
         sort_field: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+                description="Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name "
             ),
         ] = None,
         order_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+                description="Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order "
             ),
         ] = None,
         _request_timeout: Union[
@@ -1134,9 +1134,9 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
-        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :param sort_field: Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name
         :type sort_field: str
-        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order
         :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1203,13 +1203,13 @@ class NodesApi:
         sort_field: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+                description="Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name "
             ),
         ] = None,
         order_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+                description="Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order "
             ),
         ] = None,
         _request_timeout: Union[
@@ -1232,9 +1232,9 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
-        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :param sort_field: Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name
         :type sort_field: str
-        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order
         :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1301,13 +1301,13 @@ class NodesApi:
         sort_field: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name "
+                description="Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name "
             ),
         ] = None,
         order_by: Annotated[
             Optional[StrictStr],
             Field(
-                description="Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order "
+                description="Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order "
             ),
         ] = None,
         _request_timeout: Union[
@@ -1330,9 +1330,9 @@ class NodesApi:
         :type node_type: str
         :param provider: Only return nodes of this provider. Example: - `aws` - only AWS node instances
         :type provider: str
-        :param sort_field: Sort the nodes by this field. Example: - `created_at` - sort by creation date - `hostname` - sort by node name
+        :param sort_field: Sort the nodes by this field. Example: - `CREATED_AT` - sort by creation date - `HOSTNAME` - sort by node name
         :type sort_field: str
-        :param order_by: Sort the nodes in ascending or descending order. Example: - `asc` - sort in ascending order - `desc` - sort in descending order
+        :param order_by: Sort the nodes in ascending or descending order. Example: - `ASC` - sort in ascending order - `DESC` - sort in descending order
         :type order_by: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
