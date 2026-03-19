@@ -56,24 +56,24 @@ get:
       description: |
         Sort the nodes by this field.
         Example:
-        - `created_at` - sort by creation date
-        - `hostname` - sort by node name
+        - `CREATED_AT` - sort by creation date
+        - `HOSTNAME` - sort by node name
       schema:
         type: string
-        enum: [created_at, hostname]
-        x-enum-varnames: [created_at, hostname]
+        enum: [CREATED_AT, HOSTNAME]
+        x-enum-varnames: [CREATED_AT, HOSTNAME]
     - name: order_by
       in: query
       required: false
       description: |
         Sort the nodes in ascending or descending order.
         Example:
-        - `asc` - sort in ascending order
-        - `desc` - sort in descending order
+        - `ASC` - sort in ascending order
+        - `DESC` - sort in descending order
       schema:
         type: string
-        enum: [asc, desc]
-        x-enum-varnames: [asc, desc]
+        enum: [ASC, DESC]
+        x-enum-varnames: [ASC, DESC]
 
   responses:
     '200':
