@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.41.1](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.41.0...openapi-v1.41.1) (2026-03-19)
+
+
+### Bug Fixes
+
+* change ordering enums to uppercase to ensure swagger provides correct defaults ([#196](https://github.com/exalsius/exalsius-api-spec/issues/196)) ([a270636](https://github.com/exalsius/exalsius-api-spec/commit/a27063603ace3498bdfe66b4991c807ed6ddd1fe))
+
 ## [1.41.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.40.0...openapi-v1.41.0) (2026-03-18)
 
 
