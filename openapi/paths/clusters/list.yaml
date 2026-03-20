@@ -6,7 +6,7 @@ get:
     **List all clusters**
     
     Retrieve all clusters associated with your account. You can filter clusters by their status to find 
-    clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for 
+    clusters in specific states (PENDING, DEPLOYING, READY, DELETING, or FAILED). This endpoint is useful for
     monitoring cluster health and managing your infrastructure.
 
     **Examples**
@@ -25,17 +25,19 @@ get:
         - `PENDING` - clusters that are pending (not yet deployed)
         - `DEPLOYING` - clusters that are being deployed
         - `READY` - clusters that are ready
+        - `DELETING` - clusters that are being deleted
         - `FAILED` - clusters that failed
       required: false
       schema:
         type: string
-        enum: [PENDING, DEPLOYING, READY, FAILED]
-        x-enum-varnames: [PENDING, DEPLOYING, READY, FAILED]
+        enum: [PENDING, DEPLOYING, READY, DELETING, FAILED]
+        x-enum-varnames: [PENDING, DEPLOYING, READY, DELETING, FAILED]
         description: >
           The status of the cluster.
           - `PENDING`: Cluster is pending (not yet deployed)
           - `DEPLOYING`: Cluster is being deployed
           - `READY`: Cluster is ready
+          - `DELETING`: Cluster is being deleted
           - `FAILED`: Cluster is failed
 
   responses:

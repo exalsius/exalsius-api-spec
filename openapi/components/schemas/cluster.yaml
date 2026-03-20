@@ -66,15 +66,16 @@ properties:
     default: false
   cluster_status:
     type: string
-    enum: [PENDING, DEPLOYING, READY, FAILED]
-    x-enum-varnames: [PENDING, DEPLOYING, READY, FAILED]
+    enum: [PENDING, DEPLOYING, READY, DELETING, FAILED]
+    x-enum-varnames: [PENDING, DEPLOYING, READY, DELETING, FAILED]
     description: >
       The status of the cluster.
       - `PENDING`: Cluster is pending (not yet deployed)
       - `DEPLOYING`: Cluster is being deployed
       - `READY`: Cluster is ready
+      - `DELETING`: Cluster is being deleted
       - `FAILED`: Cluster is failed
-    example: "DEPLOYING"
+    example: "DELETING"
   cluster_labels:
     type: object
     additionalProperties:
