@@ -68,7 +68,7 @@ class ManagementApi:
     ) -> SshKeyCreateResponse:
         """Add an SSH key
 
-        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds   to a public key installed on the target node(s) - `scope` (optional): The visibility scope of the key. Use 'private' (default) for keys only you can access,   or 'org' for keys accessible by all members of your organization  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -134,7 +134,7 @@ class ManagementApi:
     ) -> ApiResponse[SshKeyCreateResponse]:
         """Add an SSH key
 
-        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds   to a public key installed on the target node(s) - `scope` (optional): The visibility scope of the key. Use 'private' (default) for keys only you can access,   or 'org' for keys accessible by all members of your organization  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -200,7 +200,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Add an SSH key
 
-        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds    to a public key installed on the target node(s)  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
+        **Add an SSH key**  Add a new SSH key to your account. SSH keys are required for importing self-managed nodes via SSH.  The private key must be provided in base64-encoded format.  **Request Body:** - `name`: A descriptive name for the SSH key (e.g., \"my-server-key\") - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds   to a public key installed on the target node(s) - `scope` (optional): The visibility scope of the key. Use 'private' (default) for keys only you can access,   or 'org' for keys accessible by all members of your organization  **Result:** Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed  nodes via the `POST /node/import/ssh` endpoint.  **Security Note:** The private key is stored securely and is never returned in subsequent API calls. Only the key ID and  name are accessible after creation.
 
         :param ssh_key_create_request: (required)
         :type ssh_key_create_request: SshKeyCreateRequest
@@ -328,7 +328,7 @@ class ManagementApi:
     ) -> None:
         """Delete an SSH key
 
-        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to   use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key - For organization-wide (`scope: org`) keys, only the original creator or an organization admin can delete the key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -396,7 +396,7 @@ class ManagementApi:
     ) -> ApiResponse[None]:
         """Delete an SSH key
 
-        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to   use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key - For organization-wide (`scope: org`) keys, only the original creator or an organization admin can delete the key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -464,7 +464,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """Delete an SSH key
 
-        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to    use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key
+        **Delete an SSH key**  Permanently delete an SSH key from your account. This operation is irreversible.  **Warning: This operation is irreversible.**  **Behavior:** - The SSH key will be permanently removed from your account - Any nodes that were imported using this SSH key will continue to function, but you won't be able to   use this key for future node imports - If you need to import new nodes, you'll need to create a new SSH key - For organization-wide (`scope: org`) keys, only the original creator or an organization admin can delete the key
 
         :param ssh_key_id: ID of the SSH key to delete (required)
         :type ssh_key_id: str
@@ -1511,7 +1511,7 @@ class ManagementApi:
     ) -> SshKeysListResponse:
         """List all SSH keys
 
-        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
+        **List all SSH keys**  Retrieve all SSH keys accessible to you. This includes your own private SSH keys and all organization-wide SSH keys in your namespace. SSH keys are used to authenticate with self-managed nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID, name, and scope. The scope indicates whether a key is 'private' (visible only to the owner) or 'org' (visible to all organization members). The private key itself is never returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1573,7 +1573,7 @@ class ManagementApi:
     ) -> ApiResponse[SshKeysListResponse]:
         """List all SSH keys
 
-        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
+        **List all SSH keys**  Retrieve all SSH keys accessible to you. This includes your own private SSH keys and all organization-wide SSH keys in your namespace. SSH keys are used to authenticate with self-managed nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID, name, and scope. The scope indicates whether a key is 'private' (visible only to the owner) or 'org' (visible to all organization members). The private key itself is never returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -1635,7 +1635,7 @@ class ManagementApi:
     ) -> RESTResponseType:
         """List all SSH keys
 
-        **List all SSH keys**  Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed  nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never  returned for security reasons.
+        **List all SSH keys**  Retrieve all SSH keys accessible to you. This includes your own private SSH keys and all organization-wide SSH keys in your namespace. SSH keys are used to authenticate with self-managed nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.  **Result:** Returns an array of SSH key objects, each containing the key ID, name, and scope. The scope indicates whether a key is 'private' (visible only to the owner) or 'org' (visible to all organization members). The private key itself is never returned for security reasons.
 
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

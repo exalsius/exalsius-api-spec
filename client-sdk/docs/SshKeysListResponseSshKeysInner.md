@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** |  | [optional] 
 **name** | **str** |  | [optional] 
+**scope** | **str** | The visibility scope of the SSH key (&#39;private&#39; or &#39;org&#39;) | [optional] 
 
 ## Example
 

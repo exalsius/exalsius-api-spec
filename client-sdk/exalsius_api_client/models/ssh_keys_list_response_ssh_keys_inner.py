@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -30,7 +30,21 @@ class SshKeysListResponseSshKeysInner(BaseModel):
 
     id: Optional[StrictStr] = None
     name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name"]
+    scope: Optional[StrictStr] = Field(
+        default=None,
+        description="The visibility scope of the SSH key ('private' or 'org')",
+    )
+    __properties: ClassVar[List[str]] = ["id", "name", "scope"]
+
+    @field_validator("scope")
+    def scope_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["private", "org"]):
+            raise ValueError("must be one of enum values ('private', 'org')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -80,5 +94,7 @@ class SshKeysListResponseSshKeysInner(BaseModel):
         if not isinstance(obj, dict):
             return cls.model_validate(obj)
 
-        _obj = cls.model_validate({"id": obj.get("id"), "name": obj.get("name")})
+        _obj = cls.model_validate(
+            {"id": obj.get("id"), "name": obj.get("name"), "scope": obj.get("scope")}
+        )
         return _obj

@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | The name of the SSH key | 
 **private_key_b64** | **str** | The private key of the SSH key b64 encoded | 
+**scope** | **str** | The visibility scope of the SSH key. &#39;private&#39; keys are only accessible by the owner. &#39;org&#39; keys are accessible by all members of the organization. | [optional] [default to 'private']
 
 ## Example
 

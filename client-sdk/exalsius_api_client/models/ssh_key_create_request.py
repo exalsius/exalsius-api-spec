@@ -19,7 +19,7 @@ import pprint
 import re  # noqa: F401
 from typing import Any, ClassVar, Dict, List, Optional, Set
 
-from pydantic import BaseModel, ConfigDict, Field, StrictStr
+from pydantic import BaseModel, ConfigDict, Field, StrictStr, field_validator
 from typing_extensions import Self
 
 
@@ -32,7 +32,21 @@ class SshKeyCreateRequest(BaseModel):
     private_key_b64: StrictStr = Field(
         description="The private key of the SSH key b64 encoded"
     )
-    __properties: ClassVar[List[str]] = ["name", "private_key_b64"]
+    scope: Optional[StrictStr] = Field(
+        default="private",
+        description="The visibility scope of the SSH key. 'private' keys are only accessible by the owner. 'org' keys are accessible by all members of the organization.",
+    )
+    __properties: ClassVar[List[str]] = ["name", "private_key_b64", "scope"]
+
+    @field_validator("scope")
+    def scope_validate_enum(cls, value):
+        """Validates the enum"""
+        if value is None:
+            return value
+
+        if value not in set(["private", "org"]):
+            raise ValueError("must be one of enum values ('private', 'org')")
+        return value
 
     model_config = ConfigDict(
         populate_by_name=True,
@@ -83,6 +97,12 @@ class SshKeyCreateRequest(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate(
-            {"name": obj.get("name"), "private_key_b64": obj.get("private_key_b64")}
+            {
+                "name": obj.get("name"),
+                "private_key_b64": obj.get("private_key_b64"),
+                "scope": (
+                    obj.get("scope") if obj.get("scope") is not None else "private"
+                ),
+            }
         )
         return _obj
