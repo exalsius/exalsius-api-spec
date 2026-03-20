@@ -13,6 +13,12 @@ properties:
           format: uuid
         name:
           type: string
+        scope:
+          type: string
+          description: The visibility scope of the SSH key ('private' or 'org')
+          enum:
+            - private
+            - org
   total:
     type: integer
     format: int32
