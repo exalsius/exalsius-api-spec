@@ -17,6 +17,18 @@ properties:
     type: string
     description: The owner of the SSH key
     example: "John Doe"
+  namespace:
+    type: string
+    description: The namespace of the SSH key (organization namespace)
+    example: "my-org-default"
+  scope:
+    type: string
+    description: The visibility scope of the SSH key. 'private' keys are only accessible by the owner. 'org' keys are accessible by all members of the organization.
+    enum:
+      - private
+      - org
+    default: private
+    example: "private"
 required:
   - name
   - private_key

@@ -11,3 +11,11 @@ properties:
     type: string
     description: The private key of the SSH key b64 encoded
     example: "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."
+  scope:
+    type: string
+    description: The visibility scope of the SSH key. 'private' keys are only accessible by the owner. 'org' keys are accessible by all members of the organization.
+    enum:
+      - private
+      - org
+    default: private
+    example: "private"

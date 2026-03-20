@@ -5,12 +5,14 @@ get:
   description: |
     **List all SSH keys**
     
-    Retrieve all SSH keys associated with your account. SSH keys are used to authenticate with self-managed 
-    nodes when importing them via SSH. Each SSH key has a unique identifier that can be used when importing nodes.
-    
+    Retrieve all SSH keys accessible to you. This includes your own private SSH keys and all organization-wide
+    SSH keys in your namespace. SSH keys are used to authenticate with self-managed nodes when importing them
+    via SSH. Each SSH key has a unique identifier that can be used when importing nodes.
+
     **Result:**
-    Returns an array of SSH key objects, each containing the key ID and name. The private key itself is never 
-    returned for security reasons.
+    Returns an array of SSH key objects, each containing the key ID, name, and scope. The scope indicates
+    whether a key is 'private' (visible only to the owner) or 'org' (visible to all organization members).
+    The private key itself is never returned for security reasons.
 
   responses:
     "200":
@@ -47,8 +49,10 @@ post:
     
     **Request Body:**
     - `name`: A descriptive name for the SSH key (e.g., "my-server-key")
-    - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds 
+    - `private_key_b64`: The private SSH key, base64 encoded. This should be the private key that corresponds
       to a public key installed on the target node(s)
+    - `scope` (optional): The visibility scope of the key. Use 'private' (default) for keys only you can access,
+      or 'org' for keys accessible by all members of your organization
     
     **Result:**
     Returns the created SSH key object with its unique identifier. Use this ID when importing self-managed 
@@ -66,10 +70,16 @@ post:
           $ref: '../../components/requests/ssh-key-create-request.yaml'
         examples:
           basic-ssh-key:
-            summary: Add an SSH key
+            summary: Add a private SSH key
             value:
               name: "my-ssh-key"
               private_key_b64: "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."
+          org-ssh-key:
+            summary: Add an organization-wide SSH key
+            value:
+              name: "team-shared-key"
+              private_key_b64: "LS0tLS1CRUdJTiBPUEVOU1NIIFBSSVZBVEUgS0VZLS0tLS0KYjNCbGJuTnphQzFyWlhrdGRqRUFBQUFBQkc1dmJtVUFBQUFFYm05..."
+              scope: "org"
   responses:
     "201":
       $ref: "../../components/responses/ssh-key-create-response.yaml"
