@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.44.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.43.0...v1.44.0) (2026-03-20)
+
+
+### Features
+
+* **ssh-key:** add organization-wide SSH key scope ([#200](https://github.com/exalsius/exalsius-api-spec/issues/200)) ([1b187a5](https://github.com/exalsius/exalsius-api-spec/commit/1b187a5b1ba6b4ac2bb9b270156e5e9070190d9b))
+
 ## [1.43.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.42.1...v1.43.0) (2026-03-20)
 
 
