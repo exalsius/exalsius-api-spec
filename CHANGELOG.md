@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.43.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.42.1...v1.43.0) (2026-03-20)
+
+
+### Features
+
+* add cluster deletion phase ([#198](https://github.com/exalsius/exalsius-api-spec/issues/198)) ([7fe1f92](https://github.com/exalsius/exalsius-api-spec/commit/7fe1f92ae415f1ac83ca928328b315f101054be0))
+
 ## [1.42.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.42.0...v1.42.1) (2026-03-19)
 
 
