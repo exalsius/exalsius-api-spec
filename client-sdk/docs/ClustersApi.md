@@ -1053,7 +1053,7 @@ List all clusters
 **List all clusters**
 
 Retrieve all clusters associated with your account. You can filter clusters by their status to find 
-clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for 
+clusters in specific states (PENDING, DEPLOYING, READY, DELETING, or FAILED). This endpoint is useful for
 monitoring cluster health and managing your infrastructure.
 
 **Examples**
@@ -1091,7 +1091,7 @@ configuration.access_token = os.environ["ACCESS_TOKEN"]
 with exalsius_api_client.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = exalsius_api_client.ClustersApi(api_client)
-    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed  (optional)
+    cluster_status = 'cluster_status_example' # str | Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed  (optional)
 
     try:
         # List all clusters
@@ -1109,7 +1109,7 @@ with exalsius_api_client.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;PENDING&#x60; - clusters that are pending (not yet deployed) - &#x60;DEPLOYING&#x60; - clusters that are being deployed - &#x60;READY&#x60; - clusters that are ready - &#x60;FAILED&#x60; - clusters that failed  | [optional] 
+ **cluster_status** | **str**| Only return clusters of this status. Possible values: - &#x60;PENDING&#x60; - clusters that are pending (not yet deployed) - &#x60;DEPLOYING&#x60; - clusters that are being deployed - &#x60;READY&#x60; - clusters that are ready - &#x60;DELETING&#x60; - clusters that are being deleted - &#x60;FAILED&#x60; - clusters that failed  | [optional] 
 
 ### Return type
 

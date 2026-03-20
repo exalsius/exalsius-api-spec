@@ -2943,7 +2943,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -2960,9 +2960,9 @@ class ClustersApi:
     ) -> ClustersListResponse:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, DELETING, or FAILED). This endpoint is useful for monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3014,7 +3014,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3031,9 +3031,9 @@ class ClustersApi:
     ) -> ApiResponse[ClustersListResponse]:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, DELETING, or FAILED). This endpoint is useful for monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request
@@ -3085,7 +3085,7 @@ class ClustersApi:
         cluster_status: Annotated[
             Optional[StrictStr],
             Field(
-                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed "
+                description="Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed "
             ),
         ] = None,
         _request_timeout: Union[
@@ -3102,9 +3102,9 @@ class ClustersApi:
     ) -> RESTResponseType:
         """List all clusters
 
-        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, or FAILED). This endpoint is useful for  monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
+        **List all clusters**  Retrieve all clusters associated with your account. You can filter clusters by their status to find  clusters in specific states (PENDING, DEPLOYING, READY, DELETING, or FAILED). This endpoint is useful for monitoring cluster health and managing your infrastructure.  **Examples**  Here's an example of how to filter by status:   ```   /clusters?cluster_status=READY   ```
 
-        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `FAILED` - clusters that failed
+        :param cluster_status: Only return clusters of this status. Possible values: - `PENDING` - clusters that are pending (not yet deployed) - `DEPLOYING` - clusters that are being deployed - `READY` - clusters that are ready - `DELETING` - clusters that are being deleted - `FAILED` - clusters that failed
         :type cluster_status: str
         :param _request_timeout: timeout setting for this request. If one
                                  number provided, it will be total request

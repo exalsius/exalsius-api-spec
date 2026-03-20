@@ -76,7 +76,7 @@ class Cluster(BaseModel):
         description="Whether telemetry data collection is enabled for the cluster",
     )
     cluster_status: StrictStr = Field(
-        description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `FAILED`: Cluster is failed "
+        description="The status of the cluster. - `PENDING`: Cluster is pending (not yet deployed) - `DEPLOYING`: Cluster is being deployed - `READY`: Cluster is ready - `DELETING`: Cluster is being deleted - `FAILED`: Cluster is failed "
     )
     cluster_labels: Optional[Dict[str, StrictStr]] = Field(
         default=None, description="The labels of the cluster (optional)."
@@ -165,9 +165,9 @@ class Cluster(BaseModel):
     @field_validator("cluster_status")
     def cluster_status_validate_enum(cls, value):
         """Validates the enum"""
-        if value not in set(["PENDING", "DEPLOYING", "READY", "FAILED"]):
+        if value not in set(["PENDING", "DEPLOYING", "READY", "DELETING", "FAILED"]):
             raise ValueError(
-                "must be one of enum values ('PENDING', 'DEPLOYING', 'READY', 'FAILED')"
+                "must be one of enum values ('PENDING', 'DEPLOYING', 'READY', 'DELETING', 'FAILED')"
             )
         return value
 
