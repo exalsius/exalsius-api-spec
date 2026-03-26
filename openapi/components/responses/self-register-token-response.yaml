@@ -1,0 +1,10 @@
+description: Self-register token response
+content:
+  application/json:
+    schema:
+      $ref: '../schemas/self-register-token.yaml'
+    examples:
+      success:
+        summary: Generated self-register token
+        value:
+          register_token: "MY_SECRET_TOKEN"
