@@ -137,6 +137,8 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
+  /management/generate-self-register-token:
+    $ref: ./paths/management/generate-self-register-token.yaml
   /management/dashboard-url:
     $ref: ./paths/management/dashboard-url.yaml
 components:
@@ -213,6 +215,8 @@ components:
       $ref: ./components/schemas/workspaces-list-response.yaml
     SshKey:
       $ref: ./components/schemas/ssh-key.yaml
+    SelfRegisterToken:
+      $ref: ./components/schemas/self-register-token.yaml
     Kubeconfig:
       $ref: ./components/schemas/kubeconfig.yaml
     ClusterEventPayload:
@@ -282,6 +286,8 @@ components:
       $ref: ./components/responses/ssh-keys-list-response.yaml
     SshKeyCreateResponse:
       $ref: ./components/responses/ssh-key-create-response.yaml
+    SelfRegisterTokenResponse:
+      $ref: ./components/responses/self-register-token-response.yaml
     DashboardUrlResponse:
       $ref: ./components/responses/dashboard-url-response.yaml
   securitySchemes:
