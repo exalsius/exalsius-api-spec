@@ -1,6 +1,7 @@
 type: object
 required:
   - register_token
+  - owner
 properties:
   register_token:
     type: string
