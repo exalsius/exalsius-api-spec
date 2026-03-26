@@ -6,3 +6,7 @@ properties:
     type: string
     description: The token used by a node agent to call `POST /node/self-register`.
     example: "MY_SECRET_TOKEN"
+  owner:
+    type: string
+    description: The owner of the token
+    example: "John Doe"
