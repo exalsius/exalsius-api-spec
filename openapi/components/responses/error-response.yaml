@@ -148,6 +148,15 @@ content:
             status: 409
             detail: "The node with ID 123 is not in the `available` state."
             instance: "/nodes/123"
+      invalid-register-token:
+        summary: Unauthorized Node Self Register Request
+        value:
+          detail:
+            type: "https://api.exalsius.ai/errors/invalid-register-token"
+            title: "Unauthorized"
+            status: 401
+            detail: "The provided register token are invalid or expired."
+            instance: "/node/self-register"
       server-error:
         summary: Internal Server Error
         value:

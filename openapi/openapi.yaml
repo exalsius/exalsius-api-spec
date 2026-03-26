@@ -85,6 +85,8 @@ paths:
     $ref: ./paths/nodes/import-ssh.yaml
   /node/import/offer/{offer_id}:
     $ref: ./paths/nodes/import-offer.yaml
+  /node/self-register:
+    $ref: ./paths/nodes/self-register-node.yaml
   /clusters:
     $ref: ./paths/clusters/list.yaml
   /clusters/adopt:
@@ -161,6 +163,8 @@ components:
       $ref: ./components/schemas/node-import-response.yaml
     NodePatchResponse:
       $ref: ./components/schemas/node-patch-response.yaml
+    NodeSelfRegisterResponse:
+      $ref: ./components/schemas/node-self-register-response.yaml
     Cluster:
       $ref: ./components/schemas/cluster.yaml
     ClustersListResponse:
@@ -228,6 +232,8 @@ components:
       $ref: ./components/responses/node-import-response.yaml
     NodePatchResponse:
       $ref: ./components/responses/node-patch-response.yaml
+    NodeSelfRegisterResponse:
+      $ref: ./components/responses/node-self-register-response.yaml
     ClusterCreateResponse:
       $ref: ./components/responses/cluster-create-response.yaml
     ClusterDeployResponse:
