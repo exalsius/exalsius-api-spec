@@ -2,7 +2,7 @@ description: Self-register token response
 content:
   application/json:
     schema:
-      $ref: '../schemas/self-register-token.yaml'
+      $ref: '../schemas/self-register-token-response.yaml'
     examples:
       success:
         summary: Generated self-register token
