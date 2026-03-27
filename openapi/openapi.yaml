@@ -137,7 +137,7 @@ paths:
     $ref: ./paths/management/list-ssh-keys.yaml
   /management/ssh-key/{ssh_key_id}:
     $ref: ./paths/management/ssh-key.yaml
-  /management/generate-self-register-token:
+  /management/self-register-token:
     $ref: ./paths/management/generate-self-register-token.yaml
   /management/dashboard-url:
     $ref: ./paths/management/dashboard-url.yaml
