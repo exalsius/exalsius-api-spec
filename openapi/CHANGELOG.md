@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.44.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.43.0...openapi-v1.44.0) (2026-03-31)
+
+
+### Features
+
+* add endpoint for retrieving active self-register token ([4a3f273](https://github.com/exalsius/exalsius-api-spec/commit/4a3f273be783b855611e9beeaf1cf627509a2703))
+* add node self-register endpoint ([be9a8e4](https://github.com/exalsius/exalsius-api-spec/commit/be9a8e4f69397d5dd2c2e2585c68492e92aa654f))
+* add node self-register token ([4ac1690](https://github.com/exalsius/exalsius-api-spec/commit/4ac169098b261569594b9a98844bbb26494a31ba))
+* self register agent ([0225269](https://github.com/exalsius/exalsius-api-spec/commit/02252697fd35b49a1deb17716b235d0591c10361))
+* self-register agent functionality ([0225269](https://github.com/exalsius/exalsius-api-spec/commit/02252697fd35b49a1deb17716b235d0591c10361))
+
 ## [1.43.0](https://github.com/exalsius/exalsius-api-spec/compare/openapi-v1.42.0...openapi-v1.43.0) (2026-03-20)
 
 
