@@ -1,0 +1,95 @@
+post:
+  operationId: selfRegisterNode
+  tags: [nodes]
+  summary: Self-register a node using a registration token
+  security: []
+  description: |
+    **Self-register a node**
+
+    Use this endpoint as the bootstrap entrypoint for a node agent that needs to register itself with exalsius.
+    The agent authenticates with a one-time or pre-issued `register_token` and submits the SSH and node metadata
+    required to create or attach the node.
+
+    **Parameters**
+
+    To self-register a node, provide:
+    - The `register_token` issued for the node bootstrap flow
+    - The node hostname
+    - The SSH endpoint reachable by exalsius (for example `192.168.1.1:22`)
+    - The SSH username
+    - The SSH key ID that should be used for ongoing management
+
+    Optional hardware, software, and system details can be included during registration.
+
+    **Result**
+
+    Returns the created node ID and the next access token the node agent should use for subsequent authenticated operations.
+
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/node-self-register-request.yaml'
+        examples:
+          bootstrap:
+            summary: Register a node agent
+            value:
+              register_token: "MY_SECRET_TOKEN"
+              hostname: "my-node-123"
+              endpoint: "192.168.1.1:22"
+              username: "ubuntu"
+              ssh_key_id: "123e4567-e89b-12d3-a456-426614174000"
+              price_per_hour: 0.10
+  responses:
+    '201':
+      $ref: '../../components/responses/node-self-register-response.yaml'
+      useExample: success
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '401':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: invalid-register-token
+    '409':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: node-already-exists
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/node/self-register" \
+          -H "Content-Type: application/json" \
+          -d '{"register_token":"MY_SECRET_TOKEN","hostname":"my-node-123","endpoint":"192.168.1.1:22","username":"ubuntu","ssh_key_id":"123e4567-e89b-12d3-a456-426614174000"}'
+    - lang: python
+      label: Python
+      source: |
+        import requests
+
+        def self_register_node(
+            register_token: str,
+            hostname: str,
+            endpoint: str,
+            username: str,
+            ssh_key_id: str,
+        ) -> dict:
+            """
+            Self-register a node and receive the next access token.
+            """
+            url = "https://api.exalsius.ai/node/self-register"
+            headers = {
+                "Content-Type": "application/json"
+            }
+            data = {
+                "register_token": register_token,
+                "hostname": hostname,
+                "endpoint": endpoint,
+                "username": username,
+                "ssh_key_id": ssh_key_id,
+            }
+            response = requests.post(url, headers=headers, json=data)
+            response.raise_for_status()
+            return response.json()

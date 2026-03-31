@@ -1,0 +1,82 @@
+get:
+  operationId: getSelfRegisterToken
+  tags: [management]
+  summary: Get the active self-register token
+  description: |
+    **Get the active self-register token**
+
+    Retrieve the currently active self-register token that can be used by a node agent to bootstrap itself through
+    `POST /node/self-register`.
+
+    **Result**
+
+    Returns the active self-register token.
+
+  responses:
+    '200':
+      $ref: '../../components/responses/self-register-token-response.yaml'
+      useExample: success
+    '404':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: self-register-token-not-found
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X GET "https://api.exalsius.ai/management/generate-self-register-token"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+
+        response = requests.get(
+            "https://api.exalsius.ai/management/generate-self-register-token"
+        )
+        print(response.json())
+
+post:
+  operationId: generateSelfRegisterToken
+  tags: [management]
+  summary: Generate a self-register token
+  description: |
+    **Generate a self-register token**
+
+    Generate a self-register token that can be used by a node agent to bootstrap itself through
+    `POST /node/self-register`.
+
+    If a self-register token already exists for your account or tenant bootstrap flow, this endpoint rotates it
+    and returns the newly active token.
+
+    **Result**
+
+    Returns the active self-register token.
+
+  responses:
+    '200':
+      $ref: '../../components/responses/self-register-token-response.yaml'
+      useExample: success
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
+
+  x-codeSamples:
+    - lang: curl
+      label: cURL
+      source: |
+        curl -X POST "https://api.exalsius.ai/management/generate-self-register-token"
+    - lang: python
+      label: Python
+      source: |
+        import requests
+
+        response = requests.post(
+            "https://api.exalsius.ai/management/generate-self-register-token"
+        )
+        print(response.json())

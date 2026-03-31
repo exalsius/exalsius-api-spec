@@ -1,0 +1,41 @@
+type: object
+required:
+  - register_token
+  - hostname
+  - endpoint
+  - username
+  - ssh_key_id
+properties:
+  register_token:
+    type: string
+    description: The token used to register the node
+    example: "MY_SECRET_TOKEN"
+  hostname:
+    type: string
+    description: The hostname of the node
+    example: "my-node-123"
+  endpoint:
+    type: string
+    description: IP or hostname reachable over SSH
+    example: "192.168.1.1:22"
+  username:
+    type: string
+    description: Username to access the node
+    example: "ubuntu"
+  ssh_key_id:
+    type: string
+    description: The ID of the SSH key to use for the node
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  price_per_hour:
+    type: number
+    format: float
+    default: 0.0
+    example: 0.10
+    description: Price per hour for the node, in USD
+  hardware:
+    $ref: '../schemas/node-hardware.yaml'
+  software:
+    $ref: '../schemas/node-software.yaml'
+  system:
+    $ref: '../schemas/node-system.yaml'
+

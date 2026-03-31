@@ -1,0 +1,18 @@
+type: object
+required:
+  - register_token
+  - owner
+  - org_namespace
+properties:
+  register_token:
+    type: string
+    description: The token used by a node agent to call `POST /node/self-register`.
+    example: "MY_SECRET_TOKEN"
+  owner:
+    type: string
+    description: The owner of the token
+    example: "John Doe"
+  org_namespace:
+    type: string
+    description: The organization namespace of the token
+    example: "acme"
