@@ -51,6 +51,8 @@ docs/NodeImportSshRequest.md
 docs/NodePatchRequest.md
 docs/NodePatchResponse.md
 docs/NodeResponse.md
+docs/NodeSelfRegisterRequest.md
+docs/NodeSelfRegisterResponse.md
 docs/NodeSoftware.md
 docs/NodeSystem.md
 docs/NodesApi.md
@@ -64,6 +66,8 @@ docs/PerformancePredictionApi.md
 docs/PerformancePredictionRequest.md
 docs/PerformancePredictionResponse.md
 docs/SelfManagedNode.md
+docs/SelfRegisterToken.md
+docs/SelfRegisterTokenResponse.md
 docs/Service.md
 docs/ServiceCreateResponse.md
 docs/ServiceDeleteResponse.md
@@ -158,6 +162,8 @@ exalsius_api_client/models/node_import_ssh_request.py
 exalsius_api_client/models/node_patch_request.py
 exalsius_api_client/models/node_patch_response.py
 exalsius_api_client/models/node_response.py
+exalsius_api_client/models/node_self_register_request.py
+exalsius_api_client/models/node_self_register_response.py
 exalsius_api_client/models/node_software.py
 exalsius_api_client/models/node_system.py
 exalsius_api_client/models/nodes_list_response.py
@@ -168,6 +174,8 @@ exalsius_api_client/models/performance_prediction.py
 exalsius_api_client/models/performance_prediction_request.py
 exalsius_api_client/models/performance_prediction_response.py
 exalsius_api_client/models/self_managed_node.py
+exalsius_api_client/models/self_register_token.py
+exalsius_api_client/models/self_register_token_response.py
 exalsius_api_client/models/service.py
 exalsius_api_client/models/service_create_response.py
 exalsius_api_client/models/service_delete_response.py
@@ -207,4 +215,8 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_node_self_register_request.py
+test/test_node_self_register_response.py
+test/test_self_register_token.py
+test/test_self_register_token_response.py
 tox.ini

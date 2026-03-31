@@ -121,7 +121,9 @@ Class | Method | HTTP request | Description
 *ColoniesApi* | [**list_colonies**](docs/ColoniesApi.md#list_colonies) | **GET** /colonies | List all colonies
 *ManagementApi* | [**add_ssh_key**](docs/ManagementApi.md#add_ssh_key) | **POST** /management/ssh-keys | Add an SSH key
 *ManagementApi* | [**delete_ssh_key**](docs/ManagementApi.md#delete_ssh_key) | **DELETE** /management/ssh-key/{ssh_key_id} | Delete an SSH key
+*ManagementApi* | [**generate_self_register_token**](docs/ManagementApi.md#generate_self_register_token) | **POST** /management/self-register-token | Generate a self-register token
 *ManagementApi* | [**get_dashboard_url**](docs/ManagementApi.md#get_dashboard_url) | **GET** /management/dashboard-url | Get dashboard URL
+*ManagementApi* | [**get_self_register_token**](docs/ManagementApi.md#get_self_register_token) | **GET** /management/self-register-token | Get the active self-register token
 *ManagementApi* | [**list_cluster_templates**](docs/ManagementApi.md#list_cluster_templates) | **GET** /management/cluster-templates | List all cluster templates
 *ManagementApi* | [**list_credentials**](docs/ManagementApi.md#list_credentials) | **GET** /management/credentials | List all cloud provider credentials
 *ManagementApi* | [**list_service_templates**](docs/ManagementApi.md#list_service_templates) | **GET** /management/service-templates | List all available service templates
@@ -133,6 +135,7 @@ Class | Method | HTTP request | Description
 *NodesApi* | [**import_ssh**](docs/NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 *NodesApi* | [**list_nodes**](docs/NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 *NodesApi* | [**patch_node**](docs/NodesApi.md#patch_node) | **PATCH** /node/{node_id} | Patch a node
+*NodesApi* | [**self_register_node**](docs/NodesApi.md#self_register_node) | **POST** /node/self-register | Self-register a node using a registration token
 *OffersApi* | [**get_offers**](docs/OffersApi.md#get_offers) | **GET** /offers | List and filter current GPU on-demand and spot market offers
 *OffersApi* | [**get_offers_filter_metadata**](docs/OffersApi.md#get_offers_filter_metadata) | **GET** /offers/metadata | List available offer filters and metric ranges
 *PerformancePredictionApi* | [**get_performance_prediction**](docs/PerformancePredictionApi.md#get_performance_prediction) | **POST** /performance-prediction | Get runtime performance predictions for a GPU-accelerated workload configuration
@@ -198,6 +201,8 @@ Class | Method | HTTP request | Description
  - [NodePatchRequest](docs/NodePatchRequest.md)
  - [NodePatchResponse](docs/NodePatchResponse.md)
  - [NodeResponse](docs/NodeResponse.md)
+ - [NodeSelfRegisterRequest](docs/NodeSelfRegisterRequest.md)
+ - [NodeSelfRegisterResponse](docs/NodeSelfRegisterResponse.md)
  - [NodeSoftware](docs/NodeSoftware.md)
  - [NodeSystem](docs/NodeSystem.md)
  - [NodesListResponse](docs/NodesListResponse.md)
@@ -208,6 +213,8 @@ Class | Method | HTTP request | Description
  - [PerformancePredictionRequest](docs/PerformancePredictionRequest.md)
  - [PerformancePredictionResponse](docs/PerformancePredictionResponse.md)
  - [SelfManagedNode](docs/SelfManagedNode.md)
+ - [SelfRegisterToken](docs/SelfRegisterToken.md)
+ - [SelfRegisterTokenResponse](docs/SelfRegisterTokenResponse.md)
  - [Service](docs/Service.md)
  - [ServiceCreateResponse](docs/ServiceCreateResponse.md)
  - [ServiceDeleteResponse](docs/ServiceDeleteResponse.md)

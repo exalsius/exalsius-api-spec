@@ -81,6 +81,8 @@ __all__ = [
     "NodePatchRequest",
     "NodePatchResponse",
     "NodeResponse",
+    "NodeSelfRegisterRequest",
+    "NodeSelfRegisterResponse",
     "NodeSoftware",
     "NodeSystem",
     "NodesListResponse",
@@ -91,6 +93,8 @@ __all__ = [
     "PerformancePredictionRequest",
     "PerformancePredictionResponse",
     "SelfManagedNode",
+    "SelfRegisterToken",
+    "SelfRegisterTokenResponse",
     "Service",
     "ServiceCreateResponse",
     "ServiceDeleteResponse",
@@ -231,6 +235,10 @@ from exalsius_api_client.models.node_patch_response import \
     NodePatchResponse as NodePatchResponse
 from exalsius_api_client.models.node_response import \
     NodeResponse as NodeResponse
+from exalsius_api_client.models.node_self_register_request import \
+    NodeSelfRegisterRequest as NodeSelfRegisterRequest
+from exalsius_api_client.models.node_self_register_response import \
+    NodeSelfRegisterResponse as NodeSelfRegisterResponse
 from exalsius_api_client.models.node_software import \
     NodeSoftware as NodeSoftware
 from exalsius_api_client.models.node_system import NodeSystem as NodeSystem
@@ -249,6 +257,10 @@ from exalsius_api_client.models.performance_prediction_response import \
     PerformancePredictionResponse as PerformancePredictionResponse
 from exalsius_api_client.models.self_managed_node import \
     SelfManagedNode as SelfManagedNode
+from exalsius_api_client.models.self_register_token import \
+    SelfRegisterToken as SelfRegisterToken
+from exalsius_api_client.models.self_register_token_response import \
+    SelfRegisterTokenResponse as SelfRegisterTokenResponse
 from exalsius_api_client.models.service import Service as Service
 from exalsius_api_client.models.service_create_response import \
     ServiceCreateResponse as ServiceCreateResponse

@@ -85,6 +85,10 @@ from exalsius_api_client.models.node_import_ssh_request import \
 from exalsius_api_client.models.node_patch_request import NodePatchRequest
 from exalsius_api_client.models.node_patch_response import NodePatchResponse
 from exalsius_api_client.models.node_response import NodeResponse
+from exalsius_api_client.models.node_self_register_request import \
+    NodeSelfRegisterRequest
+from exalsius_api_client.models.node_self_register_response import \
+    NodeSelfRegisterResponse
 from exalsius_api_client.models.node_software import NodeSoftware
 from exalsius_api_client.models.node_system import NodeSystem
 from exalsius_api_client.models.nodes_list_response import NodesListResponse
@@ -99,6 +103,9 @@ from exalsius_api_client.models.performance_prediction_request import \
 from exalsius_api_client.models.performance_prediction_response import \
     PerformancePredictionResponse
 from exalsius_api_client.models.self_managed_node import SelfManagedNode
+from exalsius_api_client.models.self_register_token import SelfRegisterToken
+from exalsius_api_client.models.self_register_token_response import \
+    SelfRegisterTokenResponse
 from exalsius_api_client.models.service import Service
 from exalsius_api_client.models.service_create_response import \
     ServiceCreateResponse

@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**import_ssh**](NodesApi.md#import_ssh) | **POST** /node/import/ssh | Import a self-managed node via SSH
 [**list_nodes**](NodesApi.md#list_nodes) | **GET** /nodes | List all imported nodes in the node pool
 [**patch_node**](NodesApi.md#patch_node) | **PATCH** /node/{node_id} | Patch a node
+[**self_register_node**](NodesApi.md#self_register_node) | **POST** /node/self-register | Self-register a node using a registration token
 
 
 # **delete_node**
@@ -580,6 +581,99 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | Node patch response |  -  |
 **404** | Error response |  -  |
+**500** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **self_register_node**
+> NodeSelfRegisterResponse self_register_node(node_self_register_request)
+
+Self-register a node using a registration token
+
+**Self-register a node**
+
+Use this endpoint as the bootstrap entrypoint for a node agent that needs to register itself with exalsius.
+The agent authenticates with a one-time or pre-issued `register_token` and submits the SSH and node metadata
+required to create or attach the node.
+
+**Parameters**
+
+To self-register a node, provide:
+- The `register_token` issued for the node bootstrap flow
+- The node hostname
+- The SSH endpoint reachable by exalsius (for example `192.168.1.1:22`)
+- The SSH username
+- The SSH key ID that should be used for ongoing management
+
+Optional hardware, software, and system details can be included during registration.
+
+**Result**
+
+Returns the created node ID and the next access token the node agent should use for subsequent authenticated operations.
+
+
+### Example
+
+
+```python
+import exalsius_api_client
+from exalsius_api_client.models.node_self_register_request import NodeSelfRegisterRequest
+from exalsius_api_client.models.node_self_register_response import NodeSelfRegisterResponse
+from exalsius_api_client.rest import ApiException
+from pprint import pprint
+
+# Defining the host is optional and defaults to https://api.exalsius.ai/v1
+# See configuration.py for a list of all supported configuration parameters.
+configuration = exalsius_api_client.Configuration(
+    host = "https://api.exalsius.ai/v1"
+)
+
+
+# Enter a context with an instance of the API client
+with exalsius_api_client.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = exalsius_api_client.NodesApi(api_client)
+    node_self_register_request = {"register_token":"MY_SECRET_TOKEN","hostname":"my-node-123","endpoint":"192.168.1.1:22","username":"ubuntu","ssh_key_id":"123e4567-e89b-12d3-a456-426614174000","price_per_hour":0.1} # NodeSelfRegisterRequest | 
+
+    try:
+        # Self-register a node using a registration token
+        api_response = api_instance.self_register_node(node_self_register_request)
+        print("The response of NodesApi->self_register_node:\n")
+        pprint(api_response)
+    except Exception as e:
+        print("Exception when calling NodesApi->self_register_node: %s\n" % e)
+```
+
+
+
+### Parameters
+
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **node_self_register_request** | [**NodeSelfRegisterRequest**](NodeSelfRegisterRequest.md)|  | 
+
+### Return type
+
+[**NodeSelfRegisterResponse**](NodeSelfRegisterResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json, application/problem+json
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Node self register response |  -  |
+**400** | Error response |  -  |
+**401** | Error response |  -  |
+**409** | Error response |  -  |
 **500** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
