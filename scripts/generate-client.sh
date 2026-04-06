@@ -8,6 +8,9 @@ CLIENT_SDK_DIR="client-sdk"
 API_VERSION=$(grep -oP 'version: \K[^"]+' ${REPO_DIR}/openapi/openapi.yaml)
 
 OPENAPI_GENERATOR_VERSION="7.14.0"
+BLACK_VERSION="24.10.0"
+RUFF_VERSION="0.15.5"
+ISORT_IMAGE="xcgd/isort@sha256:2377c04fca88cb250f62f6c6adb18174ff64e0ae382cc2d53e45642dd0d17d5b" # isort 6.0.0
 
 log() {
     echo "[$(date +'%Y-%m-%d %H:%M:%S')] $1"
@@ -50,21 +53,21 @@ run_formatter() {
     docker run --rm -v "${REPO_DIR}:/src" \
             --user $(id -u):$(id -g) \
         --workdir /src/${CLIENT_SDK_DIR} \
-        pyfound/black:latest_release \
+        pyfound/black:${BLACK_VERSION} \
         black .
 
     log "Fixing issues with ruff..."
     docker run --rm -v "${REPO_DIR}:/src" \
             --user $(id -u):$(id -g) \
         --workdir /src/${CLIENT_SDK_DIR} \
-        ghcr.io/astral-sh/ruff:latest \
+        ghcr.io/astral-sh/ruff:${RUFF_VERSION} \
         check --fix-only .
 
     log "Formatting client SDK python code with isort..."
     docker run --rm -v "${REPO_DIR}:/src" \
             --user $(id -u):$(id -g) \
         --workdir /src/${CLIENT_SDK_DIR} \
-        xcgd/isort:latest \
+        ${ISORT_IMAGE} \
         isort .
 
 
