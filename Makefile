@@ -26,7 +26,7 @@ run-redocly:
 		--user $(shell id -u):$(shell id -g) \
 		-v $(CURRENT_DIR):/spec \
 		redocly/cli \
-		--config /spec/openapi/redocly.yaml \
+		--config /spec/openapi/redocly-docs.yaml \
 		preview-docs /spec/openapi/openapi.yaml --host 0.0.0.0
 .PHONY: run-redocly
 
