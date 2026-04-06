@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.45.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.0...v1.45.1) (2026-04-06)
+
+
+### Bug Fixes
+
+* **linting:** replace inactive Spectral ruleset with native Redocly rules ([96ac3e7](https://github.com/exalsius/exalsius-api-spec/commit/96ac3e7b19b74131d0b43fad75d3ccb2c2f40894))
+* **release:** consolidate release-please to single package ([080b6e1](https://github.com/exalsius/exalsius-api-spec/commit/080b6e19bcf72ce53ea3a890ec1f39d583559dd7))
+* **schema:** correct invalid examples and property casing ([54ef24a](https://github.com/exalsius/exalsius-api-spec/commit/54ef24a06341659043932f7807d8c4cd17da22ff))
+
 ## [1.45.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.44.0...v1.45.0) (2026-03-31)
 
 
