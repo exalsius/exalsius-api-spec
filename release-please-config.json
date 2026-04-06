@@ -3,34 +3,15 @@
     "changelog-path": "CHANGELOG.md",
     "extra-files": [
         {
-          "type": "yaml",
-          "path": "openapi/openapi.yaml",
-          "jsonpath": "$.info.version"
+            "type": "yaml",
+            "path": "openapi/openapi.yaml",
+            "jsonpath": "$.info.version"
         }
-      ],
+    ],
     "packages": {
         ".": {
             "release-type": "simple",
-            "path": ".",
             "component": ""
-        },
-        "openapi": {
-            "path": "openapi",
-            "release-type": "simple",
-            "component": "openapi"
-        },
-        "client-sdk": {
-            "path": "client-sdk",
-            "release-type": "python",
-            "component": "client-sdk"
         }
-    },
-    "release-type": "simple",
-    "plugins": [
-        {
-          "type": "linked-versions",
-          "groupName": "all",
-          "components": ["openapi", "client-sdk"]
-        }
-    ]
+    }
 }
