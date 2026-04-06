@@ -18,6 +18,12 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
+      - name: Lint OpenAPI Spec
+        run: make lint
+
+      - name: Bundle OpenAPI Spec
+        run: make build
+
       - name: Generate client code
         run: make generate
 
