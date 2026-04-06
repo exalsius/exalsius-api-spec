@@ -1,0 +1,9 @@
+extends:
+  - ./redocly.yaml
+theme:
+  openapi:
+    htmlTemplate: openapi/docs/index.html
+    theme:
+      colors:
+        primary:
+          main: "#f46907"
