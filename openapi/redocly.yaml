@@ -1,13 +1,66 @@
 apis:
-  exalsius@v1: 
+  exalsius@v1:
     root: openapi/openapi.yaml
 extends:
   - recommended
-  - linting/zalando.json
-theme:
-  openapi:
-    htmlTemplate: openapi/docs/index.html
-    theme:
-      colors:
-        primary:
-          main: "#f46907"
+rules:
+  # Enable built-in rules that cover Zalando guidelines
+  paths-kebab-case: error
+  info-contact: error
+  no-http-verbs-in-paths: warn
+
+  # Zalando: snake_case for property names (guideline 118)
+  rule/snake-case-properties:
+    subject:
+      type: SchemaProperties
+    assertions:
+      casing: snake_case
+    severity: error
+    message: Property name must be snake_case
+
+  # Zalando: snake_case for query parameters (guideline 130)
+  rule/snake-case-query-params:
+    subject:
+      type: Parameter
+      filterInParentKeys:
+        - parameters
+      property: name
+    where:
+      - subject:
+          type: Parameter
+          property: in
+        assertions:
+          const: query
+    assertions:
+      casing: snake_case
+    severity: error
+    message: Query parameters must be snake_case
+
+  # Zalando: no URI versioning (guideline 115)
+  rule/no-uri-versioning:
+    subject:
+      type: Paths
+    assertions:
+      notPattern: /v[0-9]+/
+    severity: error
+    message: Path must not contain URI versioning
+
+  # Zalando: x-api-id must be defined (guideline 215)
+  rule/must-have-x-api-id:
+    subject:
+      type: Info
+      property: x-api-id
+    assertions:
+      defined: true
+    severity: error
+    message: "Missing info.x-api-id"
+
+  # Zalando: x-audience must be defined (guideline 219)
+  rule/must-have-x-audience:
+    subject:
+      type: Info
+      property: x-audience
+    assertions:
+      defined: true
+    severity: error
+    message: "Missing info.x-audience"
