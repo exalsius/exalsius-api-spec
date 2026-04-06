@@ -103,7 +103,7 @@ properties:
         description: Enable local storage provisioner
         default: true
         example: true
-      basePath:
+      base_path:
         type: string
         default: "/var/openebs/local"
         description: Base path for local storage. If empty, /var/openebs/local will be used
@@ -142,7 +142,7 @@ properties:
     items:
       $ref: '../../components/schemas/service-deployment.yaml'
     description: The deployed services in the cluster
-    example: [{"service_deployment_id": 123, "service_name": "my-service"}, {"service_deployment_id": 324, "service_name": "my-service-2"}]
+    example: [{"service_deployment_id": "123e4567-e89b-12d3-a456-426614174000", "service_name": "my-service", "service_template": "my-template", "owner": "John Doe"}, {"service_deployment_id": "223e4567-e89b-12d3-a456-426614174000", "service_name": "my-service-2", "service_template": "my-template-2", "owner": "Jane Doe"}]
   workspace_deployments:
     type: array
     items:
