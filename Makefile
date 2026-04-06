@@ -48,6 +48,16 @@ generate:
 	./scripts/generate-client.sh
 .PHONY: generate
 
+test: generate
+	@echo "Running client SDK tests…"
+	cd client-sdk && pip install -q -r requirements.txt -r test-requirements.txt && pytest --cov=exalsius_api_client
+.PHONY: test
+
+clean:
+	@echo "Cleaning generated artifacts…"
+	rm -rf dist/ server/
+.PHONY: clean
+
 generate-server: build
 	@echo "Generating server stub"
 	docker run --rm -v "${PWD}:/local" \
