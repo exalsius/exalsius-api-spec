@@ -14,3 +14,6 @@ jobs:
 
       - name: Lint OpenAPI Spec
         run: make lint
+
+      - name: Bundle OpenAPI Spec
+        run: make build
