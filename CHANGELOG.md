@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.45.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.1...v1.45.2) (2026-04-08)
+
+
+### Bug Fixes
+
+* trigger release for pypi publishing ([adddea6](https://github.com/exalsius/exalsius-api-spec/commit/adddea6a307cff8dafad196fa8177d0816769df3))
+
 ## [1.45.1](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.0...v1.45.1) (2026-04-06)
 
 
