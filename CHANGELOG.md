@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.45.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.2...v1.45.3) (2026-04-08)
+
+
+### Bug Fixes
+
+* **pypi:** regenerate sdk before publishing to ensure version matches release ([6d59992](https://github.com/exalsius/exalsius-api-spec/commit/6d59992c60a5cc41b362f8aa168c3d80fb8dfa51))
+
 ## [1.45.2](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.1...v1.45.2) (2026-04-08)
 
 
