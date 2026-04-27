@@ -219,6 +219,4 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
-test/test_telemetry_api.py
-test/test_telemetry_event_request.py
 tox.ini
