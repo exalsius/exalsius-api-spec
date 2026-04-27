@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.46.0](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.3...v1.46.0) (2026-04-27)
+
+
+### Features
+
+* add telemetry endpoint ([1169d8a](https://github.com/exalsius/exalsius-api-spec/commit/1169d8a742af3bf3601b3deaf4398cbfcf439c46))
+
 ## [1.45.3](https://github.com/exalsius/exalsius-api-spec/compare/v1.45.2...v1.45.3) (2026-04-08)
 
 
