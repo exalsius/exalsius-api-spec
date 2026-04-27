@@ -1,0 +1,14 @@
+type: object
+required:
+  - event_name
+properties:
+  event_name:
+    type: string
+    description: The telemetry event name.
+
+  additional_properties:
+    type: array
+    items:
+      type: string
+      description: Additional properties related to the telemetry event. Variable for each event type.
+

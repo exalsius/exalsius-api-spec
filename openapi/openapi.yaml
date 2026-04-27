@@ -67,6 +67,8 @@ tags:
   - name: management
     description: Configure SSH keys, templates, and other system settings
 paths:
+  /telemetry:
+    $ref: ./paths/telemetry/telemetry.yaml
   /offers:
     $ref: ./paths/offers/list.yaml
   /offers/metadata:

@@ -1,0 +1,33 @@
+post:
+  summary: Post a telemetry event
+  security:
+    - OAuth2:
+      # This operation is accessible by users (openid) and m2m applications with scope gpuradar
+      - openid
+  description: |
+
+  operationId: post-telemetry-event
+  tags: [telemetry]
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/requests/telemetry-event-request.yaml'
+        examples:
+          list-workspaces-event:
+            summary: List workspaces event
+            value:
+              event_name: list-workspaces-event
+  responses:
+    '204':
+      description: Telemetry event accepted.
+    '400':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: bad-request
+    '422':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: telemetry-type-unknown
+    '500':
+      $ref: '../../components/responses/error-response.yaml'
+      useExample: server-error
