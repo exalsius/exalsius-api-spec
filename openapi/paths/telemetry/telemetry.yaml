@@ -15,11 +15,10 @@ post:
         schema:
           $ref: '../../components/requests/telemetry-event-request.yaml'
         examples:
-          telemetry-event-request:
-            list-workspaces-event:
-              summary: List workspaces event
-              value:
-                event_name: list-workspaces-event
+          list-workspaces-event:
+            summary: List workspaces event
+            value:
+              event_name: list-workspaces-event
   responses:
     '204':
       description: Telemetry event accepted.

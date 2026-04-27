@@ -1,7 +1,6 @@
 type: object
 required:
   - event_name
-  - additional_properties
 properties:
   event_name:
     type: string
