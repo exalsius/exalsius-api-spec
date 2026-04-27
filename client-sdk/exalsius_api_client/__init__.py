@@ -26,6 +26,7 @@ __all__ = [
     "OffersApi",
     "PerformancePredictionApi",
     "ServicesApi",
+    "TelemetryApi",
     "VramPredictionApi",
     "WorkspacesApi",
     "ApiResponse",
@@ -110,6 +111,7 @@ __all__ = [
     "SshKeyCreateResponse",
     "SshKeysListResponse",
     "SshKeysListResponseSshKeysInner",
+    "TelemetryEventRequest",
     "VramPredictionMetadataResponse",
     "VramPredictionRequest",
     "VramPredictionResponse",
@@ -138,6 +140,7 @@ from exalsius_api_client.api.offers_api import OffersApi as OffersApi
 from exalsius_api_client.api.performance_prediction_api import \
     PerformancePredictionApi as PerformancePredictionApi
 from exalsius_api_client.api.services_api import ServicesApi as ServicesApi
+from exalsius_api_client.api.telemetry_api import TelemetryApi as TelemetryApi
 from exalsius_api_client.api.vram_prediction_api import \
     VramPredictionApi as VramPredictionApi
 from exalsius_api_client.api.workspaces_api import \
@@ -288,6 +291,8 @@ from exalsius_api_client.models.ssh_keys_list_response import \
     SshKeysListResponse as SshKeysListResponse
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
     SshKeysListResponseSshKeysInner as SshKeysListResponseSshKeysInner
+from exalsius_api_client.models.telemetry_event_request import \
+    TelemetryEventRequest as TelemetryEventRequest
 from exalsius_api_client.models.vram_prediction_metadata_response import \
     VramPredictionMetadataResponse as VramPredictionMetadataResponse
 from exalsius_api_client.models.vram_prediction_request import \

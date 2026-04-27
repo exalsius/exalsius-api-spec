@@ -83,6 +83,8 @@ docs/SshKeyCreateRequest.md
 docs/SshKeyCreateResponse.md
 docs/SshKeysListResponse.md
 docs/SshKeysListResponseSshKeysInner.md
+docs/TelemetryApi.md
+docs/TelemetryEventRequest.md
 docs/VramPredictionApi.md
 docs/VramPredictionMetadataResponse.md
 docs/VramPredictionRequest.md
@@ -110,6 +112,7 @@ exalsius_api_client/api/nodes_api.py
 exalsius_api_client/api/offers_api.py
 exalsius_api_client/api/performance_prediction_api.py
 exalsius_api_client/api/services_api.py
+exalsius_api_client/api/telemetry_api.py
 exalsius_api_client/api/vram_prediction_api.py
 exalsius_api_client/api/workspaces_api.py
 exalsius_api_client/api_client.py
@@ -190,6 +193,7 @@ exalsius_api_client/models/ssh_key_create_request.py
 exalsius_api_client/models/ssh_key_create_response.py
 exalsius_api_client/models/ssh_keys_list_response.py
 exalsius_api_client/models/ssh_keys_list_response_ssh_keys_inner.py
+exalsius_api_client/models/telemetry_event_request.py
 exalsius_api_client/models/vram_prediction_metadata_response.py
 exalsius_api_client/models/vram_prediction_request.py
 exalsius_api_client/models/vram_prediction_response.py
@@ -215,4 +219,6 @@ setup.cfg
 setup.py
 test-requirements.txt
 test/__init__.py
+test/test_telemetry_api.py
+test/test_telemetry_event_request.py
 tox.ini

@@ -130,6 +130,8 @@ from exalsius_api_client.models.ssh_keys_list_response import \
     SshKeysListResponse
 from exalsius_api_client.models.ssh_keys_list_response_ssh_keys_inner import \
     SshKeysListResponseSshKeysInner
+from exalsius_api_client.models.telemetry_event_request import \
+    TelemetryEventRequest
 from exalsius_api_client.models.vram_prediction_metadata_response import \
     VramPredictionMetadataResponse
 from exalsius_api_client.models.vram_prediction_request import \
