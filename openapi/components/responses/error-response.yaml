@@ -202,3 +202,12 @@ content:
             status: 422
             detail: "The model provided for VRAM prediction is not supported. Check /vram-prediction/metadata for a list of supported models."
             instance: "/vram-prediction"
+      telemetry-type-unknown:
+        summary: Telemetry type not supported
+        value:
+          detail:
+            type: "https://api.exalsius.ai/errors/bad-request"
+            title: "Unsupported value for parameter telemetryType"
+            status: 422
+            instance: "/telemetry"
+            detail: "The telemetry type provided is not supported."
